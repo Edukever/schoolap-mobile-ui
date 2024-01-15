@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return AppTheme(
       data: AppThemeData.defaultThemeData(),
       child: Builder(builder: (context) {
-        return  MaterialApp(
+        return MaterialApp(
           title: 'Schoolap mobile package example',
           debugShowCheckedModeBanner: false,
           theme: AppMaterialTheme.defaultTheme(AppTheme.of(context).colors),
@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,6 +34,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Schoolap component"),
+      ),
+      body: Center(
+        child: Text(
+          "Hello World",
+          style: TextStyle(
+            color: AppTheme.of(context).colors.blue2,
+          ),
+        ),
+      ),
+    );
   }
 }
