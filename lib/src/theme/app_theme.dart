@@ -28,5 +28,6 @@ class AppTheme {
         ),
       ),
     ),
+    scaffoldBackgroundColor: AppColorsData.blanc,
   );
 }
