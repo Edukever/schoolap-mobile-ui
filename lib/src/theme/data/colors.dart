@@ -24,10 +24,12 @@ class AppColorsData {
   static const Color bleu = Color(0xFF41A3DF);
   static const Color bleuLight = Color(0xFFE5F9FF);
   static const Color blue1 = Color(0xFFAEDAEE);
+  static const Color blue2 = Color(0xFF43B4D6);
 
   // yellow color
   static const Color jaune = Color(0xFFF2B200);
   static const Color jauneLight = Color(0xFFFFF4D8);
+  static const Color jaune1 = Color(0xFFFFD954);
 
   // orange color
   static const Color orange = Color(0xFFF68C2C);
