@@ -1,4 +1,5 @@
 import 'package:example/fiels/button_page.dart';
+import 'package:example/fiels/custom_card.dart';
 import 'package:example/fiels/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_pkg/schoolap_pkg.dart';
@@ -62,6 +63,18 @@ class _HomePageState extends State<HomePage> {
               title: "Icons page",
               onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const IconPage())),
+            ),
+            const SizedBox(height: 10),
+            PrimaryButton(
+              title: "custom appBar",
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const IconPage())),
+            ),
+            const SizedBox(height: 10),
+            PrimaryButton(
+              title: "custom card",
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const CustomCard())),
             )
           ],
         ),
