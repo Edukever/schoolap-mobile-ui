@@ -1,6 +1,6 @@
 import 'package:schoolap_pkg/schoolap_pkg.dart';
 
-enum StatePrimaryButtonState { download, validation, delete }
+enum StatePrimaryButtonState { download, validation, delete, disabled }
 
 class StatePrimaryButton extends StatelessWidget {
   final StatePrimaryButtonState state;
@@ -33,7 +33,12 @@ class StatePrimaryButton extends StatelessWidget {
           width: width,
           backgroundColor: const Color(0xFF1EA951),
         );
-
+      case StatePrimaryButtonState.disabled:
+        return PrimaryButton(
+          title: "Supprimer",
+          height: height,
+          width: width,
+        );
       default:
         return Container();
     }

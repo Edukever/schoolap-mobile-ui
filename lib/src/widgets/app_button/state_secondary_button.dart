@@ -14,7 +14,7 @@ class StateSecondaryButton extends StatelessWidget {
           title: "Télécharger",
           height: height,
           width: width,
-          textColor: const Color(0xFF41A3DF),
+          iconOrTextColor: const Color(0xFF41A3DF),
           backgroundColor: const Color(0xFFE5F9FF),
         );
       case StatePrimaryButtonState.validation:
@@ -22,7 +22,7 @@ class StateSecondaryButton extends StatelessWidget {
           title: "Validation",
           height: height,
           width: width,
-          textColor: const Color(0xFFFF4F4F),
+          iconOrTextColor: const Color(0xFFFF4F4F),
           backgroundColor: const Color(0xFFFFE1E1),
         );
 
@@ -31,7 +31,7 @@ class StateSecondaryButton extends StatelessWidget {
           title: "Supprimer",
           height: height,
           width: width,
-          textColor: const Color(0xFF1EA951),
+          iconOrTextColor: const Color(0xFF1EA951),
           backgroundColor: const Color(0xFFDDF3D6),
         );
 
