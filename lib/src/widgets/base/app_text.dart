@@ -3,6 +3,7 @@ import 'package:schoolap_pkg/schoolap_pkg.dart';
 enum AppTextLevel {
   paragraph1,
   paragraph2,
+
   title1,
   title2,
   title3,
