@@ -40,6 +40,17 @@ class ButtonPage extends StatelessWidget {
               hasIcon: true,
               iconPosition: IconPosition.right,
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: AppText.title3("Bouton primary avec outline"),
+            ),
+            PrimaryButton(
+              title: 'Retour',
+              hasIcon: true,
+              decorationState: DecorationState.outline,
+              iconPosition: IconPosition.left,
+              iconOrTextColor: Color(0xFFF68C2C),
+            ),
             Divider(),
             StatePrimaryButton(
               state: StatePrimaryButtonState.download,
