@@ -13,7 +13,6 @@ enum StateFormIcon {
 }
 
 class AppIconButton extends StatelessWidget {
-  final List<Color>? colors;
   final String iconData;
   final StateFormIcon? formState;
   final double? width;
@@ -21,7 +20,8 @@ class AppIconButton extends StatelessWidget {
   final Color? filledColors;
   final Color? iconColor;
   final Color? outlinedColor;
-  final bool hasShadow;
+  final bool? hasShadow;
+  final double? radius;
 
   const AppIconButton({
     Key? key,
@@ -29,15 +29,15 @@ class AppIconButton extends StatelessWidget {
     this.width,
     this.height,
     required this.iconData,
-    this.colors,
     this.filledColors,
     this.iconColor,
     this.outlinedColor,
     this.hasShadow = false,
+    this.radius,
   })  : assert(formState != StateFormIcon.outlined || outlinedColor != null,
             'Invalid configuration: outlinedColor should be provided when formState is only outlined.'),
-        assert(formState != StateFormIcon.square || hasShadow,
-            'Invalid configuration: hasShadow should be true when formState is only square.'),
+        assert(formState != StateFormIcon.square || hasShadow != null,
+            'Invalid configuration: hasShadow should be provided when formState is only square.'),
         super(key: key);
 
   @override
@@ -57,15 +57,8 @@ class AppIconButton extends StatelessWidget {
     switch (formState) {
       case StateFormIcon.square:
         return BoxDecoration(
-          gradient: LinearGradient(
-            begin: const Alignment(-0.00, 1.00),
-            end: const Alignment(0, -1),
-            colors: colors ??
-                const [
-                  Color(0xFF3F97E3),
-                  Color(0xFF43B4D6),
-                ],
-          ),
+          borderRadius: BorderRadius.circular(radius ?? 10.0),
+          color: filledColors ?? const Color(0xFF3F97E3),
           boxShadow: hasShadow == true
               ? const [
                   BoxShadow(
@@ -78,8 +71,8 @@ class AppIconButton extends StatelessWidget {
               : null,
         );
       case StateFormIcon.circle:
-        return const BoxDecoration(
-          color: Color(0xFFE5F9FF),
+        return BoxDecoration(
+          color: filledColors ?? const Color(0xFFE5F9FF),
           shape: BoxShape.circle,
         );
       case StateFormIcon.outlined:
