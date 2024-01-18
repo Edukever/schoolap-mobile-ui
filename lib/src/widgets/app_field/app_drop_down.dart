@@ -1,12 +1,15 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+
+typedef OnChanged<T> = void Function(T?);
 
 class AppDropDown<T> extends StatelessWidget {
   final String name;
   final List<DropdownMenuItem<T>> items;
-  final void Function(T?)? onChanged;
-  final String? Function(Object?)? validator;
+  final OnChanged<T>? onChanged;
+  final Validator<Object>? validator;
   final String placeHolder;
   final String? label;
   final Widget? prefix;

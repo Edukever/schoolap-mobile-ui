@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
 
 enum AppTextFieldType {
   password,
@@ -21,7 +22,7 @@ class AppTextField<T> extends StatelessWidget {
   final String? label;
 
   /// The validator function for the text field.
-  final String? Function(T?)? validator;
+  final Validator<T>? validator;
 
   /// The suffix widget for the text field.
   final Widget? suffix;
