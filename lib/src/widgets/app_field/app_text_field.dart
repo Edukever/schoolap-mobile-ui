@@ -62,6 +62,11 @@ class AppTextField<T> extends StatelessWidget {
       prefixIcon: prefix,
       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       hintText: placeHolder,
+      hintStyle: const TextStyle(
+        fontSize: 13,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+      ),
       border: OutlineInputBorder(
         borderRadius: borderRadius ?? BorderRadius.circular(10),
       ),
