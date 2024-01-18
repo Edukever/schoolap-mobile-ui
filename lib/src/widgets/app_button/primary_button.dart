@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:schoolap_pkg/src/widgets/base/app_text.dart';
 
 enum IconPosition {
   left,
   right,
+}
+
+enum DecorationState {
+  none,
+  solid,
+  outline,
 }
 
 /// A primary button widget with customizable properties.
@@ -15,6 +20,9 @@ enum IconPosition {
 class PrimaryButton<T> extends StatelessWidget {
   /// The background color of the button.
   final Color? backgroundColor;
+
+  /// The outline border color of the button.
+  final DecorationState? decorationState;
 
   /// The text displayed on the button.
   final String title;
@@ -28,11 +36,12 @@ class PrimaryButton<T> extends StatelessWidget {
   /// Determines whether the button has an icon or not.
   final bool hasIcon;
 
+  final Color? iconOrTextColor;
+
   /// The Width of the Button
   final double? width;
 
-  /// the color of the Text
-  final Color? textColor;
+  final VoidCallback? onTap;
 
   /// Creates a primary button widget.
   ///
@@ -49,33 +58,61 @@ class PrimaryButton<T> extends StatelessWidget {
     this.iconPosition,
     this.hasIcon = false,
     this.width,
-    this.textColor,
+    this.decorationState,
+    this.iconOrTextColor,
+    this.onTap,
   })  : assert(hasIcon || iconPosition == null,
             'Invalid configuration: iconPosition should be null when hasIcon is false.'),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width ?? double.infinity,
-      height: height ?? 50,
-      decoration: BoxDecoration(
-        color: backgroundColor ?? const Color(0xFFF68C2C),
-        borderRadius: BorderRadius.circular(10.52),
-      ),
-      child: Center(
-        child: hasIcon == true
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _buildButtonChildren(),
-              )
-            : AppText.title3(
-                title,
-                color: textColor ?? Colors.white,
-              ),
+    return InkWell(
+      splashColor: const Color(0xFFFFF2EC),
+      onTap: onTap,
+      child: Container(
+        width: width ?? double.infinity,
+        height: height ?? 50,
+        decoration:
+            buildBorderDecoration(decorationState ?? DecorationState.none),
+        child: Center(
+          child: hasIcon == true
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildButtonChildren(),
+                )
+              : AppText(
+                  title,
+                  color: iconOrTextColor ?? Colors.white,
+                  fontSize: 15.0,
+                ),
+        ),
       ),
     );
+  }
+
+  BoxDecoration buildBorderDecoration(DecorationState decorationState) {
+    switch (decorationState) {
+      case DecorationState.solid:
+        return BoxDecoration(
+          color: backgroundColor ?? const Color(0xFFF68C2C),
+          borderRadius: BorderRadius.circular(10.52),
+        );
+      case DecorationState.outline:
+        return BoxDecoration(
+          borderRadius: BorderRadius.circular(10.52),
+          border: Border.all(
+            color: const Color(0xFFF68C2C),
+            width: 1.0,
+          ),
+        );
+      default:
+        return BoxDecoration(
+          color: backgroundColor ?? const Color(0xFFF68C2C),
+          borderRadius: BorderRadius.circular(10.52),
+        );
+    }
   }
 
   List<Widget> _buildButtonChildren() {
@@ -83,30 +120,31 @@ class PrimaryButton<T> extends StatelessWidget {
 
     if (iconPosition == IconPosition.left) {
       children.add(
-        const Padding(
-          padding: EdgeInsets.only(right: 20),
+        Padding(
+          padding: const EdgeInsets.only(right: 20),
           child: Icon(
             Icons.arrow_forward,
-            color: Colors.white,
+            color: iconOrTextColor ?? Colors.white,
           ),
         ),
       );
     }
 
     children.add(
-      AppText.title2(
+      AppText(
         title,
-        color: Colors.white,
+        color: iconOrTextColor ?? Colors.white,
+        fontSize: 14,
       ),
     );
 
     if (iconPosition == IconPosition.right) {
       children.add(
-        const Padding(
-          padding: EdgeInsets.only(left: 20),
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
           child: Icon(
             Icons.arrow_forward,
-            color: Colors.white,
+            color: iconOrTextColor ?? Colors.white,
           ),
         ),
       );
