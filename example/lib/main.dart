@@ -1,4 +1,5 @@
 import 'package:example/fiels/button_page.dart';
+import 'package:example/fiels/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_pkg/schoolap_pkg.dart';
 
@@ -41,39 +42,27 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Schoolap component"),
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                maximumSize: const Size(double.infinity, 100),
-                backgroundColor: AppTheme.of(context).colors.blue2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+            PrimaryButton(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const PageFieldScreen())),
-              child: const Text(
-                "pages field",
-                style: TextStyle(color: Colors.white),
-              ),
+              title: ("pages field"),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                maximumSize: const Size(double.infinity, 100),
-                backgroundColor: AppTheme.of(context).colors.blue2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () => Navigator.of(context).push(
+            const SizedBox(height: 10),
+            PrimaryButton(
+              onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const ButtonPage())),
-              child: const Text(
-                "button pages",
-                style: TextStyle(color: Colors.white),
-              ),
+              title: "Button page",
             ),
+            const SizedBox(height: 10),
+            PrimaryButton(
+              title: "Icons page",
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const IconPage())),
+            )
           ],
         ),
       ),
