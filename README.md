@@ -61,7 +61,6 @@ class MyButton extends StatelessWidget {
 
 Ce code crée un bouton `SchoolAppPrimaryButton` avec le texte "Cliquez ici", une couleur de fond bleue, une décoration solide, une hauteur de 50 pixels, une icône positionnée à droite du texte, une icône ou un texte en couleur blanche et une fonction `onTap` qui sera exécutée lorsque le bouton est cliqué.
 
-Bien sûr ! Voici comment vous pouvez ajouter l'utilisation du composant `SchoolAppTextField` dans votre documentation :
 
 ```dart
 import 'package:flutter/material.dart';
@@ -118,6 +117,63 @@ class MyForm extends StatelessWidget {
 ```
 
 Ce code crée un formulaire `FormBuilder` avec trois champs de texte `SchoolAppTextField` : un champ pour l'adresse e-mail, un champ pour le mot de passe et un champ pour la date de naissance. Chaque champ de texte est personnalisé avec un nom, un texte d'espace réservé, une fonction de validation et éventuellement des icônes préfixes/suffixes.
+
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:schoolap_design_system/schoolap_design_system.dart';
+
+```
+## Utilisation du composant `SchoolAppDropDown`
+
+Le composant `SchoolAppDropDown` est une liste déroulante personnalisée pour votre application. Il prend en charge la sélection d'éléments à partir d'une liste prédéfinie.
+
+Voici un exemple d'utilisation du composant `SchoolAppDropDown` :
+
+```dart
+class MyForm extends StatelessWidget {
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
+  final List<DropdownMenuItem<String>> _dropdownItems = [
+    DropdownMenuItem(
+      value: 'option1',
+      child: Text('Option 1'),
+    ),
+    DropdownMenuItem(
+      value: 'option2',
+      child: Text('Option 2'),
+    ),
+    DropdownMenuItem(
+      value: 'option3',
+      child: Text('Option 3'),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return FormBuilder(
+      key: _formKey,
+      child: Column(
+        children: [
+          SchoolAppDropDown<String>(
+            name: 'dropdown',
+            items: _dropdownItems,
+            placeHolder: 'Sélectionnez une option',
+            onChanged: (value) {
+              // Code exécuté lorsque la valeur de la liste déroulante change
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+Ce code crée un formulaire `FormBuilder` avec un composant `SchoolAppDropDown`. Le composant `SchoolAppDropDown` prend en charge une liste de `DropdownMenuItem` qui représente les options de la liste déroulante. Vous pouvez personnaliser le texte d'espace réservé avec la propriété `placeHolder` et fournir une fonction `onChanged` pour réagir aux changements de sélection.
 
 
 
