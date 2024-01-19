@@ -10,4 +10,4 @@ export 'package:schoolap_pkg/src/widgets/base/app_text.dart';
 export 'package:schoolap_pkg/src/widgets/app_button/schoolapp_primary_button.dart';
 
 export 'package:schoolap_pkg/src/widgets/app_field/school_app_text_field.dart';
-export 'package:schoolap_pkg/src/widgets/app_field/app_drop_down.dart';
+export 'package:schoolap_pkg/src/widgets/app_field/school_app_drop_down.dart';
