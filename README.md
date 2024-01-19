@@ -1,39 +1,87 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Schoolap Design System Package
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+Ce package sert de système de design pour toutes les applications Schoolap. Il contient des composants réutilisables et des styles prédéfinis pour assurer la cohérence et l'efficacité du développement.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Installation
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Pour installer le package, ajoutez la ligne suivante à votre fichier `pubspec.yaml` :
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  schoolap_pkg: 
+    path: https://github.com/Edukever/schoolap-mobile-pkg
 ```
 
-## Additional information
+Ensuite, exécutez la commande `flutter pub get` pour télécharger et intégrer le package à votre projet.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Utilisation
+
+Une fois le package installé, vous pouvez importer les composants du système de design dans vos fichiers Dart comme ceci :
+
+```dart
+import 'package:schoolap_pkg/schoolap_pkg.dart';
+```
+
+Le package fournit une variété de composants réutilisables tels que des boutons, des cartes, des champs de saisie, des listes, etc. Vous pouvez les utiliser dans vos widgets Flutter de la même manière que les widgets natifs de Flutter.
+
+Voici un exemple de l'utilisation du composant `SchoolAppPrimaryButton` :
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:schoolap_pkg/src/widgets/base/app_text.dart';
+import 'package:schoolap_design_system/schoolap_design_system.dart';
+
+// ...
+
+## Utilisation du composant `SchoolAppPrimaryButton`
+
+Le composant `SchoolAppPrimaryButton` est un bouton primaire personnalisable avec des propriétés configurables. Il peut afficher une icône optionnelle positionnée à gauche ou à droite du texte du bouton.
+
+Voici un exemple d'utilisation du composant `SchoolAppPrimaryButton` :
+
+```dart
+class MyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SchoolAppPrimaryButton(
+      title: 'Cliquez ici',
+      backgroundColor: Colors.blue, // Personnalisez la couleur de fond du bouton
+      decorationState: DecorationState.solid, // Personnalisez l'état de décoration du bouton
+      height: 50, // Personnalisez la hauteur du bouton
+      iconPosition: IconPosition.right, // Positionnez l'icône à droite du texte
+      hasIcon: true, // Activez l'affichage de l'icône
+      iconOrTextColor: Colors.white, // Personnalisez la couleur de l'icône ou du texte
+      onTap: () {
+        // Code exécuté lorsque le bouton est cliqué
+      },
+    );
+  }
+}
+```
+
+Ce code crée un bouton `SchoolAppPrimaryButton` avec le texte "Cliquez ici", une couleur de fond bleue, une décoration solide, une hauteur de 50 pixels, une icône positionnée à droite du texte, une icône ou un texte en couleur blanche et une fonction `onTap` qui sera exécutée lorsque le bouton est cliqué.
+
+Assurez-vous d'importer les dépendances nécessaires et de personnaliser les propriétés du bouton en fonction de vos besoins.
+
+
+Vous pouvez également personnaliser les composants selon vos besoins en utilisant les propriétés disponibles. Consultez la documentation du package pour connaître toutes les options de personnalisation.
+
+## Guidelines de design
+
+Le système de design Schoolap suit les guidelines de design spécifiques à notre marque et à nos applications. Il fournit des conseils sur la typographie, les couleurs, les espacements, les animations et d'autres aspects de l'interface utilisateur. Assurez-vous de consulter la documentation du système de design pour vous familiariser avec ces guidelines et créer des interfaces cohérentes et attrayantes.
+
+## Exemples
+
+Le package Schoolap Design System est livré avec des exemples de code pour vous aider à démarrer rapidement. Vous pouvez les trouver dans le répertoire `examples` du package. Ces exemples illustrent l'utilisation des différents composants et les bonnes pratiques de conception.
+
+## Contribution
+
+Nous encourageons la contribution à l'amélioration du système de design Schoolap. Si vous avez des idées, des suggestions ou des rapports de bugs, n'hésitez pas à les soumettre via notre système de suivi des problèmes sur GitHub. Vos contributions sont les bienvenues !
+
+## Licence
+
+Le package Schoolap Design System est distribué sous la licence MIT. Consultez le fichier `LICENSE` pour plus d'informations.
+
+---
+
+Ceci conclut la documentation du package Schoolap Design System. Nous espérons que ce système de design vous aidera à développer des applications Schoolap cohérentes et de haute qualité. Si vous avez des questions supplémentaires, n'hésitez pas à les poser. Bonne conception et développement !
