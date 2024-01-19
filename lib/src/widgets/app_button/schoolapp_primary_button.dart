@@ -17,7 +17,7 @@ enum DecorationState {
 /// The button can have an optional icon, which can be positioned on the left or right side of the button's text.
 /// If `hasIcon` is set to `true`, the icon will be displayed based on the `iconPosition` property.
 /// If `hasIcon` is set to `false`, the `iconPosition` should be null.
-class PrimaryButton<T> extends StatelessWidget {
+class SchoolAppPrimaryButton<T> extends StatelessWidget {
   /// The background color of the button.
   final Color? backgroundColor;
 
@@ -50,7 +50,7 @@ class PrimaryButton<T> extends StatelessWidget {
   /// The [height] parameter can be used to set the height of the button.
   /// The [iconPosition] parameter can be used to specify the position of the icon.
   /// The [hasIcon] parameter determines whether the button has an icon or not.
-  const PrimaryButton({
+  const SchoolAppPrimaryButton({
     Key? key,
     this.backgroundColor,
     required this.title,

@@ -10,7 +10,7 @@ class StateSecondaryButton extends StatelessWidget {
     const height = 45.0;
     switch (state) {
       case StatePrimaryButtonState.download:
-        return PrimaryButton(
+        return SchoolAppPrimaryButton(
           title: "Télécharger",
           height: height,
           width: width,
@@ -18,7 +18,7 @@ class StateSecondaryButton extends StatelessWidget {
           backgroundColor: const Color(0xFFE5F9FF),
         );
       case StatePrimaryButtonState.validation:
-        return PrimaryButton(
+        return SchoolAppPrimaryButton(
           title: "Validation",
           height: height,
           width: width,
@@ -27,7 +27,7 @@ class StateSecondaryButton extends StatelessWidget {
         );
 
       case StatePrimaryButtonState.delete:
-        return PrimaryButton(
+        return SchoolAppPrimaryButton(
           title: "Supprimer",
           height: height,
           width: width,

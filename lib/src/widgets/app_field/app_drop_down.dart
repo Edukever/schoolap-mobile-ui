@@ -5,7 +5,7 @@ import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
 
 typedef OnChanged<T> = void Function(T?);
 
-class AppDropDown<T> extends StatelessWidget {
+class SchoolAppDropDown<T> extends StatelessWidget {
   final String name;
   final List<DropdownMenuItem<T>> items;
   final OnChanged<T>? onChanged;
@@ -13,7 +13,7 @@ class AppDropDown<T> extends StatelessWidget {
   final String placeHolder;
   final String? label;
   final Widget? prefix;
-  const AppDropDown(
+  const SchoolAppDropDown(
       {Key? key,
       required this.name,
       required this.items,

@@ -15,31 +15,31 @@ class PageFieldScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppTextField(
+            const SchoolAppTextField(
               name: "name",
               placeHolder: 'this is a placeholder',
               label: "This is a label",
             ),
-            const AppTextField(
+            const SchoolAppTextField(
               name: "Password",
               placeHolder: 'this is a placeholder',
               type: AppTextFieldType.password,
               label: "This is a Password",
               obscureText: true,
             ),
-            const AppTextField(
+            const SchoolAppTextField(
               name: "icon",
               placeHolder: 'this is a placeholder',
               label: "This is field with icon",
               prefix: Icon(Icons.person),
             ),
-            const AppTextField(
+            const SchoolAppTextField(
               name: "comment",
               placeHolder: 'this is a comment placeholder',
               maxLines: 5,
               label: "Comment",
             ),
-            AppDropDown(
+            SchoolAppDropDown(
               label: "Rôle de la personne",
               name: "dropdown",
               prefix: const Icon(Icons.person),
@@ -56,7 +56,7 @@ class PageFieldScreen extends StatelessWidget {
                 )
               ],
             ),
-            const AppTextField(
+            const SchoolAppTextField(
               name: "date",
               placeHolder: 'this is a placeholder',
               type: AppTextFieldType.date,

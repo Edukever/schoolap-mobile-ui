@@ -1,4 +1,5 @@
 import 'package:example/fiels/button_page.dart';
+import 'package:example/fiels/custom_appbar.dart';
 import 'package:example/fiels/custom_card.dart';
 import 'package:example/fiels/icon_pages.dart';
 import 'package:flutter/material.dart';
@@ -47,34 +48,34 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const PageFieldScreen())),
               title: ("pages field"),
             ),
             const SizedBox(height: 10),
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const ButtonPage())),
               title: "Button page",
             ),
             const SizedBox(height: 10),
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               title: "Icons page",
               onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const IconPage())),
             ),
             const SizedBox(height: 10),
-            PrimaryButton(
-              title: "custom appBar",
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const IconPage())),
+            SchoolAppPrimaryButton(
+              title: "custom card",
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const Card())),
             ),
             const SizedBox(height: 10),
-            PrimaryButton(
-              title: "custom card",
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CustomCard())),
+            SchoolAppPrimaryButton(
+              title: "custom appBar",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const CustomAppBar())),
             )
           ],
         ),

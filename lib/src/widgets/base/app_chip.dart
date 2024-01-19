@@ -2,7 +2,7 @@ import 'package:schoolap_pkg/schoolap_pkg.dart';
 
 enum AppChipType { none, icon, dot }
 
-class AppChip extends StatelessWidget {
+class SchoolAppChip extends StatelessWidget {
   final String label;
   final double? width;
   final double? height;
@@ -11,7 +11,7 @@ class AppChip extends StatelessWidget {
   final Widget? icon;
   final Color? backgroundColor;
 
-  const AppChip(
+  const SchoolAppChip(
       {super.key,
       required this.label,
       this.width,

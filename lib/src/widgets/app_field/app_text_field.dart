@@ -8,7 +8,7 @@ enum AppTextFieldType {
 }
 
 /// A custom text field widget for the app.
-class AppTextField<T> extends StatelessWidget {
+class SchoolAppTextField<T> extends StatelessWidget {
   /// The name of the text field.
   final String name;
 
@@ -39,8 +39,8 @@ class AppTextField<T> extends StatelessWidget {
   /// Whether the text field should obscure the text.
   final bool obscureText;
 
-  /// Creates a new instance of `AppTextField`.
-  const AppTextField({
+  /// Creates a new instance of `SchoolAppTextField`.
+  const SchoolAppTextField({
     Key? key,
     required this.name,
     required this.placeHolder,

@@ -19,14 +19,14 @@ class ButtonPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: AppText.title3("Bouton primary"),
             ),
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               title: 'Suivant',
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: AppText.title3("Bouton primary avec icon gauche"),
             ),
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               title: 'Suivant',
               hasIcon: true,
               iconPosition: IconPosition.left,
@@ -35,7 +35,7 @@ class ButtonPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: AppText.title3("Bouton primary avec icon droite"),
             ),
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               title: 'Suivant',
               hasIcon: true,
               iconPosition: IconPosition.right,
@@ -44,7 +44,7 @@ class ButtonPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: AppText.title3("Bouton primary avec outline"),
             ),
-            PrimaryButton(
+            SchoolAppPrimaryButton(
               title: 'Retour',
               hasIcon: true,
               decorationState: DecorationState.outline,

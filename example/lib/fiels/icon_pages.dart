@@ -18,30 +18,30 @@ class IconPage extends StatelessWidget {
           children: [
             Wrap(
               children: [
-                AppIconButton(
+                SchoolAppIconButton(
                   radius: 0,
                   iconData: AppIconsData.date,
                   formState: StateFormIcon.square,
                   hasShadow: true,
                 ),
                 const SizedBox(width: 10),
-                AppIconButton(
+                SchoolAppIconButton(
                   iconData: AppIconsData.date,
                   formState: StateFormIcon.square,
                   hasShadow: false,
                 ),
                 const SizedBox(width: 10),
-                AppIconButton(
+                SchoolAppIconButton(
                     iconData: AppIconsData.date,
                     formState: StateFormIcon.circle),
                 const SizedBox(width: 10),
-                AppIconButton(
+                SchoolAppIconButton(
                     iconData: AppIconsData.date,
                     formState: StateFormIcon.outlined,
                     outlinedColor: Colors.orange,
                     iconColor: AppColorsData.defaultColors().orange),
                 const SizedBox(width: 10),
-                AppIconButton(
+                SchoolAppIconButton(
                     iconData: AppIconsData.date,
                     formState: StateFormIcon.none,
                     iconColor: AppColorsData.defaultColors().orange),
@@ -49,24 +49,24 @@ class IconPage extends StatelessWidget {
             ),
             const AppText.title1("Token"),
             const SizedBox(height: 10),
-            const AppChip(
+            const SchoolAppChip(
               label: "Chip",
             ),
             const SizedBox(height: 10),
-            const AppChip(
+            const SchoolAppChip(
               label: "Inactive",
               iconOrTextColor: Color(0xFFFF4F4F),
               appChipType: AppChipType.dot,
             ),
             const SizedBox(height: 10),
-            const AppChip(
+            const SchoolAppChip(
               backgroundColor: Color(0xFFDDF3D6),
               label: "Inactive",
               iconOrTextColor: Color(0xFF1EA951),
               appChipType: AppChipType.dot,
             ),
             const SizedBox(height: 10),
-            const AppChip(
+            const SchoolAppChip(
               backgroundColor: Color(0xFFDDF3D6),
               label: "Inactive",
               iconOrTextColor: Color(0xFF1EA951),
@@ -74,7 +74,7 @@ class IconPage extends StatelessWidget {
               icon: Icon(Icons.person, size: 15, color: Color(0xFF1EA951)),
             ),
             const SizedBox(height: 10),
-            const AppChip(
+            const SchoolAppChip(
               width: 200,
               backgroundColor: Color(0xFFDDF3D6),
               label: 'En cours de traitement',

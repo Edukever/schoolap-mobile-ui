@@ -12,7 +12,7 @@ enum StateFormIcon {
   outlined,
 }
 
-class AppIconButton extends StatelessWidget {
+class SchoolAppIconButton extends StatelessWidget {
   final String iconData;
   final StateFormIcon? formState;
   final double? width;
@@ -23,7 +23,7 @@ class AppIconButton extends StatelessWidget {
   final bool? hasShadow;
   final double? radius;
 
-  const AppIconButton({
+  const SchoolAppIconButton({
     Key? key,
     this.formState,
     this.width,
