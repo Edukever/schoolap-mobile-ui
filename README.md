@@ -177,6 +177,32 @@ Ce code crée un formulaire `FormBuilder` avec un composant `SchoolAppDropDown`.
 
 
 
+
+## Utilisation du composant `SchoolAppIconButton`
+
+Le composant `SchoolAppIconButton` est un bouton personnalisé avec une icône. Il prend en charge différentes configurations de forme, de couleur et d'ombre.
+
+Voici un exemple d'utilisation du composant `SchoolAppIconButton` :
+
+```dart
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SchoolAppIconButton(
+      iconData: Icons.date_range,
+      formState: StateFormIcon.square,
+      filledColors: const Color(0xFF3F97E3),
+      hasShadow: true,
+      radius: 10.0,
+    );
+  }
+}
+```
+
+Ce code crée un bouton `SchoolAppIconButton` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
+
+
+
 Assurez-vous d'importer les dépendances nécessaires et de personnaliser les propriétés du bouton en fonction de vos besoins.
 
 
