@@ -24,6 +24,21 @@ import 'package:schoolap_pkg/schoolap_pkg.dart';
 
 Le package fournit une variété de composants réutilisables tels que des boutons, des cartes, des champs de saisie, des listes, etc. Vous pouvez les utiliser dans vos widgets Flutter de la même manière que les widgets natifs de Flutter.
 
+Voici la liste des composants disponibles dans le package `schoolap_design_system` :
+
+- `SchoolapTextField`: Un champ de texte personnalisé.
+- `SchoolAppIconButton`: Un bouton personnalisé avec une icône.
+- `SchoolAppPrimaryButton`: Un bouton principal personnalisé.
+- `SchoolAppCard`: Une carte personnalisée avec un contenu intégré.
+- `SchoolapDropDown`: Une liste déroulante personnalisée pour la sélection d'éléments.
+- `SchoolApChip`: Un composant d'étiquette personnalisé pour afficher des informations.
+- `SchoolAppText`: Un composant de texte personnalisé.
+- `StatePrimaryButton`: Une énumération représentant les différents états d'un bouton principal.
+- `StateSecondaryButton`: Une énumération représentant les différents états d'un bouton secondaire.
+- `SchoolAppColorsData`: Un ensemble de couleurs personnalisées utilisées dans le système de conception.
+- `SchoolAppGradientData`: Un ensemble de dégradés personnalisés utilisés dans le système de conception.
+
+
 Voici un exemple de l'utilisation du composant `SchoolAppPrimaryButton` :
 
 ```dart
