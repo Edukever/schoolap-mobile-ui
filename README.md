@@ -61,7 +61,7 @@ class MyButton extends StatelessWidget {
 
 Ce code crée un bouton `SchoolAppPrimaryButton` avec le texte "Cliquez ici", une couleur de fond bleue, une décoration solide, une hauteur de 50 pixels, une icône positionnée à droite du texte, une icône ou un texte en couleur blanche et une fonction `onTap` qui sera exécutée lorsque le bouton est cliqué.
 
-
+:
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
