@@ -29,6 +29,7 @@ flutter: null
 assets:
   - assets/
   - assets/icons/
+  - assets/images/
 #
 # For details regarding assets in packages, see
 # https://flutter.dev/assets-and-images/#from-packages

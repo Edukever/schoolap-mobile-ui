@@ -36,7 +36,11 @@ class CustomCard extends StatelessWidget {
                   label: 'Théo Zirko',
                 ),
               ],
-            )
+            ),
+            SizedBox(height: 10),
+            SCardWithImage(
+                label: "Écrire un communiquer",
+                imagePath: "assets/images/pen.png"),
           ],
         ),
       ),

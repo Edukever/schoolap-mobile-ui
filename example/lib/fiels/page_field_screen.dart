@@ -19,6 +19,10 @@ class PageFieldScreen extends StatelessWidget {
               placeHolder: 'this is a placeholder',
               label: "This is a label",
             ),
+            const SizedBox(
+              height: 10,
+            ),
+          
             const SchoolAppTextField(
               name: "Password",
               placeHolder: 'this is a placeholder',
@@ -61,6 +65,9 @@ class PageFieldScreen extends StatelessWidget {
               type: AppTextFieldType.date,
               label: "This is field with date",
               prefix: Icon(Icons.date_range),
+            ),
+            SizedBox(
+              height: 20,
             ),
           ],
         ),
