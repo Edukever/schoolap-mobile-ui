@@ -31,7 +31,7 @@ import 'package:flutter/material.dart';
 import 'package:schoolap_pkg/src/widgets/base/app_text.dart';
 import 'package:schoolap_design_system/schoolap_design_system.dart';
 
-// ...
+```
 
 ## Utilisation du composant `SchoolAppPrimaryButton`
 
