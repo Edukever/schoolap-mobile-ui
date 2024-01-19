@@ -23,10 +23,12 @@ enum SchoolAppCardPresenceType
 
 class SchoolapCardPresence extends StatelessWidget {
   final SchoolAppCardPresenceType type;
+  final String label;
 
   const SchoolapCardPresence({
     Key? key,
     required this.type,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -74,8 +76,8 @@ class SchoolapCardPresence extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SchoolAppText(
-                    'Théo Zirko',
+                  SchoolAppText(
+                    label,
                     fontSize: 18,
                     level: AppTextLevel.title1,
                   ),

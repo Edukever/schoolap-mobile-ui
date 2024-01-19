@@ -253,6 +253,8 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SchoolapCardPresence(
       type: SchoolAppCardPresenceType.presence,
+        title: "Card title",
+
     );
   }
 }

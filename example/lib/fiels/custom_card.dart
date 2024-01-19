@@ -29,9 +29,11 @@ class CustomCard extends StatelessWidget {
               children: [
                 SchoolapCardPresence(
                   type: SchoolAppCardPresenceType.absence,
+                  label: 'Théo Zirko',
                 ),
                 SchoolapCardPresence(
                   type: SchoolAppCardPresenceType.presence,
+                  label: 'Théo Zirko',
                 ),
               ],
             )
