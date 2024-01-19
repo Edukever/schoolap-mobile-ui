@@ -67,7 +67,7 @@ class SchoolAppChip extends StatelessWidget {
       );
     }
     children.add(
-      AppText.title1(
+      SchoolAppText.title1(
         label,
         color: iconOrTextColor ?? Colors.white,
         fontSize: 14,

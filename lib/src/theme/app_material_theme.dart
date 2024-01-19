@@ -6,7 +6,7 @@ import 'data/radius.dart';
 class AppMaterialTheme {
   AppMaterialTheme._();
 
-  static ThemeData defaultTheme(AppColorsData colors) {
+  static ThemeData defaultTheme(SchoolAppColorsData colors) {
     return ThemeData(
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: colors.blanc,

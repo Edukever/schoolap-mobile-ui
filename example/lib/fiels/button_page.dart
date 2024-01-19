@@ -8,7 +8,7 @@ class ButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AppText("All button"),
+        title: const SchoolAppText("All button"),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -17,14 +17,14 @@ class ButtonPage extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: AppText.title3("Bouton primary"),
+              child: SchoolAppText.title3("Bouton primary"),
             ),
             SchoolAppPrimaryButton(
               title: 'Suivant',
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: AppText.title3("Bouton primary avec icon gauche"),
+              child: SchoolAppText.title3("Bouton primary avec icon gauche"),
             ),
             SchoolAppPrimaryButton(
               title: 'Suivant',
@@ -33,7 +33,7 @@ class ButtonPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: AppText.title3("Bouton primary avec icon droite"),
+              child: SchoolAppText.title3("Bouton primary avec icon droite"),
             ),
             SchoolAppPrimaryButton(
               title: 'Suivant',
@@ -42,7 +42,7 @@ class ButtonPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: AppText.title3("Bouton primary avec outline"),
+              child: SchoolAppText.title3("Bouton primary avec outline"),
             ),
             SchoolAppPrimaryButton(
               title: 'Retour',

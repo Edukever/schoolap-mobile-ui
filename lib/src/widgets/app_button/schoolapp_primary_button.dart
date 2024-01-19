@@ -82,7 +82,7 @@ class SchoolAppPrimaryButton<T> extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildButtonChildren(),
                 )
-              : AppText(
+              : SchoolAppText(
                   title,
                   color: iconOrTextColor ?? Colors.white,
                   fontSize: 15.0,
@@ -131,7 +131,7 @@ class SchoolAppPrimaryButton<T> extends StatelessWidget {
     }
 
     children.add(
-      AppText(
+      SchoolAppText(
         title,
         color: iconOrTextColor ?? Colors.white,
         fontSize: 14,

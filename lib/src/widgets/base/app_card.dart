@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AppCard extends StatelessWidget {
+class SchoolAppCard extends StatelessWidget {
   final Color backgroundColor;
   final List<BoxShadow>? shadows;
   final Widget child;
 
-  const AppCard({
+  const SchoolAppCard({
     Key? key,
     required this.child,
     this.backgroundColor = Colors.white,

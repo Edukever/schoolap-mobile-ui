@@ -9,8 +9,8 @@ enum AppTextLevel {
   title3,
 }
 
-class AppText extends StatelessWidget {
-  const AppText(
+class SchoolAppText extends StatelessWidget {
+  const SchoolAppText(
     this.data, {
     Key? key,
     this.color,
@@ -19,7 +19,7 @@ class AppText extends StatelessWidget {
     this.level = AppTextLevel.paragraph1,
   }) : super(key: key);
 
-  const AppText.paragraph1(
+  const SchoolAppText.paragraph1(
     this.data, {
     Key? key,
     this.color,
@@ -28,7 +28,7 @@ class AppText extends StatelessWidget {
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
-  const AppText.paragraph2(
+  const SchoolAppText.paragraph2(
     this.data, {
     Key? key,
     this.color,
@@ -37,7 +37,7 @@ class AppText extends StatelessWidget {
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
-  const AppText.title1(
+  const SchoolAppText.title1(
     this.data, {
     Key? key,
     this.color,
@@ -46,7 +46,7 @@ class AppText extends StatelessWidget {
   })  : level = AppTextLevel.title1,
         super(key: key);
 
-  const AppText.title2(
+  const SchoolAppText.title2(
     this.data, {
     Key? key,
     this.color,
@@ -55,7 +55,7 @@ class AppText extends StatelessWidget {
   })  : level = AppTextLevel.title2,
         super(key: key);
 
-  const AppText.title3(
+  const SchoolAppText.title3(
     this.data, {
     Key? key,
     this.color,

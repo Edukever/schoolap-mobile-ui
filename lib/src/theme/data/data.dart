@@ -12,17 +12,17 @@ class AppThemeData extends Equatable {
     required this.gradient,
     required this.typography,
   });
-  final AppColorsData colors;
+  final SchoolAppColorsData colors;
   final AppRadiusData radius;
-  final AppGradientData gradient;
+  final SchoolAppGradientData gradient;
   final AppTypographyData typography;
 
   factory AppThemeData.defaultThemeData() {
-    final colors = AppColorsData.defaultColors();
+    final colors = SchoolAppColorsData.defaultColors();
     return AppThemeData(
       colors: colors,
       radius: const AppRadiusData.primary(),
-      gradient: AppGradientData.defaultGradient(colors),
+      gradient: SchoolAppGradientData.defaultGradient(colors),
       typography: AppTypographyData.regular(),
     );
   }

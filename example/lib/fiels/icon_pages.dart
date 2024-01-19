@@ -9,7 +9,7 @@ class IconPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const AppText.title2("All icon"),
+        title: const SchoolAppText.title2("All icon"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -39,15 +39,15 @@ class IconPage extends StatelessWidget {
                     iconData: AppIconsData.date,
                     formState: StateFormIcon.outlined,
                     outlinedColor: Colors.orange,
-                    iconColor: AppColorsData.defaultColors().orange),
+                    iconColor: SchoolAppColorsData.defaultColors().orange),
                 const SizedBox(width: 10),
                 SchoolAppIconButton(
                     iconData: AppIconsData.date,
                     formState: StateFormIcon.none,
-                    iconColor: AppColorsData.defaultColors().orange),
+                    iconColor: SchoolAppColorsData.defaultColors().orange),
               ],
             ),
-            const AppText.title1("Token"),
+            const SchoolAppText.title1("Token"),
             const SizedBox(height: 10),
             const SchoolAppChip(
               label: "Chip",
