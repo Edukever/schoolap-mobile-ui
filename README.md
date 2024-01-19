@@ -246,7 +246,7 @@ Bien sûr ! Voici comment vous pouvez ajouter l'utilisation du composant `School
 import 'package:flutter/material.dart';
 import 'package:schoolap_pkg/schoolap_pkg.dart';
 
-// ...
+```
 
 ## Utilisation du composant `SchoolapCardPresence`
 
