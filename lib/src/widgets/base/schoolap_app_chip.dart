@@ -1,5 +1,7 @@
 import 'package:schoolap_pkg/schoolap_pkg.dart';
 
+import 'dot_container.dart';
+
 enum AppChipType { none, icon, dot }
 
 class SchoolAppChip extends StatelessWidget {
@@ -52,12 +54,7 @@ class SchoolAppChip extends StatelessWidget {
       children.add(
         Padding(
           padding: const EdgeInsets.only(right: 20),
-          child: Container(
-            height: 10,
-            width: 10,
-            decoration:
-                BoxDecoration(color: iconOrTextColor, shape: BoxShape.circle),
-          ),
+          child: DotContainer(iconOrTextColor: iconOrTextColor),
         ),
       );
     }

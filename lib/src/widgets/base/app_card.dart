@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
 
 class SchoolAppCard extends StatelessWidget {
+  final BoxConstraints constraints;
+  final Color borderColor;
   final Color backgroundColor;
   final List<BoxShadow>? shadows;
   final Widget child;
+  final double radius;
 
   const SchoolAppCard({
     Key? key,
     required this.child,
     this.backgroundColor = Colors.white,
     this.shadows,
+    required this.constraints,
+    this.borderColor = const Color(0xFFE3E3E3),
+    this.radius = 12,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: constraints,
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(radius),
+        border: Border.all(
+          width: 1,
+          color: borderColor,
+        ),
         boxShadow: shadows ??
             const [
               BoxShadow(

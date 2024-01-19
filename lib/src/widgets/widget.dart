@@ -1,3 +1,9 @@
+export 'package:schoolap_pkg/src/widgets/card/schoolap_card_presence.dart';
+
+export 'package:schoolap_pkg/src/widgets/card/schoolap_card_alert.dart';
+
+export 'package:schoolap_pkg/src/widgets/card/schoolap_card_tile.dart';
+
 export 'package:schoolap_pkg/src/widgets/base/schoolap_app_chip.dart';
 
 export 'package:schoolap_pkg/src/widgets/base/app_icon.dart';
