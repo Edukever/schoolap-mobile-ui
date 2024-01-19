@@ -61,6 +61,66 @@ class MyButton extends StatelessWidget {
 
 Ce code crée un bouton `SchoolAppPrimaryButton` avec le texte "Cliquez ici", une couleur de fond bleue, une décoration solide, une hauteur de 50 pixels, une icône positionnée à droite du texte, une icône ou un texte en couleur blanche et une fonction `onTap` qui sera exécutée lorsque le bouton est cliqué.
 
+Bien sûr ! Voici comment vous pouvez ajouter l'utilisation du composant `SchoolAppTextField` dans votre documentation :
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+import 'package:schoolap_design_system/schoolap_design_system.dart';
+
+```
+
+## Utilisation du composant `SchoolAppTextField`
+
+Le composant `SchoolAppTextField` est un champ de texte personnalisé pour votre application. Il prend en charge différentes fonctionnalités telles que la validation, les icônes préfixes/suffixes, le nombre maximum de lignes, etc.
+
+Voici un exemple d'utilisation du composant `SchoolAppTextField` :
+
+```dart
+class MyForm extends StatelessWidget {
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return FormBuilder(
+      key: _formKey,
+      child: Column(
+        children: [
+          SchoolAppTextField(
+            name: 'email',
+            placeHolder: 'Adresse e-mail',
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(context),
+              FormBuilderValidators.email(context),
+            ]),
+            prefix: Icon(Icons.email),
+          ),
+          SchoolAppTextField(
+            name: 'password',
+            placeHolder: 'Mot de passe',
+            validator: FormBuilderValidators.required(context),
+            type: AppTextFieldType.password,
+            suffix: Icon(Icons.visibility),
+          ),
+          SchoolAppTextField(
+            name: 'date',
+            placeHolder: 'Date de naissance',
+            validator: FormBuilderValidators.required(context),
+            type: AppTextFieldType.date,
+            suffix: Icon(Icons.calendar_today),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+Ce code crée un formulaire `FormBuilder` avec trois champs de texte `SchoolAppTextField` : un champ pour l'adresse e-mail, un champ pour le mot de passe et un champ pour la date de naissance. Chaque champ de texte est personnalisé avec un nom, un texte d'espace réservé, une fonction de validation et éventuellement des icônes préfixes/suffixes.
+
+
+
 Assurez-vous d'importer les dépendances nécessaires et de personnaliser les propriétés du bouton en fonction de vos besoins.
 
 
