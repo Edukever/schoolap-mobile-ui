@@ -25,11 +25,11 @@ class CustomCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SchoolapCardPresence(
                   type: SchoolAppCardPresenceType.absence,
                 ),
-                SizedBox(width: 10),
                 SchoolapCardPresence(
                   type: SchoolAppCardPresenceType.presence,
                 ),
