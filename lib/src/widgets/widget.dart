@@ -1,4 +1,4 @@
-export 'package:schoolap_pkg/src/widgets/base/app_chip.dart';
+export 'package:schoolap_pkg/src/widgets/base/schoolap_app_chip.dart';
 
 export 'package:schoolap_pkg/src/widgets/base/app_icon.dart';
 
