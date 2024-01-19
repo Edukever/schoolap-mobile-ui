@@ -240,6 +240,33 @@ class MyWidget extends StatelessWidget {
 
 Ce code crée un bouton `SchoolAppIconButton` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
 
+Bien sûr ! Voici comment vous pouvez ajouter l'utilisation du composant `SchoolapCardPresence` dans votre documentation :
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:schoolap_pkg/schoolap_pkg.dart';
+
+// ...
+
+## Utilisation du composant `SchoolapCardPresence`
+
+Le composant `SchoolapCardPresence` est une carte personnalisée utilisée pour afficher la présence ou l'absence d'un étudiant. Il prend en charge différents types de présence avec des couleurs de fond et de sous-titre personnalisées.
+
+Voici un exemple d'utilisation du composant `SchoolapCardPresence` :
+
+```dart
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SchoolapCardPresence(
+      type: SchoolAppCardPresenceType.presence,
+    );
+  }
+}
+```
+
+Ce code crée une carte `SchoolapCardPresence` avec le type de présence `SchoolAppCardPresenceType.presence`. La carte affiche le titre "Présence" avec une couleur de fond et de sous-titre personnalisées correspondant au type de présence.
+
 
 Assurez-vous d'importer les dépendances nécessaires et de personnaliser les propriétés du bouton en fonction de vos besoins.
 
