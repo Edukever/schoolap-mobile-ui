@@ -68,8 +68,8 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
             SchoolAppPrimaryButton(
               title: "custom card",
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const Card())),
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const CustomCard())),
             ),
             const SizedBox(height: 10),
             SchoolAppPrimaryButton(
