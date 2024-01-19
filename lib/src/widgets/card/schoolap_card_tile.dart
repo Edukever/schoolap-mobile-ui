@@ -8,6 +8,7 @@ class SchoolAppCardTile extends StatelessWidget {
   final String title;
   final Widget? trailing;
   final String? subtitle;
+  final Widget? subWidget;
   final Color? subtitleColor;
   final EdgeInsetsGeometry? contentPadding;
   const SchoolAppCardTile(
@@ -18,7 +19,8 @@ class SchoolAppCardTile extends StatelessWidget {
       this.trailing,
       this.contentPadding,
       this.subtitle,
-      this.subtitleColor});
+      this.subtitleColor,
+      this.subWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class SchoolAppCardTile extends StatelessWidget {
       constraints: constraints,
       backgroundColor: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,12 +48,13 @@ class SchoolAppCardTile extends StatelessWidget {
                   subtitle == null
                       ? Container()
                       : Padding(
-                          padding: const EdgeInsets.only(top: 4),
+                          padding: const EdgeInsets.only(top: 0),
                           child: SchoolAppText.paragraph1(
                             subtitle!,
                             color: subtitleColor,
                           ),
-                        )
+                        ),
+                  subWidget ?? Container()
                 ],
               ),
             ),
