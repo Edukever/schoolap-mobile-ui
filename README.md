@@ -240,13 +240,6 @@ class MyWidget extends StatelessWidget {
 
 Ce code crée un bouton `SchoolAppIconButton` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
 
-Bien sûr ! Voici comment vous pouvez ajouter l'utilisation du composant `SchoolapCardPresence` dans votre documentation :
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/schoolap_pkg.dart';
-
-```
 
 ## Utilisation du composant `SchoolapCardPresence`
 
