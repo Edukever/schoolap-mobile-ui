@@ -1,7 +1,7 @@
 import 'package:flutter/rendering.dart' show Color;
 
-class SchoolAppColorsData {
-  const SchoolAppColorsData({
+class SPColorsData {
+  const SPColorsData({
     required this.rouge,
     required this.rougeLight,
     required this.noir,
@@ -45,7 +45,7 @@ class SchoolAppColorsData {
   final Color orange1;
   final Color orangeLight;
 
-  factory SchoolAppColorsData.defaultColors() => const SchoolAppColorsData(
+  factory SPColorsData.defaultColors() => const SPColorsData(
         rouge: Color(0xFFFF4F4F),
         rougeLight: Color(0xFFFFE1E1),
         noir: Color(0xFF292D32),

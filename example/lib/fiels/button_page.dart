@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 class ButtonPage extends StatelessWidget {
   const ButtonPage({super.key});
@@ -8,7 +8,7 @@ class ButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const SchoolAppText("All button"),
+        title: const SPText("All button"),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -17,34 +17,34 @@ class ButtonPage extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: SchoolAppText.title3("Bouton primary"),
+              child: SPText.title3("Bouton primary"),
             ),
-            SchoolAppPrimaryButton(
+            SPButtonPrimary(
               title: 'Suivant',
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: SchoolAppText.title3("Bouton primary avec icon gauche"),
+              child: SPText.title3("Bouton primary avec icon gauche"),
             ),
-            SchoolAppPrimaryButton(
+            SPButtonPrimary(
               title: 'Suivant',
               hasIcon: true,
               iconPosition: IconPosition.left,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: SchoolAppText.title3("Bouton primary avec icon droite"),
+              child: SPText.title3("Bouton primary avec icon droite"),
             ),
-            SchoolAppPrimaryButton(
+            SPButtonPrimary(
               title: 'Suivant',
               hasIcon: true,
               iconPosition: IconPosition.right,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
-              child: SchoolAppText.title3("Bouton primary avec outline"),
+              child: SPText.title3("Bouton primary avec outline"),
             ),
-            SchoolAppPrimaryButton(
+            SPButtonPrimary(
               title: 'Retour',
               hasIcon: true,
               decorationState: DecorationState.outline,

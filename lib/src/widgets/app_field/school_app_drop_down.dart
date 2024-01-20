@@ -1,11 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+import 'package:schoolap_ui/src/utils/custom_tydef.dart';
 
 typedef OnChanged<T> = void Function(T?);
 
-class SchoolAppDropDown<T> extends StatelessWidget {
+class SPDropDown<T> extends StatelessWidget {
   final String name;
   final List<DropdownMenuItem<T>> items;
   final OnChanged<T>? onChanged;
@@ -13,7 +13,7 @@ class SchoolAppDropDown<T> extends StatelessWidget {
   final String placeHolder;
   final String? label;
   final Widget? prefix;
-  const SchoolAppDropDown(
+  const SPDropDown(
       {Key? key,
       required this.name,
       required this.items,

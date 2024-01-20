@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/schoolap_pkg.dart';
-import 'package:schoolap_pkg/src/widgets/base/app_card.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
+import 'package:schoolap_ui/src/widgets/base/app_card.dart';
 
 class SCardWithImage extends StatelessWidget {
   final String label;
@@ -10,7 +10,7 @@ class SCardWithImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SchoolAppCard(
+    return SPCard(
       backgroundColor: Colors.white,
       constraints: const BoxConstraints(
         maxWidth: 120,

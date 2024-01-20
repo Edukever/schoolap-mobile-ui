@@ -1,4 +1,4 @@
-library schoolap_pkg;
+library schoolap_ui;
 
 export 'package:flutter/material.dart';
 

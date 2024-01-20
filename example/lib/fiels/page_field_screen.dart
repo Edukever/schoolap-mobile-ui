@@ -1,4 +1,4 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 class PageFieldScreen extends StatelessWidget {
   const PageFieldScreen({super.key});
@@ -14,7 +14,7 @@ class PageFieldScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SchoolAppTextField(
+            const SPTextField(
               name: "name",
               placeHolder: 'this is a placeholder',
               label: "This is a label",
@@ -23,26 +23,26 @@ class PageFieldScreen extends StatelessWidget {
               height: 10,
             ),
           
-            const SchoolAppTextField(
+            const SPTextField(
               name: "Password",
               placeHolder: 'this is a placeholder',
               type: AppTextFieldType.password,
               label: "This is a Password",
               obscureText: true,
             ),
-            const SchoolAppTextField(
+            const SPTextField(
               name: "icon",
               placeHolder: 'this is a placeholder',
               label: "This is field with icon",
               prefix: Icon(Icons.person),
             ),
-            const SchoolAppTextField(
+            const SPTextField(
               name: "comment",
               placeHolder: 'this is a comment placeholder',
               maxLines: 5,
               label: "Comment",
             ),
-            SchoolAppDropDown(
+            SPDropDown(
               label: "Rôle de la personne",
               name: "dropdown",
               prefix: const Icon(Icons.person),
@@ -59,7 +59,7 @@ class PageFieldScreen extends StatelessWidget {
                 )
               ],
             ),
-            const SchoolAppTextField(
+            const SPTextField(
               name: "date",
               placeHolder: 'this is a placeholder',
               type: AppTextFieldType.date,

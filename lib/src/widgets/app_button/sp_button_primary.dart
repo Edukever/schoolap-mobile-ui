@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/src/widgets/base/app_text.dart';
+import 'package:schoolap_ui/src/widgets/base/app_text.dart';
 
 enum IconPosition {
   left,
@@ -17,7 +17,7 @@ enum DecorationState {
 /// The button can have an optional icon, which can be positioned on the left or right side of the button's text.
 /// If `hasIcon` is set to `true`, the icon will be displayed based on the `iconPosition` property.
 /// If `hasIcon` is set to `false`, the `iconPosition` should be null.
-class SchoolAppPrimaryButton<T> extends StatelessWidget {
+class SPButtonPrimary<T> extends StatelessWidget {
   /// The background color of the button.
   final Color? backgroundColor;
 
@@ -50,7 +50,7 @@ class SchoolAppPrimaryButton<T> extends StatelessWidget {
   /// The [height] parameter can be used to set the height of the button.
   /// The [iconPosition] parameter can be used to specify the position of the icon.
   /// The [hasIcon] parameter determines whether the button has an icon or not.
-  const SchoolAppPrimaryButton({
+  const SPButtonPrimary({
     Key? key,
     this.backgroundColor,
     required this.title,
@@ -82,7 +82,7 @@ class SchoolAppPrimaryButton<T> extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildButtonChildren(),
                 )
-              : SchoolAppText(
+              : SPText(
                   title,
                   color: iconOrTextColor ?? Colors.white,
                   fontSize: 15.0,
@@ -131,7 +131,7 @@ class SchoolAppPrimaryButton<T> extends StatelessWidget {
     }
 
     children.add(
-      SchoolAppText(
+      SPText(
         title,
         color: iconOrTextColor ?? Colors.white,
         fontSize: 14,

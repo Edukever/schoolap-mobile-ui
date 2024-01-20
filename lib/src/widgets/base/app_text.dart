@@ -1,4 +1,4 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 enum AppTextLevel {
   paragraph1,
@@ -9,8 +9,8 @@ enum AppTextLevel {
   title3,
 }
 
-class SchoolAppText extends StatelessWidget {
-  const SchoolAppText(
+class SPText extends StatelessWidget {
+  const SPText(
     this.data, {
     Key? key,
     this.color,
@@ -19,7 +19,7 @@ class SchoolAppText extends StatelessWidget {
     this.level = AppTextLevel.paragraph1,
   }) : super(key: key);
 
-  const SchoolAppText.paragraph1(
+  const SPText.paragraph1(
     this.data, {
     Key? key,
     this.color,
@@ -28,7 +28,7 @@ class SchoolAppText extends StatelessWidget {
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
-  const SchoolAppText.paragraph2(
+  const SPText.paragraph2(
     this.data, {
     Key? key,
     this.color,
@@ -37,7 +37,7 @@ class SchoolAppText extends StatelessWidget {
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
-  const SchoolAppText.title1(
+  const SPText.title1(
     this.data, {
     Key? key,
     this.color,
@@ -46,7 +46,7 @@ class SchoolAppText extends StatelessWidget {
   })  : level = AppTextLevel.title1,
         super(key: key);
 
-  const SchoolAppText.title2(
+  const SPText.title2(
     this.data, {
     Key? key,
     this.color,
@@ -55,7 +55,7 @@ class SchoolAppText extends StatelessWidget {
   })  : level = AppTextLevel.title2,
         super(key: key);
 
-  const SchoolAppText.title3(
+  const SPText.title3(
     this.data, {
     Key? key,
     this.color,

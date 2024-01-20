@@ -1,4 +1,4 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 typedef Validator<T> = String? Function(T?);
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SchoolAppCard extends StatelessWidget {
+class SPCard extends StatelessWidget {
   final BoxConstraints constraints;
   final Color borderColor;
   final Color backgroundColor;
@@ -9,7 +9,7 @@ class SchoolAppCard extends StatelessWidget {
   final double radius;
   final VoidCallback? onTap;
 
-  const SchoolAppCard({
+  const SPCard({
     Key? key,
     required this.child,
     this.backgroundColor = Colors.white,

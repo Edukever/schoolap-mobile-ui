@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/src/theme/data/colors.dart';
+import 'package:schoolap_ui/src/theme/data/colors.dart';
 
 import 'data/radius.dart';
 
 class AppMaterialTheme {
   AppMaterialTheme._();
 
-  static ThemeData defaultTheme(SchoolAppColorsData colors) {
+  static ThemeData defaultTheme(SPColorsData colors) {
     return ThemeData(
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: colors.blanc,

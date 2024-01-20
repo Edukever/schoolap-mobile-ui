@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:schoolap_pkg/src/theme/data/colors.dart';
-import 'package:schoolap_pkg/src/theme/data/gradient.dart';
-import 'package:schoolap_pkg/src/theme/data/radius.dart';
+import 'package:schoolap_ui/src/theme/data/colors.dart';
+import 'package:schoolap_ui/src/theme/data/gradient.dart';
+import 'package:schoolap_ui/src/theme/data/radius.dart';
 
 import 'typography.dart';
 
@@ -12,17 +12,17 @@ class AppThemeData extends Equatable {
     required this.gradient,
     required this.typography,
   });
-  final SchoolAppColorsData colors;
+  final SPColorsData colors;
   final AppRadiusData radius;
-  final SchoolAppGradientData gradient;
+  final SPGradientData gradient;
   final AppTypographyData typography;
 
   factory AppThemeData.defaultThemeData() {
-    final colors = SchoolAppColorsData.defaultColors();
+    final colors = SPColorsData.defaultColors();
     return AppThemeData(
       colors: colors,
       radius: const AppRadiusData.primary(),
-      gradient: SchoolAppGradientData.defaultGradient(colors),
+      gradient: SPGradientData.defaultGradient(colors),
       typography: AppTypographyData.regular(),
     );
   }

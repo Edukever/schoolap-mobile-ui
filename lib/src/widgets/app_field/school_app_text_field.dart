@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+import 'package:schoolap_ui/src/utils/custom_tydef.dart';
 
 enum AppTextFieldType {
   password,
@@ -8,7 +8,7 @@ enum AppTextFieldType {
 }
 
 /// A custom text field widget for the app.
-class SchoolAppTextField<T> extends StatelessWidget {
+class SPTextField<T> extends StatelessWidget {
   /// The name of the text field.
   final String name;
 
@@ -39,8 +39,8 @@ class SchoolAppTextField<T> extends StatelessWidget {
   /// Whether the text field should obscure the text.
   final bool obscureText;
 
-  /// Creates a new instance of `SchoolAppTextField`.
-  const SchoolAppTextField({
+  /// Creates a new instance of `SPTextField`.
+  const SPTextField({
     Key? key,
     required this.name,
     required this.placeHolder,

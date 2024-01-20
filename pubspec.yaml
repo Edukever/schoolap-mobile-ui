@@ -1,7 +1,7 @@
-name: schoolap_pkg
+name: schoolap_ui
 description: "A new Flutter package project."
 version: 0.0.1
-homepage: "https://github.com/Edukever/schoolap-mobile-pkg"
+homepage: "https://github.com/Edukever/schoolap-mobile-ui"
 
 environment:
   sdk: '>=3.2.3 <4.0.0'

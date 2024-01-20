@@ -1,10 +1,10 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 import 'dot_container.dart';
 
 enum AppChipType { none, icon, dot }
 
-class SchoolAppChip extends StatelessWidget {
+class SPChip extends StatelessWidget {
   final String label;
   final double? width;
   final double? height;
@@ -13,7 +13,7 @@ class SchoolAppChip extends StatelessWidget {
   final Widget? icon;
   final Color? backgroundColor;
 
-  const SchoolAppChip(
+  const SPChip(
       {super.key,
       required this.label,
       this.width,
@@ -64,7 +64,7 @@ class SchoolAppChip extends StatelessWidget {
       );
     }
     children.add(
-      SchoolAppText.title1(
+      SPText.title1(
         label,
         color: iconOrTextColor ?? Colors.white,
         fontSize: 14,

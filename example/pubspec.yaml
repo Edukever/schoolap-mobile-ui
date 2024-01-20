@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  schoolap_pkg:
+  schoolap_ui:
     path: '..'
   cupertino_icons: ^1.0.2
   flutter_form_builder: ^9.1.1

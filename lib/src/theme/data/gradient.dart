@@ -1,8 +1,8 @@
 import 'package:flutter/rendering.dart' show LinearGradient, Alignment;
-import 'package:schoolap_pkg/src/theme/data/colors.dart';
+import 'package:schoolap_ui/src/theme/data/colors.dart';
 
-class SchoolAppGradientData {
-  const SchoolAppGradientData({
+class SPGradientData {
+  const SPGradientData({
     required this.orange,
     required this.blue,
   });
@@ -10,8 +10,8 @@ class SchoolAppGradientData {
   final LinearGradient orange;
   final LinearGradient blue;
 
-  factory SchoolAppGradientData.defaultGradient(SchoolAppColorsData colors) =>
-      SchoolAppGradientData(
+  factory SPGradientData.defaultGradient(SPColorsData colors) =>
+      SPGradientData(
         orange: LinearGradient(
           begin: const Alignment(0.96, 0.29),
           end: const Alignment(-0.96, -0.29),

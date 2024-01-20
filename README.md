@@ -8,8 +8,8 @@ Pour installer le package, ajoutez la ligne suivante à votre fichier `pubspec.y
 
 ```yaml
 dependencies:
-  schoolap_pkg: 
-    path: https://github.com/Edukever/schoolap-mobile-pkg
+  schoolap_ui: 
+    path: https://github.com/Edukever/schoolap-mobile-ui
 ```
 
 Ensuite, exécutez la commande `flutter pub get` pour télécharger et intégrer le package à votre projet.
@@ -19,7 +19,7 @@ Ensuite, exécutez la commande `flutter pub get` pour télécharger et intégrer
 Une fois le package installé, vous pouvez importer les composants du système de design dans vos fichiers Dart comme ceci :
 
 ```dart
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 ```
 
 Le package fournit une variété de composants réutilisables tels que des boutons, des cartes, des champs de saisie, des listes, etc. Vous pouvez les utiliser dans vos widgets Flutter de la même manière que les widgets natifs de Flutter.
@@ -27,38 +27,38 @@ Le package fournit une variété de composants réutilisables tels que des bouto
 Voici la liste des composants disponibles dans le package `schoolap_design_system` :
 
 - `SchoolapTextField`: Un champ de texte personnalisé.
-- `SchoolAppIconButton`: Un bouton personnalisé avec une icône.
-- `SchoolAppPrimaryButton`: Un bouton principal personnalisé.
-- `SchoolAppCard`: Une carte personnalisée avec un contenu intégré.
-- `SchoolapDropDown`: Une liste déroulante personnalisée pour la sélection d'éléments.
-- `SchoolApChip`: Un composant d'étiquette personnalisé pour afficher des informations.
-- `SchoolAppText`: Un composant de texte personnalisé.
+- `SPButtonIcon`: Un bouton personnalisé avec une icône.
+- `SPButtonPrimary`: Un bouton principal personnalisé.
+- `SPCard`: Une carte personnalisée avec un contenu intégré.
+- `SPDropDown`: Une liste déroulante personnalisée pour la sélection d'éléments.
+- `SPChip`: Un composant d'étiquette personnalisé pour afficher des informations.
+- `SPText`: Un composant de texte personnalisé.
 - `StatePrimaryButton`: Une énumération représentant les différents états d'un bouton principal.
 - `StateSecondaryButton`: Une énumération représentant les différents états d'un bouton secondaire.
-- `SchoolAppColorsData`: Un ensemble de couleurs personnalisées utilisées dans le système de conception.
-- `SchoolAppGradientData`: Un ensemble de dégradés personnalisés utilisés dans le système de conception.
+- `SPColorsData`: Un ensemble de couleurs personnalisées utilisées dans le système de conception.
+- `SPGradientData`: Un ensemble de dégradés personnalisés utilisés dans le système de conception.
 
 
-Voici un exemple de l'utilisation du composant `SchoolAppPrimaryButton` :
+Voici un exemple de l'utilisation du composant `SPButtonPrimary` :
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/src/widgets/base/app_text.dart';
+import 'package:schoolap_ui/src/widgets/base/app_text.dart';
 import 'package:schoolap_design_system/schoolap_design_system.dart';
 
 ```
 
-## Utilisation du composant `SchoolAppPrimaryButton`
+## Utilisation du composant `SPButtonPrimary`
 
-Le composant `SchoolAppPrimaryButton` est un bouton primaire personnalisable avec des propriétés configurables. Il peut afficher une icône optionnelle positionnée à gauche ou à droite du texte du bouton.
+Le composant `SPButtonPrimary` est un bouton primaire personnalisable avec des propriétés configurables. Il peut afficher une icône optionnelle positionnée à gauche ou à droite du texte du bouton.
 
-Voici un exemple d'utilisation du composant `SchoolAppPrimaryButton` :
+Voici un exemple d'utilisation du composant `SPButtonPrimary` :
 
 ```dart
 class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SchoolAppPrimaryButton(
+    return SPButtonPrimary(
       title: 'Cliquez ici',
       backgroundColor: Colors.blue, // Personnalisez la couleur de fond du bouton
       decorationState: DecorationState.solid, // Personnalisez l'état de décoration du bouton
@@ -74,22 +74,22 @@ class MyButton extends StatelessWidget {
 }
 ```
 
-Ce code crée un bouton `SchoolAppPrimaryButton` avec le texte "Cliquez ici", une couleur de fond bleue, une décoration solide, une hauteur de 50 pixels, une icône positionnée à droite du texte, une icône ou un texte en couleur blanche et une fonction `onTap` qui sera exécutée lorsque le bouton est cliqué.
+Ce code crée un bouton `SPButtonPrimary` avec le texte "Cliquez ici", une couleur de fond bleue, une décoration solide, une hauteur de 50 pixels, une icône positionnée à droite du texte, une icône ou un texte en couleur blanche et une fonction `onTap` qui sera exécutée lorsque le bouton est cliqué.
 
 :
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+import 'package:schoolap_ui/src/utils/custom_tydef.dart';
 import 'package:schoolap_design_system/schoolap_design_system.dart';
 
 ```
 
-## Utilisation du composant `SchoolAppTextField`
+## Utilisation du composant `SPTextField`
 
-Le composant `SchoolAppTextField` est un champ de texte personnalisé pour votre application. Il prend en charge différentes fonctionnalités telles que la validation, les icônes préfixes/suffixes, le nombre maximum de lignes, etc.
+Le composant `SPTextField` est un champ de texte personnalisé pour votre application. Il prend en charge différentes fonctionnalités telles que la validation, les icônes préfixes/suffixes, le nombre maximum de lignes, etc.
 
-Voici un exemple d'utilisation du composant `SchoolAppTextField` :
+Voici un exemple d'utilisation du composant `SPTextField` :
 
 ```dart
 class MyForm extends StatelessWidget {
@@ -101,7 +101,7 @@ class MyForm extends StatelessWidget {
       key: _formKey,
       child: Column(
         children: [
-          SchoolAppTextField(
+          SPTextField(
             name: 'email',
             placeHolder: 'Adresse e-mail',
             validator: FormBuilderValidators.compose([
@@ -110,14 +110,14 @@ class MyForm extends StatelessWidget {
             ]),
             prefix: Icon(Icons.email),
           ),
-          SchoolAppTextField(
+          SPTextField(
             name: 'password',
             placeHolder: 'Mot de passe',
             validator: FormBuilderValidators.required(context),
             type: AppTextFieldType.password,
             suffix: Icon(Icons.visibility),
           ),
-          SchoolAppTextField(
+          SPTextField(
             name: 'date',
             placeHolder: 'Date de naissance',
             validator: FormBuilderValidators.required(context),
@@ -131,22 +131,22 @@ class MyForm extends StatelessWidget {
 }
 ```
 
-Ce code crée un formulaire `FormBuilder` avec trois champs de texte `SchoolAppTextField` : un champ pour l'adresse e-mail, un champ pour le mot de passe et un champ pour la date de naissance. Chaque champ de texte est personnalisé avec un nom, un texte d'espace réservé, une fonction de validation et éventuellement des icônes préfixes/suffixes.
+Ce code crée un formulaire `FormBuilder` avec trois champs de texte `SPTextField` : un champ pour l'adresse e-mail, un champ pour le mot de passe et un champ pour la date de naissance. Chaque champ de texte est personnalisé avec un nom, un texte d'espace réservé, une fonction de validation et éventuellement des icônes préfixes/suffixes.
 
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_pkg/src/utils/custom_tydef.dart';
+import 'package:schoolap_ui/src/utils/custom_tydef.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:schoolap_design_system/schoolap_design_system.dart';
 
 ```
-## Utilisation du composant `SchoolAppDropDown`
+## Utilisation du composant `SPDropDown`
 
-Le composant `SchoolAppDropDown` est une liste déroulante personnalisée pour votre application. Il prend en charge la sélection d'éléments à partir d'une liste prédéfinie.
+Le composant `SPDropDown` est une liste déroulante personnalisée pour votre application. Il prend en charge la sélection d'éléments à partir d'une liste prédéfinie.
 
-Voici un exemple d'utilisation du composant `SchoolAppDropDown` :
+Voici un exemple d'utilisation du composant `SPDropDown` :
 
 ```dart
 class MyForm extends StatelessWidget {
@@ -173,7 +173,7 @@ class MyForm extends StatelessWidget {
       key: _formKey,
       child: Column(
         children: [
-          SchoolAppDropDown<String>(
+          SPDropDown<String>(
             name: 'dropdown',
             items: _dropdownItems,
             placeHolder: 'Sélectionnez une option',
@@ -188,22 +188,22 @@ class MyForm extends StatelessWidget {
 }
 ```
 
-Ce code crée un formulaire `FormBuilder` avec un composant `SchoolAppDropDown`. Le composant `SchoolAppDropDown` prend en charge une liste de `DropdownMenuItem` qui représente les options de la liste déroulante. Vous pouvez personnaliser le texte d'espace réservé avec la propriété `placeHolder` et fournir une fonction `onChanged` pour réagir aux changements de sélection.
+Ce code crée un formulaire `FormBuilder` avec un composant `SPDropDown`. Le composant `SPDropDown` prend en charge une liste de `DropdownMenuItem` qui représente les options de la liste déroulante. Vous pouvez personnaliser le texte d'espace réservé avec la propriété `placeHolder` et fournir une fonction `onChanged` pour réagir aux changements de sélection.
 
 
 
 
-## Utilisation du composant `SchoolAppIconButton`
+## Utilisation du composant `SPButtonIcon`
 
-Le composant `SchoolAppIconButton` est un bouton personnalisé avec une icône. Il prend en charge différentes configurations de forme, de couleur et d'ombre.
+Le composant `SPButtonIcon` est un bouton personnalisé avec une icône. Il prend en charge différentes configurations de forme, de couleur et d'ombre.
 
-Voici un exemple d'utilisation du composant `SchoolAppIconButton` :
+Voici un exemple d'utilisation du composant `SPButtonIcon` :
 
 ```dart
 class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SchoolAppIconButton(
+    return SPButtonIcon(
       iconData: Icons.date_range,
       formState: StateFormIcon.square,
       filledColors: const Color(0xFF3F97E3),
@@ -214,20 +214,20 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-Ce code crée un bouton `SchoolAppIconButton` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
+Ce code crée un bouton `SPButtonIcon` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
 
 
-## Utilisation du composant `SchoolAppIconButton`
+## Utilisation du composant `SPButtonIcon`
 
-Le composant `SchoolAppIconButton` est un bouton personnalisé avec une icône. Il prend en charge différentes configurations de forme, de couleur et d'ombre.
+Le composant `SPButtonIcon` est un bouton personnalisé avec une icône. Il prend en charge différentes configurations de forme, de couleur et d'ombre.
 
-Voici un exemple d'utilisation du composant `SchoolAppIconButton` :
+Voici un exemple d'utilisation du composant `SPButtonIcon` :
 
 ```dart
 class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SchoolAppIconButton(
+    return SPButtonIcon(
       iconData: Icons.date_range,
       formState: StateFormIcon.square,
       filledColors: const Color(0xFF3F97E3),
@@ -238,7 +238,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-Ce code crée un bouton `SchoolAppIconButton` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
+Ce code crée un bouton `SPButtonIcon` avec une icône `Icons.date_range`. Le bouton est configuré pour avoir une forme carrée (`StateFormIcon.square`), une couleur de remplissage personnalisée (`filledColors`), une ombre (`hasShadow`) et un rayon de bordure de 10.0 pixels (`radius`).
 
 
 ## Utilisation du composant `SchoolapCardPresence`
@@ -252,7 +252,7 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SchoolapCardPresence(
-      type: SchoolAppCardPresenceType.presence,
+      type: SPCardPresenceType.presence,
         title: "Card title",
 
     );
@@ -260,7 +260,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-Ce code crée une carte `SchoolapCardPresence` avec le type de présence `SchoolAppCardPresenceType.presence`. La carte affiche le titre "Présence" avec une couleur de fond et de sous-titre personnalisées correspondant au type de présence.
+Ce code crée une carte `SchoolapCardPresence` avec le type de présence `SPCardPresenceType.presence`. La carte affiche le titre "Présence" avec une couleur de fond et de sous-titre personnalisées correspondant au type de présence.
 
 
 Assurez-vous d'importer les dépendances nécessaires et de personnaliser les propriétés du bouton en fonction de vos besoins.

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:schoolap_pkg/schoolap_pkg.dart';
-import 'package:schoolap_pkg/src/widgets/base/app_card.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
+import 'package:schoolap_ui/src/widgets/base/app_card.dart';
 
-class SchoolAppCardTile extends StatelessWidget {
+class SPCardTile extends StatelessWidget {
   final BoxConstraints constraints;
   final Widget? leading;
   final String title;
@@ -11,7 +11,7 @@ class SchoolAppCardTile extends StatelessWidget {
   final Widget? subWidget;
   final Color? subtitleColor;
   final EdgeInsetsGeometry? contentPadding;
-  const SchoolAppCardTile(
+  const SPCardTile(
       {super.key,
       required this.constraints,
       this.leading,
@@ -24,7 +24,7 @@ class SchoolAppCardTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SchoolAppCard(
+    return SPCard(
       constraints: constraints,
       backgroundColor: Colors.white,
       child: Padding(
@@ -44,12 +44,12 @@ class SchoolAppCardTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SchoolAppText.title2(title),
+                  SPText.title2(title),
                   subtitle == null
                       ? Container()
                       : Padding(
                           padding: const EdgeInsets.only(top: 0),
-                          child: SchoolAppText.paragraph1(
+                          child: SPText.paragraph1(
                             subtitle!,
                             color: subtitleColor,
                           ),

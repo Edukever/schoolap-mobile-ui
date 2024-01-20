@@ -1,19 +1,19 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
-import 'package:schoolap_pkg/src/widgets/base/app_card.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
+import 'package:schoolap_ui/src/widgets/base/app_card.dart';
 
-enum SchoolAppCardAlertType {
+enum SPCardAlertType {
   alert,
   warning,
   info,
   success,
 }
 
-class SchoolAppCardAlert extends StatelessWidget {
+class SPCardAlert extends StatelessWidget {
   final String title;
   final BoxConstraints? constraints;
-  final SchoolAppCardAlertType type;
+  final SPCardAlertType type;
 
-  const SchoolAppCardAlert({
+  const SPCardAlert({
     Key? key,
     required this.title,
     this.constraints,
@@ -27,12 +27,12 @@ class SchoolAppCardAlert extends StatelessWidget {
     Color iconColor;
 
     switch (type) {
-      case SchoolAppCardAlertType.alert:
+      case SPCardAlertType.alert:
         backgroundColor = const Color(0xFFFFE1E1);
         iconData = Icons.warning_amber;
         iconColor = const Color(0xFFFF4F4F);
         break;
-      case SchoolAppCardAlertType.warning:
+      case SPCardAlertType.warning:
         backgroundColor = const Color(
             0xFFE5F9FF); // Set the background color for the warning type
         iconData =
@@ -40,14 +40,14 @@ class SchoolAppCardAlert extends StatelessWidget {
         iconColor =
             const Color(0xFF41A3DF); // Set the icon color for the warning type
         break;
-      case SchoolAppCardAlertType.info:
+      case SPCardAlertType.info:
         backgroundColor = const Color(
             0xFFDDF3D6); // Set the background color for the info type
         iconData = Icons.info_outline; // Set the icon data for the info type
         iconColor =
             const Color(0xFF1EA951); // Set the icon color for the info type
         break;
-      case SchoolAppCardAlertType.success:
+      case SPCardAlertType.success:
         backgroundColor = const Color(
             0xFFDDF3D6); // Set the background color for the success type
         iconData = Icons
@@ -57,7 +57,7 @@ class SchoolAppCardAlert extends StatelessWidget {
         break;
     }
 
-    return SchoolAppCard(
+    return SPCard(
       backgroundColor: backgroundColor,
       constraints:
           constraints ?? const BoxConstraints(maxWidth: double.infinity),
@@ -71,7 +71,7 @@ class SchoolAppCardAlert extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: SchoolAppText(
+              child: SPText(
                 title,
                 fontSize: 14,
                 level: AppTextLevel.paragraph1,

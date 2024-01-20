@@ -1,4 +1,4 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 enum StatePrimaryButtonState { download, validation, delete, disabled }
 
@@ -12,14 +12,14 @@ class StatePrimaryButton extends StatelessWidget {
     const height = 45.0;
     switch (state) {
       case StatePrimaryButtonState.download:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Télécharger",
           height: height,
           width: width,
           backgroundColor: const Color(0xFF41A3DF),
         );
       case StatePrimaryButtonState.validation:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Validation",
           height: height,
           width: width,
@@ -27,14 +27,14 @@ class StatePrimaryButton extends StatelessWidget {
         );
 
       case StatePrimaryButtonState.delete:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Supprimer",
           height: height,
           width: width,
           backgroundColor: const Color(0xFF1EA951),
         );
       case StatePrimaryButtonState.disabled:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Supprimer",
           height: height,
           width: width,

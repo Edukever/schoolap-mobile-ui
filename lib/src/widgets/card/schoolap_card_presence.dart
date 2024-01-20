@@ -1,14 +1,14 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
-import 'package:schoolap_pkg/src/widgets/base/app_card.dart';
-import 'package:schoolap_pkg/src/widgets/base/dot_container.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
+import 'package:schoolap_ui/src/widgets/base/app_card.dart';
+import 'package:schoolap_ui/src/widgets/base/dot_container.dart';
 
-enum SchoolAppCardPresenceType
-    implements Comparable<SchoolAppCardPresenceType> {
+enum SPCardPresenceType
+    implements Comparable<SPCardPresenceType> {
   presence(
       backgroundColor: Color(0xFFDDF3D6), subtitleColor: Color(0xFF1EA951)),
   absence(backgroundColor: Color(0xFFFFE1E1), subtitleColor: Color(0xFFFF4F4F));
 
-  const SchoolAppCardPresenceType({
+  const SPCardPresenceType({
     required this.backgroundColor,
     required this.subtitleColor,
   });
@@ -17,12 +17,12 @@ enum SchoolAppCardPresenceType
   final Color subtitleColor;
 
   @override
-  int compareTo(SchoolAppCardPresenceType other) =>
+  int compareTo(SPCardPresenceType other) =>
       toString().compareTo(other.toString());
 }
 
 class SchoolapCardPresence extends StatelessWidget {
-  final SchoolAppCardPresenceType type;
+  final SPCardPresenceType type;
   final String label;
 
   const SchoolapCardPresence({
@@ -38,14 +38,14 @@ class SchoolapCardPresence extends StatelessWidget {
     String title;
 
     switch (type) {
-      case SchoolAppCardPresenceType.presence:
-        backgroundColor = SchoolAppCardPresenceType.presence.backgroundColor;
-        subtitleColor = SchoolAppCardPresenceType.presence.subtitleColor;
+      case SPCardPresenceType.presence:
+        backgroundColor = SPCardPresenceType.presence.backgroundColor;
+        subtitleColor = SPCardPresenceType.presence.subtitleColor;
         title = "Présence";
         break;
-      case SchoolAppCardPresenceType.absence:
-        backgroundColor = SchoolAppCardPresenceType.absence.backgroundColor;
-        subtitleColor = SchoolAppCardPresenceType.absence.subtitleColor;
+      case SPCardPresenceType.absence:
+        backgroundColor = SPCardPresenceType.absence.backgroundColor;
+        subtitleColor = SPCardPresenceType.absence.subtitleColor;
         title = "Absence";
         break;
       default:
@@ -55,7 +55,7 @@ class SchoolapCardPresence extends StatelessWidget {
         break;
     }
 
-    return SchoolAppCard(
+    return SPCard(
       backgroundColor: backgroundColor,
       constraints: const BoxConstraints(
         maxWidth: 150,
@@ -76,7 +76,7 @@ class SchoolapCardPresence extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SchoolAppText(
+                  SPText(
                     label,
                     fontSize: 18,
                     level: AppTextLevel.title1,

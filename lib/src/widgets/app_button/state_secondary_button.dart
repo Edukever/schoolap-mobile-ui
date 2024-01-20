@@ -1,4 +1,4 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 class StateSecondaryButton extends StatelessWidget {
   final StatePrimaryButtonState state;
@@ -10,7 +10,7 @@ class StateSecondaryButton extends StatelessWidget {
     const height = 45.0;
     switch (state) {
       case StatePrimaryButtonState.download:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Télécharger",
           height: height,
           width: width,
@@ -18,7 +18,7 @@ class StateSecondaryButton extends StatelessWidget {
           backgroundColor: const Color(0xFFE5F9FF),
         );
       case StatePrimaryButtonState.validation:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Validation",
           height: height,
           width: width,
@@ -27,7 +27,7 @@ class StateSecondaryButton extends StatelessWidget {
         );
 
       case StatePrimaryButtonState.delete:
-        return SchoolAppPrimaryButton(
+        return SPButtonPrimary(
           title: "Supprimer",
           height: height,
           width: width,

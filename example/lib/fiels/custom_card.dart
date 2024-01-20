@@ -1,4 +1,4 @@
-import 'package:schoolap_pkg/schoolap_pkg.dart';
+import 'package:schoolap_ui/schoolap_ui.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key});
@@ -14,12 +14,12 @@ class CustomCard extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            const SchoolAppCardTile(
+            const SPCardTile(
               constraints: BoxConstraints(maxWidth: double.infinity),
               title: "Card title",
             ),
             const SizedBox(height: 10),
-            SchoolAppCardTile(
+            SPCardTile(
               constraints: const BoxConstraints(maxWidth: double.infinity),
               title: 'Rapport du présence',
               subtitle: '11 décembre 2023 à 09:22',
@@ -60,8 +60,8 @@ class CustomCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const SchoolAppCardAlert(
-              type: SchoolAppCardAlertType.warning,
+            const SPCardAlert(
+              type: SPCardAlertType.warning,
               title: "Card alert",
             ),
             const SizedBox(height: 10),
@@ -69,11 +69,11 @@ class CustomCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SchoolapCardPresence(
-                  type: SchoolAppCardPresenceType.absence,
+                  type: SPCardPresenceType.absence,
                   label: 'Théo Zirko',
                 ),
                 SchoolapCardPresence(
-                  type: SchoolAppCardPresenceType.presence,
+                  type: SPCardPresenceType.presence,
                   label: 'Théo Zirko',
                 ),
               ],
