@@ -33,8 +33,8 @@ Voici la liste des composants disponibles dans le package `schoolap_design_syste
 - `SPDropDown`: Une liste déroulante personnalisée pour la sélection d'éléments.
 - `SPChip`: Un composant d'étiquette personnalisé pour afficher des informations.
 - `SPText`: Un composant de texte personnalisé.
-- `StatePrimaryButton`: Une énumération représentant les différents états d'un bouton principal.
-- `StateSecondaryButton`: Une énumération représentant les différents états d'un bouton secondaire.
+- `SPButtonStatePrimary`: Une énumération représentant les différents états d'un bouton principal.
+- `SPButtonSecondaryState`: Une énumération représentant les différents états d'un bouton secondaire.
 - `SPColorsData`: Un ensemble de couleurs personnalisées utilisées dans le système de conception.
 - `SPGradientData`: Un ensemble de dégradés personnalisés utilisés dans le système de conception.
 
