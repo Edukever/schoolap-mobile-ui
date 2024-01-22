@@ -2,5 +2,11 @@
     "cSpell.words": [
         "schoolap",
         "tydef"
-    ]
+    ],
+    "dart.enableSdkFormatter": true,
+    "dartImport.fixOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
+
 }
