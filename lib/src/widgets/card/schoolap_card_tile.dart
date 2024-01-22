@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:schoolap_ui/schoolap_ui.dart';
-import 'package:schoolap_ui/src/widgets/base/app_card.dart';
+part of '../widget.dart';
 
 class SPCardTile extends StatelessWidget {
   final BoxConstraints constraints;

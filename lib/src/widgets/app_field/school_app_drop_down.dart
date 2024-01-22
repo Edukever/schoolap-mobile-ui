@@ -1,7 +1,4 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_ui/src/utils/custom_tydef.dart';
+part of '../widget.dart';
 
 typedef OnChanged<T> = void Function(T?);
 

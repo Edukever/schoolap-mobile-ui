@@ -1,6 +1,4 @@
-import 'package:schoolap_ui/schoolap_ui.dart';
-
-import 'dot_container.dart';
+part of '../widget.dart';
 
 enum AppChipType { none, icon, dot }
 

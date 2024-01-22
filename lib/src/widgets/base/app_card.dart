@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../widget.dart';
 
 class SPCard extends StatelessWidget {
   final BoxConstraints constraints;

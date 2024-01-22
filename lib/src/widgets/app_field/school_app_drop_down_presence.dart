@@ -1,7 +1,4 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_ui/schoolap_ui.dart';
-import 'package:schoolap_ui/src/utils/custom_tydef.dart';
+part of '../widget.dart';
 
 class SPDropDownPresence<T> extends StatelessWidget {
   final String name;
