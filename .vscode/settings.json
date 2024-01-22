@@ -2,5 +2,6 @@
     "cSpell.words": [
         "schoolap",
         "tydef"
-    ]
+    ],
+    "dart.lineLength": 160
 }

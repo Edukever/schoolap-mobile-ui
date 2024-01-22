@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
 class CustomCard extends StatelessWidget {
@@ -43,8 +44,8 @@ class CustomCard extends StatelessWidget {
                         size: 15,
                         color: Color(0xFF41A3DF),
                       ),
-                      const SizedBox(width: 10),
-                      const Text(
+                      SizedBox(width: 10),
+                      Text(
                         '26/28',
                         textAlign: TextAlign.center,
                         style: TextStyle(

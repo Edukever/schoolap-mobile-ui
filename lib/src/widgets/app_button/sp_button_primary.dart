@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:schoolap_ui/src/widgets/base/app_text.dart';
+part of '../widget.dart';
 
 enum IconPosition {
   left,

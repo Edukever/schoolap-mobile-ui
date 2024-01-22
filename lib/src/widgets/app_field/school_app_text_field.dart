@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_ui/src/utils/custom_tydef.dart';
+part of '../widget.dart';
 
 enum AppTextFieldType {
   password,

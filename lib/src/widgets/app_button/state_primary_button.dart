@@ -1,4 +1,4 @@
-import 'package:schoolap_ui/schoolap_ui.dart';
+part of '../widget.dart';
 
 enum SPButtonStatePrimaryState { download, validation, delete, disabled }
 

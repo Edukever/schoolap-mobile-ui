@@ -1,6 +1,4 @@
-import 'package:schoolap_ui/schoolap_ui.dart';
-import 'package:schoolap_ui/src/widgets/base/app_card.dart';
-import 'package:schoolap_ui/src/widgets/base/dot_container.dart';
+part of '../widget.dart';
 
 enum SPCardPresenceType
     implements Comparable<SPCardPresenceType> {
