@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+class MainAppBar extends StatelessWidget {
+  const MainAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

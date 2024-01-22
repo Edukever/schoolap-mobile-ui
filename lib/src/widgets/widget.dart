@@ -22,3 +22,4 @@ part 'card/schoolap_card_presence.dart';
 part 'card/schoolap_card_tile.dart';
 part 'card/schoolap_card_with_image.dart';
 part 'appbar/schoolap_main_appbar.dart';
+part 'appbar/schoolap_appbar.dart';

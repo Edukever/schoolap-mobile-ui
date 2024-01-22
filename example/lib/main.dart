@@ -1,11 +1,12 @@
 import 'package:example/fields/button_page.dart';
-import 'package:example/fields/custom_appbar.dart';
+import 'package:example/fields/main_appbar.dart';
 import 'package:example/fields/custom_card.dart';
 import 'package:example/fields/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
 import 'fields/page_field_screen.dart';
+import 'fields/standard_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -73,10 +74,16 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
-              title: "custom appBar",
+              title: "Main AppBar",
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const CustomAppBar())),
-            )
+                  builder: (context) => const MainAppBar())),
+            ),
+            const SizedBox(height: 10),
+            SPButtonPrimary(
+              title: "Standard AppBar",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const StandardAppBar())),
+            ),
           ],
         ),
       ),
