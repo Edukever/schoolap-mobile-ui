@@ -67,6 +67,8 @@ class PageFieldScreen extends StatelessWidget {
               prefix: Icon(Icons.date_range),
             ),
             const SizedBox(height: 20),
+            const SPPresenceDropdown(name: 'presence'),
+            const SizedBox(height: 20),
           ],
         ),
       ),
