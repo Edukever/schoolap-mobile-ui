@@ -3,12 +3,14 @@ part of '../widget.dart';
 class SCardWithImage extends StatelessWidget {
   final String label;
   final String imagePath;
+  final VoidCallback? onTap;
   const SCardWithImage(
-      {super.key, required this.label, required this.imagePath});
+      {super.key, required this.label, required this.imagePath, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return SPCard(
+      onTap: onTap,
       backgroundColor: Colors.white,
       constraints: const BoxConstraints(
         maxWidth: 120,

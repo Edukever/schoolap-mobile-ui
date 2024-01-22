@@ -10,21 +10,25 @@ class SPCardTile extends StatelessWidget {
   final Color? subtitleColor;
   final EdgeInsetsGeometry? contentPadding;
   final Widget? floatContentRight;
-  const SPCardTile(
-      {super.key,
-      required this.constraints,
-      this.leading,
-      required this.title,
-      this.trailing,
-      this.contentPadding,
-      this.subtitle,
-      this.subtitleColor,
-      this.subWidget,
-      this.floatContentRight});
+  final VoidCallback? onTap;
+  const SPCardTile({
+    super.key,
+    required this.constraints,
+    this.leading,
+    required this.title,
+    this.trailing,
+    this.contentPadding,
+    this.subtitle,
+    this.subtitleColor,
+    this.subWidget,
+    this.floatContentRight,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SPCard(
+      onTap: onTap,
       constraints: constraints,
       backgroundColor: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
