@@ -13,6 +13,7 @@ class CustomCard extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
             const SPCardTile(
@@ -83,7 +84,55 @@ class CustomCard extends StatelessWidget {
             const SCardWithImage(
                 label: "Écrire un communiquer",
                 imagePath: "assets/images/pen.png"),
+            const SizedBox(height: 10),
+            SPCardTile(
+              constraints: const BoxConstraints(maxWidth: double.infinity),
+              title: "Titre du communique",
+              subtitle: '11 décembre 2023 à 09:22',
+              subtitleColor: const Color(0xFF41A3DF),
+              floatContentRight:
+                  Positioned(top: -10, right: 0, child: cardWithSmallOpacity()),
+            ),
+            const SizedBox(height: 10),
+            SPCardTile(
+              constraints: const BoxConstraints(maxWidth: double.infinity),
+              title: "Titre du communique",
+              subtitle: '11 décembre 2023 à 09:22',
+              subtitleColor: const Color(0xFF41A3DF),
+              leading: Container(),
+              subWidget: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: cardWithSmallOpacity()),
+            ),
+            const SizedBox(height: 10),
           ],
+        ),
+      ),
+    );
+  }
+
+  Opacity cardWithSmallOpacity() {
+    return Opacity(
+      opacity: 0.80,
+      child: Container(
+        width: 50,
+        height: 18,
+        decoration: ShapeDecoration(
+          color: const Color(0xFFE5F9FF),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.37),
+          ),
+        ),
+        child: const Center(
+          child: Text(
+            ' 9h45',
+            style: TextStyle(
+              color: Color(0xFF41A3DF),
+              fontSize: 10,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
       ),
     );

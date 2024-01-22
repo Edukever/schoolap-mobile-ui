@@ -9,6 +9,7 @@ class SPCardTile extends StatelessWidget {
   final Widget? subWidget;
   final Color? subtitleColor;
   final EdgeInsetsGeometry? contentPadding;
+  final Widget? floatContentRight;
   const SPCardTile(
       {super.key,
       required this.constraints,
@@ -18,47 +19,53 @@ class SPCardTile extends StatelessWidget {
       this.contentPadding,
       this.subtitle,
       this.subtitleColor,
-      this.subWidget});
+      this.subWidget,
+      this.floatContentRight});
 
   @override
   Widget build(BuildContext context) {
     return SPCard(
       constraints: constraints,
       backgroundColor: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: CircleAvatar(
-                radius: 30,
-                child: leading,
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SPText.title2(title),
-                  subtitle == null
-                      ? Container()
-                      : Padding(
-                          padding: const EdgeInsets.only(top: 0),
-                          child: SPText.paragraph1(
-                            subtitle!,
-                            color: subtitleColor,
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: AlignmentDirectional.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              leading ??
+                  const Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: CircleAvatar(
+                      radius: 30,
+                    ),
+                  ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SPText.title2(title),
+                    subtitle == null
+                        ? Container()
+                        : Padding(
+                            padding: const EdgeInsets.only(top: 0),
+                            child: SPText.paragraph1(
+                              subtitle!,
+                              color: subtitleColor,
+                            ),
                           ),
-                        ),
-                  subWidget ?? Container()
-                ],
+                    subWidget ?? Container()
+                  ],
+                ),
               ),
-            ),
-            trailing ?? Container(),
-          ],
-        ),
+              trailing ?? Container(),
+            ],
+          ),
+          floatContentRight ?? Container(),
+        ],
       ),
     );
   }
