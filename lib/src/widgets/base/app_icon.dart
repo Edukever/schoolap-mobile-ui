@@ -25,13 +25,15 @@ class SPButtonIcon extends StatelessWidget {
   final double? iconSize;
   final bool showBadge;
   final Widget? badgeLabel;
+  final Function()? onPressed;
 
   const SPButtonIcon({
     Key? key,
+    required this.iconData,
+    this.onPressed,
     this.shape,
     this.width,
     this.height,
-    required this.iconData,
     this.filledColors,
     this.iconColor,
     this.outlinedColor,
@@ -54,17 +56,20 @@ class SPButtonIcon extends StatelessWidget {
           width: iconSize,
         );
 
-    return Container(
-      width: width ?? 70,
-      height: height ?? 70,
-      decoration: buildDecoration(shape ?? ButtonIconShape.none),
-      alignment: Alignment.center,
-      child: showBadge ? Badge(
-        isLabelVisible: true,
-        label: badgeLabel,
-        alignment: Alignment.topRight,
-        child: icon,
-      ) : icon,
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        width: width ?? 70,
+        height: height ?? 70,
+        decoration: buildDecoration(shape ?? ButtonIconShape.none),
+        alignment: Alignment.center,
+        child: showBadge ? Badge(
+          isLabelVisible: true,
+          label: badgeLabel,
+          alignment: Alignment.topRight,
+          child: icon,
+        ) : icon,
+      ),
     );
   }
 

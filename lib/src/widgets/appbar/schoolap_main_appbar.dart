@@ -52,7 +52,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                     const Spacer(),
                     if (showNotificationIcon)
                       SPButtonIcon(
-                        iconData: 'packages/schoolap_ui/assets/icons/bell_simple.svg',
+                        iconData: AppIconsData.bellSimple,
                         iconSize: 25.0,
                         height: 40,
                         width: 40,

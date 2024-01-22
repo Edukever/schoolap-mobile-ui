@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
 import 'fields/page_field_screen.dart';
+import 'fields/pagination.dart';
 import 'fields/standard_appbar.dart';
 
 void main() {
@@ -83,6 +84,12 @@ class _HomePageState extends State<HomePage> {
               title: "Standard AppBar",
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const StandardAppBar())),
+            ),
+            const SizedBox(height: 10),
+            SPButtonPrimary(
+              title: "Pagination",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const PaginationPage())),
             ),
           ],
         ),
