@@ -30,6 +30,7 @@ class AppMaterialTheme {
         ),
       ),
       scaffoldBackgroundColor: colors.blanc,
+      fontFamily: 'Poppins'
     );
   }
 }

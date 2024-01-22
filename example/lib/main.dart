@@ -1,11 +1,11 @@
-import 'package:example/fiels/button_page.dart';
-import 'package:example/fiels/custom_appbar.dart';
-import 'package:example/fiels/custom_card.dart';
-import 'package:example/fiels/icon_pages.dart';
+import 'package:example/fields/button_page.dart';
+import 'package:example/fields/custom_appbar.dart';
+import 'package:example/fields/custom_card.dart';
+import 'package:example/fields/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
-import 'fiels/page_field_screen.dart';
+import 'fields/page_field_screen.dart';
 
 void main() {
   runApp(const MyApp());
