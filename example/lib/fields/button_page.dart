@@ -52,41 +52,41 @@ class ButtonPage extends StatelessWidget {
               iconOrTextColor: Color(0xFFF68C2C),
             ),
             Divider(),
-            StatePrimaryButton(
-              state: StatePrimaryButtonState.download,
+            SPButtonStatePrimary(
+              state: SPButtonStatePrimaryState.download,
               width: 247,
             ),
             SizedBox(
               height: 10,
             ),
-            StatePrimaryButton(
-              state: StatePrimaryButtonState.delete,
+            SPButtonStatePrimary(
+              state: SPButtonStatePrimaryState.delete,
               width: 247,
             ),
             SizedBox(
               height: 10,
             ),
-            StatePrimaryButton(
-              state: StatePrimaryButtonState.validation,
+            SPButtonStatePrimary(
+              state: SPButtonStatePrimaryState.validation,
               width: 247,
             ),
             Divider(),
-            StateSecondaryButton(
-              state: StatePrimaryButtonState.download,
+            SPButtonSecondaryState(
+              state: SPButtonStatePrimaryState.download,
               width: 247,
             ),
             SizedBox(
               height: 10,
             ),
-            StateSecondaryButton(
-              state: StatePrimaryButtonState.delete,
+            SPButtonSecondaryState(
+              state: SPButtonStatePrimaryState.delete,
               width: 247,
             ),
             SizedBox(
               height: 10,
             ),
-            StateSecondaryButton(
-              state: StatePrimaryButtonState.validation,
+            SPButtonSecondaryState(
+              state: SPButtonStatePrimaryState.validation,
               width: 247,
             ),
           ],
