@@ -9,7 +9,9 @@ Pour installer le package, ajoutez la ligne suivante à votre fichier `pubspec.y
 ```yaml
 dependencies:
   schoolap_ui: 
-    path: https://github.com/Edukever/schoolap-mobile-ui
+    git: 
+      url: https://github.com/Edukever/schoolap-mobile-ui.git
+      ref: main
 ```
 
 Ensuite, exécutez la commande `flutter pub get` pour télécharger et intégrer le package à votre projet.
