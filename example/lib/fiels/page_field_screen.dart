@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
 class PageFieldScreen extends StatelessWidget {
@@ -22,7 +23,6 @@ class PageFieldScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-          
             const SPTextField(
               name: "Password",
               placeHolder: 'this is a placeholder',
@@ -66,9 +66,7 @@ class PageFieldScreen extends StatelessWidget {
               label: "This is field with date",
               prefix: Icon(Icons.date_range),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

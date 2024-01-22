@@ -1,4 +1,4 @@
-import 'package:schoolap_ui/schoolap_ui.dart';
+part of '../widget.dart';
 
 class SPButtonSecondaryState extends StatelessWidget {
   final SPButtonStatePrimaryState state;
