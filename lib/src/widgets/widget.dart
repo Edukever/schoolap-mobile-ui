@@ -1,6 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:popover/popover.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:schoolap_ui/src/utils/custom_tydef.dart';
 
@@ -19,3 +22,5 @@ part 'card/schoolap_card_alert.dart';
 part 'card/schoolap_card_presence.dart';
 part 'card/schoolap_card_tile.dart';
 part 'card/schoolap_card_with_image.dart';
+part 'card/schoolap_pop_menu_button.dart';
+part 'card/custom_pop_up.dart';
