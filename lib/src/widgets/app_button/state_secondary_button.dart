@@ -1,15 +1,15 @@
 import 'package:schoolap_ui/schoolap_ui.dart';
 
-class StateSecondaryButton extends StatelessWidget {
-  final StatePrimaryButtonState state;
+class SPButtonSecondaryState extends StatelessWidget {
+  final SPButtonStatePrimaryState state;
   final double? width;
-  const StateSecondaryButton({super.key, required this.state, this.width});
+  const SPButtonSecondaryState({super.key, required this.state, this.width});
 
   @override
   Widget build(BuildContext context) {
     const height = 45.0;
     switch (state) {
-      case StatePrimaryButtonState.download:
+      case SPButtonStatePrimaryState.download:
         return SPButtonPrimary(
           title: "Télécharger",
           height: height,
@@ -17,7 +17,7 @@ class StateSecondaryButton extends StatelessWidget {
           iconOrTextColor: const Color(0xFF41A3DF),
           backgroundColor: const Color(0xFFE5F9FF),
         );
-      case StatePrimaryButtonState.validation:
+      case SPButtonStatePrimaryState.validation:
         return SPButtonPrimary(
           title: "Validation",
           height: height,
@@ -26,7 +26,7 @@ class StateSecondaryButton extends StatelessWidget {
           backgroundColor: const Color(0xFFFFE1E1),
         );
 
-      case StatePrimaryButtonState.delete:
+      case SPButtonStatePrimaryState.delete:
         return SPButtonPrimary(
           title: "Supprimer",
           height: height,
