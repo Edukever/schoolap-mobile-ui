@@ -58,7 +58,7 @@ class SPPagination extends StatelessWidget {
     return Row(
       children: [
         SPButtonIcon(
-          iconData: 'packages/schoolap_ui/assets/icons/arrow-left.svg',
+          iconData: AppIconsData.arrowLeft,
           shape: ButtonIconShape.square,
           filledColors: AppTheme.of(context).colors.bleuLight,
           height: 45,
@@ -103,7 +103,7 @@ class SPPagination extends StatelessWidget {
           return const SizedBox();
         }),
         SPButtonIcon(
-          iconData: 'packages/schoolap_ui/assets/icons/arrow-right.svg',
+          iconData: AppIconsData.arrowRight,
           shape: ButtonIconShape.square,
           filledColors: AppTheme.of(context).colors.bleuLight,
           height: 45,

@@ -1,4 +1,5 @@
 class AppIconsData {
+
   const AppIconsData._();
 
   static String date = "assets/icons/date.svg";
@@ -11,4 +12,7 @@ class AppIconsData {
   static String absent = "assets/icons/absent.svg";
   static String filtre = "assets/icons/filtre.svg";
   static String attention = "assets/icons/attention.svg";
+  static String bellSimple = "packages/schoolap_ui/assets/icons/bell_simple.svg";
+  static String arrowLeft = "packages/schoolap_ui/assets/icons/arrow-left.svg";
+  static String arrowRight = "packages/schoolap_ui/assets/icons/arrow-right.svg";
 }
