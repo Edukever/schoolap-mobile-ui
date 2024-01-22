@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:schoolap_ui/src/utils/custom_tydef.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 part 'base/app_card.dart';
 part 'base/app_icon.dart';
@@ -19,3 +21,5 @@ part 'card/schoolap_card_alert.dart';
 part 'card/schoolap_card_presence.dart';
 part 'card/schoolap_card_tile.dart';
 part 'card/schoolap_card_with_image.dart';
+part 'appbar/schoolap_main_appbar.dart';
+part 'appbar/schoolap_appbar.dart';
