@@ -5,6 +5,7 @@ import 'package:example/fields/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
+import 'fields/illustration_page.dart';
 import 'fields/page_field_screen.dart';
 import 'fields/pagination.dart';
 import 'fields/standard_appbar.dart';
@@ -53,45 +54,43 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SPButtonPrimary(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PageFieldScreen())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PageFieldScreen())),
               title: ("pages field"),
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const ButtonPage())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ButtonPage())),
               title: "Button page",
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
               title: "Icons page",
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const IconPage())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IconPage())),
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
               title: "custom card",
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CustomCard())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CustomCard())),
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
               title: "Main AppBar",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const MainAppBar())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainAppBar())),
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
               title: "Standard AppBar",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const StandardAppBar())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StandardAppBar())),
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
               title: "Pagination",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PaginationPage())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PaginationPage())),
+            ),
+            const SizedBox(height: 10),
+            SPButtonPrimary(
+              title: "Illustration",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IllustrationPage())),
             ),
           ],
         ),
