@@ -1,7 +1,6 @@
 part of '../widget.dart';
 
-enum SPCardPresenceType
-    implements Comparable<SPCardPresenceType> {
+enum SPCardPresenceType implements Comparable<SPCardPresenceType> {
   presence(
       backgroundColor: Color(0xFFDDF3D6), subtitleColor: Color(0xFF1EA951)),
   absence(backgroundColor: Color(0xFFFFE1E1), subtitleColor: Color(0xFFFF4F4F));
@@ -22,11 +21,13 @@ enum SPCardPresenceType
 class SchoolapCardPresence extends StatelessWidget {
   final SPCardPresenceType type;
   final String label;
+  final VoidCallback? onTap;
 
   const SchoolapCardPresence({
     Key? key,
     required this.type,
     required this.label,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -54,6 +55,7 @@ class SchoolapCardPresence extends StatelessWidget {
     }
 
     return SPCard(
+      onTap: onTap,
       backgroundColor: backgroundColor,
       constraints: const BoxConstraints(
         maxWidth: 150,

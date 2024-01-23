@@ -28,7 +28,7 @@ class SPChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width ?? 115,
+      width: width ?? 125,
       height: height ?? 40,
       padding: const EdgeInsets.symmetric(horizontal: 14.62, vertical: 3.48),
       clipBehavior: Clip.antiAlias,

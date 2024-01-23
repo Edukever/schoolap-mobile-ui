@@ -49,6 +49,8 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SPButtonPrimary(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(

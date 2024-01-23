@@ -9,10 +9,21 @@ class CustomCard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Custom Card"),
+        actions: [
+          //SPPopMenuButton(),
+          CustomPopupMenu(
+            iconPath: AppIconsData.classe,
+            items: [
+              HorizontalPopupMenuItem(value: 1, child: const Text("Classe")),
+              HorizontalPopupMenuItem(value: 1, child: const Text("Classe")),
+            ],
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
             const SPCardTile(
@@ -79,11 +90,86 @@ class CustomCard extends StatelessWidget {
                 ),
               ],
             ),
+            SPPopMenuButton(
+                iconPath: AppIconsData.modifier,
+                iconColor: Colors.amber,
+                handleIconTap: (p0) => print(p0),
+                items: [
+                  ListItem(
+                    value: 'modifier',
+                    label: 'Modifier',
+                    iconPath: AppIconsData.modifier,
+                  ),
+                  ListItem(
+                    value: 'detail',
+                    label: 'Détail',
+                    iconPath: AppIconsData.detail,
+                  ),
+                  ListItem(
+                    value: 'archiver',
+                    label: 'Archiver',
+                    iconPath: AppIconsData.archiver,
+                  ),
+
+                  // AppIconsData.modifier,
+                  // AppIconsData.detail,
+                  // AppIconsData.archiver,
+                ]),
             const SizedBox(height: 10),
             const SCardWithImage(
                 label: "Écrire un communiquer",
                 imagePath: "assets/images/pen.png"),
+            const SizedBox(height: 10),
+            SPCardTile(
+              constraints: const BoxConstraints(maxWidth: double.infinity),
+              title: "Titre du communique",
+              subtitle: '11 décembre 2023 à 09:22',
+              subtitleColor: const Color(0xFF41A3DF),
+              floatContentRight:
+                  Positioned(top: -10, right: 0, child: cardWithSmallOpacity()),
+            ),
+            const SizedBox(height: 10),
+            GestureDetector(
+              child: SPCardTile(
+                constraints: const BoxConstraints(maxWidth: double.infinity),
+                title: "Titre du communique",
+                subtitle: '11 décembre 2023 à 09:22',
+                subtitleColor: const Color(0xFF41A3DF),
+                leading: Container(),
+                subWidget: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: cardWithSmallOpacity()),
+              ),
+            ),
+            const SizedBox(height: 10),
           ],
+        ),
+      ),
+    );
+  }
+
+  Opacity cardWithSmallOpacity() {
+    return Opacity(
+      opacity: 0.80,
+      child: Container(
+        width: 50,
+        height: 18,
+        decoration: ShapeDecoration(
+          color: const Color(0xFFE5F9FF),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.37),
+          ),
+        ),
+        child: const Center(
+          child: Text(
+            ' 9h45',
+            style: TextStyle(
+              color: Color(0xFF41A3DF),
+              fontSize: 10,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
       ),
     );

@@ -11,12 +11,14 @@ class SPCardAlert extends StatelessWidget {
   final String title;
   final BoxConstraints? constraints;
   final SPCardAlertType type;
+  final VoidCallback? onTap;
 
   const SPCardAlert({
     Key? key,
     required this.title,
     this.constraints,
     required this.type,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -57,6 +59,7 @@ class SPCardAlert extends StatelessWidget {
     }
 
     return SPCard(
+      onTap: onTap,
       backgroundColor: backgroundColor,
       constraints:
           constraints ?? const BoxConstraints(maxWidth: double.infinity),
