@@ -24,3 +24,4 @@ part 'card/schoolap_card_tile.dart';
 part 'card/schoolap_card_with_image.dart';
 part 'card/schoolap_pop_menu_button.dart';
 part 'card/custom_pop_up.dart';
+part 'app_field/schoolap_radio.dart';
