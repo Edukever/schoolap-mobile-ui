@@ -263,6 +263,35 @@ class MyWidget extends StatelessWidget {
 Ce code crée une carte `SchoolapCardPresence` avec le type de présence `SPCardPresenceType.presence`. La carte affiche le titre "Présence" avec une couleur de fond et de sous-titre personnalisées correspondant au type de présence.
 
 
+## Utilisation du composant `SPRadio`
+
+Le composant `SPRadio` est un groupe de boutons radio personnalisé construit avec le package `flutter_form_builder`. Il prend en charge la sélection d'une option à partir d'une liste prédéfinie.
+
+Voici un exemple d'utilisation du composant `SPRadio` :
+
+```dart
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final options = FormBuilderFieldOptionList<String>.fromList([
+      FormBuilderFieldOption(value: 'option1', child: const Text('Option 1')),
+      FormBuilderFieldOption(value: 'option2', child: const Text('Option 2')),
+      FormBuilderFieldOption(value: 'option3', child: const Text('Option 3')),
+    ]);
+
+    return SPRadio<String>(
+      name: 'radioGroup',
+      options: options,
+      label: 'Choose an option',
+    );
+  }
+}
+```
+
+Ce code crée un groupe de boutons radio `SPRadio` avec le nom `radioGroup` et les options prédéfinies. Le composant affiche également une étiquette "Choose an option" au-dessus des boutons radio.
+
+
+
 Assurez-vous d'importer les dépendances nécessaires et de personnaliser les propriétés du bouton en fonction de vos besoins.
 
 
