@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
@@ -11,7 +9,8 @@ class MainAppBar extends StatelessWidget {
     return Scaffold(
       appBar: SPMainAppbar(
         height: 160,
-        showNotificationBadge: Random().nextBool(),
+        showNotificationBadge: true,
+        badgeLabel: '5',
         child: Row(
           children: [
             const CircleAvatar(radius: 30.0),
