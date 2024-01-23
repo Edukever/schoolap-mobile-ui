@@ -9,16 +9,7 @@ class CustomCard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Custom Card"),
-        actions: [
-          //SPPopMenuButton(),
-          CustomPopupMenu(
-            iconPath: AppIconsData.classe,
-            items: [
-              HorizontalPopupMenuItem(value: 1, child: const Text("Classe")),
-              HorizontalPopupMenuItem(value: 1, child: const Text("Classe")),
-            ],
-          )
-        ],
+        actions: const [],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -90,43 +81,36 @@ class CustomCard extends StatelessWidget {
                 ),
               ],
             ),
-            SPPopMenuButton(
+            SPPopMenuButton(iconPath: AppIconsData.modifier, iconColor: Colors.amber, handleIconTap: (p0) => debugPrint(p0), items: [
+              ListItem(
+                value: 'modifier',
+                label: 'Modifier',
                 iconPath: AppIconsData.modifier,
-                iconColor: Colors.amber,
-                handleIconTap: (p0) => debugPrint(p0),
-                items: [
-                  ListItem(
-                    value: 'modifier',
-                    label: 'Modifier',
-                    iconPath: AppIconsData.modifier,
-                  ),
-                  ListItem(
-                    value: 'detail',
-                    label: 'Détail',
-                    iconPath: AppIconsData.detail,
-                  ),
-                  ListItem(
-                    value: 'archiver',
-                    label: 'Archiver',
-                    iconPath: AppIconsData.archiver,
-                  ),
+              ),
+              ListItem(
+                value: 'detail',
+                label: 'Détail',
+                iconPath: AppIconsData.detail,
+              ),
+              ListItem(
+                value: 'archiver',
+                label: 'Archiver',
+                iconPath: AppIconsData.archiver,
+              ),
 
-                  // AppIconsData.modifier,
-                  // AppIconsData.detail,
-                  // AppIconsData.archiver,
-                ]),
+              // AppIconsData.modifier,
+              // AppIconsData.detail,
+              // AppIconsData.archiver,
+            ]),
             const SizedBox(height: 10),
-            const SCardWithImage(
-                label: "Écrire un communiquer",
-                imagePath: "assets/images/pen.png"),
+            const SCardWithImage(label: "Écrire un communiquer", imagePath: "assets/images/pen.png"),
             const SizedBox(height: 10),
             SPCardTile(
               constraints: const BoxConstraints(maxWidth: double.infinity),
               title: "Titre du communique",
               subtitle: '11 décembre 2023 à 09:22',
               subtitleColor: const Color(0xFF41A3DF),
-              floatContentRight:
-                  Positioned(top: -10, right: 0, child: cardWithSmallOpacity()),
+              floatContentRight: Positioned(top: -10, right: 0, child: cardWithSmallOpacity()),
             ),
             const SizedBox(height: 10),
             GestureDetector(
@@ -136,9 +120,7 @@ class CustomCard extends StatelessWidget {
                 subtitle: '11 décembre 2023 à 09:22',
                 subtitleColor: const Color(0xFF41A3DF),
                 leading: Container(),
-                subWidget: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: cardWithSmallOpacity()),
+                subWidget: Padding(padding: const EdgeInsets.only(top: 10), child: cardWithSmallOpacity()),
               ),
             ),
             const SizedBox(height: 10),
