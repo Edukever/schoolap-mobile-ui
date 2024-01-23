@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
 class PageFieldScreen extends StatelessWidget {
@@ -67,8 +68,10 @@ class PageFieldScreen extends StatelessWidget {
               prefix: Icon(Icons.date_range),
             ),
             const SizedBox(height: 20),
-            const SPPresenceDropdown(name: 'presence'),
-            const SizedBox(height: 20),
+            const SPRadio(name: "radio", options: [
+              FormBuilderFieldOption(value: 1, child: Text("One")),
+              FormBuilderFieldOption(value: 2, child: Text("Two")),
+            ])
           ],
         ),
       ),

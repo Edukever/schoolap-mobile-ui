@@ -32,3 +32,4 @@ part 'appbar/schoolap_appbar.dart';
 part 'data_table/schoolap_pagination.dart';
 part 'card/schoolap_pop_menu_button.dart';
 part 'card/custom_pop_up.dart';
+part 'app_field/schoolap_radio.dart';
