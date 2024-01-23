@@ -5,7 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:popover/popover.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
-import 'package:schoolap_ui/src/utils/custom_tydef.dart';
 
 part 'base/app_card.dart';
 part 'base/app_icon.dart';
@@ -24,4 +23,6 @@ part 'card/schoolap_card_tile.dart';
 part 'card/schoolap_card_with_image.dart';
 part 'card/schoolap_pop_menu_button.dart';
 part 'card/custom_pop_up.dart';
+part 'app_field/schoolap_checkout.dart';
+
 part 'app_field/schoolap_radio.dart';

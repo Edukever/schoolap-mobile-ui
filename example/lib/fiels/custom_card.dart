@@ -93,7 +93,7 @@ class CustomCard extends StatelessWidget {
             SPPopMenuButton(
                 iconPath: AppIconsData.modifier,
                 iconColor: Colors.amber,
-                handleIconTap: (p0) => print(p0),
+                handleIconTap: (p0) => debugPrint(p0),
                 items: [
                   ListItem(
                     value: 'modifier',
