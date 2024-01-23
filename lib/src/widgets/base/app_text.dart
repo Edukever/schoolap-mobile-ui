@@ -15,7 +15,9 @@ class SPText extends StatelessWidget {
     Key? key,
     this.color,
     this.fontSize,
+    this.fontWeight,
     this.maxLines,
+    this.minFontSize = 10.0,
     this.level = AppTextLevel.paragraph1,
   }) : super(key: key);
 
@@ -24,7 +26,9 @@ class SPText extends StatelessWidget {
     Key? key,
     this.color,
     this.fontSize,
+    this.fontWeight,
     this.maxLines,
+    this.minFontSize = 10.0,
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
@@ -33,7 +37,9 @@ class SPText extends StatelessWidget {
     Key? key,
     this.color,
     this.fontSize,
+    this.fontWeight,
     this.maxLines,
+    this.minFontSize = 10.0,
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
@@ -43,6 +49,8 @@ class SPText extends StatelessWidget {
     this.color,
     this.fontSize,
     this.maxLines,
+    this.fontWeight,
+    this.minFontSize = 10.0,
   })  : level = AppTextLevel.title1,
         super(key: key);
 
@@ -52,6 +60,8 @@ class SPText extends StatelessWidget {
     this.color,
     this.fontSize,
     this.maxLines,
+    this.fontWeight,
+    this.minFontSize = 10.0,
   })  : level = AppTextLevel.title2,
         super(key: key);
 
@@ -61,6 +71,8 @@ class SPText extends StatelessWidget {
     this.color,
     this.fontSize,
     this.maxLines,
+    this.fontWeight,
+    this.minFontSize = 10.0,
   })  : level = AppTextLevel.title3,
         super(key: key);
 
@@ -69,6 +81,8 @@ class SPText extends StatelessWidget {
   final Color? color;
   final double? fontSize;
   final int? maxLines;
+  final FontWeight? fontWeight;
+  final double minFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +102,16 @@ class SPText extends StatelessWidget {
           return theme.typography.title3;
       }
     }();
-    return Text(
+    return AutoSizeText(
       data,
       style: style.copyWith(
         color: color,
         fontSize: fontSize,
+        fontWeight: fontWeight,
       ),
       maxLines: maxLines,
+      minFontSize: minFontSize,
+      maxFontSize: fontSize ?? style.fontSize ?? 18,
     );
   }
 }

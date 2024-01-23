@@ -1,6 +1,10 @@
 class AppIconsData {
+
   const AppIconsData._();
 
+  static String bellSimple = "packages/schoolap_ui/assets/icons/bell_simple.svg";
+  static String arrowLeft = "packages/schoolap_ui/assets/icons/arrow-left.svg";
+  static String arrowRight = "packages/schoolap_ui/assets/icons/arrow-right.svg";
   static String date = "packages/schoolap_ui/assets/icons/date.svg";
   static String role = "packages/schoolap_ui/assets/icons/role.svg";
   static String classe = "packages/schoolap_ui/assets/icons/classe.svg";

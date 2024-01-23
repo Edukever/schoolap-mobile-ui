@@ -4,6 +4,7 @@
         "schoolap",
         "tydef"
     ],
+    "dart.lineLength": 160,
     "dart.enableSdkFormatter": true,
     "editor.codeActionsOnSave": {
         "source.fixAll": true

@@ -5,7 +5,7 @@ enum StateIcon {
   filled,
 }
 
-enum StateFormIcon {
+enum ButtonIconShape {
   none,
   square,
   circle,
@@ -14,7 +14,7 @@ enum StateFormIcon {
 
 class SPButtonIcon extends StatelessWidget {
   final String iconData;
-  final StateFormIcon? formState;
+  final ButtonIconShape? shape;
   final double? width;
   final double? height;
   final Color? filledColors;
@@ -22,40 +22,60 @@ class SPButtonIcon extends StatelessWidget {
   final Color? outlinedColor;
   final bool? hasShadow;
   final double? radius;
+  final double? iconSize;
+  final bool showBadge;
+  final Widget? badgeLabel;
+  final Function()? onPressed;
 
   const SPButtonIcon({
     Key? key,
-    this.formState,
+    required this.iconData,
+    this.onPressed,
+    this.shape,
     this.width,
     this.height,
-    required this.iconData,
     this.filledColors,
     this.iconColor,
     this.outlinedColor,
     this.hasShadow = false,
     this.radius,
-  })  : assert(formState != StateFormIcon.outlined || outlinedColor != null,
-            'Invalid configuration: outlinedColor should be provided when formState is only outlined.'),
-        assert(formState != StateFormIcon.square || hasShadow != null,
-            'Invalid configuration: hasShadow should be provided when formState is only square.'),
+    this.iconSize,
+    this.showBadge = false,
+    this.badgeLabel,
+  })  : assert(
+            shape != ButtonIconShape.outlined || outlinedColor != null, 'Invalid configuration: outlinedColor should be provided when shape is only outlined.'),
+        assert(shape != ButtonIconShape.square || hasShadow != null, 'Invalid configuration: hasShadow should be provided when shape is only square.'),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width ?? 70,
-      height: height ?? 70,
-      decoration: buildDecoration(formState ?? StateFormIcon.none),
-      child: Icon(
-        Icons.date_range,
-        color: iconColor,
+    final icon = SvgPicture.asset(
+          iconData,
+          colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : null,
+          height: iconSize,
+          width: iconSize,
+        );
+
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        width: width ?? 70,
+        height: height ?? 70,
+        decoration: buildDecoration(shape ?? ButtonIconShape.none),
+        alignment: Alignment.center,
+        child: showBadge ? Badge(
+          isLabelVisible: true,
+          label: badgeLabel,
+          alignment: Alignment.topRight,
+          child: icon,
+        ) : icon,
       ),
     );
   }
 
-  BoxDecoration buildDecoration(StateFormIcon formState) {
+  BoxDecoration buildDecoration(ButtonIconShape formState) {
     switch (formState) {
-      case StateFormIcon.square:
+      case ButtonIconShape.square:
         return BoxDecoration(
           borderRadius: BorderRadius.circular(radius ?? 10.0),
           color: filledColors ?? const Color(0xFF3F97E3),
@@ -70,12 +90,12 @@ class SPButtonIcon extends StatelessWidget {
                 ]
               : null,
         );
-      case StateFormIcon.circle:
+      case ButtonIconShape.circle:
         return BoxDecoration(
           color: filledColors ?? const Color(0xFFE5F9FF),
           shape: BoxShape.circle,
         );
-      case StateFormIcon.outlined:
+      case ButtonIconShape.outlined:
         return BoxDecoration(
           border: Border.all(
             color: outlinedColor ?? const Color(0xFFF68C2C),
