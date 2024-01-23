@@ -6,6 +6,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool showNotificationIcon;
   final bool showNotificationBadge;
   final Widget? notificationBadgeLabel;
+  final Widget? leading;
 
   const SPMainAppbar({
     super.key,
@@ -14,6 +15,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.showNotificationIcon = true,
     this.showNotificationBadge = false,
     this.notificationBadgeLabel,
+    this.leading,
   });
 
   @override
@@ -43,12 +45,16 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
-                    const SizedBox(width: 5.0),
-                    Transform.translate(
-                      offset: const Offset(0, -3),
-                      child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
-                    ),
+                    if (leading != null)
+                      leading!
+                    else ...[
+                      Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
+                      const SizedBox(width: 5.0),
+                      Transform.translate(
+                        offset: const Offset(0, -3),
+                        child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
+                      ),
+                    ],
                     const Spacer(),
                     if (showNotificationIcon)
                       SPButtonIcon(
