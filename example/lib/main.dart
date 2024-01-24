@@ -5,7 +5,6 @@ import 'package:example/fields/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
-import 'fields/illustration_page.dart';
 import 'fields/page_field_screen.dart';
 import 'fields/pagination.dart';
 import 'fields/standard_appbar.dart';

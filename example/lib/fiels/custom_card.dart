@@ -83,27 +83,32 @@ class CustomCard extends StatelessWidget {
                 ),
               ],
             ),
-            SPPopMenuButton(iconPath: AppIconsData.modifier, iconColor: Colors.amber, handleIconTap: (p0) => debugPrint(p0), items: [
-              ListItem(
-                value: 'modifier',
-                label: 'Modifier',
-                iconPath: AppIconsData.modifier,
-              ),
-              ListItem(
-                value: 'detail',
-                label: 'Détail',
-                iconPath: AppIconsData.detail,
-              ),
-              ListItem(
-                value: 'archiver',
-                label: 'Archiver',
-                iconPath: AppIconsData.archiver,
-              ),
+            SPPopMenuButton(
+              iconPath: AppIconsData.modifier,
+              iconColor: Colors.amber,
+              handleIconTap: (p0) => debugPrint(p0),
+              items: const [
+                ListItem(
+                  value: 'modifier',
+                  label: 'Modifier',
+                  iconPath: AppIconsData.modifier,
+                ),
+                ListItem(
+                  value: 'detail',
+                  label: 'Détail',
+                  iconPath: AppIconsData.detail,
+                ),
+                ListItem(
+                  value: 'archiver',
+                  label: 'Archiver',
+                  iconPath: AppIconsData.archiver,
+                ),
 
-              // AppIconsData.modifier,
-              // AppIconsData.detail,
-              // AppIconsData.archiver,
-            ]),
+                // AppIconsData.modifier,
+                // AppIconsData.detail,
+                // AppIconsData.archiver,
+              ],
+            ),
             const SizedBox(height: 10),
             const SCardWithImage(label: "Écrire un communiquer", imagePath: "assets/images/pen.png"),
             const SizedBox(height: 10),

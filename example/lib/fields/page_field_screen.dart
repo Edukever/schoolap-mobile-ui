@@ -87,6 +87,11 @@ class PageFieldScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 40),
+            const SPCheckBox(
+              name: 'rem',
+              title: Text('Remember me'),
+            ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
