@@ -39,6 +39,10 @@ class SPTextField<T> extends StatelessWidget {
   /// Whether the text field should obscure the text.
   final bool obscureText;
 
+  /// The hint style for the text field.
+  final TextStyle? hintStyle;
+
+
   /// Creates a new instance of `SPTextField`.
   const SPTextField({
     Key? key,
@@ -52,8 +56,8 @@ class SPTextField<T> extends StatelessWidget {
     this.prefix,
     this.type,
     this.obscureText = false,
-  })  : assert(!(obscureText == true && type != AppTextFieldType.password),
-            'obscureText can only be used when the type is password'),
+    this.hintStyle,
+  })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
   @override
@@ -63,7 +67,8 @@ class SPTextField<T> extends StatelessWidget {
       prefixIcon: prefix,
       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       hintText: placeHolder,
-      hintStyle: const TextStyle(
+      hintStyle: hintStyle ??
+          const TextStyle(
         fontSize: 13,
         color: Color(0xFFAAAAAA),
         fontFamily: 'Poppins',
@@ -103,8 +108,7 @@ class SPTextField<T> extends StatelessWidget {
             inputType: InputType.date,
             decoration: inputDecoration,
           ),
-        if (type == null ||
-            type != AppTextFieldType.password && type != AppTextFieldType.date)
+        if (type == null || type != AppTextFieldType.password && type != AppTextFieldType.date)
           FormBuilderTextField(
             maxLines: maxLines,
             name: name,
