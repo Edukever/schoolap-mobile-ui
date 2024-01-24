@@ -3,32 +3,39 @@ part of '../widget.dart';
 class SPCard extends StatelessWidget {
   final BoxConstraints constraints;
   final Color borderColor;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final List<BoxShadow>? shadows;
   final Widget child;
-  final double radius;
+  final Radius? radius;
   final VoidCallback? onTap;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
 
   const SPCard({
     Key? key,
     required this.child,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor,
     this.shadows,
     required this.constraints,
     this.borderColor = const Color(0xFFE3E3E3),
-    this.radius = 12,
+    this.radius,
     this.onTap,
+    this.margin,
+    this.padding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = AppTheme.of(context);
     return InkWell(
       onTap: onTap,
       child: Container(
         constraints: constraints,
+        margin: margin,
+        padding: padding,
         decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(radius),
+          color: backgroundColor ?? theme.colors.blanc,
+          borderRadius: BorderRadius.all(radius ?? theme.radius.regular),
           border: Border.all(
             width: 1,
             color: borderColor,

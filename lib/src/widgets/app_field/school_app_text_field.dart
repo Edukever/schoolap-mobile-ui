@@ -1,5 +1,7 @@
 part of '../widget.dart';
 
+typedef ValidatorDate = Validator<DateTime>?;
+
 enum AppTextFieldType {
   password,
   date,
@@ -90,13 +92,13 @@ class SPTextField<T> extends StatelessWidget {
           FormBuilderTextField(
             name: name,
             obscureText: obscureText,
-            validator: validator as String? Function(String?)?,
+            validator: validator as Validator<String?>?,
             decoration: inputDecoration,
           ),
         if (type == AppTextFieldType.date)
           FormBuilderDateTimePicker(
             name: name,
-            validator: validator as String? Function(DateTime?)?,
+            validator: validator as ValidatorDate,
             inputType: InputType.date,
             decoration: inputDecoration,
           ),

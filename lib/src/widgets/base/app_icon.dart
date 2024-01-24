@@ -24,14 +24,17 @@ class SPButtonIcon extends StatelessWidget {
   final double? radius;
   final double? iconSize;
   final bool showBadge;
+  final Color? badgeColor;
   final Widget? badgeLabel;
+  final Function()? onPressed;
 
   const SPButtonIcon({
     Key? key,
+    required this.iconData,
+    this.onPressed,
     this.shape,
     this.width,
     this.height,
-    required this.iconData,
     this.filledColors,
     this.iconColor,
     this.outlinedColor,
@@ -40,6 +43,7 @@ class SPButtonIcon extends StatelessWidget {
     this.iconSize,
     this.showBadge = false,
     this.badgeLabel,
+    this.badgeColor,
   })  : assert(
             shape != ButtonIconShape.outlined || outlinedColor != null, 'Invalid configuration: outlinedColor should be provided when shape is only outlined.'),
         assert(shape != ButtonIconShape.square || hasShadow != null, 'Invalid configuration: hasShadow should be provided when shape is only square.'),
@@ -48,23 +52,29 @@ class SPButtonIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final icon = SvgPicture.asset(
-          iconData,
-          colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : null,
-          height: iconSize,
-          width: iconSize,
-        );
+      iconData,
+      colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : null,
+      height: iconSize,
+      width: iconSize,
+    );
 
-    return Container(
-      width: width ?? 70,
-      height: height ?? 70,
-      decoration: buildDecoration(shape ?? ButtonIconShape.none),
-      alignment: Alignment.center,
-      child: showBadge ? Badge(
-        isLabelVisible: true,
-        label: badgeLabel,
-        alignment: Alignment.topRight,
-        child: icon,
-      ) : icon,
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        width: width ?? 70,
+        height: height ?? 70,
+        decoration: buildDecoration(shape ?? ButtonIconShape.none),
+        alignment: Alignment.center,
+        child: showBadge
+            ? Badge(
+                isLabelVisible: true,
+                backgroundColor: badgeColor ?? AppTheme.of(context).colors.bleu,
+                label: badgeLabel,
+                alignment: Alignment.topRight,
+                child: icon,
+              )
+            : icon,
+      ),
     );
   }
 
