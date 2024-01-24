@@ -8,6 +8,7 @@ class SPRadio<T> extends StatelessWidget {
   final Validator<T>? validator;
   final String? label;
   final T? initialValue;
+  final TextStyle? labelStyle;
 
   const SPRadio({
     Key? key,
@@ -16,6 +17,7 @@ class SPRadio<T> extends StatelessWidget {
     this.validator,
     this.label,
     this.initialValue,
+    this.labelStyle,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class SPRadio<T> extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         label: label != null ? SPText(label!) : null,
+        labelStyle: labelStyle,
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         border: InputBorder.none,
       ),
