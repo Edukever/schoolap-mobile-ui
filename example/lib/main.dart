@@ -89,8 +89,18 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
-              title: "Illustration",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IllustrationPage())),
+              title: "Error Page",
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SPErrorPage(
+                    title: 'Il y a erreur!',
+                    description: 'Nous sommes navré, la page que vous recherchez semble introuvable.',
+                    backButtonText: 'Retour à la page précédente',
+                    homeButtonTitle: "Page d'accueil",
+                    onHomeButtonPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
