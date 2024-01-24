@@ -42,6 +42,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
 
   final VoidCallback? onTap;
 
+  /// The outline border color of the button.
+  final Color? outlineBorderColor;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -49,6 +52,11 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The [height] parameter can be used to set the height of the button.
   /// The [iconPosition] parameter can be used to specify the position of the icon.
   /// The [hasIcon] parameter determines whether the button has an icon or not.
+  /// The [width] parameter can be used to set the width of the button.
+  /// The [decorationState] parameter can be used to customize the button's appearance.
+  /// The [iconOrTextColor] parameter can be used to customize the color of the icon or text.
+  /// The [onTap] parameter can be used to handle button tap events.
+  /// The [outlineBorderColor] parameter can be used to set the outline border color of the button.
   const SPButtonPrimary({
     Key? key,
     this.backgroundColor,
@@ -60,6 +68,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.decorationState,
     this.iconOrTextColor,
     this.onTap,
+    this.outlineBorderColor,
   })  : assert(hasIcon || iconPosition == null,
             'Invalid configuration: iconPosition should be null when hasIcon is false.'),
         super(key: key);
@@ -102,7 +111,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
         return BoxDecoration(
           borderRadius: BorderRadius.circular(10.52),
           border: Border.all(
-            color: const Color(0xFFF68C2C),
+            color: outlineBorderColor ?? const Color(0xFFF68C2C),
             width: 1.0,
           ),
         );

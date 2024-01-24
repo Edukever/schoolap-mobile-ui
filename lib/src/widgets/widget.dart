@@ -15,6 +15,7 @@ part 'base/app_icon.dart';
 part 'base/app_text.dart';
 part 'base/dot_container.dart';
 part 'base/schoolap_app_chip.dart';
+part 'base/schoolap_illustration_container.dart';
 part 'app_button/sp_button_primary.dart';
 part 'app_button/state_primary_button.dart';
 part 'app_button/state_secondary_button.dart';
