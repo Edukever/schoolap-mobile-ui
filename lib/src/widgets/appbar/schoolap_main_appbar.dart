@@ -32,6 +32,13 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
             bottomLeft: AppTheme.of(context).radius.big,
             bottomRight: AppTheme.of(context).radius.big,
           ),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(185, 212, 208, 0.87),
+              offset: Offset(0, 6),
+              blurRadius: 15,
+            ),
+          ],
         ),
         child: Stack(children: [
           Positioned(

@@ -69,6 +69,8 @@ class PageFieldScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const SPPresenceDropdown(name: 'presence'),
             const SizedBox(height: 20),
+            const SPCheckBox(),
+            const SizedBox(height: 20),
           ],
         ),
       ),
