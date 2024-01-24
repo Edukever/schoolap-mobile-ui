@@ -65,6 +65,7 @@ class SPTextField<T> extends StatelessWidget {
       hintText: placeHolder,
       hintStyle: const TextStyle(
         fontSize: 13,
+        color: Color(0xFFAAAAAA),
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500,
       ),
