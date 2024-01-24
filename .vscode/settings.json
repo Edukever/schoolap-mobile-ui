@@ -2,13 +2,14 @@
     "cSpell.words": [
         "appbar",
         "schoolap",
-        "tydef"
+        "tydef",
+        "Zirko"
     ],
     "dart.lineLength": 160,
     "dart.enableSdkFormatter": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll": true
+        "source.fixAll": "explicit"
     },
-    "files.autoSave": "onFocusChange"
-
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true
 }

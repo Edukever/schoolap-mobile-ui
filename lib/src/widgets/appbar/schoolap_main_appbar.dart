@@ -5,7 +5,8 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget child;
   final bool showNotificationIcon;
   final bool showNotificationBadge;
-  final Widget? notificationBadgeLabel;
+  final String? badgeLabel;
+  final Widget? leading;
 
   const SPMainAppbar({
     super.key,
@@ -13,7 +14,8 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
     required this.child,
     this.showNotificationIcon = true,
     this.showNotificationBadge = false,
-    this.notificationBadgeLabel,
+    this.badgeLabel,
+    this.leading,
   });
 
   @override
@@ -43,23 +45,34 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
-                    const SizedBox(width: 5.0),
-                    Transform.translate(
-                      offset: const Offset(0, -3),
-                      child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
-                    ),
+                    if (leading != null)
+                      leading!
+                    else ...[
+                      Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
+                      const SizedBox(width: 5.0),
+                      Transform.translate(
+                        offset: const Offset(0, -3),
+                        child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
+                      ),
+                    ],
                     const Spacer(),
                     if (showNotificationIcon)
-                      SPButtonIcon(
-                        iconData: AppIconsData.bellSimple,
-                        iconSize: 25.0,
-                        height: 40,
-                        width: 40,
-                        filledColors: AppTheme.of(context).colors.blanc.withOpacity(0.2),
-                        shape: ButtonIconShape.circle,
-                        showBadge: showNotificationBadge,
-                        badgeLabel: notificationBadgeLabel,
+                      Badge(
+                        backgroundColor: AppTheme.of(context).colors.blanc.withOpacity(.7),
+                        label: Text(
+                          badgeLabel ?? '',
+                          style: TextStyle(color: AppTheme.of(context).colors.bleu),
+                        ),
+                        isLabelVisible: showNotificationBadge,
+                        child: SPButtonIcon(
+                          iconData: AppIconsData.bellSimple,
+                          iconSize: 25.0,
+                          height: 40,
+                          width: 40,
+                          filledColors: AppTheme.of(context).colors.blanc.withOpacity(0.2),
+                          shape: ButtonIconShape.circle,
+                          showBadge: false,
+                        ),
                       ),
                   ],
                 ),
