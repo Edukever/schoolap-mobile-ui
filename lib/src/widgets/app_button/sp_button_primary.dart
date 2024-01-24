@@ -45,6 +45,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The outline border color of the button.
   final Color? outlineBorderColor;
 
+  /// The icon displayed on the button.
+  final Widget? icon;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -57,6 +60,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The [iconOrTextColor] parameter can be used to customize the color of the icon or text.
   /// The [onTap] parameter can be used to handle button tap events.
   /// The [outlineBorderColor] parameter can be used to set the outline border color of the button.
+  /// The [icon] parameter can be used to set the icon displayed on the button.
   const SPButtonPrimary({
     Key? key,
     this.backgroundColor,
@@ -69,8 +73,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.iconOrTextColor,
     this.onTap,
     this.outlineBorderColor,
-  })  : assert(hasIcon || iconPosition == null,
-            'Invalid configuration: iconPosition should be null when hasIcon is false.'),
+    this.icon,
+  })  : assert(hasIcon || iconPosition == null, 'Invalid configuration: iconPosition should be null when hasIcon is false.'),
         super(key: key);
 
   @override
@@ -81,8 +85,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
       child: Container(
         width: width ?? double.infinity,
         height: height ?? 50,
-        decoration:
-            buildBorderDecoration(decorationState ?? DecorationState.none),
+        decoration: buildBorderDecoration(decorationState ?? DecorationState.none),
         child: Center(
           child: hasIcon == true
               ? Row(
@@ -130,10 +133,11 @@ class SPButtonPrimary<T> extends StatelessWidget {
       children.add(
         Padding(
           padding: const EdgeInsets.only(right: 20),
-          child: Icon(
-            Icons.arrow_forward,
-            color: iconOrTextColor ?? Colors.white,
-          ),
+          child: icon ??
+              Icon(
+                Icons.arrow_forward,
+                color: iconOrTextColor ?? Colors.white,
+              ),
         ),
       );
     }
@@ -150,10 +154,11 @@ class SPButtonPrimary<T> extends StatelessWidget {
       children.add(
         Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Icon(
-            Icons.arrow_forward,
-            color: iconOrTextColor ?? Colors.white,
-          ),
+          child: icon ??
+              Icon(
+                Icons.arrow_forward,
+                color: iconOrTextColor ?? Colors.white,
+              ),
         ),
       );
     }
