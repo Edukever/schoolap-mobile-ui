@@ -1,11 +1,15 @@
 part of '../widget.dart';
 
-class SCardWithImage extends StatelessWidget {
+class SPCardWithImage extends StatelessWidget {
   final String label;
   final String imagePath;
   final VoidCallback? onTap;
-  const SCardWithImage(
-      {super.key, required this.label, required this.imagePath, this.onTap});
+  const SPCardWithImage({
+    super.key,
+    required this.label,
+    required this.imagePath,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -108,7 +108,7 @@ class CustomCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            const SCardWithImage(label: "Écrire un communiquer", imagePath: "assets/images/pen.png"),
+            const SPCardWithImage(label: "Écrire un communiquer", imagePath: "assets/images/pen.png"),
             const SizedBox(height: 10),
             SPCardTile(
               constraints: const BoxConstraints(maxWidth: double.infinity),
