@@ -4,11 +4,19 @@ class SPCardWithImage extends StatelessWidget {
   final String label;
   final String imagePath;
   final VoidCallback? onTap;
+  final BoxConstraints constraints;
+
   const SPCardWithImage({
     super.key,
     required this.label,
     required this.imagePath,
     this.onTap,
+    this.constraints = const BoxConstraints(
+      maxWidth: 120,
+      maxHeight: 150,
+      minHeight: 150,
+      minWidth: 120,
+    ),
   });
 
   @override
@@ -16,12 +24,7 @@ class SPCardWithImage extends StatelessWidget {
     return SPCard(
       onTap: onTap,
       backgroundColor: Colors.white,
-      constraints: const BoxConstraints(
-        maxWidth: 120,
-        maxHeight: 150,
-        minHeight: 150,
-        minWidth: 120,
-      ),
+      constraints: constraints,
       child: Padding(
         padding: const EdgeInsets.all(5),
         child: Column(
