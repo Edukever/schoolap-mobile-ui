@@ -17,7 +17,7 @@ class SPButtonIcon extends StatelessWidget {
   final ButtonIconShape? shape;
   final double? width;
   final double? height;
-  final Color? filledColors;
+  final Color? filledColor;
   final Color? iconColor;
   final Color? outlinedColor;
   final bool? hasShadow;
@@ -35,7 +35,7 @@ class SPButtonIcon extends StatelessWidget {
     this.shape,
     this.width,
     this.height,
-    this.filledColors,
+    this.filledColor,
     this.iconColor,
     this.outlinedColor,
     this.hasShadow = false,
@@ -83,7 +83,7 @@ class SPButtonIcon extends StatelessWidget {
       case ButtonIconShape.square:
         return BoxDecoration(
           borderRadius: BorderRadius.circular(radius ?? 10.0),
-          color: filledColors ?? const Color(0xFF3F97E3),
+          color: filledColor ?? const Color(0xFF3F97E3),
           boxShadow: hasShadow == true
               ? const [
                   BoxShadow(
@@ -97,7 +97,7 @@ class SPButtonIcon extends StatelessWidget {
         );
       case ButtonIconShape.circle:
         return BoxDecoration(
-          color: filledColors ?? const Color(0xFFE5F9FF),
+          color: filledColor ?? const Color(0xFFE5F9FF),
           shape: BoxShape.circle,
         );
       case ButtonIconShape.outlined:

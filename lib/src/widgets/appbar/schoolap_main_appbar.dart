@@ -82,7 +82,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                               iconSize: 25.0,
                               height: 40,
                               width: 40,
-                              filledColors: AppTheme.of(context).colors.blanc.withOpacity(0.2),
+                              filledColor: AppTheme.of(context).colors.blanc.withOpacity(0.2),
                               shape: ButtonIconShape.circle,
                               showBadge: false,
                             ),
