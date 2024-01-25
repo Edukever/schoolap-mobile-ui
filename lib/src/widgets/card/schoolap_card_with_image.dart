@@ -41,7 +41,7 @@ class SPCardWithImage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 3),
-              child: Text(
+              child: AutoSizeText(
                 label,
                 style: const TextStyle(
                   color: Color(0xFF292D32),
@@ -49,6 +49,7 @@ class SPCardWithImage extends StatelessWidget {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                 ),
+                maxLines: 2,
               ),
             )
           ],
