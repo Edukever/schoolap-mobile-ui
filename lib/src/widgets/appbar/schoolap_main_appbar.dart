@@ -7,6 +7,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool showNotificationBadge;
   final String? badgeLabel;
   final Widget? leading;
+  final bool shadow;
 
   const SPMainAppbar({
     super.key,
@@ -16,6 +17,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.showNotificationBadge = false,
     this.badgeLabel,
     this.leading,
+    this.shadow = false,
   });
 
   @override
@@ -32,13 +34,15 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
             bottomLeft: AppTheme.of(context).radius.big,
             bottomRight: AppTheme.of(context).radius.big,
           ),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(185, 212, 208, 0.87),
-              offset: Offset(0, 6),
-              blurRadius: 15,
-            ),
-          ],
+          boxShadow: shadow
+              ? const [
+                  BoxShadow(
+                    color: Color.fromRGBO(185, 212, 208, 0.87),
+                    offset: Offset(0, 6),
+                    blurRadius: 15,
+                  ),
+                ]
+              : null,
         ),
         child: Stack(
           children: [
