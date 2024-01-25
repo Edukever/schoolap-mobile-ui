@@ -48,6 +48,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The icon displayed on the button.
   final Widget? icon;
 
+  /// The font weight of the button's text.
+  final FontWeight? fontWeight;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -74,6 +77,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.onTap,
     this.outlineBorderColor,
     this.icon,
+    this.fontWeight,
   })  : assert(hasIcon || iconPosition == null, 'Invalid configuration: iconPosition should be null when hasIcon is false.'),
         super(key: key);
 
@@ -97,6 +101,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
                   title,
                   color: iconOrTextColor ?? Colors.white,
                   fontSize: 15.0,
+                  fontWeight: fontWeight,
                 ),
         ),
       ),
