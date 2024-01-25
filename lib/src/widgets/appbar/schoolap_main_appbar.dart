@@ -40,55 +40,59 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
         ),
-        child: Stack(children: [
-          Positioned(
-            top: 0,
-            right: 0,
-            child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Row(
+        child: Stack(
+          children: [
+            Positioned(
+              top: 0,
+              right: 0,
+              child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
+            ),
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
                   children: [
-                    if (leading != null)
-                      leading!
-                    else ...[
-                      Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
-                      const SizedBox(width: 5.0),
-                      Transform.translate(
-                        offset: const Offset(0, -3),
-                        child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
-                      ),
-                    ],
-                    const Spacer(),
-                    if (showNotificationIcon)
-                      Badge(
-                        backgroundColor: AppTheme.of(context).colors.blanc.withOpacity(.7),
-                        label: Text(
-                          badgeLabel ?? '',
-                          style: TextStyle(color: AppTheme.of(context).colors.bleu),
-                        ),
-                        isLabelVisible: showNotificationBadge,
-                        child: SPButtonIcon(
-                          iconData: AppIconsData.bellSimple,
-                          iconSize: 25.0,
-                          height: 40,
-                          width: 40,
-                          filledColors: AppTheme.of(context).colors.blanc.withOpacity(0.2),
-                          shape: ButtonIconShape.circle,
-                          showBadge: false,
-                        ),
-                      ),
+                    Row(
+                      children: [
+                        if (leading != null)
+                          leading!
+                        else ...[
+                          Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
+                          const SizedBox(width: 5.0),
+                          Transform.translate(
+                            offset: const Offset(0, -3),
+                            child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
+                          ),
+                        ],
+                        const Spacer(),
+                        if (showNotificationIcon)
+                          Badge(
+                            backgroundColor: AppTheme.of(context).colors.blanc.withOpacity(.7),
+                            label: Text(
+                              badgeLabel ?? '',
+                              style: TextStyle(color: AppTheme.of(context).colors.bleu),
+                            ),
+                            isLabelVisible: showNotificationBadge,
+                            child: SPButtonIcon(
+                              iconData: AppIconsData.bellSimple,
+                              iconSize: 25.0,
+                              height: 40,
+                              width: 40,
+                              filledColors: AppTheme.of(context).colors.blanc.withOpacity(0.2),
+                              shape: ButtonIconShape.circle,
+                              showBadge: false,
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 20.0),
+                    child,
                   ],
                 ),
-                const SizedBox(height: 20.0),
-                child,
-              ],
-            ),
-          )
-        ]),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
