@@ -71,8 +71,7 @@ class SPTextField<T> extends StatelessWidget {
           const TextStyle(
         fontSize: 13,
         color: Color(0xFFAAAAAA),
-        fontFamily: 'Poppins',
-        fontWeight: FontWeight.w500,
+            fontFamily: 'Poppins',
       ),
       border: OutlineInputBorder(
         borderRadius: borderRadius ?? BorderRadius.circular(10),
