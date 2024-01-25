@@ -109,7 +109,7 @@ class SPTextField<T> extends StatelessWidget {
           ),
         if (type == null || type != AppTextFieldType.password && type != AppTextFieldType.date)
           FormBuilderTextField(
-            maxLines: maxLines,
+            maxLines: maxLines ?? 1,
             name: name,
             validator: validator as String? Function(String?)?,
             decoration: inputDecoration,
