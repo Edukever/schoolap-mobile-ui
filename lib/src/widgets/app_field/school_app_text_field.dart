@@ -42,8 +42,14 @@ class SPTextField<T> extends StatelessWidget {
   /// The hint style for the text field.
   final TextStyle? hintStyle;
 
+  /// Whether the text field is read-only.
+  final bool readOnly;
+
+  /// The initial value for the text field.
+  final String? initialValue;
 
   /// Creates a new instance of `SPTextField`.
+  ///
   const SPTextField({
     Key? key,
     required this.name,
@@ -57,6 +63,8 @@ class SPTextField<T> extends StatelessWidget {
     this.type,
     this.obscureText = false,
     this.hintStyle,
+    this.readOnly = false,
+    this.initialValue,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
@@ -69,10 +77,10 @@ class SPTextField<T> extends StatelessWidget {
       hintText: placeHolder,
       hintStyle: hintStyle ??
           const TextStyle(
-        fontSize: 13,
-        color: Color(0xFFAAAAAA),
+            fontSize: 13,
+            color: Color(0xFFAAAAAA),
             fontFamily: 'Poppins',
-      ),
+          ),
       border: OutlineInputBorder(
         borderRadius: borderRadius ?? BorderRadius.circular(10),
       ),
@@ -96,6 +104,8 @@ class SPTextField<T> extends StatelessWidget {
         if (type == AppTextFieldType.password)
           FormBuilderTextField(
             name: name,
+            readOnly: readOnly,
+            initialValue: initialValue,
             obscureText: obscureText,
             validator: validator as Validator<String?>?,
             decoration: inputDecoration,
