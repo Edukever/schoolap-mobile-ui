@@ -1,21 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
 class SPErrorPage extends StatelessWidget {
-  final String title;
-  final String description;
-  final String backButtonText;
-  final String homeButtonTitle;
-  final VoidCallback onHomeButtonPressed;
+  final FlutterErrorDetails details;
 
   const SPErrorPage({
     super.key,
-    required this.title,
-    required this.description,
-    required this.backButtonText,
-    required this.homeButtonTitle,
-    required this.onHomeButtonPressed,
+    required this.details,
   });
 
   @override
@@ -33,10 +26,18 @@ class SPErrorPage extends StatelessWidget {
               color: AppTheme.of(context).colors.bleu,
             ),
             const SizedBox(height: 20.0),
-            const SPText.paragraph1(
-              'Nous sommes navré, il y a une erreur dans la page que vous recherchez.',
-              textAlign: TextAlign.center,
-            ),
+            if (kReleaseMode)
+              const SPText.paragraph1(
+                'Nous sommes navré, il y a une erreur dans la page que vous recherchez.',
+                textAlign: TextAlign.center,
+              )
+            else ...[
+              SPText.paragraph1(details.exception.toString()),
+              const SizedBox(height: 20.0),
+              SPText.paragraph1(details.library.toString()),
+              const SizedBox(height: 20.0),
+              SPText.paragraph1(details.stack.toString())
+            ],
             const SizedBox(height: 20.0),
             if (Navigator.of(context).canPop())
               SPButtonPrimary(
