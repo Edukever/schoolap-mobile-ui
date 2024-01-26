@@ -8,6 +8,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? badgeLabel;
   final Widget? leading;
   final bool shadow;
+  final VoidCallback? onNotificationTap;
 
   const SPMainAppbar({
     super.key,
@@ -18,6 +19,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.badgeLabel,
     this.leading,
     this.shadow = false,
+    this.onNotificationTap,
   });
 
   @override
@@ -85,6 +87,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                               filledColor: AppTheme.of(context).colors.blanc.withOpacity(0.2),
                               shape: ButtonIconShape.circle,
                               showBadge: false,
+                              onPressed: onNotificationTap,
                             ),
                           ),
                       ],
