@@ -29,28 +29,28 @@ class SPErrorPage extends StatelessWidget {
             Lottie.asset('packages/schoolap_ui/assets/lottiefiles/error.json'),
             const SizedBox(height: 20.0),
             SPText.title1(
-              title,
+              'Il y a erreur!',
               color: AppTheme.of(context).colors.bleu,
             ),
             const SizedBox(height: 20.0),
-            SPText.paragraph1(
-              description,
+            const SPText.paragraph1(
+              'Nous sommes navré, il y a une erreur dans la page que vous recherchez.',
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20.0),
             if (Navigator.of(context).canPop())
               SPButtonPrimary(
-                title: backButtonText,
+                title: 'Retour à la page précédente',
                 backgroundColor: AppTheme.of(context).colors.bleu,
                 onTap: () => Navigator.of(context).pop(),
               ),
             const SizedBox(height: 20),
             SPButtonPrimary(
-              title: homeButtonTitle,
+              title: 'Page d\'accueil',
               decorationState: DecorationState.outline,
               iconOrTextColor: AppTheme.of(context).colors.bleu,
               outlineBorderColor: AppTheme.of(context).colors.bleu,
-              onTap: () => onHomeButtonPressed.call(),
+              onTap: () => Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false),
             ),
           ],
         ),
