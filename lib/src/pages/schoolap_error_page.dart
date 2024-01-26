@@ -14,7 +14,7 @@ class SPErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(AppTheme.of(context).spacing.big),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
