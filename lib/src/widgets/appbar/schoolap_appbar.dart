@@ -15,6 +15,8 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topPadding = MediaQuery.of(context).padding.top;
+
     return PreferredSize(
       preferredSize: preferredSize,
       child: Container(
@@ -36,18 +38,25 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
               ),
             ),
-            if (Navigator.of(context).canPop()) Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(Icons.arrow_back),
-                color: AppTheme.of(context).colors.blanc,
+            if (Navigator.of(context).canPop())
+              Padding(
+                padding: EdgeInsets.only(top: topPadding),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(Icons.arrow_back),
+                    color: AppTheme.of(context).colors.blanc,
+                  ),
+                ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              alignment: Alignment.center,
-              child: SPText.title2(title, color: AppTheme.of(context).colors.blanc),
+            Padding(
+              padding: EdgeInsets.only(top: topPadding),
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                alignment: Alignment.center,
+                child: SPText.title2(title, color: AppTheme.of(context).colors.blanc),
+              ),
             ),
           ],
         ),
