@@ -46,13 +46,6 @@ class SPErrorPage extends StatelessWidget {
                 onTap: () => Navigator.of(context).pop(),
               ),
             const SizedBox(height: 20),
-            SPButtonPrimary(
-              title: 'Page d\'accueil',
-              decorationState: DecorationState.outline,
-              iconOrTextColor: AppTheme.of(context).colors.bleu,
-              outlineBorderColor: AppTheme.of(context).colors.bleu,
-              onTap: () => Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false),
-            ),
           ],
         ),
       ),
