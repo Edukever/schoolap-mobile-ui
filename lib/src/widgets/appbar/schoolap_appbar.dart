@@ -15,7 +15,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topPadding = MediaQuery.of(context).viewInsets.top;
+    final topPadding = MediaQuery.of(context).padding.top;
 
     return PreferredSize(
       preferredSize: preferredSize,
