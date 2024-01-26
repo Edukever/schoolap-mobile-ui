@@ -4,6 +4,7 @@ class SPCardTile extends StatelessWidget {
   final BoxConstraints constraints;
   final Widget? leading;
   final String title;
+  final Widget? titleWidget;
   final Widget? trailing;
   final String? subtitle;
   final Widget? subWidget;
@@ -23,6 +24,7 @@ class SPCardTile extends StatelessWidget {
     this.subWidget,
     this.floatContentRight,
     this.onTap,
+    this.titleWidget,
   });
 
   @override
@@ -51,7 +53,7 @@ class SPCardTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SPText.title2(title),
+                    titleWidget ?? SPText.title1(title),
                     subtitle == null
                         ? Container()
                         : Padding(
