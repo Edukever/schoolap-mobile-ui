@@ -1,23 +1,30 @@
 part of '../widget.dart';
 
-class SCardWithImage extends StatelessWidget {
+class SPCardWithImage extends StatelessWidget {
   final String label;
   final String imagePath;
   final VoidCallback? onTap;
-  const SCardWithImage(
-      {super.key, required this.label, required this.imagePath, this.onTap});
+  final BoxConstraints constraints;
+
+  const SPCardWithImage({
+    super.key,
+    required this.label,
+    required this.imagePath,
+    this.onTap,
+    this.constraints = const BoxConstraints(
+      maxWidth: 120,
+      maxHeight: 150,
+      minHeight: 150,
+      minWidth: 120,
+    ),
+  });
 
   @override
   Widget build(BuildContext context) {
     return SPCard(
       onTap: onTap,
       backgroundColor: Colors.white,
-      constraints: const BoxConstraints(
-        maxWidth: 120,
-        maxHeight: 150,
-        minHeight: 150,
-        minWidth: 120,
-      ),
+      constraints: constraints,
       child: Padding(
         padding: const EdgeInsets.all(5),
         child: Column(
@@ -34,7 +41,7 @@ class SCardWithImage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 3),
-              child: Text(
+              child: AutoSizeText(
                 label,
                 style: const TextStyle(
                   color: Color(0xFF292D32),
@@ -42,6 +49,7 @@ class SCardWithImage extends StatelessWidget {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                 ),
+                maxLines: 2,
               ),
             )
           ],

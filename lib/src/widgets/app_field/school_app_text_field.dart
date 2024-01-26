@@ -39,7 +39,20 @@ class SPTextField<T> extends StatelessWidget {
   /// Whether the text field should obscure the text.
   final bool obscureText;
 
+  /// The hint style for the text field.
+  final TextStyle? hintStyle;
+
+  /// Whether the text field is read-only.
+  final bool readOnly;
+
+  /// The initial value for the text field.
+  final String? initialValue;
+
+  /// The keyboard type for the text field.
+  final TextInputType? keyboardType;
+
   /// Creates a new instance of `SPTextField`.
+  ///
   const SPTextField({
     Key? key,
     required this.name,
@@ -52,8 +65,11 @@ class SPTextField<T> extends StatelessWidget {
     this.prefix,
     this.type,
     this.obscureText = false,
-  })  : assert(!(obscureText == true && type != AppTextFieldType.password),
-            'obscureText can only be used when the type is password'),
+    this.hintStyle,
+    this.readOnly = false,
+    this.initialValue,
+    this.keyboardType,
+  })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
   @override
@@ -63,11 +79,12 @@ class SPTextField<T> extends StatelessWidget {
       prefixIcon: prefix,
       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       hintText: placeHolder,
-      hintStyle: const TextStyle(
-        fontSize: 13,
-        fontFamily: 'Poppins',
-        fontWeight: FontWeight.w500,
-      ),
+      hintStyle: hintStyle ??
+          const TextStyle(
+            fontSize: 13,
+            color: Color(0xFFAAAAAA),
+            fontFamily: 'Poppins',
+          ),
       border: OutlineInputBorder(
         borderRadius: borderRadius ?? BorderRadius.circular(10),
       ),
@@ -91,6 +108,8 @@ class SPTextField<T> extends StatelessWidget {
         if (type == AppTextFieldType.password)
           FormBuilderTextField(
             name: name,
+            readOnly: readOnly,
+            initialValue: initialValue,
             obscureText: obscureText,
             validator: validator as Validator<String?>?,
             decoration: inputDecoration,
@@ -102,12 +121,12 @@ class SPTextField<T> extends StatelessWidget {
             inputType: InputType.date,
             decoration: inputDecoration,
           ),
-        if (type == null ||
-            type != AppTextFieldType.password && type != AppTextFieldType.date)
+        if (type == null || type != AppTextFieldType.password && type != AppTextFieldType.date)
           FormBuilderTextField(
-            maxLines: maxLines,
+            maxLines: maxLines ?? 1,
             name: name,
             validator: validator as String? Function(String?)?,
+            keyboardType: keyboardType,
             decoration: inputDecoration,
           ),
       ],

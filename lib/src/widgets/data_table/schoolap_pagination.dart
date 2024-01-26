@@ -43,7 +43,6 @@ class SPPagination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Widget itemText(String value) {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -60,7 +59,7 @@ class SPPagination extends StatelessWidget {
         SPButtonIcon(
           iconData: AppIconsData.arrowLeft,
           shape: ButtonIconShape.square,
-          filledColors: AppTheme.of(context).colors.bleuLight,
+          filledColor: AppTheme.of(context).colors.bleuLight,
           height: 45,
           width: 45,
           onPressed: () => onPageChanged(math.max(currentPage - 1, 1)),
@@ -105,7 +104,7 @@ class SPPagination extends StatelessWidget {
         SPButtonIcon(
           iconData: AppIconsData.arrowRight,
           shape: ButtonIconShape.square,
-          filledColors: AppTheme.of(context).colors.bleuLight,
+          filledColor: AppTheme.of(context).colors.bleuLight,
           height: 45,
           width: 45,
           onPressed: () => onPageChanged(math.min(currentPage + 1, totalPages)),

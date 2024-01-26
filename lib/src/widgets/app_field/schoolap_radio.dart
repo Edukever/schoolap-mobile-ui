@@ -8,6 +8,7 @@ class SPRadio<T> extends StatelessWidget {
   final Validator<T>? validator;
   final String? label;
   final T? initialValue;
+  final TextStyle? labelStyle;
 
   const SPRadio({
     Key? key,
@@ -16,23 +17,27 @@ class SPRadio<T> extends StatelessWidget {
     this.validator,
     this.label,
     this.initialValue,
+    this.labelStyle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
 
-    return FormBuilderRadioGroup(
-      name: name,
-      initialValue: initialValue,
-      options: options,
-      focusColor: theme.colors.bleu,
-      activeColor: theme.colors.bleu,
-      validator: validator,
-      decoration: InputDecoration(
-        label: label != null ? SPText(label!) : null,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-        border: InputBorder.none,
+    return ListTileTheme(
+      horizontalTitleGap: 0,
+      child: FormBuilderRadioGroup(
+        name: name,
+        initialValue: initialValue,
+        options: options,
+        focusColor: theme.colors.bleu,
+        activeColor: theme.colors.bleu,
+        validator: validator,
+        decoration: InputDecoration(
+          label: label != null ? SPText(label!) : null,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+          border: InputBorder.none,
+        ),
       ),
     );
   }

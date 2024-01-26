@@ -18,33 +18,25 @@ class IconPage extends StatelessWidget {
           children: [
             Wrap(
               children: [
-                SPButtonIcon(
+                const SPButtonIcon(
                   radius: 0,
                   iconData: AppIconsData.date,
                   shape: ButtonIconShape.square,
                   hasShadow: true,
                 ),
                 const SizedBox(width: 10),
-                SPButtonIcon(
+                const SPButtonIcon(
                   iconData: AppIconsData.date,
                   shape: ButtonIconShape.square,
                   hasShadow: false,
                 ),
                 const SizedBox(width: 10),
-                SPButtonIcon(
-                    iconData: AppIconsData.date,
-                    shape: ButtonIconShape.circle),
+                const SPButtonIcon(iconData: AppIconsData.date, shape: ButtonIconShape.circle),
                 const SizedBox(width: 10),
                 SPButtonIcon(
-                    iconData: AppIconsData.date,
-                    shape: ButtonIconShape.outlined,
-                    outlinedColor: Colors.orange,
-                    iconColor: SPColorsData.defaultColors().orange),
+                    iconData: AppIconsData.date, shape: ButtonIconShape.outlined, outlinedColor: Colors.orange, iconColor: SPColorsData.defaultColors().orange),
                 const SizedBox(width: 10),
-                SPButtonIcon(
-                    iconData: AppIconsData.date,
-                    shape: ButtonIconShape.none,
-                    iconColor: SPColorsData.defaultColors().orange),
+                SPButtonIcon(iconData: AppIconsData.date, shape: ButtonIconShape.none, iconColor: SPColorsData.defaultColors().orange),
               ],
             ),
             const SPText.title1("Token"),
