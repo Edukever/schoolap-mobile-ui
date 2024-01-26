@@ -48,6 +48,9 @@ class SPTextField<T> extends StatelessWidget {
   /// The initial value for the text field.
   final String? initialValue;
 
+  /// The keyboard type for the text field.
+  final TextInputType? keyboardType;
+
   /// Creates a new instance of `SPTextField`.
   ///
   const SPTextField({
@@ -65,6 +68,7 @@ class SPTextField<T> extends StatelessWidget {
     this.hintStyle,
     this.readOnly = false,
     this.initialValue,
+    this.keyboardType,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
@@ -122,6 +126,7 @@ class SPTextField<T> extends StatelessWidget {
             maxLines: maxLines ?? 1,
             name: name,
             validator: validator as String? Function(String?)?,
+            keyboardType: keyboardType,
             decoration: inputDecoration,
           ),
       ],
