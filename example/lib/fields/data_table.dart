@@ -67,7 +67,7 @@ class DataTableScreen extends StatelessWidget {
 
                       return const Icon(Icons.done, color: Colors.green);
                     },
-                  )
+                  ),
                 ],
                 rows: const [
                   Todo(

@@ -159,18 +159,24 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
       ),
     );
 
-    return SingleChildScrollView(
-      padding: EdgeInsets.zero,
-      child: Column(
-        children: [
-          SingleChildScrollView(
-            padding: widget.horizontalPadding,
-            scrollDirection: Axis.horizontal,
-            child: SizedBox(child: dataTable),
-          ),
-          if (rows.isEmpty) widget.emptyItemBuilder.call(context),
-        ],
-      ),
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      return SingleChildScrollView(
+        padding: EdgeInsets.zero,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SingleChildScrollView(
+              padding: widget.horizontalPadding,
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: constraints.biggest.width),
+                child: dataTable,
+              ),
+            ),
+            if (rows.isEmpty) widget.emptyItemBuilder.call(context),
+          ],
+        ),
+      );
+    });
   }
 }
