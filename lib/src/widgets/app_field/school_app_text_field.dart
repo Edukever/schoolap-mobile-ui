@@ -51,6 +51,12 @@ class SPTextField<T> extends StatelessWidget {
   /// The keyboard type for the text field.
   final TextInputType? keyboardType;
 
+  /// The onChanged callback for the text field.
+  final void Function(String?)? onChanged;
+
+  /// The value transformer for the text field.
+  final dynamic Function(String?)? valueTransformer;
+
   /// Creates a new instance of `SPTextField`.
   ///
   const SPTextField({
@@ -69,6 +75,8 @@ class SPTextField<T> extends StatelessWidget {
     this.readOnly = false,
     this.initialValue,
     this.keyboardType,
+    this.onChanged,
+    this.valueTransformer,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
@@ -113,6 +121,8 @@ class SPTextField<T> extends StatelessWidget {
             obscureText: obscureText,
             validator: validator as Validator<String?>?,
             decoration: inputDecoration,
+            onChanged: onChanged,
+            valueTransformer: valueTransformer,
           ),
         if (type == AppTextFieldType.date)
           FormBuilderDateTimePicker(

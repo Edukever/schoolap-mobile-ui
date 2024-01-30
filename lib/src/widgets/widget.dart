@@ -10,6 +10,8 @@ import 'package:popover/popover.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+export 'data_table/schoolap_data_table.dart';
+
 part 'base/app_card.dart';
 part 'base/app_icon.dart';
 part 'base/app_text.dart';
