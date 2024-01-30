@@ -6,12 +6,14 @@ class SPPagination extends StatelessWidget {
   final Function(int page) onPageChanged;
   final int siblingCount = 1;
   final int boundaryCount = 1;
+  final MainAxisAlignment mainAxisAlignment;
 
   const SPPagination({
     super.key,
     required this.currentPage,
     required this.totalPages,
     required this.onPageChanged,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   })  : assert(totalPages > 0, 'totalPages should be greater than 0'),
         assert(currentPage >= 1 && currentPage <= totalPages, 'currentPage should be between 1 and totalPages');
 
@@ -55,6 +57,7 @@ class SPPagination extends StatelessWidget {
     }
 
     return Row(
+      mainAxisAlignment: mainAxisAlignment,
       children: [
         SPButtonIcon(
           iconData: AppIconsData.arrowLeft,
