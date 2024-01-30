@@ -165,14 +165,15 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            SingleChildScrollView(
-              padding: widget.horizontalPadding,
-              scrollDirection: Axis.horizontal,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: constraints.biggest.width),
-                child: dataTable,
+            if (rows.isNotEmpty)
+              SingleChildScrollView(
+                padding: widget.horizontalPadding,
+                scrollDirection: Axis.horizontal,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minWidth: constraints.biggest.width),
+                  child: dataTable,
+                ),
               ),
-            ),
             if (rows.isEmpty) widget.emptyItemBuilder.call(context),
           ],
         ),
