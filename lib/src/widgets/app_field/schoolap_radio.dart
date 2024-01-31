@@ -31,11 +31,14 @@ class SPRadio<T> extends StatelessWidget {
       focusColor: theme.colors.bleu,
       activeColor: theme.colors.bleu,
       validator: validator,
+      wrapAlignment: WrapAlignment.spaceBetween,
+      wrapCrossAxisAlignment: WrapCrossAlignment.center,
       decoration: InputDecoration(
         label: label != null ? SPText(label!) : null,
         labelStyle: labelStyle,
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         border: InputBorder.none,
+        
       ),
     );
   }

@@ -43,10 +43,12 @@ class SPDropDown<T> extends StatelessWidget {
           validator: validator,
           builder: (context) {
             return DropdownButtonFormField2<T>(
+
               items: items,
               isExpanded: true,
               decoration: InputDecoration(
                 prefixIcon: prefix,
+                
                 contentPadding: const EdgeInsets.only(right: 10),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
