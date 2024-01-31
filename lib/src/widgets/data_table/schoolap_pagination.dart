@@ -6,12 +6,14 @@ class SPPagination extends StatelessWidget {
   final Function(int page) onPageChanged;
   final int siblingCount = 1;
   final int boundaryCount = 1;
+  final MainAxisAlignment mainAxisAlignment;
 
   const SPPagination({
     super.key,
     required this.currentPage,
     required this.totalPages,
     required this.onPageChanged,
+    this.mainAxisAlignment = MainAxisAlignment.center,
   })  : assert(totalPages > 0, 'totalPages should be greater than 0'),
         assert(currentPage >= 1 && currentPage <= totalPages, 'currentPage should be between 1 and totalPages');
 
@@ -43,7 +45,6 @@ class SPPagination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Widget itemText(String value) {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -56,11 +57,12 @@ class SPPagination extends StatelessWidget {
     }
 
     return Row(
+      mainAxisAlignment: mainAxisAlignment,
       children: [
         SPButtonIcon(
           iconData: AppIconsData.arrowLeft,
           shape: ButtonIconShape.square,
-          filledColors: AppTheme.of(context).colors.bleuLight,
+          filledColor: AppTheme.of(context).colors.bleuLight,
           height: 45,
           width: 45,
           onPressed: () => onPageChanged(math.max(currentPage - 1, 1)),
@@ -105,7 +107,7 @@ class SPPagination extends StatelessWidget {
         SPButtonIcon(
           iconData: AppIconsData.arrowRight,
           shape: ButtonIconShape.square,
-          filledColors: AppTheme.of(context).colors.bleuLight,
+          filledColor: AppTheme.of(context).colors.bleuLight,
           height: 45,
           width: 45,
           onPressed: () => onPageChanged(math.min(currentPage + 1, totalPages)),

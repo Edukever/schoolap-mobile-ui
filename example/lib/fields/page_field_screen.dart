@@ -68,10 +68,15 @@ class PageFieldScreen extends StatelessWidget {
               prefix: Icon(Icons.date_range),
             ),
             const SizedBox(height: 20),
-            const SPCheckBox(name: "checkBox", label: "checkbox", options: [
+            const SPCheckBoxGroup(name: "checkBox", label: "checkbox", options: [
               FormBuilderFieldOption(value: 1, child: Text("One")),
               FormBuilderFieldOption(value: 2, child: Text("Two")),
             ]),
+            const SizedBox(height: 20),
+            const SPCheckBoxGroup(
+              name: 'ss',
+              options: [],
+            ),
             const SizedBox(height: 20),
             const SPRadio(
               name: "radio",
@@ -80,6 +85,11 @@ class PageFieldScreen extends StatelessWidget {
                 FormBuilderFieldOption(value: 1, child: Text("One")),
                 FormBuilderFieldOption(value: 2, child: Text("Two")),
               ],
+            ),
+            const SizedBox(height: 40),
+            const SPCheckBox(
+              name: 'rem',
+              title: Text('Remember me'),
             ),
             const SizedBox(height: 40),
           ],

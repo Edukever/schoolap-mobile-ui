@@ -24,21 +24,24 @@ class SPRadio<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
 
-    return FormBuilderRadioGroup(
-      name: name,
-      initialValue: initialValue,
-      options: options,
-      focusColor: theme.colors.bleu,
-      activeColor: theme.colors.bleu,
-      validator: validator,
-      wrapAlignment: WrapAlignment.spaceBetween,
+  
+    return ListTileTheme(
+      horizontalTitleGap: 0,
+      
+      child: FormBuilderRadioGroup(
+        name: name,
+        initialValue: initialValue,
+        options: options,
+            wrapAlignment: WrapAlignment.spaceBetween,
       wrapCrossAxisAlignment: WrapCrossAlignment.center,
-      decoration: InputDecoration(
-        label: label != null ? SPText(label!) : null,
-        labelStyle: labelStyle,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-        border: InputBorder.none,
-        
+        focusColor: theme.colors.bleu,
+        activeColor: theme.colors.bleu,
+        validator: validator,
+        decoration: InputDecoration(
+          label: label != null ? SPText(label!) : null,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+          border: InputBorder.none,
+        ),
       ),
     );
   }

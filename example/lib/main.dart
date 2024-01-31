@@ -5,7 +5,7 @@ import 'package:example/fields/icon_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
-import 'fields/illustration_page.dart';
+import 'fields/data_table.dart';
 import 'fields/page_field_screen.dart';
 import 'fields/pagination.dart';
 import 'fields/standard_appbar.dart';
@@ -89,16 +89,10 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(
-              title: "Error Page",
+              title: "Data Table",
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => SPErrorPage(
-                    title: 'Il y a erreur!',
-                    description: 'Nous sommes navré, la page que vous recherchez semble introuvable.',
-                    backButtonText: 'Retour à la page précédente',
-                    homeButtonTitle: "Page d'accueil",
-                    onHomeButtonPressed: () => Navigator.of(context).pop(),
-                  ),
+                  builder: (context) => const DataTableScreen(),
                 ),
               ),
             ),

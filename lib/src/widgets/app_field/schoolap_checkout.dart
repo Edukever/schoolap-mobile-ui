@@ -1,38 +1,34 @@
 part of '../widget.dart';
 
-typedef FormBuilderFieldOptionList<T> = List<FormBuilderFieldOption<T>>;
-typedef ValidatorList<T> = String? Function(List<T>?)?;
-
-class SPCheckBox<T> extends StatelessWidget {
+class SPCheckBox extends StatelessWidget {
   final String name;
-  final String? label;
-  final FormBuilderFieldOptionList<T> options;
-  final ValidatorList<T>? validator;
-  final List<T>? initialValue;
+  final Widget title;
+  final Color? activeColor;
+  final void Function(bool?)? onChanged;
+  final bool? initialValue;
+  final String? Function(bool?)? validator;
 
-  const SPCheckBox(
-      {super.key,
-      this.label,
-      required this.name,
-      required this.options,
-      this.validator,
-      this.initialValue});
+  const SPCheckBox({
+    super.key,
+    required this.name,
+    required this.title,
+    this.activeColor,
+    this.onChanged,
+    this.initialValue,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final theme = AppTheme.of(context);
-    return FormBuilderCheckboxGroup<T>(
-      name: name,
-      options: options,
-      initialValue: initialValue,
-      focusColor: theme.colors.bleu,
-      activeColor: theme.colors.bleu,
-      checkColor: theme.colors.blanc,
-      validator: validator,
-      decoration: InputDecoration(
-        labelText: label,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-        border: InputBorder.none,
+    return ListTileTheme(
+      horizontalTitleGap: 0,
+      child: FormBuilderCheckbox(
+        name: name,
+        title: title,
+        activeColor: activeColor ?? AppTheme.of(context).colors.bleu,
+        onChanged: onChanged,
+        initialValue: initialValue,
+        validator: validator,
       ),
     );
   }
