@@ -9,7 +9,12 @@ class SPRadio<T> extends StatelessWidget {
   final String? label;
   final T? initialValue;
   final TextStyle? labelStyle;
-
+  final WrapAlignment? wrapAlignment;
+  final WrapCrossAlignment? wrapCrossAxisAlignment;
+  final OptionsOrientation? orientation;
+  final Axis? wrapDirection;
+  final double? wrapRunSpacing;
+  final double? wrapSpacing;
   const SPRadio({
     Key? key,
     required this.name,
@@ -18,24 +23,32 @@ class SPRadio<T> extends StatelessWidget {
     this.label,
     this.initialValue,
     this.labelStyle,
+    this.wrapAlignment,
+    this.wrapCrossAxisAlignment,
+    this.orientation,
+    this.wrapDirection,
+    this.wrapRunSpacing,
+    this.wrapSpacing,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
 
-  
     return ListTileTheme(
       horizontalTitleGap: 0,
-      
       child: FormBuilderRadioGroup(
         name: name,
         initialValue: initialValue,
         options: options,
-            wrapAlignment: WrapAlignment.spaceBetween,
-      wrapCrossAxisAlignment: WrapCrossAlignment.center,
+        wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
+        wrapCrossAxisAlignment: wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
         focusColor: theme.colors.bleu,
         activeColor: theme.colors.bleu,
+        orientation: orientation ?? OptionsOrientation.wrap,
+        wrapDirection: wrapDirection ?? Axis.horizontal,
+        wrapRunSpacing: wrapRunSpacing ?? 0.0,
+        wrapSpacing: wrapSpacing ?? 0.0,
         validator: validator,
         decoration: InputDecoration(
           label: label != null ? SPText(label!) : null,

@@ -43,17 +43,7 @@ class SPDropDownPresence<T> extends StatelessWidget {
             return DropdownButtonFormField2<T>(
               items: items,
               isExpanded: true,
-              // decoration: InputDecoration(
-              //   fillColor: const Color(0xFFDDF3D6),
-              //   filled: true,
-              //   prefixIcon: prefix,
-              //   contentPadding: const EdgeInsets.only(right: 10),
-              //   border: OutlineInputBorder(
-              //     borderSide: BorderSide.none,
-              //     borderRadius: BorderRadius.circular(10),
-              //   ),
-              //   // Add more decoration..
-              // ),
+            
               buttonStyleData: ButtonStyleData(
                 height: 50,
                 width: 160,
