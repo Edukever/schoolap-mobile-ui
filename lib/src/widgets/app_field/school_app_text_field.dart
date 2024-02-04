@@ -57,6 +57,9 @@ class SPTextField<T> extends StatelessWidget {
   /// The value transformer for the text field.
   final dynamic Function(String?)? valueTransformer;
 
+  /// The text capitalization for the text field.
+  final TextCapitalization textCapitalization;
+
   /// Creates a new instance of `SPTextField`.
   ///
   const SPTextField({
@@ -77,6 +80,7 @@ class SPTextField<T> extends StatelessWidget {
     this.keyboardType,
     this.onChanged,
     this.valueTransformer,
+    this.textCapitalization = TextCapitalization.none,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
@@ -123,6 +127,7 @@ class SPTextField<T> extends StatelessWidget {
             decoration: inputDecoration,
             onChanged: onChanged,
             valueTransformer: valueTransformer,
+            textCapitalization: textCapitalization,
           ),
         if (type == AppTextFieldType.date)
           FormBuilderDateTimePicker(
