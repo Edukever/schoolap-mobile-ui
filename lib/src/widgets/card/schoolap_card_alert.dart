@@ -12,6 +12,7 @@ class SPCardAlert extends StatelessWidget {
   final BoxConstraints? constraints;
   final SPCardAlertType type;
   final VoidCallback? onTap;
+  final double? fontSize;
 
   const SPCardAlert({
     Key? key,
@@ -19,6 +20,7 @@ class SPCardAlert extends StatelessWidget {
     this.constraints,
     required this.type,
     this.onTap,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -75,7 +77,7 @@ class SPCardAlert extends StatelessWidget {
             Expanded(
               child: SPText(
                 title,
-                fontSize: 14,
+                fontSize: fontSize ?? 14,
                 level: AppTextLevel.paragraph1,
                 color: iconColor,
               ),
