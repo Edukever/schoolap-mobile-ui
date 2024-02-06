@@ -2,8 +2,10 @@ part of '../widget.dart';
 
 class SPButtonSecondaryState extends StatelessWidget {
   final SPButtonStatePrimaryState state;
+  final String? label;
+  final Widget? icon;
   final double? width;
-  const SPButtonSecondaryState({super.key, required this.state, this.width});
+  const SPButtonSecondaryState({super.key, required this.state, this.width, this.label, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class SPButtonSecondaryState extends StatelessWidget {
     switch (state) {
       case SPButtonStatePrimaryState.download:
         return SPButtonPrimary(
-          title: "Télécharger",
+          title: label ?? "Télécharger",
           height: height,
           width: width,
           iconOrTextColor: const Color(0xFF41A3DF),
@@ -19,7 +21,7 @@ class SPButtonSecondaryState extends StatelessWidget {
         );
       case SPButtonStatePrimaryState.validation:
         return SPButtonPrimary(
-          title: "Validation",
+          title: label ?? "Validation",
           height: height,
           width: width,
           iconOrTextColor: const Color(0xFFFF4F4F),
@@ -28,7 +30,8 @@ class SPButtonSecondaryState extends StatelessWidget {
 
       case SPButtonStatePrimaryState.delete:
         return SPButtonPrimary(
-          title: "Supprimer",
+          icon: icon,
+          title: label ?? "Supprimer",
           height: height,
           width: width,
           iconOrTextColor: const Color(0xFF1EA951),
