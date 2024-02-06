@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:schoolap_ui/src/widgets/app_field/input_decoration.dart';
-
+part of '../widget.dart';
 class SPDateFieldRanger<T> extends StatelessWidget {
   final String name;
 
