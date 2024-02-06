@@ -13,6 +13,7 @@ class SPCardAlert extends StatelessWidget {
   final SPCardAlertType type;
   final VoidCallback? onTap;
   final double? fontSize;
+  final Widget? icon;
 
   const SPCardAlert({
     Key? key,
@@ -21,6 +22,7 @@ class SPCardAlert extends StatelessWidget {
     required this.type,
     this.onTap,
     this.fontSize,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -36,47 +38,39 @@ class SPCardAlert extends StatelessWidget {
         iconColor = const Color(0xFFFF4F4F);
         break;
       case SPCardAlertType.warning:
-        backgroundColor = const Color(
-            0xFFE5F9FF); // Set the background color for the warning type
-        iconData =
-            Icons.warning_amber; // Set the icon data for the warning type
-        iconColor =
-            const Color(0xFF41A3DF); // Set the icon color for the warning type
+        backgroundColor = const Color(0xFFE5F9FF); // Set the background color for the warning type
+        iconData = Icons.warning_amber; // Set the icon data for the warning type
+        iconColor = const Color(0xFF41A3DF); // Set the icon color for the warning type
         break;
       case SPCardAlertType.info:
-        backgroundColor = const Color(
-            0xFFDDF3D6); // Set the background color for the info type
+        backgroundColor = const Color(0xFFDDF3D6); // Set the background color for the info type
         iconData = Icons.info_outline; // Set the icon data for the info type
-        iconColor =
-            const Color(0xFF1EA951); // Set the icon color for the info type
+        iconColor = const Color(0xFF1EA951); // Set the icon color for the info type
         break;
       case SPCardAlertType.success:
-        backgroundColor = const Color(
-            0xFFDDF3D6); // Set the background color for the success type
-        iconData = Icons
-            .check_circle_outline; // Set the icon data for the success type
-        iconColor =
-            const Color(0xFF1EA951); // Set the icon color for the success type
+        backgroundColor = const Color(0xFFDDF3D6); // Set the background color for the success type
+        iconData = Icons.check_circle_outline; // Set the icon data for the success type
+        iconColor = const Color(0xFF1EA951); // Set the icon color for the success type
         break;
     }
 
     return SPCard(
       onTap: onTap,
       backgroundColor: backgroundColor,
-      constraints:
-          constraints ?? const BoxConstraints(maxWidth: double.infinity),
+      constraints: constraints ?? const BoxConstraints(maxWidth: double.infinity),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Icon(
-                iconData,
-                color: iconColor,
-              ),
-            ),
+            icon ??
+                Expanded(
+                  child: Icon(
+                    iconData,
+                    color: iconColor,
+                  ),
+                ),
             const SizedBox(width: 10),
             Expanded(
               child: SPText(
