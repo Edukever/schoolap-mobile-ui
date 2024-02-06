@@ -74,22 +74,40 @@ class SPDateFieldRanger<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderDateRangePicker(
-      name: name,
-      firstDate: firstDate,
-      lastDate: lastDate ?? DateTime.now(),
-      validator: validator,
-      currentDate: currentDate,
-      initialValue: initialValue,
-      onChanged: onChanged,
-      valueTransformer: valueTransformer,
-      decoration: SPCustomInputDecoration(
-        hintText: placeHolder,
-        hintStyle: hintStyle,
-        prefixIcon: prefix,
-        suffixIcon: suffix,
-        contentPadding: contentPadding,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (label != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              label!,
+              style: const TextStyle(
+                fontSize: 14.0,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        FormBuilderDateRangePicker(
+          name: name,
+          firstDate: firstDate,
+          lastDate: lastDate ?? DateTime.now(),
+          validator: validator,
+          currentDate: currentDate,
+          initialValue: initialValue,
+          onChanged: onChanged,
+          valueTransformer: valueTransformer,
+          decoration: SPCustomInputDecoration(
+            hintText: placeHolder,
+            
+            hintStyle: hintStyle,
+            prefixIcon: prefix,
+            suffixIcon: suffix,
+            contentPadding: contentPadding,
+          ),
+        ),
+      ],
     );
   }
 }
