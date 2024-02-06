@@ -64,6 +64,8 @@ class SPTextField<T> extends StatelessWidget {
 
   final DateFormat? dateFormat;
 
+  final TextEditingController? controller;
+
   /// Creates a new instance of `SPTextField`.
   ///
   const SPTextField({
@@ -87,17 +89,13 @@ class SPTextField<T> extends StatelessWidget {
     this.dateTimeValueTransformer,
     this.dateFormat,
     this.textCapitalization = TextCapitalization.none,
+    this.controller,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final inputDecoration = SPCustomInputDecoration(
-      suffixIcon: suffix,
-      prefixIcon: prefix,
-      hintText: placeHolder,
-        hintStyle: hintStyle 
-    );
+    final inputDecoration = SPCustomInputDecoration(suffixIcon: suffix, prefixIcon: prefix, hintText: placeHolder, hintStyle: hintStyle);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,6 +116,7 @@ class SPTextField<T> extends StatelessWidget {
           FormBuilderTextField(
             name: name,
             readOnly: readOnly,
+            controller: controller,
             initialValue: initialValue,
             obscureText: obscureText,
             validator: validator as Validator<String?>?,
