@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:popover/popover.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 export 'data_table/schoolap_data_table.dart';
 export "app_field/input_decoration.dart";
