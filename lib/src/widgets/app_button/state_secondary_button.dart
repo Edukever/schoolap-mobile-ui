@@ -5,7 +5,8 @@ class SPButtonSecondaryState extends StatelessWidget {
   final String? label;
   final Widget? icon;
   final double? width;
-  const SPButtonSecondaryState({super.key, required this.state, this.width, this.label, this.icon});
+  final double? fontSize;
+  const SPButtonSecondaryState({super.key, required this.state, this.width, this.label, this.icon, this.fontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,8 @@ class SPButtonSecondaryState extends StatelessWidget {
           title: label ?? "Télécharger",
           height: height,
           width: width,
+          fontSize: fontSize,
+
           iconOrTextColor: const Color(0xFF41A3DF),
           backgroundColor: const Color(0xFFE5F9FF),
         );
@@ -24,6 +27,7 @@ class SPButtonSecondaryState extends StatelessWidget {
           title: label ?? "Validation",
           height: height,
           width: width,
+          fontSize: fontSize,
           iconOrTextColor: const Color(0xFFFF4F4F),
           backgroundColor: const Color(0xFFFFE1E1),
         );
@@ -33,6 +37,8 @@ class SPButtonSecondaryState extends StatelessWidget {
           icon: icon,
           title: label ?? "Supprimer",
           height: height,
+          fontSize: fontSize,
+
           width: width,
           iconOrTextColor: const Color(0xFF1EA951),
           backgroundColor: const Color(0xFFDDF3D6),
