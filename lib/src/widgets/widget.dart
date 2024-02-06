@@ -11,6 +11,7 @@ import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 export 'data_table/schoolap_data_table.dart';
+export "app_field/input_decoration.dart";
 
 part 'base/app_card.dart';
 part 'base/app_icon.dart';
@@ -37,3 +38,4 @@ part 'appbar/schoolap_main_appbar.dart';
 part 'appbar/schoolap_appbar.dart';
 part 'data_table/schoolap_pagination.dart';
 part 'card/schoolap_pop_menu_button.dart';
+

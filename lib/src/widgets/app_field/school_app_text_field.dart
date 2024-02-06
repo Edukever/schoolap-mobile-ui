@@ -82,20 +82,11 @@ class SPTextField<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final inputDecoration = InputDecoration(
+    final inputDecoration = SPCustomInputDecoration(
       suffixIcon: suffix,
       prefixIcon: prefix,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       hintText: placeHolder,
-      hintStyle: hintStyle ??
-          const TextStyle(
-            fontSize: 13,
-            color: Color(0xFFAAAAAA),
-            fontFamily: 'Poppins',
-          ),
-      border: OutlineInputBorder(
-        borderRadius: borderRadius ?? BorderRadius.circular(10),
-      ),
+        hintStyle: hintStyle 
     );
 
     return Column(
