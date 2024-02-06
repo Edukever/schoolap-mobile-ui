@@ -68,10 +68,14 @@ class SPCardAlert extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              iconData,
-              color: iconColor,
+            Expanded(
+              child: Icon(
+                iconData,
+                color: iconColor,
+              ),
             ),
             const SizedBox(width: 10),
             Expanded(
