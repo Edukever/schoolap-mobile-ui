@@ -25,6 +25,8 @@ class SPPopMenuButton<T> extends StatelessWidget {
   final double? arrowDyOffset;
   final double? contentDxOffset;
   final double? contentDyOffset;
+  final double? height;
+  final double? width;
 
   const SPPopMenuButton({
     Key? key,
@@ -37,6 +39,8 @@ class SPPopMenuButton<T> extends StatelessWidget {
     this.arrowDyOffset,
     this.contentDxOffset,
     this.contentDyOffset,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -52,8 +56,8 @@ class SPPopMenuButton<T> extends StatelessWidget {
           ),
           onPop: () => debugPrint('Popover was popped!'),
           direction: PopoverDirection.bottom,
-          height: 100,
-          width: 290,
+          height: height ?? 100,
+          width: width ?? 290,
           arrowHeight: 0,
           arrowWidth: 0,
           arrowDxOffset: arrowDxOffset ?? -120,
