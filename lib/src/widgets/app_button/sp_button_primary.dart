@@ -51,6 +51,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The font weight of the button's text.
   final FontWeight? fontWeight;
 
+  /// The font size of the button's text.
+  final double? fontSize;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -78,6 +81,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.outlineBorderColor,
     this.icon,
     this.fontWeight,
+    this.fontSize,
   })  : assert(hasIcon || iconPosition == null, 'Invalid configuration: iconPosition should be null when hasIcon is false.'),
         super(key: key);
 
@@ -100,7 +104,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
               : SPText(
                   title,
                   color: iconOrTextColor ?? Colors.white,
-                  fontSize: 15.0,
+                  fontSize: fontSize ?? 15.0,
                   fontWeight: fontWeight,
                 ),
         ),
@@ -136,14 +140,12 @@ class SPButtonPrimary<T> extends StatelessWidget {
 
     if (iconPosition == IconPosition.left) {
       children.add(
-        Padding(
-          padding: const EdgeInsets.only(right: 20),
-          child: icon ??
-              Icon(
+        icon ??
+            Icon(
                 Icons.arrow_forward,
                 color: iconOrTextColor ?? Colors.white,
               ),
-        ),
+        
       );
     }
 
@@ -151,7 +153,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
       SPText(
         title,
         color: iconOrTextColor ?? Colors.white,
-        fontSize: 14,
+        fontSize: fontSize ?? 14,
       ),
     );
 

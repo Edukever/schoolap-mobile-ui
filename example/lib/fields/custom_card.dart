@@ -81,30 +81,45 @@ class CustomCard extends StatelessWidget {
                 ),
               ],
             ),
-            SPPopMenuButton(
-              iconPath: AppIconsData.modifier,
-              iconColor: Colors.amber,
-              handleIconTap: (p0) => debugPrint(p0),
-              items: const [
-                ListItem(
-                  value: 'modifier',
-                  label: 'Modifier',
-                  iconPath: AppIconsData.modifier,
-                ),
-                ListItem(
-                  value: 'detail',
-                  label: 'Détail',
-                  iconPath: AppIconsData.detail,
-                ),
-                ListItem(
-                  value: 'archiver',
-                  label: 'Archiver',
-                  iconPath: AppIconsData.archiver,
-                ),
+            Row(
+              children: [
+                const Spacer(),
+                SPPopMenuButton(
+                  iconPath: AppIconsData.classe,
+                  iconColor: Colors.amber,
+                  handleIconTap: (value) {
+                    switch (value) {
+                      case 'update':
+                        break;
+                      case 'detail':
+                        break;
+                      case 'archiver':
+                        break;
+                      default:
+                    }
+                  },
+                  items: const [
+                    SPListItem(
+                      value: 'update',
+                      label: 'Modifier',
+                      iconPath: AppIconsData.modifier,
+                    ),
+                    SPListItem(
+                      value: 'detail',
+                      label: 'Détail',
+                      iconPath: AppIconsData.detail,
+                    ),
+                    SPListItem(
+                      value: 'archiver',
+                      label: 'Archiver',
+                      iconPath: AppIconsData.archiver,
+                    ),
 
-                // AppIconsData.modifier,
-                // AppIconsData.detail,
-                // AppIconsData.archiver,
+                    // AppIconsData.modifier,
+                    // AppIconsData.detail,
+                    // AppIconsData.archiver,
+                  ],
+                ),
               ],
             ),
             const SizedBox(height: 10),

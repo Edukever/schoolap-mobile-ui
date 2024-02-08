@@ -63,7 +63,6 @@ class PageFieldScreen extends StatelessWidget {
             const SPTextField(
               name: "date",
               placeHolder: 'this is a placeholder',
-              type: AppTextFieldType.date,
               label: "This is field with date",
               prefix: Icon(Icons.date_range),
             ),
