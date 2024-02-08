@@ -3,11 +3,13 @@ part of '../widget.dart';
 class SPPresenceDropdown extends StatefulWidget {
   final List<DropdownMenuItem<bool>>? items;
   final String name;
+  final void Function(bool)? onTap;
 
   const SPPresenceDropdown({
     super.key,
     required this.name,
     this.items,
+    this.onTap,
   });
 
   @override
@@ -20,7 +22,7 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
   @override
   Widget build(BuildContext context) {
     final fillColor = value ? AppTheme.of(context).colors.vertLight : AppTheme.of(context).colors.rougeLight;
-    final unfillColor = value ? AppTheme.of(context).colors.rougeLight : AppTheme.of(context).colors.vertLight;
+    final infillColor = value ? AppTheme.of(context).colors.rougeLight : AppTheme.of(context).colors.vertLight;
     final textColor = value ? AppTheme.of(context).colors.vert : AppTheme.of(context).colors.rouge;
 
     return Container(
@@ -31,6 +33,7 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
       child: FormBuilderDropdown<bool>(
         name: widget.name,
         initialValue: value,
+        onTap: () => widget.onTap!(value),
         onChanged: (v) => setState(() => value = v == true),
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -50,8 +53,9 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
           color: textColor,
           fontWeight: FontWeight.bold,
         ),
-        dropdownColor: unfillColor,
+        dropdownColor: infillColor,
         focusColor: fillColor,
+        
         items: widget.items ??  [
           DropdownMenuItem(
             value: true,

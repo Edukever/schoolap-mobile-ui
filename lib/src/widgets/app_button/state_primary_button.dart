@@ -5,7 +5,8 @@ enum SPButtonStatePrimaryState { download, validation, delete, disabled }
 class SPButtonStatePrimary extends StatelessWidget {
   final SPButtonStatePrimaryState state;
   final double? width;
-  const SPButtonStatePrimary({super.key, required this.state, this.width});
+  final IconPosition? iconPosition;
+  const SPButtonStatePrimary({super.key, required this.state, this.width, this.iconPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class SPButtonStatePrimary extends StatelessWidget {
           title: "Télécharger",
           height: height,
           width: width,
+          iconPosition: iconPosition,
           backgroundColor: const Color(0xFF41A3DF),
         );
       case SPButtonStatePrimaryState.validation:
@@ -23,6 +25,7 @@ class SPButtonStatePrimary extends StatelessWidget {
           title: "Validation",
           height: height,
           width: width,
+          iconPosition: iconPosition,
           backgroundColor: const Color(0xFFFF4F4F),
         );
 
@@ -30,6 +33,7 @@ class SPButtonStatePrimary extends StatelessWidget {
         return SPButtonPrimary(
           title: "Supprimer",
           height: height,
+          iconPosition: iconPosition,
           width: width,
           backgroundColor: const Color(0xFF1EA951),
         );

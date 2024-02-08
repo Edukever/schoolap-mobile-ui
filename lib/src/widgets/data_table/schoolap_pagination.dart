@@ -57,7 +57,7 @@ class SPPagination extends StatelessWidget {
     }
 
     return Row(
-      mainAxisAlignment: mainAxisAlignment,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SPButtonIcon(
           iconData: AppIconsData.arrowLeft,
@@ -67,6 +67,7 @@ class SPPagination extends StatelessWidget {
           width: 45,
           onPressed: () => onPageChanged(math.max(currentPage - 1, 1)),
         ),
+        const Spacer(),
         ...List.generate(totalPages, (index) => index + 1).map((index) {
           if (currentPage == index) {
             return Row(
@@ -78,12 +79,13 @@ class SPPagination extends StatelessWidget {
                   return itemText(index.toString());
                 }),
                 Container(
+                  constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
                   decoration: BoxDecoration(
                     color: AppTheme.of(context).colors.bleu,
                     borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
                   ),
+                  alignment: Alignment.center,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
                   child: SPText.title2(
                     index.toString(),
                     color: AppTheme.of(context).colors.blanc,
@@ -104,6 +106,7 @@ class SPPagination extends StatelessWidget {
 
           return const SizedBox();
         }),
+        const Spacer(),
         SPButtonIcon(
           iconData: AppIconsData.arrowRight,
           shape: ButtonIconShape.square,

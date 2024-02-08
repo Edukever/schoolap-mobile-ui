@@ -1,11 +1,11 @@
 part of '../widget.dart';
 
-class ListItem<T> extends Equatable {
+class SPListItem<T> extends Equatable {
   final String label;
   final String iconPath;
   final T value;
 
-  const ListItem({
+  const SPListItem({
     required this.label,
     required this.iconPath,
     required this.value,
@@ -18,9 +18,15 @@ class ListItem<T> extends Equatable {
 class SPPopMenuButton<T> extends StatelessWidget {
   final String iconPath;
   final Color? iconColor;
-  final List<ListItem<T>> items;
+  final List<SPListItem<T>> items;
   final void Function(T)? handleIconTap;
   final bool barrierDismissible;
+  final double? arrowDxOffset;
+  final double? arrowDyOffset;
+  final double? contentDxOffset;
+  final double? contentDyOffset;
+  final double? height;
+  final double? width;
 
   const SPPopMenuButton({
     Key? key,
@@ -29,6 +35,12 @@ class SPPopMenuButton<T> extends StatelessWidget {
     this.iconColor,
     this.handleIconTap,
     this.barrierDismissible = true,
+    this.arrowDxOffset,
+    this.arrowDyOffset,
+    this.contentDxOffset,
+    this.contentDyOffset,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -44,17 +56,19 @@ class SPPopMenuButton<T> extends StatelessWidget {
           ),
           onPop: () => debugPrint('Popover was popped!'),
           direction: PopoverDirection.bottom,
-          height: 100,
-          width: 290,
-          arrowHeight: 15,
-          arrowWidth: 30,
+          height: height ?? 100,
+          width: width ?? 290,
+          arrowHeight: 0,
+          arrowWidth: 0,
+          arrowDxOffset: arrowDxOffset ?? -120,
+          arrowDyOffset: arrowDyOffset ?? 0,
+          contentDxOffset: contentDxOffset ?? 0,
+          contentDyOffset: contentDyOffset ?? 0,
         );
       },
       icon: SvgPicture.asset(
         iconPath,
-        colorFilter: iconColor != null
-            ? ColorFilter.mode(iconColor!, BlendMode.srcIn)
-            : null,
+        colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : null,
       ),
     );
   }
@@ -62,14 +76,14 @@ class SPPopMenuButton<T> extends StatelessWidget {
 
 class ListItems<T> extends StatelessWidget {
   final void Function(T)? onTap;
-  final List<ListItem<T>> items;
+  final List<SPListItem<T>> items;
 
-  const ListItems({Key? key, this.onTap, required this.items})
-      : super(key: key);
+  const ListItems({Key? key, this.onTap, required this.items}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(
         items.length,
         (index) => ItemTile<T>(
@@ -90,7 +104,7 @@ class ItemTile<T> extends StatelessWidget {
     this.onTap,
   }) : super(key: key);
 
-  final ListItem<T> listItem;
+  final SPListItem<T> listItem;
   final bool middle;
   final void Function()? onTap;
 
@@ -102,16 +116,14 @@ class ItemTile<T> extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         border: Border(
-          right:
-              !middle ? BorderSide.none : const BorderSide(color: Colors.grey),
-          left:
-              !middle ? BorderSide.none : const BorderSide(color: Colors.grey),
+          right: !middle ? BorderSide.none : const BorderSide(color: Colors.grey),
+          left: !middle ? BorderSide.none : const BorderSide(color: Colors.grey),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
+          GestureDetector(
             onTap: onTap,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
