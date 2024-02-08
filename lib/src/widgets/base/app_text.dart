@@ -19,6 +19,7 @@ class SPText extends StatelessWidget {
     this.maxLines,
     this.minFontSize = 10.0,
     this.textAlign,
+    this.decoration = TextDecoration.none,
     this.level = AppTextLevel.paragraph1,
   }) : super(key: key);
 
@@ -31,6 +32,7 @@ class SPText extends StatelessWidget {
     this.maxLines,
     this.textAlign,
     this.minFontSize = 10.0,
+    this.decoration = TextDecoration.none,
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
@@ -43,6 +45,7 @@ class SPText extends StatelessWidget {
     this.maxLines,
     this.textAlign,
     this.minFontSize = 10.0,
+    this.decoration = TextDecoration.none,
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
@@ -55,6 +58,7 @@ class SPText extends StatelessWidget {
     this.textAlign,
     this.fontWeight,
     this.minFontSize = 10.0,
+    this.decoration = TextDecoration.none,
   })  : level = AppTextLevel.title1,
         super(key: key);
 
@@ -67,6 +71,7 @@ class SPText extends StatelessWidget {
     this.fontWeight,
     this.textAlign,
     this.minFontSize = 10.0,
+    this.decoration = TextDecoration.none,
   })  : level = AppTextLevel.title2,
         super(key: key);
 
@@ -79,6 +84,7 @@ class SPText extends StatelessWidget {
     this.fontWeight,
     this.textAlign,
     this.minFontSize = 10.0,
+    this.decoration = TextDecoration.none,
   })  : level = AppTextLevel.title3,
         super(key: key);
 
@@ -90,6 +96,7 @@ class SPText extends StatelessWidget {
   final FontWeight? fontWeight;
   final double minFontSize;
   final TextAlign? textAlign;
+  final TextDecoration decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +122,7 @@ class SPText extends StatelessWidget {
         color: color,
         fontSize: fontSize,
         fontWeight: fontWeight,
+        decoration: decoration,
       ),
       textAlign: textAlign,
       maxLines: maxLines,
