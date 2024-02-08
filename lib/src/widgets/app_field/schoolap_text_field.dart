@@ -2,10 +2,7 @@ part of '../widget.dart';
 
 typedef ValidatorDate = Validator<DateTime>?;
 
-enum AppTextFieldType {
-  password,
-  date,
-}
+enum AppTextFieldType { password }
 
 /// A custom text field widget for the app.
 class SPTextField<T> extends StatelessWidget {
@@ -22,7 +19,7 @@ class SPTextField<T> extends StatelessWidget {
   final String? label;
 
   /// The validator function for the text field.
-  final Validator<T>? validator;
+  final String? Function(String?)? validator;
 
   /// The suffix widget for the text field.
   final Widget? suffix;
@@ -57,12 +54,8 @@ class SPTextField<T> extends StatelessWidget {
   /// The value transformer for the text field.
   final dynamic Function(String?)? valueTransformer;
 
-  final dynamic Function(DateTime?)? dateTimeValueTransformer;
-
   /// The text capitalization for the text field.
   final TextCapitalization textCapitalization;
-
-  final DateFormat? dateFormat;
 
   final TextEditingController? controller;
 
@@ -86,8 +79,6 @@ class SPTextField<T> extends StatelessWidget {
     this.keyboardType,
     this.onChanged,
     this.valueTransformer,
-    this.dateTimeValueTransformer,
-    this.dateFormat,
     this.textCapitalization = TextCapitalization.none,
     this.controller,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
@@ -119,26 +110,17 @@ class SPTextField<T> extends StatelessWidget {
             controller: controller,
             initialValue: initialValue,
             obscureText: obscureText,
-            validator: validator as Validator<String?>?,
+            validator: validator,
             decoration: inputDecoration,
             onChanged: onChanged,
             valueTransformer: valueTransformer,
             textCapitalization: textCapitalization,
-          ),
-        if (type == AppTextFieldType.date)
-          FormBuilderDateTimePicker(
-            name: name,
-            validator: validator as ValidatorDate,
-            inputType: InputType.date,
-            decoration: inputDecoration,
-            format: dateFormat,
-            valueTransformer: dateTimeValueTransformer,
-          ),
-        if (type == null || type != AppTextFieldType.password && type != AppTextFieldType.date)
+          )
+        else
           FormBuilderTextField(
             maxLines: maxLines ?? 1,
             name: name,
-            validator: validator as String? Function(String?)?,
+            validator: validator,
             keyboardType: keyboardType,
             decoration: inputDecoration,
             textCapitalization: textCapitalization,
