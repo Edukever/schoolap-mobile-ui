@@ -113,7 +113,6 @@ class SPDateTimeField<T> extends StatelessWidget {
         FormBuilderDateTimePicker(
           focusNode: focusNode,
           name: name,
-          keyboardType: keyboardType,
           initialValue: initialValue,
           initialDate: initialDate,
           firstDate: firstDate,

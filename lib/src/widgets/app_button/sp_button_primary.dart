@@ -140,14 +140,12 @@ class SPButtonPrimary<T> extends StatelessWidget {
 
     if (iconPosition == IconPosition.left) {
       children.add(
-        Padding(
-          padding: const EdgeInsets.only(right: 20),
-          child: icon ??
-              Icon(
+        icon ??
+            Icon(
                 Icons.arrow_forward,
                 color: iconOrTextColor ?? Colors.white,
               ),
-        ),
+        
       );
     }
 
