@@ -158,6 +158,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
         title,
         color: iconOrTextColor ?? Colors.white,
         fontSize: fontSize ?? 14,
+        fontWeight: fontWeight,
       ),
     );
 
