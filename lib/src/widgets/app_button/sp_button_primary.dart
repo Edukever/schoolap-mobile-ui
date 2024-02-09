@@ -142,10 +142,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
       children.add(
         icon ??
             Icon(
-                Icons.arrow_forward,
-                color: iconOrTextColor ?? Colors.white,
-              ),
-        
+              Icons.arrow_forward,
+              color: iconOrTextColor ?? Colors.white,
+            ),
       );
     }
 

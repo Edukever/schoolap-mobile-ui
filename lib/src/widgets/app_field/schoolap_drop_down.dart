@@ -10,16 +10,23 @@ class SPDropDown<T> extends StatelessWidget {
   final String placeHolder;
   final String? label;
   final Widget? prefix;
-  const SPDropDown(
-      {Key? key,
-      required this.name,
-      required this.items,
-      this.onChanged,
-      this.validator,
-      required this.placeHolder,
-      this.label,
-      this.prefix})
-      : super(key: key);
+  final T? initialValue;
+  final dynamic Function(T?)? valueTransformer;
+  final FocusNode? focusNode;
+
+  const SPDropDown({
+    super.key,
+    required this.name,
+    required this.items,
+    this.onChanged,
+    this.validator,
+    required this.placeHolder,
+    this.label,
+    this.prefix,
+    this.initialValue,
+    this.valueTransformer,
+    this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +45,19 @@ class SPDropDown<T> extends StatelessWidget {
               ),
             ),
           ),
-        FormBuilderField(
+        FormBuilderField<T>(
           name: name,
           validator: validator,
-          builder: (context) {
+          initialValue: initialValue,
+          valueTransformer: valueTransformer,
+          focusNode: focusNode,
+          builder: (state) {
             return DropdownButtonFormField2<T>(
-
+              value: state.value,
               items: items,
               isExpanded: true,
               decoration: InputDecoration(
                 prefixIcon: prefix,
-                
                 contentPadding: const EdgeInsets.only(right: 10),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -67,7 +76,10 @@ class SPDropDown<T> extends StatelessWidget {
                 placeHolder,
                 style: const TextStyle(fontSize: 14),
               ),
-              onChanged: onChanged,
+              onChanged: (value) {
+                state.didChange(value);
+                onChanged?.call(value);
+              },
             );
           },
         ),
