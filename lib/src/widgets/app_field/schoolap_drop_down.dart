@@ -36,13 +36,9 @@ class SPDropDown<T> extends StatelessWidget {
         if (label != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
+            child: SPText(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-              ),
+              fontSize: 14.0,
             ),
           ),
         FormBuilderField<T>(
