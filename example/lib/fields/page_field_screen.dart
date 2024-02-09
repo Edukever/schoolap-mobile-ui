@@ -44,6 +44,7 @@ class PageFieldScreen extends StatelessWidget {
               label: "Comment",
             ),
             SPDropDown(
+              backgroundColor: Colors.blue,
               label: "Rôle de la personne",
               name: "dropdown",
               prefix: const Icon(Icons.person),
