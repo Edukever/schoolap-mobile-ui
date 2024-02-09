@@ -10,6 +10,7 @@ class SPChip extends StatelessWidget {
   final AppChipType appChipType;
   final Widget? icon;
   final Color? backgroundColor;
+  final MainAxisAlignment? mainAxisAlignment;
 
   const SPChip(
       {super.key,
@@ -19,7 +20,8 @@ class SPChip extends StatelessWidget {
       this.iconOrTextColor,
       this.appChipType = AppChipType.none,
       this.icon,
-      this.backgroundColor})
+      this.backgroundColor,
+      this.mainAxisAlignment})
       : assert(
           appChipType != AppChipType.icon || icon != null,
           'Invalid configuration: icon should be provided when appChipType is only icon.',
@@ -39,7 +41,7 @@ class SPChip extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.spaceAround,
         children: _buildButtonChildren(),
       ),
     );
