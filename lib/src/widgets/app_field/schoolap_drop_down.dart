@@ -13,6 +13,7 @@ class SPDropDown<T> extends StatelessWidget {
   final T? initialValue;
   final dynamic Function(T?)? valueTransformer;
   final FocusNode? focusNode;
+  final Color? backgroundColor;
 
   const SPDropDown({
     super.key,
@@ -26,6 +27,7 @@ class SPDropDown<T> extends StatelessWidget {
     this.initialValue,
     this.valueTransformer,
     this.focusNode,
+    this.backgroundColor,
   });
 
   @override
@@ -54,6 +56,7 @@ class SPDropDown<T> extends StatelessWidget {
               isExpanded: true,
               decoration: InputDecoration(
                 prefixIcon: prefix,
+
                 contentPadding: const EdgeInsets.only(right: 10),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -62,16 +65,16 @@ class SPDropDown<T> extends StatelessWidget {
               ),
               dropdownStyleData: DropdownStyleData(
                 decoration: BoxDecoration(
+                  color: backgroundColor,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                
               ),
               menuItemStyleData: const MenuItemStyleData(
                 padding: EdgeInsets.symmetric(horizontal: 16),
               ),
               hint: SPText(
                 placeHolder,
-fontSize: 14,
+                fontSize: 14,
               ),
               onChanged: (value) {
                 state.didChange(value);
