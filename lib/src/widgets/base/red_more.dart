@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 enum TrimMode {
-  Length,
-  Line,
+  length,
+  line,
 }
 
 class SPReadMoreText extends StatefulWidget {
@@ -19,7 +19,7 @@ class SPReadMoreText extends StatefulWidget {
     this.colorClickableText,
     this.trimLength = 240,
     this.trimLines = 2,
-    this.trimMode = TrimMode.Length,
+    this.trimMode = TrimMode.length,
     this.style,
     this.textAlign,
     this.textDirection,
@@ -112,7 +112,7 @@ class ReadMoreTextState extends State<SPReadMoreText> {
 
     final textAlign = widget.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start;
     final textDirection = widget.textDirection ?? Directionality.of(context);
-    final textScaleFactor = widget.textScaleFactor ?? MediaQuery.textScaleFactorOf(context);
+    final textScaler = MediaQuery.textScalerOf(context);
     final overflow = defaultTextStyle.overflow;
     final locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
@@ -167,7 +167,7 @@ class ReadMoreTextState extends State<SPReadMoreText> {
           text: link,
           textAlign: textAlign,
           textDirection: textDirection,
-          textScaleFactor: textScaleFactor,
+          textScaler: textScaler,
           maxLines: widget.trimLines,
           ellipsis: overflow == TextOverflow.ellipsis ? widget.delimiter : null,
           locale: locale,
@@ -206,7 +206,7 @@ class ReadMoreTextState extends State<SPReadMoreText> {
 
         TextSpan textSpan;
         switch (widget.trimMode) {
-          case TrimMode.Length:
+          case TrimMode.length:
             if (widget.trimLength < widget.data.length) {
               textSpan = _buildData(
                 data: _readMore ? widget.data.substring(0, widget.trimLength) : widget.data,
@@ -231,7 +231,7 @@ class ReadMoreTextState extends State<SPReadMoreText> {
               );
             }
             break;
-          case TrimMode.Line:
+          case TrimMode.line:
             if (textPainter.didExceedMaxLines) {
               textSpan = _buildData(
                 data: _readMore ? widget.data.substring(0, endIndex) + (linkLongerThanLine ? _kLineSeparator : '') : widget.data,
@@ -272,7 +272,7 @@ class ReadMoreTextState extends State<SPReadMoreText> {
           textDirection: textDirection,
           softWrap: true,
           overflow: TextOverflow.clip,
-          textScaleFactor: textScaleFactor,
+          textScaler: textScaler,
         );
       },
     );
