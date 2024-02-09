@@ -124,6 +124,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
         );
       case DecorationState.outline:
         return BoxDecoration(
+          color: backgroundColor ?? const Color(0xFFF68C2C),
+
           borderRadius: BorderRadius.circular(10.52),
           border: Border.all(
             color: outlineBorderColor ?? const Color(0xFFF68C2C),
