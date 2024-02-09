@@ -68,9 +68,9 @@ class SPDropDown<T> extends StatelessWidget {
               menuItemStyleData: const MenuItemStyleData(
                 padding: EdgeInsets.symmetric(horizontal: 16),
               ),
-              hint: Text(
+              hint: SPText(
                 placeHolder,
-                style: const TextStyle(fontSize: 14),
+fontSize: 14,
               ),
               onChanged: (value) {
                 state.didChange(value);
