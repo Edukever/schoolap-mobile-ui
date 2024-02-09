@@ -53,7 +53,7 @@ class SPChip extends StatelessWidget {
     if (appChipType == AppChipType.dot) {
       children.add(
         Padding(
-          padding: const EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.only(right: 5),
           child: DotContainer(iconOrTextColor: iconOrTextColor),
         ),
       );
