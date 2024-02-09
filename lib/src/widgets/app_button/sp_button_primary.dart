@@ -54,6 +54,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The font size of the button's text.
   final double? fontSize;
 
+  final MainAxisAlignment? mainAxisAlignment;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -82,6 +84,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.icon,
     this.fontWeight,
     this.fontSize,
+    this.mainAxisAlignment,
   })  : assert(hasIcon || iconPosition == null, 'Invalid configuration: iconPosition should be null when hasIcon is false.'),
         super(key: key);
 
@@ -98,7 +101,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
           child: hasIcon == true
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
                   children: _buildButtonChildren(),
                 )
               : SPText(
