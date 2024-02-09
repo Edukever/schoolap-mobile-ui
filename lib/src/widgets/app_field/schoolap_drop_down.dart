@@ -55,11 +55,10 @@ class SPDropDown<T> extends StatelessWidget {
               items: items,
               isExpanded: true,
               buttonStyleData: ButtonStyleData(
-                height: 50,
-                width: 160,
-                padding: const EdgeInsets.only(left: 14, right: 14),
+                
                 decoration: BoxDecoration(
                   color: backgroundColor,
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 elevation: 2,
               ),
