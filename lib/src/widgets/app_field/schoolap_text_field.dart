@@ -97,7 +97,6 @@ class SPTextField<T> extends StatelessWidget {
             child: SPText(
               label!,
               fontSize: 14.0,
-
             ),
           ),
         if (type == AppTextFieldType.password)
@@ -115,12 +114,16 @@ class SPTextField<T> extends StatelessWidget {
           )
         else
           FormBuilderTextField(
-            maxLines: maxLines ?? 1,
             name: name,
+            readOnly: readOnly,
+            controller: controller,
+            maxLines: maxLines ?? 1,
             validator: validator,
             keyboardType: keyboardType,
             decoration: inputDecoration,
             textCapitalization: textCapitalization,
+            onChanged: onChanged,
+            valueTransformer: valueTransformer,
           ),
       ],
     );
