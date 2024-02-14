@@ -14,6 +14,8 @@ class SPDropDown<T> extends StatelessWidget {
   final dynamic Function(T?)? valueTransformer;
   final FocusNode? focusNode;
   final Color? backgroundColor;
+  final ButtonStyleData? buttonStyleData;
+  final IconStyleData iconStyleData;
 
   const SPDropDown({
     super.key,
@@ -28,6 +30,8 @@ class SPDropDown<T> extends StatelessWidget {
     this.valueTransformer,
     this.focusNode,
     this.backgroundColor,
+    this.buttonStyleData,
+    this.iconStyleData = const IconStyleData(),
   });
 
   @override
@@ -64,6 +68,8 @@ class SPDropDown<T> extends StatelessWidget {
                 ),
                 // Add more decoration..
               ),
+              iconStyleData: iconStyleData,
+              buttonStyleData: buttonStyleData,
               dropdownStyleData: DropdownStyleData(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
