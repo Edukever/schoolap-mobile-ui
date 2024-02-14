@@ -18,6 +18,7 @@ class SPDropDown<T> extends StatelessWidget {
   final IconStyleData iconStyleData;
   final DropdownStyleData? dropdownStyleData;
   final MenuItemStyleData? menuItemStyleData;
+  final InputBorder? border;
 
   const SPDropDown({
     super.key,
@@ -36,6 +37,7 @@ class SPDropDown<T> extends StatelessWidget {
     this.iconStyleData = const IconStyleData(),
     this.dropdownStyleData,
     this.menuItemStyleData,
+    this.border,
   });
 
   @override
@@ -67,7 +69,8 @@ class SPDropDown<T> extends StatelessWidget {
                 fillColor: backgroundColor,
                 filled: backgroundColor != null,
                 contentPadding: const EdgeInsets.only(right: 10),
-                border: OutlineInputBorder(
+                border: border ??
+                    OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 // Add more decoration..
