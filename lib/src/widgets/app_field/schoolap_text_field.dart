@@ -94,13 +94,9 @@ class SPTextField<T> extends StatelessWidget {
         if (label != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
+            child: SPText(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-              ),
+              fontSize: 14.0,
             ),
           ),
         if (type == AppTextFieldType.password)
@@ -118,12 +114,16 @@ class SPTextField<T> extends StatelessWidget {
           )
         else
           FormBuilderTextField(
-            maxLines: maxLines ?? 1,
             name: name,
+            readOnly: readOnly,
+            controller: controller,
+            maxLines: maxLines ?? 1,
             validator: validator,
             keyboardType: keyboardType,
             decoration: inputDecoration,
             textCapitalization: textCapitalization,
+            onChanged: onChanged,
+            valueTransformer: valueTransformer,
           ),
       ],
     );

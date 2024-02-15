@@ -10,16 +10,35 @@ class SPDropDown<T> extends StatelessWidget {
   final String placeHolder;
   final String? label;
   final Widget? prefix;
-  const SPDropDown(
-      {Key? key,
-      required this.name,
-      required this.items,
-      this.onChanged,
-      this.validator,
-      required this.placeHolder,
-      this.label,
-      this.prefix})
-      : super(key: key);
+  final T? initialValue;
+  final dynamic Function(T?)? valueTransformer;
+  final FocusNode? focusNode;
+  final Color? backgroundColor;
+  final ButtonStyleData? buttonStyleData;
+  final IconStyleData iconStyleData;
+  final DropdownStyleData? dropdownStyleData;
+  final MenuItemStyleData? menuItemStyleData;
+  final InputBorder? border;
+
+  const SPDropDown({
+    super.key,
+    required this.name,
+    required this.items,
+    this.onChanged,
+    this.validator,
+    required this.placeHolder,
+    this.label,
+    this.prefix,
+    this.initialValue,
+    this.valueTransformer,
+    this.focusNode,
+    this.backgroundColor,
+    this.buttonStyleData,
+    this.iconStyleData = const IconStyleData(),
+    this.dropdownStyleData,
+    this.menuItemStyleData,
+    this.border,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,45 +48,53 @@ class SPDropDown<T> extends StatelessWidget {
         if (label != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
+            child: SPText(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-              ),
+              fontSize: 14.0,
             ),
           ),
-        FormBuilderField(
+        FormBuilderField<T>(
           name: name,
           validator: validator,
-          builder: (context) {
+          initialValue: initialValue,
+          valueTransformer: valueTransformer,
+          focusNode: focusNode,
+          builder: (state) {
             return DropdownButtonFormField2<T>(
-
+              value: state.value,
               items: items,
               isExpanded: true,
               decoration: InputDecoration(
                 prefixIcon: prefix,
-                
+                fillColor: backgroundColor,
+                filled: backgroundColor != null,
                 contentPadding: const EdgeInsets.only(right: 10),
-                border: OutlineInputBorder(
+                border: border ??
+                    OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 // Add more decoration..
               ),
-              dropdownStyleData: DropdownStyleData(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              menuItemStyleData: const MenuItemStyleData(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-              ),
-              hint: Text(
+              iconStyleData: iconStyleData,
+              buttonStyleData: buttonStyleData,
+              dropdownStyleData: dropdownStyleData ??
+                  DropdownStyleData(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+              menuItemStyleData: menuItemStyleData ??
+                  const MenuItemStyleData(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                  ),
+              hint: SPText(
                 placeHolder,
-                style: const TextStyle(fontSize: 14),
+                fontSize: 14,
               ),
-              onChanged: onChanged,
+              onChanged: (value) {
+                state.didChange(value);
+                onChanged?.call(value);
+              },
             );
           },
         ),

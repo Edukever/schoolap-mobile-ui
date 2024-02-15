@@ -1,15 +1,11 @@
 {
-    "cSpell.words": [
-        "appbar",
-        "schoolap",
-        "tydef",
-        "Zirko"
-    ],
-    "dart.lineLength": 160,
-    "dart.enableSdkFormatter": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit"
-    },
-    "files.autoSave": "onFocusChange",
-    "editor.formatOnSave": true
+  "cSpell.words": ["appbar", "schoolap", "tydef", "Zirko"],
+  "dart.lineLength": 160,
+  "dart.enableSdkFormatter": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "workbench.editor.showTabs": "single"
 }
