@@ -61,7 +61,7 @@ class SPDropDown<T> extends StatelessWidget {
           focusNode: focusNode,
           builder: (state) {
             return DropdownButtonFormField2<T>(
-              value: state.value,
+              value:  state.value,
               items: items,
               isExpanded: true,
               decoration: InputDecoration(
