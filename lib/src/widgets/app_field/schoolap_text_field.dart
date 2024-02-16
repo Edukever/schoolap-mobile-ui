@@ -115,6 +115,7 @@ class SPTextField<T> extends StatelessWidget {
         else
           FormBuilderTextField(
             name: name,
+            initialValue: initialValue,
             readOnly: readOnly,
             controller: controller,
             maxLines: maxLines ?? 1,
