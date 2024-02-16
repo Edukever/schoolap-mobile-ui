@@ -52,7 +52,10 @@ class SPPopMenuButton<T> extends StatelessWidget {
           barrierColor: Colors.transparent,
           context: context,
           bodyBuilder: (context) => ListItems<T>(
-            onTap: handleIconTap,
+            onTap: (value) {
+              Navigator.of(context).pop();
+              handleIconTap?.call(value);
+            },
             items: items,
           ),
           onPop: () => debugPrint('Popover was popped!'),
