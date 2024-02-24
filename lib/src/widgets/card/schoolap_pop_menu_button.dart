@@ -49,9 +49,13 @@ class SPPopMenuButton<T> extends StatelessWidget {
       onPressed: () async {
         showPopover(
           barrierDismissible: barrierDismissible,
+          barrierColor: Colors.transparent,
           context: context,
           bodyBuilder: (context) => ListItems<T>(
-            onTap: handleIconTap,
+            onTap: (value) {
+              Navigator.of(context).pop();
+              handleIconTap?.call(value);
+            },
             items: items,
           ),
           onPop: () => debugPrint('Popover was popped!'),
@@ -60,7 +64,7 @@ class SPPopMenuButton<T> extends StatelessWidget {
           width: width ?? 290,
           arrowHeight: 0,
           arrowWidth: 0,
-          arrowDxOffset: arrowDxOffset ?? -120,
+          arrowDxOffset: arrowDxOffset ?? -140,
           arrowDyOffset: arrowDyOffset ?? 0,
           contentDxOffset: contentDxOffset ?? 0,
           contentDyOffset: contentDyOffset ?? 0,

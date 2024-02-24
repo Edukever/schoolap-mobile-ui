@@ -122,16 +122,19 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
             color: MaterialStatePropertyAll(rowColor),
             onSelectChanged: widget.showCheckboxColumn ? (value) => widget.onSelectChanged?.call(value, row) : null,
             cells: widget.columns.map<DataCell>((column) {
+              final textCell = column.cellText(row, index);
               return DataCell(
                 SizedBox(
                   width: column.width,
                   child: FutureBuilder<String?>(
-                    future: Future.value(column.cellText(row, index)),
-                    initialData: '',
+                    future: Future.value(textCell),
+                    initialData: textCell is! Future ? textCell : null,
                     builder: (context, snapshot) {
                       if (column.cellWidgetBuilder != null) {
+                        final future = column.cellWidgetBuilder?.call(row, index);
+                        if (future is! Future) return future ?? const SizedBox();
                         return FutureBuilder<Widget?>(
-                          future: Future.value(column.cellWidgetBuilder?.call(row, index)),
+                          future: Future.value(future),
                           initialData: const SizedBox(),
                           builder: (context, snapshot) => snapshot.data ?? const SizedBox(),
                         );

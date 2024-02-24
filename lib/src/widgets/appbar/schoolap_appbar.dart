@@ -3,12 +3,9 @@ part of '../widget.dart';
 class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
   final String title;
+  final bool hidePop;
 
-  const SPAppBar({
-    super.key,
-    this.height = 80,
-    required this.title,
-  });
+  const SPAppBar({super.key, this.height = 80, required this.title, this.hidePop = false});
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -38,7 +35,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
               ),
             ),
-            if (Navigator.of(context).canPop())
+            if (Navigator.of(context).canPop() && !hidePop)
               Padding(
                 padding: EdgeInsets.only(top: topPadding),
                 child: Align(
