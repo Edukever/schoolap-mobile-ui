@@ -51,7 +51,13 @@ class SPRadio<T> extends StatelessWidget {
         wrapSpacing: wrapSpacing ?? 0.0,
         validator: validator,
         decoration: InputDecoration(
-          label: label != null ? SPText(label!) : null,
+          label: label != null
+              ? SPText(
+                  label!,
+                  fontSize: 14,
+                )
+              : null,
+          labelStyle: TextStyle(fontSize: 14, fontFamily: "Poppins"),
           contentPadding: const EdgeInsets.symmetric(horizontal: 0),
           border: InputBorder.none,
         ),
