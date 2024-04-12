@@ -64,11 +64,11 @@ class SPChip extends StatelessWidget {
       );
     }
     children.add(
-      SPText.title1(
+      Expanded(child: SPText.title1(
         label,
         color: iconOrTextColor ?? Colors.white,
         fontSize: 14,
-      ),
+      ),),
     );
 
     return children;

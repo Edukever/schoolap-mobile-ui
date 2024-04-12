@@ -59,6 +59,8 @@ class SPTextField<T> extends StatelessWidget {
 
   final TextEditingController? controller;
 
+  final void Function()? onEditingComplete;
+
   /// Creates a new instance of `SPTextField`.
   ///
   const SPTextField({
@@ -81,6 +83,7 @@ class SPTextField<T> extends StatelessWidget {
     this.valueTransformer,
     this.textCapitalization = TextCapitalization.none,
     this.controller,
+    this.onEditingComplete,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
@@ -111,6 +114,7 @@ class SPTextField<T> extends StatelessWidget {
             onChanged: onChanged,
             valueTransformer: valueTransformer,
             textCapitalization: textCapitalization,
+            onEditingComplete: onEditingComplete,
           )
         else
           FormBuilderTextField(
@@ -125,6 +129,7 @@ class SPTextField<T> extends StatelessWidget {
             textCapitalization: textCapitalization,
             onChanged: onChanged,
             valueTransformer: valueTransformer,
+            onEditingComplete: onEditingComplete,
           ),
       ],
     );
