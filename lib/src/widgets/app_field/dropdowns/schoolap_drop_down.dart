@@ -2,6 +2,7 @@ part of '../../widget.dart';
 
 typedef OnChanged<T> = void Function(T?);
 
+@Deprecated('Use [SPDropDownStyled] instead')
 class SPDropDown<T> extends StatelessWidget {
   final String name;
   final List<DropdownMenuItem<T>> items;
