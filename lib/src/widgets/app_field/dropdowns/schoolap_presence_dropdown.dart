@@ -1,4 +1,4 @@
-part of '../widget.dart';
+part of '../../widget.dart';
 
 class SPPresenceDropdown extends StatefulWidget {
   final List<DropdownMenuItem<bool>>? items;
@@ -45,11 +45,11 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
             focusColor: fillColor,
             fillColor: fillColor,
             filled: true,
-            contentPadding: EdgeInsets.symmetric(horizontal: 7.0),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 7.0),
           ),
           icon: Icon(Icons.arrow_drop_down, color: textColor),
           iconSize: 30,
-          isDense : false,
+          isDense: false,
           style: TextStyle(
             color: textColor,
             fontWeight: FontWeight.bold,

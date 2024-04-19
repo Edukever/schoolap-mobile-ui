@@ -57,7 +57,7 @@ class SPRadio<T> extends StatelessWidget {
                   fontSize: 14,
                 )
               : null,
-          labelStyle: TextStyle(fontSize: 14, fontFamily: "Poppins"),
+          labelStyle: const TextStyle(fontSize: 14, fontFamily: "Poppins"),
           contentPadding: const EdgeInsets.symmetric(horizontal: 0),
           border: InputBorder.none,
         ),
