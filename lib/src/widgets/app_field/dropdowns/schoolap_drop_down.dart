@@ -1,7 +1,8 @@
-part of '../widget.dart';
+part of '../../widget.dart';
 
 typedef OnChanged<T> = void Function(T?);
 
+@Deprecated('Use [SPDropDownStyled] instead')
 class SPDropDown<T> extends StatelessWidget {
   final String name;
   final List<DropdownMenuItem<T>> items;
@@ -61,7 +62,7 @@ class SPDropDown<T> extends StatelessWidget {
           focusNode: focusNode,
           builder: (state) {
             return DropdownButtonFormField2<T>(
-              value:  state.value,
+              value: state.value,
               items: items,
               isExpanded: true,
               decoration: InputDecoration(
@@ -71,8 +72,8 @@ class SPDropDown<T> extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(right: 10),
                 border: border ??
                     OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                 // Add more decoration..
               ),
               iconStyleData: iconStyleData,

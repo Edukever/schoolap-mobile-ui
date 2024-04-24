@@ -1,4 +1,4 @@
-part of '../widget.dart';
+part of '../../widget.dart';
 
 class SPDropDownPresence<T> extends StatelessWidget {
   final String name;
@@ -9,14 +9,7 @@ class SPDropDownPresence<T> extends StatelessWidget {
   final String? label;
   final Widget? prefix;
   const SPDropDownPresence(
-      {Key? key,
-      required this.name,
-      required this.items,
-      this.onChanged,
-      this.validator,
-      required this.placeHolder,
-      this.label,
-      this.prefix})
+      {Key? key, required this.name, required this.items, this.onChanged, this.validator, required this.placeHolder, this.label, this.prefix})
       : super(key: key);
 
   @override
@@ -43,13 +36,12 @@ class SPDropDownPresence<T> extends StatelessWidget {
             return DropdownButtonFormField2<T>(
               items: items,
               isExpanded: true,
-            
               buttonStyleData: ButtonStyleData(
                 height: 50,
                 width: 160,
                 padding: const EdgeInsets.only(left: 14, right: 14),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius .circular(14),
+                  borderRadius: BorderRadius.circular(14),
                   border: Border.all(
                     color: Colors.black26,
                   ),

@@ -1,15 +1,15 @@
-part of '../widget.dart';
+part of '../../widget.dart';
 
 class SPPresenceDropdown extends StatefulWidget {
   final List<DropdownMenuItem<bool>>? items;
   final String name;
-  final void Function(bool)? onTap;
+  final void Function(bool)? onChanged;
 
   const SPPresenceDropdown({
     super.key,
     required this.name,
     this.items,
-    this.onTap,
+    this.onChanged,
   });
 
   @override
@@ -30,42 +30,44 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
         color: AppTheme.of(context).colors.vertLight,
         borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
       ),
-      child: FormBuilderDropdown<bool>(
-        name: widget.name,
-        initialValue: value,
-        onTap: () => widget.onTap!(value),
-        onChanged: (v) => setState(() => value = v == true),
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
-            borderSide: BorderSide.none,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
+        child: FormBuilderDropdown<bool>(
+          name: widget.name,
+          initialValue: value,
+          onChanged: (v) {
+            setState(() => value = v == true);
+            widget.onChanged?.call(value);
+          },
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            focusColor: fillColor,
+            fillColor: fillColor,
+            filled: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 7.0),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
-            borderSide: BorderSide.none,
+          icon: Icon(Icons.arrow_drop_down, color: textColor),
+          iconSize: 30,
+          isDense: false,
+          style: TextStyle(
+            color: textColor,
+            fontWeight: FontWeight.bold,
           ),
+          dropdownColor: infillColor,
           focusColor: fillColor,
-          fillColor: fillColor,
-          filled: true,
+          items: widget.items ??
+              [
+                DropdownMenuItem(
+                  value: true,
+                  child: SPPresenceDropdownItemWidget(label: "Présent", textColor: AppTheme.of(context).colors.vert),
+                ),
+                DropdownMenuItem(
+                  value: false,
+                  child: SPPresenceDropdownItemWidget(label: "Absent", textColor: AppTheme.of(context).colors.rouge),
+                ),
+              ],
         ),
-        icon: Icon(Icons.arrow_drop_down, color: textColor, size: 30),
-        style: TextStyle(
-          color: textColor,
-          fontWeight: FontWeight.bold,
-        ),
-        dropdownColor: infillColor,
-        focusColor: fillColor,
-        
-        items: widget.items ??  [
-          DropdownMenuItem(
-            value: true,
-            child: SPPresenceDropdownItemWidget(label: "Présent", textColor: AppTheme.of(context).colors.vert),
-          ),
-          DropdownMenuItem(
-            value: false,
-            child: SPPresenceDropdownItemWidget(label: "Absent", textColor: AppTheme.of(context).colors.rouge),
-          ),
-        ],
       ),
     );
   }
@@ -84,8 +86,9 @@ class SPPresenceDropdownItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
+      padding: const EdgeInsets.only(left: 2.0),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             height: 8.0,
