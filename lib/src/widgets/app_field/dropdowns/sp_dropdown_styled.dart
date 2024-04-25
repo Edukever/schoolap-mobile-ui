@@ -105,6 +105,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
               hint: SPText(
                 placeHolder,
                 fontSize: 14,
+                color: Colors.grey.withOpacity(0.4),
               ),
               onChanged: (value) {
                 state.didChange(value);
