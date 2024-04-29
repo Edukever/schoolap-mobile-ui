@@ -64,6 +64,8 @@ class SPDateTimeField<T> extends StatelessWidget {
 
   final TimePickerEntryMode timePickerInitialEntryMode;
 
+  final DatePickerMode initialDatePickerMode;
+
   const SPDateTimeField({
     super.key,
     required this.name,
@@ -89,6 +91,7 @@ class SPDateTimeField<T> extends StatelessWidget {
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
+    this.initialDatePickerMode = DatePickerMode.day,
   });
 
   @override
@@ -126,6 +129,7 @@ class SPDateTimeField<T> extends StatelessWidget {
           controller: controller,
           initialEntryMode: initialEntryMode,
           timePickerInitialEntryMode: timePickerInitialEntryMode,
+          initialDatePickerMode: initialDatePickerMode,
         ),
       ],
     );
