@@ -53,6 +53,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
             child: SPText(
               label!,
               fontSize: 14.0,
+              fontWeight: FontWeight.w600,
             ),
           ),
         FormBuilderField<R>(
