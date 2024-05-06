@@ -100,6 +100,7 @@ class SPTextField<T> extends StatelessWidget {
             child: SPText(
               label!,
               fontSize: 14.0,
+              fontWeight: FontWeight.w700,
             ),
           ),
         if (type == AppTextFieldType.password)
