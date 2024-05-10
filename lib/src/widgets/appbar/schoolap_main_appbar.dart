@@ -92,7 +92,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                       ],
                     ),
-                    const SizedBox(height: 20.0),
+                    const SizedBox(height: 10.0),
                     child,
                   ],
                 ),
