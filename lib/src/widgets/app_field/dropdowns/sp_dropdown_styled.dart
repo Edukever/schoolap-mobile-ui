@@ -21,6 +21,8 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   final InputBorder? border;
   final InputDecoration? inputDecoration;
 
+  final EdgeInsetsGeometry? contentPadding;
+
   const SPDropDownStyled({
     super.key,
     required this.name,
@@ -28,6 +30,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     required this.getName,
     required this.getValue,
     this.onChanged,
+    this.contentPadding,
     this.inputDecoration,
     this.validator,
     required this.placeHolder,
@@ -49,85 +52,104 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: SPText(
-              label!,
-              fontSize: 14.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        FormBuilderField<R>(
-          name: name,
-          validator: validator,
-          initialValue: initialValue,
-          valueTransformer: valueTransformer,
-          focusNode: focusNode,
-          builder: (state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DropdownButtonFormField2<R>(
-                  value: state.value,
-                  
-                  items: DropdownMenuItemGenerator<T, R>(
-                    items: items,
-                  ).generate(getName: getName, getValue: getValue),
-                  dropdownStyleData: dropdownStyleData ??
-                      DropdownStyleData(
-                        maxHeight: 200,
-                        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
-                        elevation: 0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
-                          borderRadius: const BorderRadius.all(Radius.circular(14)),
-                        ),
-                        scrollbarTheme: ScrollbarThemeData(
-                          //   radius: const Radius.circular(40),
-                          thickness: MaterialStateProperty.all(6),
-                          thumbVisibility: MaterialStateProperty.all(true),
-                        ),
-                      ),
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                    prefixIcon: prefix,
-                    fillColor: backgroundColor,
-                    filled: backgroundColor != null,
-                    contentPadding: const EdgeInsets.only(right: 10),
-                    border: border ??
-                        OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                    // Add more decoration..
-                  ),
-                  iconStyleData: iconStyleData,
-                  buttonStyleData: buttonStyleData,
-                  menuItemStyleData: menuItemStyleData ??
-                      MenuItemStyleData(
-                        padding: EdgeInsets.zero,
-                        customHeights: DropdownMenuItemGenerator<T, R>(items: items).calculateItemHeights,
-                      ),
-                  hint: SPText(
-                    placeHolder,
-                    fontSize: 14,
-                    color: Colors.grey.withOpacity(0.4),
-                  ),
-                  onChanged: (value) {
-                    state.didChange(value);
-                    onChanged?.call(value);
-                  },
-                ),
-                if (state.hasError) ...[
-                  const SizedBox(height: 5),
-                  SPText(state.errorText ?? '', color: AppTheme.of(context).colors.rouge),
-                ]
-              ],
-            );
-          },
-        ),
+        if (label != null) _buildLabel(),
+        _buildFormBuilderField(),
       ],
     );
+  }
+
+  Widget _buildLabel() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: SPText(
+        label!,
+        fontSize: 14.0,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  Widget _buildFormBuilderField() {
+    return FormBuilderField<R>(
+      name: name,
+      validator: validator,
+      initialValue: initialValue,
+      valueTransformer: valueTransformer,
+      focusNode: focusNode,
+      builder: (state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDropdownButtonFormField(state),
+            if (state.hasError) _buildErrorText(state),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildDropdownButtonFormField(FormFieldState<R> state) {
+    return DropdownButtonFormField2<R>(
+      value: state.value,
+      items: DropdownMenuItemGenerator<T, R>(
+        items: items,
+      ).generate(getName: getName, getValue: getValue),
+      dropdownStyleData: dropdownStyleData ?? _defaultDropdownStyleData(),
+      isExpanded: true,
+      decoration: _buildInputDecoration(),
+      iconStyleData: iconStyleData,
+      buttonStyleData: buttonStyleData,
+      menuItemStyleData: menuItemStyleData ?? _defaultMenuItemStyleData(),
+      hint: SPText(
+        placeHolder,
+        fontSize: 14,
+        color: Colors.grey.withOpacity(0.4),
+      ),
+      onChanged: (value) {
+        state.didChange(value);
+        onChanged?.call(value);
+      },
+    );
+  }
+
+  DropdownStyleData _defaultDropdownStyleData() {
+    return DropdownStyleData(
+      maxHeight: 200,
+      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
+      elevation: 0,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.black),
+        borderRadius: const BorderRadius.all(Radius.circular(14)),
+      ),
+      scrollbarTheme: ScrollbarThemeData(
+        thickness: MaterialStateProperty.all(6),
+        thumbVisibility: MaterialStateProperty.all(true),
+      ),
+    );
+  }
+
+  MenuItemStyleData _defaultMenuItemStyleData() {
+    return MenuItemStyleData(
+      padding: EdgeInsets.zero,
+      customHeights: DropdownMenuItemGenerator<T, R>(items: items).calculateItemHeights,
+    );
+  }
+
+  InputDecoration _buildInputDecoration() {
+    return InputDecoration(
+      prefixIcon: prefix,
+      fillColor: backgroundColor,
+      filled: backgroundColor != null,
+      contentPadding: contentPadding ?? const EdgeInsets.only(right: 10),
+      border: border ??
+          OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+    );
+  }
+
+  Widget _buildErrorText(FormFieldState<R> state) {
+    return const SizedBox(height: 5);
   }
 }
