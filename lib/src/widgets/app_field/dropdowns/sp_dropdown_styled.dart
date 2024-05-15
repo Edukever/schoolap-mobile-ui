@@ -19,6 +19,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   final DropdownStyleData? dropdownStyleData;
   final MenuItemStyleData? menuItemStyleData;
   final InputBorder? border;
+  final InputDecoration? decorator;
 
   const SPDropDownStyled({
     super.key,
@@ -27,6 +28,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     required this.getName,
     required this.getValue,
     this.onChanged,
+    this.decorator,
     this.validator,
     required this.placeHolder,
     this.label,
@@ -68,6 +70,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
               children: [
                 DropdownButtonFormField2<R>(
                   value: state.value,
+                  decoration: decoration,
                   items: DropdownMenuItemGenerator<T, R>(
                     items: items,
                   ).generate(getName: getName, getValue: getValue),
