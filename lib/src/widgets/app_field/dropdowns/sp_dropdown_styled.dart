@@ -19,7 +19,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   final DropdownStyleData? dropdownStyleData;
   final MenuItemStyleData? menuItemStyleData;
   final InputBorder? border;
-  final InputDecoration? decorator;
+  final InputDecoration? inputDecoration;
 
   const SPDropDownStyled({
     super.key,
@@ -28,7 +28,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     required this.getName,
     required this.getValue,
     this.onChanged,
-    this.decorator,
+    this.inputDecoration,
     this.validator,
     required this.placeHolder,
     this.label,
@@ -70,7 +70,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
               children: [
                 DropdownButtonFormField2<R>(
                   value: state.value,
-                  decoration: decoration,
+                  
                   items: DropdownMenuItemGenerator<T, R>(
                     items: items,
                   ).generate(getName: getName, getValue: getValue),
@@ -120,7 +120,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
                   },
                 ),
                 if (state.hasError) ...[
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   SPText(state.errorText ?? '', color: AppTheme.of(context).colors.rouge),
                 ]
               ],

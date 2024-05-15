@@ -61,6 +61,8 @@ class SPTextField<T> extends StatelessWidget {
 
   final void Function()? onEditingComplete;
 
+  final Color? backgroundColor;
+
   /// Creates a new instance of `SPTextField`.
   ///
   const SPTextField({
@@ -83,13 +85,20 @@ class SPTextField<T> extends StatelessWidget {
     this.valueTransformer,
     this.textCapitalization = TextCapitalization.none,
     this.controller,
+    this.backgroundColor,
     this.onEditingComplete,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final inputDecoration = SPCustomInputDecoration(suffixIcon: suffix, prefixIcon: prefix, hintText: placeHolder, hintStyle: hintStyle);
+    final inputDecoration = SPCustomInputDecoration(
+      suffixIcon: suffix,
+      prefixIcon: prefix,
+      hintText: placeHolder,
+      hintStyle: hintStyle,
+      backgroundColor: backgroundColor,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
