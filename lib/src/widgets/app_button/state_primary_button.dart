@@ -6,7 +6,14 @@ class SPButtonStatePrimary extends StatelessWidget {
   final SPButtonStatePrimaryState state;
   final double? width;
   final IconPosition? iconPosition;
-  const SPButtonStatePrimary({super.key, required this.state, this.width, this.iconPosition});
+  final void Function()? onPressed;
+  const SPButtonStatePrimary({
+    super.key,
+    required this.state,
+    this.width,
+    this.iconPosition,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +26,7 @@ class SPButtonStatePrimary extends StatelessWidget {
           width: width,
           iconPosition: iconPosition,
           backgroundColor: const Color(0xFF41A3DF),
+          onTap: onPressed,
         );
       case SPButtonStatePrimaryState.validation:
         return SPButtonPrimary(
@@ -27,6 +35,7 @@ class SPButtonStatePrimary extends StatelessWidget {
           width: width,
           iconPosition: iconPosition,
           backgroundColor: const Color(0xFFFF4F4F),
+          onTap: onPressed,
         );
 
       case SPButtonStatePrimaryState.delete:
@@ -36,12 +45,14 @@ class SPButtonStatePrimary extends StatelessWidget {
           iconPosition: iconPosition,
           width: width,
           backgroundColor: const Color(0xFF1EA951),
+          onTap: onPressed,
         );
       case SPButtonStatePrimaryState.disabled:
         return SPButtonPrimary(
           title: "Supprimer",
           height: height,
           width: width,
+          onTap: onPressed,
         );
       default:
         return Container();

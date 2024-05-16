@@ -7,8 +7,18 @@ class SPButtonSecondaryState extends StatelessWidget {
   final double? width;
   final double? fontSize;
   final IconPosition? iconPosition;
+  final void Function()? onPressed;
 
-  const SPButtonSecondaryState({super.key, required this.state, this.width, this.label, this.icon, this.fontSize, this.iconPosition});
+  const SPButtonSecondaryState({
+    super.key,
+    required this.state,
+    this.width,
+    this.label,
+    this.icon,
+    this.fontSize,
+    this.iconPosition,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +31,9 @@ class SPButtonSecondaryState extends StatelessWidget {
           width: width,
           fontSize: fontSize,
           iconPosition: iconPosition,
-
           iconOrTextColor: const Color(0xFF41A3DF),
           backgroundColor: const Color(0xFFE5F9FF),
+          onTap: onPressed,
         );
       case SPButtonStatePrimaryState.validation:
         return SPButtonPrimary(
@@ -34,6 +44,7 @@ class SPButtonSecondaryState extends StatelessWidget {
           iconPosition: iconPosition,
           iconOrTextColor: const Color(0xFFFF4F4F),
           backgroundColor: const Color(0xFFFFE1E1),
+          onTap: onPressed,
         );
 
       case SPButtonStatePrimaryState.delete:
@@ -46,6 +57,7 @@ class SPButtonSecondaryState extends StatelessWidget {
           width: width,
           iconOrTextColor: const Color(0xFF1EA951),
           backgroundColor: const Color(0xFFDDF3D6),
+          onTap: onPressed,
         );
 
       default:
