@@ -87,6 +87,7 @@ class SPTextField<T> extends StatelessWidget {
 
     return FormBuilderTextField(
       name: name,
+      focusNode: focusNode,
       readOnly: readOnly,
       controller: controller,
       focusNode: focusNode,
