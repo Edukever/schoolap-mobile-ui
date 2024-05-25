@@ -153,8 +153,8 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 5),
-        Text(state.errorText ?? '', style: TextStyle(color: Colors.redAccent)),
-         const SizedBox(height: 3),
+        Text(state.errorText ?? '', style: const TextStyle(color: Colors.redAccent)),
+        const SizedBox(height: 3),
       ],
     );
   }

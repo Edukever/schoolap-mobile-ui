@@ -11,74 +11,56 @@ class PageFieldScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("All text field"),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SPTextField(
+            SPTextField(
               name: "name",
               placeHolder: 'this is a placeholder',
               label: "This is a label",
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
-            const SPTextField(
+            SPTextField(
               name: "Password",
               placeHolder: 'this is a placeholder',
               type: AppTextFieldType.password,
               label: "This is a Password",
               obscureText: true,
             ),
-            const SPTextField(
+            SPTextField(
               name: "icon",
               placeHolder: 'this is a placeholder',
               label: "This is field with icon",
               prefix: Icon(Icons.person),
             ),
-            const SPTextField(
+            SPTextField(
               name: "comment",
               placeHolder: 'this is a comment placeholder',
               maxLines: 5,
               label: "Comment",
             ),
-            SPDropDown(
-              backgroundColor: Colors.blue,
-              label: "Rôle de la personne",
-              name: "dropdown",
-              prefix: const Icon(Icons.person),
-              placeHolder: "select one gender",
-              onChanged: (e) {},
-              items: const [
-                DropdownMenuItem(
-                  value: 1,
-                  child: Text("One"),
-                ),
-                DropdownMenuItem(
-                  value: 2,
-                  child: Text("two"),
-                )
-              ],
-            ),
-            const SPTextField(
+            SPTextField(
               name: "date",
               placeHolder: 'this is a placeholder',
               label: "This is field with date",
               prefix: Icon(Icons.date_range),
             ),
-            const SizedBox(height: 20),
-            const SPCheckBoxGroup(name: "checkBox", label: "checkbox", options: [
+            SizedBox(height: 20),
+            SPCheckBoxGroup(name: "checkBox", label: "checkbox", options: [
               FormBuilderFieldOption(value: 1, child: Text("One")),
               FormBuilderFieldOption(value: 2, child: Text("Two")),
             ]),
-            const SizedBox(height: 20),
-            const SPCheckBoxGroup(
+            SizedBox(height: 20),
+            SPCheckBoxGroup(
               name: 'ss',
               options: [],
             ),
-            const SizedBox(height: 20),
-            const SPRadio(
+            SizedBox(height: 20),
+            SPRadio(
               name: "radio",
               label: "Radio",
               options: [
@@ -86,12 +68,12 @@ class PageFieldScreen extends StatelessWidget {
                 FormBuilderFieldOption(value: 2, child: Text("Two")),
               ],
             ),
-            const SizedBox(height: 40),
-            const SPCheckBox(
+            SizedBox(height: 40),
+            SPCheckBox(
               name: 'rem',
               title: Text('Remember me'),
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
           ],
         ),
       ),

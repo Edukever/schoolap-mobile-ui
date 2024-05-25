@@ -90,7 +90,6 @@ class SPTextField<T> extends StatelessWidget {
       focusNode: focusNode,
       readOnly: readOnly,
       controller: controller,
-      focusNode: focusNode,
       initialValue: initialValue,
       obscureText: type == AppTextFieldType.password ? obscureText : false,
       validator: validator,
@@ -104,4 +103,3 @@ class SPTextField<T> extends StatelessWidget {
     );
   }
 }
-
