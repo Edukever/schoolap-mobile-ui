@@ -26,6 +26,7 @@ class SPTextField<T> extends StatelessWidget {
   final TextEditingController? controller;
   final void Function()? onEditingComplete;
   final Color? backgroundColor;
+  final FocusNode? focusNode;
 
   const SPTextField({
     Key? key,
@@ -49,6 +50,7 @@ class SPTextField<T> extends StatelessWidget {
     this.controller,
     this.backgroundColor,
     this.onEditingComplete,
+    this.focusNode,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
@@ -85,6 +87,7 @@ class SPTextField<T> extends StatelessWidget {
 
     return FormBuilderTextField(
       name: name,
+      focusNode: focusNode,
       readOnly: readOnly,
       controller: controller,
       initialValue: initialValue,
