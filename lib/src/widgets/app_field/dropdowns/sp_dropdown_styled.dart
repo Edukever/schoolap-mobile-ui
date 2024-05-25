@@ -150,6 +150,12 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   }
 
   Widget _buildErrorText(FormFieldState<R> state) {
-    return const SizedBox(height: 5);
+    return Column(
+      children: [
+        const SizedBox(height: 5),
+        Text(state.errorText ?? '', style: TextStyle(color: Colors.redAccent)),
+         const SizedBox(height: 3),
+      ],
+    );
   }
 }
