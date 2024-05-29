@@ -1,4 +1,5 @@
 part of '../widget.dart';
+
 class SPDateFieldRanger<T> extends StatelessWidget {
   final String name;
 
@@ -48,26 +49,30 @@ class SPDateFieldRanger<T> extends StatelessWidget {
 
   final EdgeInsetsGeometry? contentPadding;
 
+  final DatePickerEntryMode initialEntryMode;
+
   /// Creates a new instance of `SPTextField`.
-  const SPDateFieldRanger(
-      {super.key,
-      required this.name,
-      required this.placeHolder,
-      this.borderRadius,
-      this.label,
-      this.validator,
-      this.suffix,
-      this.prefix,
-      this.maxLines,
-      this.hintStyle,
-      this.initialValue,
-      this.keyboardType,
-      this.onChanged,
-      this.valueTransformer,
-      required this.firstDate,
-      this.lastDate,
-      this.currentDate,
-      this.contentPadding});
+  const SPDateFieldRanger({
+    super.key,
+    required this.name,
+    required this.placeHolder,
+    this.borderRadius,
+    this.label,
+    this.validator,
+    this.suffix,
+    this.prefix,
+    this.maxLines,
+    this.hintStyle,
+    this.initialValue,
+    this.keyboardType,
+    this.onChanged,
+    this.valueTransformer,
+    required this.firstDate,
+    this.lastDate,
+    this.currentDate,
+    this.contentPadding,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,9 +100,9 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           initialValue: initialValue,
           onChanged: onChanged,
           valueTransformer: valueTransformer,
+          initialEntryMode: initialEntryMode,
           decoration: SPCustomInputDecoration(
             hintText: placeHolder,
-            
             hintStyle: hintStyle,
             prefixIcon: prefix,
             suffixIcon: suffix,
