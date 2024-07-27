@@ -45,3 +45,5 @@ part 'appbar/schoolap_appbar.dart';
 part 'data_table/schoolap_pagination.dart';
 part 'card/schoolap_pop_menu_button.dart';
 part 'app_field/schoolap_date_field_ranger.dart';
+part 'appbar/schoolap_landscape_app_bar.dart';
+part 'base/app_scaffold.dart';

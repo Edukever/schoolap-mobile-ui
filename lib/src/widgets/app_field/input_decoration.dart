@@ -9,12 +9,15 @@ class SPCustomInputDecoration extends InputDecoration {
     TextStyle? hintStyle,
     InputBorder? border,
     Color? backgroundColor,
+    InputBorder? errorBorder,
+    InputBorder? disabledBorder,
+    bool? isDense,
   }) : super(
           suffixIcon: suffixIcon,
           fillColor: backgroundColor,
           filled: backgroundColor != null,
           prefixIcon: prefixIcon,
-          contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
           hintText: hintText,
           hintStyle: hintStyle ??
               const TextStyle(
@@ -23,5 +26,8 @@ class SPCustomInputDecoration extends InputDecoration {
                 fontFamily: 'Poppins',
               ),
           border: border ?? OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+
+          
+        
         );
 }

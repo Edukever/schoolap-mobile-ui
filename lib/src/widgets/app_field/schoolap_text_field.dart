@@ -27,14 +27,23 @@ class SPTextField<T> extends StatelessWidget {
   final void Function()? onEditingComplete;
   final Color? backgroundColor;
   final FocusNode? focusNode;
+  final double? fontSizeLabel;
+  final double? fontSize;
+  final double? height;
+  final EdgeInsets? contentPadding;
+  final InputBorder? border;
 
   const SPTextField({
     Key? key,
     required this.name,
     required this.placeHolder,
     this.borderRadius,
+    this.border,
     this.label,
+    this.fontSizeLabel,
+    this.fontSize,
     this.validator,
+    this.height,
     this.suffix,
     this.maxLines,
     this.prefix,
@@ -43,6 +52,7 @@ class SPTextField<T> extends StatelessWidget {
     this.hintStyle,
     this.readOnly = false,
     this.initialValue,
+    this.contentPadding,
     this.keyboardType,
     this.onChanged,
     this.valueTransformer,
@@ -70,7 +80,7 @@ class SPTextField<T> extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
         label!,
-        fontSize: 14.0,
+        fontSize: fontSizeLabel ?? 14.0,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -83,23 +93,33 @@ class SPTextField<T> extends StatelessWidget {
       hintText: placeHolder,
       hintStyle: hintStyle,
       backgroundColor: backgroundColor,
+      contentPadding: contentPadding,
+      border: border,
     );
 
-    return FormBuilderTextField(
-      name: name,
-      focusNode: focusNode,
-      readOnly: readOnly,
-      controller: controller,
-      initialValue: initialValue,
-      obscureText: type == AppTextFieldType.password ? obscureText : false,
-      validator: validator,
-      decoration: inputDecoration,
-      onChanged: onChanged,
-      valueTransformer: valueTransformer,
-      textCapitalization: textCapitalization,
-      onEditingComplete: onEditingComplete,
-      maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
-      keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
-    );
+    return SizedBox(
+        // remove height  on validation error
+        height: height,
+        child: FormBuilderTextField(
+          name: name,
+          focusNode: focusNode,
+          style: TextStyle(
+            fontSize: fontSize ?? 14.0,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w400,
+          ),
+          readOnly: readOnly,
+          controller: controller,
+          initialValue: initialValue,
+          obscureText: type == AppTextFieldType.password ? obscureText : false,
+          validator: validator,
+          decoration: inputDecoration,
+          onChanged: onChanged,
+          valueTransformer: valueTransformer,
+          textCapitalization: textCapitalization,
+          onEditingComplete: onEditingComplete,
+          maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
+          keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
+        ));
   }
 }
