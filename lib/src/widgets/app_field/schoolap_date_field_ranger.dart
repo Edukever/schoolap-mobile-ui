@@ -51,6 +51,8 @@ class SPDateFieldRanger<T> extends StatelessWidget {
 
   final DatePickerEntryMode initialEntryMode;
 
+  final DateFormat? format;
+
   /// Creates a new instance of `SPTextField`.
   const SPDateFieldRanger({
     super.key,
@@ -71,6 +73,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
     this.lastDate,
     this.currentDate,
     this.contentPadding,
+    this.format,
     this.initialEntryMode = DatePickerEntryMode.calendar,
   });
 
@@ -99,6 +102,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           currentDate: currentDate,
           initialValue: initialValue,
           onChanged: onChanged,
+          format: format,
           valueTransformer: valueTransformer,
           initialEntryMode: initialEntryMode,
           decoration: SPCustomInputDecoration(
