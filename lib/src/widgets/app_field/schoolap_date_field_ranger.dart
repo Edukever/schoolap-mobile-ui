@@ -75,7 +75,6 @@ class SPDateFieldRanger<T> extends StatelessWidget {
     this.contentPadding,
     this.format,
     this.initialEntryMode = DatePickerEntryMode.calendar,
-    this.format,
   });
 
   @override
@@ -106,7 +105,6 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           format: format,
           valueTransformer: valueTransformer,
           initialEntryMode: initialEntryMode,
-          format: format,
           decoration: SPCustomInputDecoration(
             hintText: placeHolder,
             hintStyle: hintStyle,
