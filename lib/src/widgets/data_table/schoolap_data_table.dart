@@ -11,10 +11,10 @@ class SPDataTable<T> extends StatefulWidget {
   final TextAlign textAlign;
   final Color? headerIconColor;
   final bool showCheckboxColumn;
-  final MaterialStateProperty<Color?>? headingRowColor;
+  final WidgetStateProperty<Color?>? headingRowColor;
   final TextStyle? headingTextStyle;
   final EdgeInsets horizontalPadding;
-  final MaterialStateProperty<Color?>? dataRowColor;
+  final WidgetStateProperty<Color?>? dataRowColor;
   final void Function(bool?, T item)? onSelectChanged;
   final List<T> selectedRows;
   final Color? selectedRowColor;
@@ -70,7 +70,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
     final headingTextStyle = widget.headingTextStyle ??
         TextStyle(
           color: blackOrWhite(
-            widget.headingRowColor?.resolve({MaterialState.pressed}) ?? AppTheme.of(context).colors.bleuLight,
+            widget.headingRowColor?.resolve({WidgetState.pressed}) ?? AppTheme.of(context).colors.bleuLight,
           ),
         );
 
@@ -84,9 +84,9 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         headingRowHeight: widget.headingRowHeight,
         showBottomBorder: widget.showBottomBorder,
         showCheckboxColumn: widget.showCheckboxColumn,
-        headingRowColor: widget.headingRowColor ?? MaterialStatePropertyAll(AppTheme.of(context).colors.bleuLight),
+        headingRowColor: widget.headingRowColor ?? WidgetStatePropertyAll(AppTheme.of(context).colors.bleuLight),
         headingTextStyle: headingTextStyle,
-        dataRowColor: widget.dataRowColor ?? const MaterialStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
+        dataRowColor: widget.dataRowColor ?? const WidgetStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
         sortColumnIndex: _currentSortColumn,
         sortAscending: _isAscending,
         columns: widget.columns
@@ -119,7 +119,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
 
           return DataRow(
             selected: widget.showCheckboxColumn ? widget.selectedRows.contains(row) : false,
-            color: MaterialStatePropertyAll(rowColor),
+            color: WidgetStatePropertyAll(rowColor),
             onSelectChanged: widget.showCheckboxColumn ? (value) => widget.onSelectChanged?.call(value, row) : null,
             cells: widget.columns.map<DataCell>((column) {
               final textCell = column.cellText(row, index);

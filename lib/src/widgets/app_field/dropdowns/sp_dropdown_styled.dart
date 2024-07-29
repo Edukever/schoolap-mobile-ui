@@ -123,8 +123,8 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(14)),
       ),
       scrollbarTheme: ScrollbarThemeData(
-        thickness: MaterialStateProperty.all(6),
-        thumbVisibility: MaterialStateProperty.all(true),
+        thickness: WidgetStateProperty.all(6),
+        thumbVisibility: WidgetStateProperty.all(true),
       ),
     );
   }
