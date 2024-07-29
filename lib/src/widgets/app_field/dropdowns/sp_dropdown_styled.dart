@@ -22,6 +22,10 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   final InputDecoration? inputDecoration;
 
   final EdgeInsetsGeometry? contentPadding;
+  final double? fontSizeLabel;
+  final double? fontSizePlaceHolder;
+
+  final double? maxHeight;
 
   const SPDropDownStyled({
     super.key,
@@ -30,6 +34,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     required this.getName,
     required this.getValue,
     this.onChanged,
+    this.maxHeight,
     this.contentPadding,
     this.inputDecoration,
     this.validator,
@@ -45,6 +50,8 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     this.dropdownStyleData,
     this.menuItemStyleData,
     this.border,
+    this.fontSizeLabel,
+    this.fontSizePlaceHolder,
   });
 
   @override
@@ -63,7 +70,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
         label!,
-        fontSize: 14.0,
+        fontSize: fontSizeLabel ?? 14.0,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -98,11 +105,16 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
       isExpanded: true,
       decoration: _buildInputDecoration(),
       iconStyleData: iconStyleData,
+      style: const TextStyle(
+        fontSize: 12,
+        color: Colors.black,
+        fontFamily: 'Poppins',
+      ),
       buttonStyleData: buttonStyleData,
       menuItemStyleData: menuItemStyleData ?? _defaultMenuItemStyleData(),
       hint: SPText(
         placeHolder,
-        fontSize: 14,
+        fontSize: fontSizePlaceHolder ?? 14,
         color: Colors.grey.withOpacity(0.4),
       ),
       onChanged: (value) {
@@ -114,7 +126,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
 
   DropdownStyleData _defaultDropdownStyleData() {
     return DropdownStyleData(
-      maxHeight: 200,
+      maxHeight: maxHeight ?? 200,
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
       elevation: 0,
       decoration: BoxDecoration(
@@ -140,6 +152,14 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     return InputDecoration(
       prefixIcon: prefix,
       fillColor: backgroundColor,
+      labelStyle: const TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 12,
+      ),
+      hintStyle: const TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 12,
+      ),
       filled: backgroundColor != null,
       contentPadding: contentPadding ?? const EdgeInsets.only(right: 10),
       border: border ??
@@ -153,7 +173,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 5),
-        Text(state.errorText ?? '', style: const TextStyle(color: Colors.redAccent)),
+        SPText(state.errorText ?? '', color: Colors.redAccent),
         const SizedBox(height: 3),
       ],
     );

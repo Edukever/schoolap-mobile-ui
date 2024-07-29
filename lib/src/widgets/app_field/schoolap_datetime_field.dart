@@ -65,6 +65,7 @@ class SPDateTimeField<T> extends StatelessWidget {
   final TimePickerEntryMode timePickerInitialEntryMode;
 
   final DatePickerMode initialDatePickerMode;
+  final double? size;
 
   const SPDateTimeField({
     super.key,
@@ -92,6 +93,7 @@ class SPDateTimeField<T> extends StatelessWidget {
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
     this.initialDatePickerMode = DatePickerMode.day,
+    this.size,
   });
 
   @override
@@ -106,8 +108,8 @@ class SPDateTimeField<T> extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
+              style: TextStyle(
+                fontSize: size ?? 14.0,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
               ),
@@ -119,6 +121,10 @@ class SPDateTimeField<T> extends StatelessWidget {
           initialValue: initialValue,
           initialDate: initialDate,
           firstDate: firstDate,
+          style: TextStyle(
+            fontSize: size ?? 14.0,
+            fontFamily: 'Poppins',
+          ),
           lastDate: lastDate,
           validator: validator,
           inputType: inputType,

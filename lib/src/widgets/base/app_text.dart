@@ -17,10 +17,12 @@ class SPText extends StatelessWidget {
     this.fontSize,
     this.fontWeight,
     this.maxLines,
+    this.height,
     this.minFontSize = 10.0,
     this.textAlign,
     this.decoration = TextDecoration.none,
     this.level = AppTextLevel.paragraph1,
+    this.letterSpacing,
   }) : super(key: key);
 
   const SPText.paragraph1(
@@ -29,10 +31,12 @@ class SPText extends StatelessWidget {
     this.color,
     this.fontSize,
     this.fontWeight,
+    this.height,
     this.maxLines,
     this.textAlign,
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
+    this.letterSpacing,
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
@@ -40,12 +44,14 @@ class SPText extends StatelessWidget {
     this.data, {
     Key? key,
     this.color,
+    this.height,
     this.fontSize,
     this.fontWeight,
     this.maxLines,
     this.textAlign,
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
+    this.letterSpacing,
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
@@ -55,10 +61,12 @@ class SPText extends StatelessWidget {
     this.color,
     this.fontSize,
     this.maxLines,
+    this.height,
     this.textAlign,
     this.fontWeight,
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
+    this.letterSpacing,
   })  : level = AppTextLevel.title1,
         super(key: key);
 
@@ -69,8 +77,10 @@ class SPText extends StatelessWidget {
     this.fontSize,
     this.maxLines,
     this.fontWeight,
+    this.height,
     this.textAlign,
     this.minFontSize = 10.0,
+    this.letterSpacing,
     this.decoration = TextDecoration.none,
   })  : level = AppTextLevel.title2,
         super(key: key);
@@ -83,8 +93,10 @@ class SPText extends StatelessWidget {
     this.maxLines,
     this.fontWeight,
     this.textAlign,
+    this.height,
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
+    this.letterSpacing,
   })  : level = AppTextLevel.title3,
         super(key: key);
 
@@ -97,6 +109,9 @@ class SPText extends StatelessWidget {
   final double minFontSize;
   final TextAlign? textAlign;
   final TextDecoration decoration;
+  final double? height;
+
+  final double? letterSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -118,12 +133,7 @@ class SPText extends StatelessWidget {
     }();
     return AutoSizeText(
       data,
-      style: style.copyWith(
-        color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        decoration: decoration,
-      ),
+      style: style.copyWith(color: color, fontSize: fontSize, fontWeight: fontWeight, decoration: decoration, height: height),
       textAlign: textAlign,
       maxLines: maxLines,
       minFontSize: minFontSize,
