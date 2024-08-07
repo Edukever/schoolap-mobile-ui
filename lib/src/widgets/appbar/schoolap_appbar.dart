@@ -3,9 +3,10 @@ part of '../widget.dart';
 class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
   final String title;
+  final Widget? titleWidget;
   final bool hidePop;
 
-  const SPAppBar({super.key, this.height = 80, required this.title, this.hidePop = false});
+  const SPAppBar({super.key, this.height = 80, required this.title, this.titleWidget, this.hidePop = false});
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -52,7 +53,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.center,
-                child: SPText.title2(title, color: AppTheme.of(context).colors.blanc),
+                child: titleWidget ?? SPText.title2(title, color: AppTheme.of(context).colors.blanc),
               ),
             ),
           ],

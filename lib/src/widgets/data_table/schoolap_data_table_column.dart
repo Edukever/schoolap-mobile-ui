@@ -47,16 +47,16 @@ class SPDataTableColumn<T> {
   /// The cursor for a mouse pointer when it enters or is hovering over the
   /// heading row.
   ///
-  /// [MaterialStateProperty.resolve] is used for the following [MaterialState]s:
+  /// [WidgetStateProperty.resolve] is used for the following [WidgetState]s:
   ///
-  ///  * [MaterialState.disabled].
+  ///  * [WidgetState.disabled].
   ///
   /// If this is null, then the value of [DataTableThemeData.headingCellCursor]
-  /// is used. If that's null, then [MaterialStateMouseCursor.clickable] is used.
+  /// is used. If that's null, then [WidgetStateMouseCursor.clickable] is used.
   ///
   /// See also:
-  ///  * [MaterialStateMouseCursor], which can be used to create a [MouseCursor].
-  final MaterialStateProperty<MouseCursor?>? mouseCursor;
+  ///  * [WidgetStateMouseCursor], which can be used to create a [MouseCursor].
+  final WidgetStateProperty<MouseCursor?>? mouseCursor;
 
   const SPDataTableColumn({
     required this.headerText,

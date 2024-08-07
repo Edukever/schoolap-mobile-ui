@@ -75,10 +75,10 @@ class SPDateFieldRanger<T> extends StatelessWidget {
     this.lastDate,
     this.currentDate,
     this.contentPadding,
-    this.initialEntryMode = DatePickerEntryMode.calendar,
     this.format,
     this.fontSizeLabel,
     this.fontSizePlaceHolder,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
   });
 
   @override
@@ -111,9 +111,9 @@ class SPDateFieldRanger<T> extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           onChanged: onChanged,
+          format: format,
           valueTransformer: valueTransformer,
           initialEntryMode: initialEntryMode,
-          format: format,
           decoration: SPCustomInputDecoration(
             hintText: placeHolder,
             hintStyle: TextStyle(
