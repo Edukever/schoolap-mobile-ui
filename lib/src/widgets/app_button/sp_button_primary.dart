@@ -84,8 +84,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.fontSize,
     this.mainAxisAlignment,
     this.radius,
-  })  : assert(icon != null || iconPosition == null, 'Invalid configuration: iconPosition should be null when icon is null.'),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
