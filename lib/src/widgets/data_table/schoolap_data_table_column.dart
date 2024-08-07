@@ -65,7 +65,7 @@ class SPDataTableColumn<T> {
     this.cellWidgetBuilder,
     this.sortable = false,
     this.textAlign,
-    this.width,
+    this.width ,
     this.tooltip,
     this.mouseCursor,
     int Function(T a, T b, bool ascending)? sort,

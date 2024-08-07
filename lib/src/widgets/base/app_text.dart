@@ -135,6 +135,7 @@ class SPText extends StatelessWidget {
       data,
       style: style.copyWith(color: color, fontSize: fontSize, fontWeight: fontWeight, decoration: decoration, height: height),
       textAlign: textAlign,
+      overflow : TextOverflow.ellipsis,
       maxLines: maxLines,
       minFontSize: minFontSize,
       maxFontSize: fontSize ?? style.fontSize ?? 18,

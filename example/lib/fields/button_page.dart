@@ -10,82 +10,79 @@ class ButtonPage extends StatelessWidget {
       appBar: AppBar(
         title: const SPText("All button"),
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: SPText.title3("Bouton primary"),
             ),
-            SPButtonPrimary(
+            const SPButtonPrimary(
               title: 'Suivant',
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: SPText.title3("Bouton primary avec icon gauche"),
             ),
             SPButtonPrimary(
               title: 'Suivant',
-              hasIcon: true,
               iconPosition: IconPosition.left,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: SPText.title3("Bouton primary avec icon droite"),
             ),
             SPButtonPrimary(
               title: 'Suivant',
-              hasIcon: true,
               iconPosition: IconPosition.right,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: SPText.title3("Bouton primary avec outline"),
             ),
             SPButtonPrimary(
               title: 'Retour',
-              hasIcon: true,
               decorationState: DecorationState.outline,
               iconPosition: IconPosition.left,
-              iconOrTextColor: Color(0xFFF68C2C),
+              iconOrTextColor: const Color(0xFFF68C2C),
             ),
-            Divider(),
-            SPButtonStatePrimary(
+            const Divider(),
+            const SPButtonStatePrimary(
               state: SPButtonStatePrimaryState.download,
               width: 247,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SPButtonStatePrimary(
+            const SPButtonStatePrimary(
               state: SPButtonStatePrimaryState.delete,
               width: 247,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SPButtonStatePrimary(
+            const SPButtonStatePrimary(
               state: SPButtonStatePrimaryState.validation,
               width: 247,
             ),
-            Divider(),
-            SPButtonSecondaryState(
+            const Divider(),
+            const SPButtonSecondaryState(
               state: SPButtonStatePrimaryState.download,
               width: 247,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SPButtonSecondaryState(
+            const SPButtonSecondaryState(
               state: SPButtonStatePrimaryState.delete,
               width: 247,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SPButtonSecondaryState(
+            const SPButtonSecondaryState(
               state: SPButtonStatePrimaryState.validation,
               width: 247,
             ),

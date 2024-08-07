@@ -11,6 +11,8 @@ class SPCard extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
 
+  final BoxBorder? border;
+
   const SPCard({
     Key? key,
     required this.child,
@@ -22,6 +24,7 @@ class SPCard extends StatelessWidget {
     this.onTap,
     this.margin,
     this.padding,
+    this.border,
   }) : super(key: key);
 
   @override
@@ -36,7 +39,7 @@ class SPCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor ?? theme.colors.blanc,
           borderRadius: BorderRadius.all(radius ?? theme.radius.regular),
-          border: Border.all(
+          border: border ?? Border.all(
             width: 1,
             color: borderColor,
           ),

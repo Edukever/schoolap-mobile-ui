@@ -41,6 +41,8 @@ class SPRadio<T> extends StatelessWidget {
         name: name,
         initialValue: initialValue,
         options: options,
+
+        
         wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
         wrapCrossAxisAlignment: wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
         focusColor: theme.colors.bleu,
@@ -51,6 +53,8 @@ class SPRadio<T> extends StatelessWidget {
         wrapSpacing: wrapSpacing ?? 0.0,
         validator: validator,
         decoration: InputDecoration(
+
+          
           label: label != null
               ? SPText(
                   label!,

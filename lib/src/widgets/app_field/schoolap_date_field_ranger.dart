@@ -52,6 +52,8 @@ class SPDateFieldRanger<T> extends StatelessWidget {
   final DatePickerEntryMode initialEntryMode;
 
   final DateFormat? format;
+  final double? fontSizeLabel;
+  final double? fontSizePlaceHolder;
 
   /// Creates a new instance of `SPTextField`.
   const SPDateFieldRanger({
@@ -75,6 +77,8 @@ class SPDateFieldRanger<T> extends StatelessWidget {
     this.contentPadding,
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.format,
+    this.fontSizeLabel,
+    this.fontSizePlaceHolder,
   });
 
   @override
@@ -87,8 +91,8 @@ class SPDateFieldRanger<T> extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
+              style: TextStyle(
+                fontSize: fontSizeLabel ?? 14.0,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
               ),
@@ -101,13 +105,22 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           validator: validator,
           currentDate: currentDate,
           initialValue: initialValue,
+          style: TextStyle(
+            fontSize: fontSizeLabel ?? 14.0,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
           onChanged: onChanged,
           valueTransformer: valueTransformer,
           initialEntryMode: initialEntryMode,
           format: format,
           decoration: SPCustomInputDecoration(
             hintText: placeHolder,
-            hintStyle: hintStyle,
+            hintStyle: TextStyle(
+              fontSize: fontSizePlaceHolder ?? 14.0,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+            ),
             prefixIcon: prefix,
             suffixIcon: suffix,
             contentPadding: contentPadding,
