@@ -149,8 +149,6 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
                             textAlign: column.textAlign ?? widget.textAlign,
                             style: const TextStyle(fontSize: 12, fontFamily: "Poppins"),
                             maxLines: 1,
-
-                            
                             overflow: TextOverflow.ellipsis,
                           ),
                         );
@@ -167,6 +165,9 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
                     },
                   ),
                 ),
+                onLongPress: () => column.onLongPress?.call(row, index),
+                onTap: () => column.onTap?.call(row, index),
+                onDoubleTap: () => column.onDoubleTap?.call(row, index),
               );
             }).toList(),
           );

@@ -58,6 +58,30 @@ class SPDataTableColumn<T> {
   ///  * [WidgetStateMouseCursor], which can be used to create a [MouseCursor].
   final WidgetStateProperty<MouseCursor?>? mouseCursor;
 
+  /// Called if the cell is long-pressed.
+  ///
+  /// If non-null, tapping the cell will invoke this callback. If
+  /// null (including [onDoubleTap], [onTap], [onTapCancel] and [onTapDown]),
+  /// tapping the cell will attempt to select the row (if
+  /// [DataRow.onSelectChanged] is provided).
+  final void Function(T item, int index)? onLongPress;
+
+  /// Called if the cell is tapped.
+  ///
+  /// If non-null, tapping the cell will call this callback. If
+  /// null (including [onDoubleTap], [onLongPress], [onTapCancel] and [onTapDown]),
+  /// tapping the cell will attempt to select the row (if
+  /// [DataRow.onSelectChanged] is provided).
+  final void Function(T item, int index)? onTap;
+
+  /// Called when the cell is double tapped.
+  ///
+  /// If non-null, tapping the cell will call this callback. If
+  /// null (including [onTap], [onLongPress], [onTapCancel] and [onTapDown]),
+  /// tapping the cell will attempt to select the row (if
+  /// [DataRow.onSelectChanged] is provided).
+  final void Function(T item, int index)? onDoubleTap;
+
   const SPDataTableColumn({
     required this.headerText,
     this.headerBuilder,
@@ -65,10 +89,13 @@ class SPDataTableColumn<T> {
     this.cellWidgetBuilder,
     this.sortable = false,
     this.textAlign,
-    this.width ,
+    this.width,
     this.tooltip,
     this.mouseCursor,
     int Function(T a, T b, bool ascending)? sort,
+    this.onLongPress,
+    this.onTap,
+    this.onDoubleTap,
   }) : _order = sort;
 
   final int Function(T a, T b, bool ascending)? _order;
