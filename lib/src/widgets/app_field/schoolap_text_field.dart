@@ -88,14 +88,15 @@ class SPTextField<T> extends StatelessWidget {
 
   Widget _buildTextField() {
     final inputDecoration = SPCustomInputDecoration(
-      suffixIcon: suffix,
-      prefixIcon: prefix,
-      hintText: placeHolder,
-      hintStyle: hintStyle,
-      backgroundColor: backgroundColor,
-      contentPadding: contentPadding,
-      border: border,
-    );
+        suffixIcon: suffix,
+        prefixIcon: prefix,
+        hintText: placeHolder,
+        hintStyle: hintStyle,
+        backgroundColor: backgroundColor,
+        contentPadding: contentPadding,
+        border: border,
+        isDense: true,
+        expands: true);
 
     return SizedBox(
         // remove height  on validation error

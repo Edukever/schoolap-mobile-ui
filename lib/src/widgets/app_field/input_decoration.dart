@@ -12,6 +12,7 @@ class SPCustomInputDecoration extends InputDecoration {
     InputBorder? errorBorder,
     InputBorder? disabledBorder,
     bool? isDense,
+    bool? expands,
   }) : super(
           suffixIcon: suffixIcon,
           fillColor: backgroundColor,
@@ -26,8 +27,5 @@ class SPCustomInputDecoration extends InputDecoration {
                 fontFamily: 'Poppins',
               ),
           border: border ?? OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-
-          
-        
         );
 }
