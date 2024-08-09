@@ -32,9 +32,6 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The position of the icon relative to the button's text.
   final IconPosition? iconPosition;
 
-  /// Determines whether the button has an icon or not.
-  final bool hasIcon;
-
   final Color? iconOrTextColor;
 
   /// The Width of the Button
@@ -56,6 +53,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
 
   final MainAxisAlignment? mainAxisAlignment;
 
+  final double? radius;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -75,7 +74,6 @@ class SPButtonPrimary<T> extends StatelessWidget {
     required this.title,
     this.height,
     this.iconPosition,
-    this.hasIcon = false,
     this.width,
     this.decorationState,
     this.iconOrTextColor,
@@ -85,8 +83,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.fontWeight,
     this.fontSize,
     this.mainAxisAlignment,
-  })  : assert(hasIcon || iconPosition == null, 'Invalid configuration: iconPosition should be null when hasIcon is false.'),
-        super(key: key);
+    this.radius,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +96,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
         height: height ?? 50,
         decoration: buildBorderDecoration(decorationState ?? DecorationState.none),
         child: Center(
-          child: hasIcon == true
+          child: icon != null
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
@@ -120,12 +118,12 @@ class SPButtonPrimary<T> extends StatelessWidget {
       case DecorationState.solid:
         return BoxDecoration(
           color: backgroundColor ?? const Color(0xFFF68C2C),
-          borderRadius: BorderRadius.circular(10.52),
+          borderRadius: BorderRadius.circular(radius ?? 10.52),
         );
       case DecorationState.outline:
         return BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(10.52),
+          borderRadius: BorderRadius.circular(radius ?? 10.52),
           border: Border.all(
             color: outlineBorderColor ?? const Color(0xFFF68C2C),
             width: 1.0,
@@ -134,7 +132,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
       default:
         return BoxDecoration(
           color: backgroundColor ?? const Color(0xFFF68C2C),
-          borderRadius: BorderRadius.circular(10.52),
+          borderRadius: BorderRadius.circular(radius ?? 10.52),
         );
     }
   }

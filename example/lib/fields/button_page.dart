@@ -28,7 +28,6 @@ class ButtonPage extends StatelessWidget {
             ),
             SPButtonPrimary(
               title: 'Suivant',
-              hasIcon: true,
               iconPosition: IconPosition.left,
             ),
             Padding(
@@ -37,7 +36,6 @@ class ButtonPage extends StatelessWidget {
             ),
             SPButtonPrimary(
               title: 'Suivant',
-              hasIcon: true,
               iconPosition: IconPosition.right,
             ),
             Padding(
@@ -46,7 +44,6 @@ class ButtonPage extends StatelessWidget {
             ),
             SPButtonPrimary(
               title: 'Retour',
-              hasIcon: true,
               decorationState: DecorationState.outline,
               iconPosition: IconPosition.left,
               iconOrTextColor: Color(0xFFF68C2C),

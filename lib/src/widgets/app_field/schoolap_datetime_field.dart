@@ -64,6 +64,11 @@ class SPDateTimeField<T> extends StatelessWidget {
 
   final TimePickerEntryMode timePickerInitialEntryMode;
 
+  final DatePickerMode initialDatePickerMode;
+  final double? size;
+
+  final double? height;
+
   const SPDateTimeField({
     super.key,
     required this.name,
@@ -89,6 +94,9 @@ class SPDateTimeField<T> extends StatelessWidget {
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
+    this.initialDatePickerMode = DatePickerMode.day,
+    this.size,
+    this.height,
   });
 
   @override
@@ -103,19 +111,26 @@ class SPDateTimeField<T> extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
+              style: TextStyle(
+                fontSize: size ?? 14.0,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-        FormBuilderDateTimePicker(
+          SizedBox(
+height: height,
+
+child: FormBuilderDateTimePicker(
           focusNode: focusNode,
           name: name,
           initialValue: initialValue,
           initialDate: initialDate,
           firstDate: firstDate,
+          style: TextStyle(
+            fontSize: size ?? 14.0,
+            fontFamily: 'Poppins',
+          ),
           lastDate: lastDate,
           validator: validator,
           inputType: inputType,
@@ -126,6 +141,8 @@ class SPDateTimeField<T> extends StatelessWidget {
           controller: controller,
           initialEntryMode: initialEntryMode,
           timePickerInitialEntryMode: timePickerInitialEntryMode,
+            initialDatePickerMode: initialDatePickerMode,
+          ),
         ),
       ],
     );

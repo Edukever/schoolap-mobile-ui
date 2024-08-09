@@ -6,70 +6,44 @@ enum AppTextFieldType { password }
 
 /// A custom text field widget for the app.
 class SPTextField<T> extends StatelessWidget {
-  /// The name of the text field.
   final String name;
-
-  /// The placeholder text for the text field.
   final String placeHolder;
-
-  /// The border radius of the text field.
   final BorderRadius? borderRadius;
-
-  /// The label text for the text field.
   final String? label;
-
-  /// The validator function for the text field.
   final String? Function(String?)? validator;
-
-  /// The suffix widget for the text field.
   final Widget? suffix;
-
-  /// The prefix widget for the text field.
   final Widget? prefix;
-
-  /// The maximum number of lines for the text field.
   final int? maxLines;
-
-  /// The type of the text field.
   final AppTextFieldType? type;
-
-  /// Whether the text field should obscure the text.
   final bool obscureText;
-
-  /// The hint style for the text field.
   final TextStyle? hintStyle;
-
-  /// Whether the text field is read-only.
   final bool readOnly;
-
-  /// The initial value for the text field.
   final String? initialValue;
-
-  /// The keyboard type for the text field.
   final TextInputType? keyboardType;
-
-  /// The onChanged callback for the text field.
   final void Function(String?)? onChanged;
-
-  /// The value transformer for the text field.
   final dynamic Function(String?)? valueTransformer;
-
-  /// The text capitalization for the text field.
   final TextCapitalization textCapitalization;
-
   final TextEditingController? controller;
-
   final void Function()? onEditingComplete;
+  final Color? backgroundColor;
+  final FocusNode? focusNode;
+  final double? fontSizeLabel;
+  final double? fontSize;
+  final double? height;
+  final EdgeInsets? contentPadding;
+  final InputBorder? border;
 
-  /// Creates a new instance of `SPTextField`.
-  ///
   const SPTextField({
     Key? key,
     required this.name,
     required this.placeHolder,
     this.borderRadius,
+    this.border,
     this.label,
+    this.fontSizeLabel,
+    this.fontSize,
     this.validator,
+    this.height,
     this.suffix,
     this.maxLines,
     this.prefix,
@@ -78,60 +52,75 @@ class SPTextField<T> extends StatelessWidget {
     this.hintStyle,
     this.readOnly = false,
     this.initialValue,
+    this.contentPadding,
     this.keyboardType,
     this.onChanged,
     this.valueTransformer,
     this.textCapitalization = TextCapitalization.none,
     this.controller,
+    this.backgroundColor,
     this.onEditingComplete,
+    this.focusNode,
   })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final inputDecoration = SPCustomInputDecoration(suffixIcon: suffix, prefixIcon: prefix, hintText: placeHolder, hintStyle: hintStyle);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: SPText(
-              label!,
-              fontSize: 14.0,
-            ),
-          ),
-        if (type == AppTextFieldType.password)
-          FormBuilderTextField(
-            name: name,
-            readOnly: readOnly,
-            controller: controller,
-            initialValue: initialValue,
-            obscureText: obscureText,
-            validator: validator,
-            decoration: inputDecoration,
-            onChanged: onChanged,
-            valueTransformer: valueTransformer,
-            textCapitalization: textCapitalization,
-            onEditingComplete: onEditingComplete,
-          )
-        else
-          FormBuilderTextField(
-            name: name,
-            initialValue: initialValue,
-            readOnly: readOnly,
-            controller: controller,
-            maxLines: maxLines ?? 1,
-            validator: validator,
-            keyboardType: keyboardType,
-            decoration: inputDecoration,
-            textCapitalization: textCapitalization,
-            onChanged: onChanged,
-            valueTransformer: valueTransformer,
-            onEditingComplete: onEditingComplete,
-          ),
+        if (label != null) _buildLabel(),
+        _buildTextField(),
       ],
     );
+  }
+
+  Widget _buildLabel() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: SPText(
+        label!,
+        fontSize: fontSizeLabel ?? 14.0,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  Widget _buildTextField() {
+    final inputDecoration = SPCustomInputDecoration(
+        suffixIcon: suffix,
+        prefixIcon: prefix,
+        hintText: placeHolder,
+        hintStyle: hintStyle,
+        backgroundColor: backgroundColor,
+        contentPadding: contentPadding,
+        border: border,
+        isDense: true,
+        expands: true);
+
+    return SizedBox(
+        // remove height  on validation error
+        height: height,
+        child: FormBuilderTextField(
+          name: name,
+          focusNode: focusNode,
+          style: TextStyle(
+            fontSize: fontSize ?? 14.0,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w400,
+          ),
+          readOnly: readOnly,
+          controller: controller,
+          initialValue: initialValue,
+          obscureText: type == AppTextFieldType.password ? obscureText : false,
+          validator: validator,
+          decoration: inputDecoration,
+          onChanged: onChanged,
+          valueTransformer: valueTransformer,
+          textCapitalization: textCapitalization,
+          onEditingComplete: onEditingComplete,
+          maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
+          keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
+        ));
   }
 }

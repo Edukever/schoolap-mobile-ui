@@ -43,6 +43,32 @@ class SPPagination extends StatelessWidget {
     return siblingCount;
   }
 
+  void goToPage(int page) {
+    if (page >= 1 && page <= totalPages) {
+      onPageChanged(page);
+    }
+  }
+
+  Widget buildPageNumber(int pageNumber, BuildContext context) {
+    return GestureDetector(
+      onTap: () => goToPage(pageNumber),
+      child: Container(
+        constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
+        decoration: BoxDecoration(
+          color: currentPage == pageNumber ? AppTheme.of(context).colors.bleu : AppTheme.of(context).colors.bleuLight,
+          borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
+        ),
+        alignment: Alignment.center,
+        margin: const EdgeInsets.symmetric(horizontal: 6.0),
+        child: SPText.title2(
+          pageNumber.toString(),
+          color: currentPage == pageNumber ? AppTheme.of(context).colors.blanc : AppTheme.of(context).colors.grid2,
+          fontWeight: FontWeight.normal,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget itemText(String value) {

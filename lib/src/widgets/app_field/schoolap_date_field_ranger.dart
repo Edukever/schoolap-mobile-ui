@@ -1,4 +1,5 @@
 part of '../widget.dart';
+
 class SPDateFieldRanger<T> extends StatelessWidget {
   final String name;
 
@@ -48,26 +49,37 @@ class SPDateFieldRanger<T> extends StatelessWidget {
 
   final EdgeInsetsGeometry? contentPadding;
 
+  final DatePickerEntryMode initialEntryMode;
+
+  final DateFormat? format;
+  final double? fontSizeLabel;
+  final double? fontSizePlaceHolder;
+
   /// Creates a new instance of `SPTextField`.
-  const SPDateFieldRanger(
-      {super.key,
-      required this.name,
-      required this.placeHolder,
-      this.borderRadius,
-      this.label,
-      this.validator,
-      this.suffix,
-      this.prefix,
-      this.maxLines,
-      this.hintStyle,
-      this.initialValue,
-      this.keyboardType,
-      this.onChanged,
-      this.valueTransformer,
-      required this.firstDate,
-      this.lastDate,
-      this.currentDate,
-      this.contentPadding});
+  const SPDateFieldRanger({
+    super.key,
+    required this.name,
+    required this.placeHolder,
+    this.borderRadius,
+    this.label,
+    this.validator,
+    this.suffix,
+    this.prefix,
+    this.maxLines,
+    this.hintStyle,
+    this.initialValue,
+    this.keyboardType,
+    this.onChanged,
+    this.valueTransformer,
+    required this.firstDate,
+    this.lastDate,
+    this.currentDate,
+    this.contentPadding,
+    this.format,
+    this.fontSizeLabel,
+    this.fontSizePlaceHolder,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +91,8 @@ class SPDateFieldRanger<T> extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               label!,
-              style: const TextStyle(
-                fontSize: 14.0,
+              style: TextStyle(
+                fontSize: fontSizeLabel ?? 14.0,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
               ),
@@ -93,12 +105,22 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           validator: validator,
           currentDate: currentDate,
           initialValue: initialValue,
+          style: TextStyle(
+            fontSize: fontSizeLabel ?? 14.0,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
           onChanged: onChanged,
+          format: format,
           valueTransformer: valueTransformer,
+          initialEntryMode: initialEntryMode,
           decoration: SPCustomInputDecoration(
             hintText: placeHolder,
-            
-            hintStyle: hintStyle,
+            hintStyle: TextStyle(
+              fontSize: fontSizePlaceHolder ?? 14.0,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+            ),
             prefixIcon: prefix,
             suffixIcon: suffix,
             contentPadding: contentPadding,

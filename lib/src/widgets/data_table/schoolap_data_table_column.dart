@@ -47,16 +47,40 @@ class SPDataTableColumn<T> {
   /// The cursor for a mouse pointer when it enters or is hovering over the
   /// heading row.
   ///
-  /// [MaterialStateProperty.resolve] is used for the following [MaterialState]s:
+  /// [WidgetStateProperty.resolve] is used for the following [WidgetState]s:
   ///
-  ///  * [MaterialState.disabled].
+  ///  * [WidgetState.disabled].
   ///
   /// If this is null, then the value of [DataTableThemeData.headingCellCursor]
-  /// is used. If that's null, then [MaterialStateMouseCursor.clickable] is used.
+  /// is used. If that's null, then [WidgetStateMouseCursor.clickable] is used.
   ///
   /// See also:
-  ///  * [MaterialStateMouseCursor], which can be used to create a [MouseCursor].
-  final MaterialStateProperty<MouseCursor?>? mouseCursor;
+  ///  * [WidgetStateMouseCursor], which can be used to create a [MouseCursor].
+  final WidgetStateProperty<MouseCursor?>? mouseCursor;
+
+  /// Called if the cell is long-pressed.
+  ///
+  /// If non-null, tapping the cell will invoke this callback. If
+  /// null (including [onDoubleTap], [onTap], [onTapCancel] and [onTapDown]),
+  /// tapping the cell will attempt to select the row (if
+  /// [DataRow.onSelectChanged] is provided).
+  final void Function(T item, int index)? onLongPress;
+
+  /// Called if the cell is tapped.
+  ///
+  /// If non-null, tapping the cell will call this callback. If
+  /// null (including [onDoubleTap], [onLongPress], [onTapCancel] and [onTapDown]),
+  /// tapping the cell will attempt to select the row (if
+  /// [DataRow.onSelectChanged] is provided).
+  final void Function(T item, int index)? onTap;
+
+  /// Called when the cell is double tapped.
+  ///
+  /// If non-null, tapping the cell will call this callback. If
+  /// null (including [onTap], [onLongPress], [onTapCancel] and [onTapDown]),
+  /// tapping the cell will attempt to select the row (if
+  /// [DataRow.onSelectChanged] is provided).
+  final void Function(T item, int index)? onDoubleTap;
 
   const SPDataTableColumn({
     required this.headerText,
@@ -69,6 +93,9 @@ class SPDataTableColumn<T> {
     this.tooltip,
     this.mouseCursor,
     int Function(T a, T b, bool ascending)? sort,
+    this.onLongPress,
+    this.onTap,
+    this.onDoubleTap,
   }) : _order = sort;
 
   final int Function(T a, T b, bool ascending)? _order;

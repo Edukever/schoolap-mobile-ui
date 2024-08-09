@@ -7,5 +7,6 @@
   },
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
-  "workbench.editor.showTabs": "single"
+  "workbench.editor.showTabs": "single",
+  "editor.wordBasedSuggestions": "matchingDocuments"
 }

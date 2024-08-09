@@ -11,10 +11,10 @@ class SPDataTable<T> extends StatefulWidget {
   final TextAlign textAlign;
   final Color? headerIconColor;
   final bool showCheckboxColumn;
-  final MaterialStateProperty<Color?>? headingRowColor;
+  final WidgetStateProperty<Color?>? headingRowColor;
   final TextStyle? headingTextStyle;
   final EdgeInsets horizontalPadding;
-  final MaterialStateProperty<Color?>? dataRowColor;
+  final WidgetStateProperty<Color?>? dataRowColor;
   final void Function(bool?, T item)? onSelectChanged;
   final List<T> selectedRows;
   final Color? selectedRowColor;
@@ -70,7 +70,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
     final headingTextStyle = widget.headingTextStyle ??
         TextStyle(
           color: blackOrWhite(
-            widget.headingRowColor?.resolve({MaterialState.pressed}) ?? AppTheme.of(context).colors.bleuLight,
+            widget.headingRowColor?.resolve({WidgetState.pressed}) ?? AppTheme.of(context).colors.bleuLight,
           ),
         );
 
@@ -84,9 +84,9 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         headingRowHeight: widget.headingRowHeight,
         showBottomBorder: widget.showBottomBorder,
         showCheckboxColumn: widget.showCheckboxColumn,
-        headingRowColor: widget.headingRowColor ?? MaterialStatePropertyAll(AppTheme.of(context).colors.bleuLight),
+        headingRowColor: widget.headingRowColor ?? WidgetStatePropertyAll(AppTheme.of(context).colors.bleuLight),
         headingTextStyle: headingTextStyle,
-        dataRowColor: widget.dataRowColor ?? const MaterialStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
+        dataRowColor: widget.dataRowColor ?? const WidgetStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
         sortColumnIndex: _currentSortColumn,
         sortAscending: _isAscending,
         columns: widget.columns
@@ -96,9 +96,12 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
                 tooltip: column.tooltip,
                 label: column.headerBuilder ??
                     Expanded(
-                      child: Text(
-                        column.headerText,
-                        textAlign: column.textAlign ?? widget.textAlign,
+                      child: SizedBox(
+                        child: Text(
+                          column.headerText,
+                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, fontFamily: "Poppins"),
+                          textAlign: column.textAlign ?? widget.textAlign,
+                        ),
                       ),
                     ),
                 onSort: column.sortable
@@ -119,7 +122,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
 
           return DataRow(
             selected: widget.showCheckboxColumn ? widget.selectedRows.contains(row) : false,
-            color: MaterialStatePropertyAll(rowColor),
+            color: WidgetStatePropertyAll(rowColor),
             onSelectChanged: widget.showCheckboxColumn ? (value) => widget.onSelectChanged?.call(value, row) : null,
             cells: widget.columns.map<DataCell>((column) {
               final textCell = column.cellText(row, index);
@@ -140,21 +143,31 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
                         );
                       }
                       if ((column.textAlign ?? widget.textAlign) != TextAlign.center) {
-                        return Text(
-                          snapshot.data ?? '',
-                          textAlign: column.textAlign ?? widget.textAlign,
+                        return SizedBox(
+                          child: Text(
+                            snapshot.data ?? '',
+                            textAlign: column.textAlign ?? widget.textAlign,
+                            style: const TextStyle(fontSize: 12, fontFamily: "Poppins"),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         );
                       }
-                      return Center(
+                      return SizedBox(
                         child: Text(
                           snapshot.data ?? '',
                           textAlign: column.textAlign ?? widget.textAlign,
+                          style: const TextStyle(fontSize: 12, fontFamily: "Poppins"),
                           maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       );
                     },
                   ),
                 ),
+                onLongPress: () => column.onLongPress?.call(row, index),
+                onTap: () => column.onTap?.call(row, index),
+                onDoubleTap: () => column.onDoubleTap?.call(row, index),
               );
             }).toList(),
           );
