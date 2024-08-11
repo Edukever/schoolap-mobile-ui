@@ -165,9 +165,9 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
                     },
                   ),
                 ),
-                onLongPress: () => column.onLongPress?.call(row, index),
-                onTap: () => column.onTap?.call(row, index),
-                onDoubleTap: () => column.onDoubleTap?.call(row, index),
+                onLongPress: column.onLongPress == null ? null : () => column.onLongPress?.call(row, index),
+                onTap: column.onTap == null ? null : () => column.onTap?.call(row, index),
+                onDoubleTap: column.onDoubleTap == null ? null : () => column.onDoubleTap?.call(row, index),
               );
             }).toList(),
           );
