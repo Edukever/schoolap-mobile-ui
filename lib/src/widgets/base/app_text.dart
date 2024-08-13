@@ -23,6 +23,7 @@ class SPText extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.level = AppTextLevel.paragraph1,
     this.letterSpacing,
+    this.overflow,
   }) : super(key: key);
 
   const SPText.paragraph1(
@@ -37,6 +38,7 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
+    this.overflow,
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
@@ -52,6 +54,7 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
+    this.overflow,
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
@@ -67,6 +70,7 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
+    this.overflow,
   })  : level = AppTextLevel.title1,
         super(key: key);
 
@@ -82,6 +86,7 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.letterSpacing,
     this.decoration = TextDecoration.none,
+    this.overflow,
   })  : level = AppTextLevel.title2,
         super(key: key);
 
@@ -97,6 +102,7 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
+    this.overflow,
   })  : level = AppTextLevel.title3,
         super(key: key);
 
@@ -112,6 +118,8 @@ class SPText extends StatelessWidget {
   final double? height;
 
   final double? letterSpacing;
+
+  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +143,7 @@ class SPText extends StatelessWidget {
       data,
       style: style.copyWith(color: color, fontSize: fontSize, fontWeight: fontWeight, decoration: decoration, height: height),
       textAlign: textAlign,
-      overflow : TextOverflow.ellipsis,
+      overflow: overflow,
       maxLines: maxLines,
       minFontSize: minFontSize,
       maxFontSize: fontSize ?? style.fontSize ?? 18,
