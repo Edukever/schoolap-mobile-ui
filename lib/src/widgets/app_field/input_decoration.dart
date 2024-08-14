@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class SPCustomInputDecoration extends InputDecoration {
   SPCustomInputDecoration({
-    Widget? suffixIcon,
-    Widget? prefixIcon,
+    super.suffixIcon,
+    super.prefixIcon,
     EdgeInsetsGeometry? contentPadding,
     String? hintText,
     TextStyle? hintStyle,
@@ -11,13 +11,10 @@ class SPCustomInputDecoration extends InputDecoration {
     Color? backgroundColor,
     InputBorder? errorBorder,
     InputBorder? disabledBorder,
-    bool? isDense,
-    bool? expands,
+    super.isDense,
   }) : super(
-          suffixIcon: suffixIcon,
           fillColor: backgroundColor,
           filled: backgroundColor != null,
-          prefixIcon: prefixIcon,
           contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
           hintText: hintText,
           hintStyle: hintStyle ??

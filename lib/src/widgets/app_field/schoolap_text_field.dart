@@ -88,39 +88,70 @@ class SPTextField<T> extends StatelessWidget {
 
   Widget _buildTextField() {
     final inputDecoration = SPCustomInputDecoration(
-        suffixIcon: suffix,
-        prefixIcon: prefix,
-        hintText: placeHolder,
-        hintStyle: hintStyle,
-        backgroundColor: backgroundColor,
-        contentPadding: contentPadding,
-        border: border,
-        isDense: true,
-        expands: true);
+      suffixIcon: suffix,
+      prefixIcon: prefix,
+      hintText: placeHolder,
+      hintStyle: hintStyle,
+      backgroundColor: backgroundColor,
+      contentPadding: contentPadding,
+      border: border,
+    );
 
-    return SizedBox(
-        // remove height  on validation error
-        height: height,
-        child: FormBuilderTextField(
-          name: name,
-          focusNode: focusNode,
-          style: TextStyle(
-            fontSize: fontSize ?? 14.0,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w400,
-          ),
-          readOnly: readOnly,
-          controller: controller,
-          initialValue: initialValue,
-          obscureText: type == AppTextFieldType.password ? obscureText : false,
-          validator: validator,
-          decoration: inputDecoration,
-          onChanged: onChanged,
-          valueTransformer: valueTransformer,
-          textCapitalization: textCapitalization,
-          onEditingComplete: onEditingComplete,
-          maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
-          keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
-        ));
+    return FormBuilderField(
+      name: name,
+      initialValue: initialValue,
+      validator: validator,
+      valueTransformer: valueTransformer,
+      onChanged: onChanged,
+      builder: (field) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: borderRadius ?? BorderRadius.circular(10),
+                border: Border.all(
+                  color: field.hasError ? SPColorsData.defaultColors().rouge : SPColorsData.defaultColors().noir,
+                ),
+              ),
+              child: SizedBox(
+                height: height,
+                child: TextField(
+                  focusNode: focusNode,
+                  style: TextStyle(
+                    fontSize: fontSize ?? 14.0,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w400,
+                  ),
+                  readOnly: readOnly,
+                  controller: controller,
+                  obscureText: type == AppTextFieldType.password ? obscureText : false,
+                  decoration: inputDecoration.copyWith(
+                    border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    disabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                  ),
+                  onChanged: (value) => field.didChange(value),
+                  textCapitalization: textCapitalization,
+                  onEditingComplete: onEditingComplete,
+                  maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
+                  keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
+                ),
+              ),
+            ),
+            if (field.hasError) ...[
+              const SizedBox(height: 5),
+              SPText(
+                field.errorText ?? '',
+                fontSize: 12,
+                color: Colors.red,
+              ),
+            ]
+          ],
+        );
+      },
+    );
   }
 }
