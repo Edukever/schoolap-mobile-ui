@@ -103,6 +103,7 @@ class SPTextField<T> extends StatelessWidget {
       validator: validator,
       valueTransformer: valueTransformer,
       onChanged: onChanged,
+      focusNode: focusNode,
       builder: (field) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
