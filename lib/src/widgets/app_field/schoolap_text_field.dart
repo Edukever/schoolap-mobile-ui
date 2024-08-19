@@ -118,7 +118,7 @@ class SPTextField<T> extends StatelessWidget {
               child: SizedBox(
                 height: height,
                 child: TextFormField(
-                  initialValue: field.value.toString(),
+                  initialValue: field.value,
                   focusNode: focusNode,
                   style: TextStyle(
                     fontSize: fontSize ?? 14.0,
