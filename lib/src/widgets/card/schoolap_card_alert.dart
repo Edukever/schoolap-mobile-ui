@@ -14,6 +14,8 @@ class SPCardAlert extends StatelessWidget {
   final VoidCallback? onTap;
   final double? fontSize;
   final Widget? icon;
+  final int? maxLines;
+  final FontWeight? fontWeight;
 
   const SPCardAlert({
     Key? key,
@@ -23,6 +25,8 @@ class SPCardAlert extends StatelessWidget {
     this.onTap,
     this.fontSize,
     this.icon,
+    this.maxLines,
+    this.fontWeight,
   }) : super(key: key);
 
   @override
@@ -76,8 +80,10 @@ class SPCardAlert extends StatelessWidget {
               child: SPText(
                 title,
                 fontSize: fontSize ?? 14,
+                fontWeight: fontWeight,
                 level: AppTextLevel.paragraph1,
                 color: iconColor,
+                maxLines: maxLines ?? 1,
               ),
             ),
           ],
