@@ -1,13 +1,13 @@
 part of '../widget.dart';
 
 class SPListItem<T> extends Equatable {
-  final String label;
   final String iconPath;
+  final String label;
   final T value;
 
   const SPListItem({
-    required this.label,
     required this.iconPath,
+    required this.label,
     required this.value,
   });
 
@@ -15,7 +15,7 @@ class SPListItem<T> extends Equatable {
   List<Object?> get props => [label, iconPath, value];
 }
 
-class SPPopMenuButton<T> extends StatelessWidget {
+class SPPopMenuButton<T> extends StatefulWidget {
   final String iconPath;
   final Color? iconColor;
   final List<SPListItem<T>> items;
@@ -44,102 +44,112 @@ class SPPopMenuButton<T> extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () async {
-        showPopover(
-          barrierDismissible: barrierDismissible,
-          barrierColor: Colors.transparent,
-          context: context,
-          bodyBuilder: (context) => ListItems<T>(
-            onTap: (value) {
-              Navigator.of(context).pop();
-              handleIconTap?.call(value);
-            },
-            items: items,
-          ),
-          onPop: () => debugPrint('Popover was popped!'),
-          direction: PopoverDirection.bottom,
-          height: height ?? 100,
-          width: width ?? 290,
-          arrowHeight: 0,
-          arrowWidth: 0,
-          arrowDxOffset: arrowDxOffset ?? -140,
-          arrowDyOffset: arrowDyOffset ?? 0,
-          contentDxOffset: contentDxOffset ?? 0,
-          contentDyOffset: contentDyOffset ?? 0,
-        );
-      },
-      icon: SvgPicture.asset(
-        iconPath,
-        colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : null,
-      ),
-    );
-  }
+  State<SPPopMenuButton<T>> createState() => _SPPopMenuButtonState<T>();
 }
 
-class ListItems<T> extends StatelessWidget {
-  final void Function(T)? onTap;
-  final List<SPListItem<T>> items;
+class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
+  final GlobalKey _iconKey = GlobalKey();
+  OverlayEntry? _overlayEntry;
 
-  const ListItems({Key? key, this.onTap, required this.items}) : super(key: key);
+  void _showMenu() {
+    final RenderBox renderBox = _iconKey.currentContext!.findRenderObject() as RenderBox;
+    final Offset offset = renderBox.localToGlobal(Offset.zero);
+    final Size size = renderBox.size;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: List.generate(
-        items.length,
-        (index) => ItemTile<T>(
-          listItem: items[index],
-          middle: index == 1,
-          onTap: () => onTap?.call(items[index].value),
+    _overlayEntry = _createOverlayEntry(offset, size);
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  OverlayEntry _createOverlayEntry(Offset offset, Size size) {
+    double maxWidth = (widget.items.length * 70).toDouble();
+
+    double itemWidth = 70.0; // Adjust based on your design
+    double left = offset.dx;
+
+    if (left + maxWidth > MediaQuery.of(context).size.width) {
+      left = MediaQuery.of(context).size.width - maxWidth - 90.0;
+    }
+
+    return OverlayEntry(
+      builder: (context) => GestureDetector(
+        onTap: () => _removeOverlay(),
+        behavior: HitTestBehavior.translucent,
+        child: Stack(
+          children: [
+            Positioned(
+              left: left + (widget.arrowDxOffset ?? 0),
+              top: offset.dy + size.height + (widget.arrowDyOffset ?? 0),
+              child: Material(
+                elevation: 4.0,
+                borderRadius: BorderRadius.circular(8.0),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                  height: widget.height ?? 75,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: _buildMenuItems(itemWidth),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
-}
 
-class ItemTile<T> extends StatelessWidget {
-  const ItemTile({
-    Key? key,
-    required this.listItem,
-    this.middle = false,
-    this.onTap,
-  }) : super(key: key);
-
-  final SPListItem<T> listItem;
-  final bool middle;
-  final void Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      width: 80,
-      height: 60,
-      decoration: BoxDecoration(
-        border: Border(
-          right: !middle ? BorderSide.none : const BorderSide(color: Colors.grey),
-          left: !middle ? BorderSide.none : const BorderSide(color: Colors.grey),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+  List<Widget> _buildMenuItems(double itemWidth) {
+    return List<Widget>.generate(widget.items.length, (index) {
+      final item = widget.items[index];
+      return Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          if (index != 0) const VerticalDivider(),
           GestureDetector(
-            onTap: onTap,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(listItem.iconPath),
-                const SizedBox(height: 10),
-                SPText.paragraph2(listItem.label),
-              ],
+            onTap: () {
+              widget.handleIconTap?.call(item.value);
+              _removeOverlay();
+            },
+            child: Container(
+              width: itemWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SvgPicture.asset(item.iconPath),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    item.label,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 12.0),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
+      );
+    });
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      key: _iconKey,
+      icon: SvgPicture.asset(
+        widget.iconPath,
+        color: widget.iconColor,
       ),
+      onPressed: _showMenu,
     );
   }
 }
