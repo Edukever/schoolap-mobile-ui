@@ -147,7 +147,7 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
       key: _iconKey,
       icon: SvgPicture.asset(
         widget.iconPath,
-        color: widget.iconColor,
+        colorFilter: widget.iconColor == null ? null : ColorFilter.mode(widget.iconColor!, BlendMode.srcIn),
       ),
       onPressed: _showMenu,
     );
