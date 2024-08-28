@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
@@ -14,10 +17,11 @@ class SPErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Padding(
         padding: EdgeInsets.all(AppTheme.of(context).spacing.big),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Lottie.asset('packages/schoolap_ui/assets/lottiefiles/error.json'),
             const SizedBox(height: 20.0),
@@ -44,6 +48,12 @@ class SPErrorPage extends StatelessWidget {
                 title: 'Retour à la page précédente',
                 backgroundColor: AppTheme.of(context).colors.bleu,
                 onTap: () => Navigator.of(context).pop(),
+              )
+            else if (Platform.isAndroid)
+              SPButtonPrimary(
+                title: 'Sortir',
+                backgroundColor: AppTheme.of(context).colors.bleu,
+                onTap: () => SystemNavigator.pop(),
               ),
             const SizedBox(height: 20),
           ],
