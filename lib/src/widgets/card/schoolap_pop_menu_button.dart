@@ -122,10 +122,11 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
                 children: [
                   SvgPicture.asset(item.iconPath),
                   const SizedBox(height: 4.0),
-                  Text(
+                  AutoSizeText(
                     item.label,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 12.0),
+                    maxLines: 1,
                   ),
                 ],
               ),
