@@ -125,6 +125,7 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
                   AutoSizeText(
                     item.label,
                     textAlign: TextAlign.center,
+                    minFontSize: 10.0,
                     style: const TextStyle(fontSize: 12.0),
                     maxLines: 1,
                   ),
