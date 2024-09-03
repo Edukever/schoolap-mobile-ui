@@ -55,6 +55,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
 
   final double? radius;
 
+  final int? maxLines;
+  final TextAlign? textAlign;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -84,6 +87,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.fontSize,
     this.mainAxisAlignment,
     this.radius,
+    this.maxLines,
+    this.textAlign,
   }) : super(key: key);
 
   @override
@@ -107,6 +112,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
                   color: iconOrTextColor ?? Colors.white,
                   fontSize: fontSize ?? 15.0,
                   fontWeight: fontWeight,
+                  maxLines: maxLines,
+                  textAlign: textAlign,
                 ),
         ),
       ),
