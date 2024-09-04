@@ -9,14 +9,14 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
   final bool canPop;
 
   const SchoolapLandscapeAppBar({
-    Key? key,
+    super.key,
     required this.height,
     this.shadow = false,
     this.leading,
     this.title,
     this.trailing,
     this.canPop = true,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -98,7 +98,6 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
               ),
             ),
           ),
-     
         leading ?? const SizedBox.shrink(),
       ],
     );

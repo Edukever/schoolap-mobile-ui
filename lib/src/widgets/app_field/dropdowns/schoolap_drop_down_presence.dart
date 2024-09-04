@@ -8,9 +8,16 @@ class SPDropDownPresence<T> extends StatelessWidget {
   final String placeHolder;
   final String? label;
   final Widget? prefix;
-  const SPDropDownPresence(
-      {Key? key, required this.name, required this.items, this.onChanged, this.validator, required this.placeHolder, this.label, this.prefix})
-      : super(key: key);
+  const SPDropDownPresence({
+    super.key,
+    required this.name,
+    required this.items,
+    this.onChanged,
+    this.validator,
+    required this.placeHolder,
+    this.label,
+    this.prefix,
+  });
 
   @override
   Widget build(BuildContext context) {

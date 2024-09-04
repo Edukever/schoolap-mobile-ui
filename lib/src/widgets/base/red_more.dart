@@ -9,7 +9,7 @@ enum TrimMode {
 class SPReadMoreText extends StatefulWidget {
   const SPReadMoreText(
     this.data, {
-    Key? key,
+    super.key,
     this.preDataText,
     this.postDataText,
     this.preDataTextStyle,
@@ -33,7 +33,7 @@ class SPReadMoreText extends StatefulWidget {
     this.callback,
     this.onLinkPressed,
     this.linkTextStyle,
-  }) : super(key: key);
+  });
 
   /// Used on TrimMode.Length
   final int trimLength;

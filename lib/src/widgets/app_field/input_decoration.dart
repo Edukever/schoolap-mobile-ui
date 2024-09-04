@@ -5,7 +5,7 @@ class SPCustomInputDecoration extends InputDecoration {
     super.suffixIcon,
     super.prefixIcon,
     EdgeInsetsGeometry? contentPadding,
-    String? hintText,
+    super.hintText,
     TextStyle? hintStyle,
     InputBorder? border,
     Color? backgroundColor,
@@ -16,7 +16,6 @@ class SPCustomInputDecoration extends InputDecoration {
           fillColor: backgroundColor,
           filled: backgroundColor != null,
           contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-          hintText: hintText,
           hintStyle: hintStyle ??
               const TextStyle(
                 fontSize: 13,

@@ -12,7 +12,7 @@ enum AppTextLevel {
 class SPText extends StatelessWidget {
   const SPText(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.fontWeight,
@@ -24,11 +24,11 @@ class SPText extends StatelessWidget {
     this.level = AppTextLevel.paragraph1,
     this.letterSpacing,
     this.overflow,
-  }) : super(key: key);
+  });
 
   const SPText.paragraph1(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.fontWeight,
@@ -39,12 +39,11 @@ class SPText extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.letterSpacing,
     this.overflow,
-  })  : level = AppTextLevel.paragraph1,
-        super(key: key);
+  }) : level = AppTextLevel.paragraph1;
 
   const SPText.paragraph2(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.height,
     this.fontSize,
@@ -55,12 +54,11 @@ class SPText extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.letterSpacing,
     this.overflow,
-  })  : level = AppTextLevel.paragraph2,
-        super(key: key);
+  }) : level = AppTextLevel.paragraph2;
 
   const SPText.title1(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.maxLines,
@@ -71,12 +69,11 @@ class SPText extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.letterSpacing,
     this.overflow,
-  })  : level = AppTextLevel.title1,
-        super(key: key);
+  }) : level = AppTextLevel.title1;
 
   const SPText.title2(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.maxLines,
@@ -87,12 +84,11 @@ class SPText extends StatelessWidget {
     this.letterSpacing,
     this.decoration = TextDecoration.none,
     this.overflow,
-  })  : level = AppTextLevel.title2,
-        super(key: key);
+  }) : level = AppTextLevel.title2;
 
   const SPText.title3(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.maxLines,
@@ -103,8 +99,7 @@ class SPText extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.letterSpacing,
     this.overflow,
-  })  : level = AppTextLevel.title3,
-        super(key: key);
+  }) : level = AppTextLevel.title3;
 
   final String data;
   final AppTextLevel level;

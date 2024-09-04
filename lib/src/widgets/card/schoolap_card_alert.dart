@@ -18,7 +18,7 @@ class SPCardAlert extends StatelessWidget {
   final FontWeight? fontWeight;
 
   const SPCardAlert({
-    Key? key,
+    super.key,
     required this.title,
     this.constraints,
     required this.type,
@@ -27,7 +27,7 @@ class SPCardAlert extends StatelessWidget {
     this.icon,
     this.maxLines,
     this.fontWeight,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

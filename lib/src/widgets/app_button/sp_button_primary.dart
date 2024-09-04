@@ -72,7 +72,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The [outlineBorderColor] parameter can be used to set the outline border color of the button.
   /// The [icon] parameter can be used to set the icon displayed on the button.
   const SPButtonPrimary({
-    Key? key,
+    super.key,
     this.backgroundColor,
     required this.title,
     this.height,
@@ -89,7 +89,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.radius,
     this.maxLines,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

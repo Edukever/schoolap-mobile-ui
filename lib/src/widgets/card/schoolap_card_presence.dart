@@ -1,8 +1,7 @@
 part of '../widget.dart';
 
 enum SPCardPresenceType implements Comparable<SPCardPresenceType> {
-  presence(
-      backgroundColor: Color(0xFFDDF3D6), subtitleColor: Color(0xFF1EA951)),
+  presence(backgroundColor: Color(0xFFDDF3D6), subtitleColor: Color(0xFF1EA951)),
   absence(backgroundColor: Color(0xFFFFE1E1), subtitleColor: Color(0xFFFF4F4F));
 
   const SPCardPresenceType({
@@ -14,8 +13,7 @@ enum SPCardPresenceType implements Comparable<SPCardPresenceType> {
   final Color subtitleColor;
 
   @override
-  int compareTo(SPCardPresenceType other) =>
-      toString().compareTo(other.toString());
+  int compareTo(SPCardPresenceType other) => toString().compareTo(other.toString());
 }
 
 class SchoolapCardPresence extends StatelessWidget {
@@ -24,11 +22,11 @@ class SchoolapCardPresence extends StatelessWidget {
   final VoidCallback? onTap;
 
   const SchoolapCardPresence({
-    Key? key,
+    super.key,
     required this.type,
     required this.label,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +66,7 @@ class SchoolapCardPresence extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-                alignment: Alignment.bottomRight,
-                child: DotContainer(iconOrTextColor: subtitleColor)),
+            Align(alignment: Alignment.bottomRight, child: DotContainer(iconOrTextColor: subtitleColor)),
             Container(
               margin: const EdgeInsets.only(top: 10),
               child: Column(

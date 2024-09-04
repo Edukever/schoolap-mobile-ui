@@ -29,7 +29,7 @@ class SPPopMenuButton<T> extends StatefulWidget {
   final double? width;
 
   const SPPopMenuButton({
-    Key? key,
+    super.key,
     required this.iconPath,
     required this.items,
     this.iconColor,
@@ -41,7 +41,7 @@ class SPPopMenuButton<T> extends StatefulWidget {
     this.contentDyOffset,
     this.height,
     this.width,
-  }) : super(key: key);
+  });
 
   @override
   State<SPPopMenuButton<T>> createState() => _SPPopMenuButtonState<T>();

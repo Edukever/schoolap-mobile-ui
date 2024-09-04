@@ -5,7 +5,7 @@ typedef ValidatorDate = Validator<DateTime>?;
 enum AppTextFieldType { password }
 
 /// A custom text field widget for the app.
-class SPTextField<T> extends StatelessWidget {
+class SPTextField<T> extends StatefulWidget {
   final String name;
   final String placeHolder;
   final BorderRadius? borderRadius;
@@ -34,7 +34,7 @@ class SPTextField<T> extends StatelessWidget {
   final InputBorder? border;
 
   const SPTextField({
-    Key? key,
+    super.key,
     required this.name,
     required this.placeHolder,
     this.borderRadius,
@@ -61,15 +61,33 @@ class SPTextField<T> extends StatelessWidget {
     this.backgroundColor,
     this.onEditingComplete,
     this.focusNode,
-  })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
-        super(key: key);
+  }) : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password');
+
+  @override
+  State<SPTextField<T>> createState() => _SPTextFieldState<T>();
+}
+
+class _SPTextFieldState<T> extends State<SPTextField<T>> {
+  late final TextEditingController textEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    textEditingController = widget.controller ?? TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) _buildLabel(),
+        if (widget.label != null) _buildLabel(),
         _buildTextField(),
       ],
     );
@@ -79,8 +97,8 @@ class SPTextField<T> extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
-        label!,
-        fontSize: fontSizeLabel ?? 14.0,
+        widget.label!,
+        fontSize: widget.fontSizeLabel ?? 14.0,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -88,46 +106,49 @@ class SPTextField<T> extends StatelessWidget {
 
   Widget _buildTextField() {
     final inputDecoration = SPCustomInputDecoration(
-      suffixIcon: suffix,
-      prefixIcon: prefix,
-      hintText: placeHolder,
-      hintStyle: hintStyle,
-      backgroundColor: backgroundColor,
-      contentPadding: contentPadding,
-      border: border,
+      suffixIcon: widget.suffix,
+      prefixIcon: widget.prefix,
+      hintText: widget.placeHolder,
+      hintStyle: widget.hintStyle,
+      backgroundColor: widget.backgroundColor,
+      contentPadding: widget.contentPadding,
+      border: widget.border,
     );
 
     return FormBuilderField(
-      name: name,
-      initialValue: initialValue,
-      validator: validator,
-      valueTransformer: valueTransformer,
-      onChanged: onChanged,
-      focusNode: focusNode,
+      name: widget.name,
+      initialValue: widget.initialValue,
+      validator: widget.validator,
+      valueTransformer: widget.valueTransformer,
+      onChanged: (value) {
+        if (value is String) textEditingController.text = value;
+        widget.onChanged?.call(value);
+      },
+      onReset: () => textEditingController.clear(),
+      focusNode: widget.focusNode,
       builder: (field) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: borderRadius ?? BorderRadius.circular(10),
+                borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
                 border: Border.all(
                   color: field.hasError ? SPColorsData.defaultColors().rouge : SPColorsData.defaultColors().noir,
                 ),
               ),
               child: SizedBox(
-                height: height,
-                child: TextFormField(
-                  initialValue: field.value,
-                  focusNode: focusNode,
+                height: widget.height,
+                child: TextField(
+                  focusNode: widget.focusNode,
                   style: TextStyle(
-                    fontSize: fontSize ?? 14.0,
+                    fontSize: widget.fontSize ?? 14.0,
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w400,
                   ),
-                  readOnly: readOnly,
-                  controller: controller,
-                  obscureText: type == AppTextFieldType.password ? obscureText : false,
+                  readOnly: widget.readOnly,
+                  controller: textEditingController,
+                  obscureText: widget.type == AppTextFieldType.password ? widget.obscureText : false,
                   decoration: inputDecoration.copyWith(
                     border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
                     enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
@@ -136,10 +157,10 @@ class SPTextField<T> extends StatelessWidget {
                     disabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
                   ),
                   onChanged: (value) => field.didChange(value),
-                  textCapitalization: textCapitalization,
-                  onEditingComplete: onEditingComplete,
-                  maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
-                  keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
+                  textCapitalization: widget.textCapitalization,
+                  onEditingComplete: widget.onEditingComplete,
+                  maxLines: widget.type == AppTextFieldType.password ? 1 : widget.maxLines ?? 1,
+                  keyboardType: widget.type == AppTextFieldType.password ? TextInputType.text : widget.keyboardType,
                 ),
               ),
             ),
