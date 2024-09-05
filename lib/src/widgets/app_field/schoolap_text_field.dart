@@ -69,16 +69,28 @@ class SPTextField<T> extends StatefulWidget {
 
 class _SPTextFieldState<T> extends State<SPTextField<T>> {
   late final TextEditingController textEditingController;
+  late final FocusNode focusNode;
+  bool hasFocus = false;
 
   @override
   void initState() {
     super.initState();
     textEditingController = widget.controller ?? TextEditingController(text: widget.initialValue);
+    focusNode = widget.focusNode ?? FocusNode();
+
+    focusNode.addListener(() {
+      if (mounted) {
+        setState(() {
+          hasFocus = focusNode.hasFocus;
+        });
+      }
+    });
   }
 
   @override
   void dispose() {
     textEditingController.dispose();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -125,7 +137,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
         widget.onChanged?.call(value);
       },
       onReset: () => textEditingController.clear(),
-      focusNode: widget.focusNode,
+      focusNode: focusNode,
       builder: (field) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,13 +146,14 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
               decoration: BoxDecoration(
                 borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
                 border: Border.all(
-                  color: field.hasError ? SPColorsData.defaultColors().rouge : SPColorsData.defaultColors().grid2,
+                  color:
+                      field.hasError ? SPColorsData.defaultColors().rouge : (hasFocus ? SPColorsData.defaultColors().noir : SPColorsData.defaultColors().grid2),
                 ),
               ),
               child: SizedBox(
                 height: widget.height,
                 child: TextField(
-                  focusNode: widget.focusNode,
+                  focusNode: focusNode,
                   style: TextStyle(
                     fontSize: widget.fontSize ?? 14.0,
                     fontFamily: "Poppins",
