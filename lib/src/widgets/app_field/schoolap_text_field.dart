@@ -134,7 +134,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
               decoration: BoxDecoration(
                 borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
                 border: Border.all(
-                  color: field.hasError ? SPColorsData.defaultColors().rouge : SPColorsData.defaultColors().noir,
+                  color: field.hasError ? SPColorsData.defaultColors().rouge : SPColorsData.defaultColors().grid2,
                 ),
               ),
               child: SizedBox(
