@@ -6,7 +6,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   final String Function(T) getName;
   final R Function(T) getValue;
   final OnChanged<R>? onChanged;
-  final Validator<Object>? validator;
+  final Validator<R?>? validator;
   final String placeHolder;
   final String? label;
   final Widget? prefix;
