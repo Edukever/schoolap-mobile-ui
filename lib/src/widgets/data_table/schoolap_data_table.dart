@@ -23,6 +23,7 @@ class SPDataTable<T> extends StatefulWidget {
   final double? headingRowHeight;
   final double dataRowMinHeight;
   final double dataRowMaxHeight;
+  final void Function(bool?)? onSelectAll;
 
   const SPDataTable({
     super.key,
@@ -43,6 +44,7 @@ class SPDataTable<T> extends StatefulWidget {
     this.headingRowHeight = 35.0,
     this.dataRowMinHeight = 10.0,
     this.dataRowMaxHeight = 36.0,
+    this.onSelectAll,
   });
 
   @override
@@ -79,6 +81,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         iconTheme: Theme.of(context).iconTheme.copyWith(color: widget.headerIconColor ?? headingTextStyle.color),
       ),
       child: DataTable(
+        onSelectAll: widget.onSelectAll,
         dataRowMinHeight: widget.dataRowMinHeight,
         dataRowMaxHeight: widget.dataRowMaxHeight,
         headingRowHeight: widget.headingRowHeight,
