@@ -32,6 +32,7 @@ class SPTextField<T> extends StatefulWidget {
   final double? height;
   final EdgeInsets? contentPadding;
   final InputBorder? border;
+  final Color? borderColor;
 
   const SPTextField({
     super.key,
@@ -61,6 +62,7 @@ class SPTextField<T> extends StatefulWidget {
     this.backgroundColor,
     this.onEditingComplete,
     this.focusNode,
+    this.borderColor,
   }) : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password');
 
   @override
@@ -139,16 +141,20 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       onReset: () => textEditingController.clear(),
       focusNode: focusNode,
       builder: (field) {
+        final containerBorderColor = switch (field.hasError) {
+          true => SPColorsData.defaultColors().rouge,
+          false => switch (hasFocus) {
+              true => SPColorsData.defaultColors().noir,
+              false => (widget.borderColor ?? SPColorsData.defaultColors().grid2),
+            },
+        };
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               decoration: BoxDecoration(
                 borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
-                border: Border.all(
-                  color:
-                      field.hasError ? SPColorsData.defaultColors().rouge : (hasFocus ? SPColorsData.defaultColors().noir : SPColorsData.defaultColors().grid2),
-                ),
+                border: Border.all(color: containerBorderColor),
               ),
               child: SizedBox(
                 height: widget.height,
