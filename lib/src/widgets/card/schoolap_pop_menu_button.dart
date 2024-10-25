@@ -77,7 +77,7 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
         child: Stack(
           children: [
             Positioned(
-              left: left + (widget.arrowDxOffset ?? 0),
+              left: left + (widget.arrowDxOffset ?? (MediaQuery.of(context).orientation == Orientation.landscape ? -20.0 : 0)),
               top: offset.dy + size.height + (widget.arrowDyOffset ?? 0),
               child: Material(
                 elevation: 4.0,
