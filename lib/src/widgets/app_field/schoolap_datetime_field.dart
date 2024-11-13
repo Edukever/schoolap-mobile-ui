@@ -69,6 +69,8 @@ class SPDateTimeField<T> extends StatelessWidget {
 
   final double? height;
 
+  final TextStyle style;
+
   const SPDateTimeField({
     super.key,
     required this.name,
@@ -97,6 +99,7 @@ class SPDateTimeField<T> extends StatelessWidget {
     this.initialDatePickerMode = DatePickerMode.day,
     this.size,
     this.height,
+    this.style = const TextStyle(),
   });
 
   @override
@@ -126,7 +129,7 @@ class SPDateTimeField<T> extends StatelessWidget {
             initialValue: initialValue,
             initialDate: initialDate,
             firstDate: firstDate,
-            style: TextStyle(
+            style: style.copyWith(
               fontSize: size ?? 14.0,
               fontFamily: 'Poppins',
             ),
