@@ -54,6 +54,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
   final DateFormat? format;
   final double? fontSizeLabel;
   final double? fontSizePlaceHolder;
+  final TextStyle style;
 
   /// Creates a new instance of `SPTextField`.
   const SPDateFieldRanger({
@@ -79,6 +80,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
     this.fontSizeLabel,
     this.fontSizePlaceHolder,
     this.initialEntryMode = DatePickerEntryMode.calendar,
+    this.style = const TextStyle(),
   });
 
   @override
@@ -105,7 +107,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           validator: validator,
           currentDate: currentDate,
           initialValue: initialValue,
-          style: TextStyle(
+          style: style.copyWith(
             fontSize: fontSizeLabel ?? 14.0,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
