@@ -33,6 +33,7 @@ class SPTextField<T> extends StatefulWidget {
   final EdgeInsets? contentPadding;
   final InputBorder? border;
   final Color? borderColor;
+  final List<TextInputFormatter>? inputFormatters;
 
   const SPTextField({
     super.key,
@@ -63,6 +64,7 @@ class SPTextField<T> extends StatefulWidget {
     this.onEditingComplete,
     this.focusNode,
     this.borderColor,
+    this.inputFormatters,
   }) : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password');
 
   @override
@@ -135,7 +137,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       validator: widget.validator,
       valueTransformer: widget.valueTransformer,
       onChanged: (value) {
-        if (value is String) textEditingController.text = value;
+        if (value is String && textEditingController.text != value) textEditingController.text = value;
         widget.onChanged?.call(value);
       },
       onReset: () => textEditingController.clear(),
@@ -180,6 +182,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
                   onEditingComplete: widget.onEditingComplete,
                   maxLines: widget.type == AppTextFieldType.password ? 1 : widget.maxLines ?? 1,
                   keyboardType: widget.type == AppTextFieldType.password ? TextInputType.text : widget.keyboardType,
+                  inputFormatters: widget.inputFormatters,
                 ),
               ),
             ),
