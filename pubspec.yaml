@@ -1,6 +1,6 @@
 name: schoolap_ui
 description: UI Kits for Schoolap Mobile Apps
-version: 0.1.4
+version: 0.1.5
 homepage: "https://github.com/Edukever/schoolap-mobile-ui"
 
 environment:
