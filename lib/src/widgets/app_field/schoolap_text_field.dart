@@ -34,6 +34,7 @@ class SPTextField<T> extends StatefulWidget {
   final InputBorder? border;
   final Color? borderColor;
   final List<TextInputFormatter>? inputFormatters;
+  final void Function()? onTap;
 
   const SPTextField({
     super.key,
@@ -65,6 +66,7 @@ class SPTextField<T> extends StatefulWidget {
     this.focusNode,
     this.borderColor,
     this.inputFormatters,
+    this.onTap,
   }) : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password');
 
   @override
@@ -161,6 +163,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
               child: SizedBox(
                 height: widget.height,
                 child: TextField(
+                  onTap: widget.onTap,
                   focusNode: focusNode,
                   style: TextStyle(
                     fontSize: widget.fontSize ?? 14.0,
