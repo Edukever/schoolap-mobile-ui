@@ -110,6 +110,7 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
         children: [
           if (index != 0) const VerticalDivider(),
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
               widget.handleIconTap?.call(item.value);
               _removeOverlay();
