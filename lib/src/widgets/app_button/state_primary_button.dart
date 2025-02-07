@@ -54,8 +54,6 @@ class SPButtonStatePrimary extends StatelessWidget {
           width: width,
           onTap: onPressed,
         );
-      default:
-        return Container();
     }
   }
 }

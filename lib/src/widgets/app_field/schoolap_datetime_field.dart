@@ -94,7 +94,7 @@ class SPDateTimeField<T> extends StatelessWidget {
     this.initialValue,
     this.inputType = InputType.date,
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
-    this.initialEntryMode = DatePickerEntryMode.input,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
     this.timePickerInitialEntryMode = TimePickerEntryMode.input,
     this.initialDatePickerMode = DatePickerMode.day,
     this.size,

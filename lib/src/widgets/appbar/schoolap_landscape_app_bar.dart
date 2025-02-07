@@ -84,7 +84,7 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
               width: 45,
               height: 45,
               decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withAlpha((255 * 0.2).toInt()),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),

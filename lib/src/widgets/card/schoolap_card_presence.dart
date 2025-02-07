@@ -45,11 +45,6 @@ class SchoolapCardPresence extends StatelessWidget {
         subtitleColor = SPCardPresenceType.absence.subtitleColor;
         title = "Absence";
         break;
-      default:
-        backgroundColor = Colors.transparent;
-        subtitleColor = Colors.black;
-        title = "";
-        break;
     }
 
     return SPCard(

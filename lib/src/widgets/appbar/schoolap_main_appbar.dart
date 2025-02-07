@@ -75,7 +75,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                         const Spacer(),
                         if (showNotificationIcon)
                           Badge(
-                            backgroundColor: AppTheme.of(context).colors.blanc.withOpacity(.7),
+                            backgroundColor: AppTheme.of(context).colors.blanc.withAlpha((255 * 0.7).toInt()),
                             label: Text(
                               badgeLabel ?? '',
                               style: TextStyle(color: AppTheme.of(context).colors.bleu),
@@ -86,7 +86,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                               iconSize: 25.0,
                               height: 40,
                               width: 40,
-                              filledColor: AppTheme.of(context).colors.blanc.withOpacity(0.2),
+                              filledColor: AppTheme.of(context).colors.blanc.withAlpha((255 * 0.2).toInt()),
                               shape: ButtonIconShape.circle,
                               showBadge: false,
                               onPressed: onNotificationTap,

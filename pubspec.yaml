@@ -1,6 +1,6 @@
 name: schoolap_ui
 description: UI Kits for Schoolap Mobile Apps
-version: 0.1.6
+version: 0.1.7
 homepage: "https://github.com/Edukever/schoolap-mobile-ui"
 
 environment:
@@ -9,8 +9,8 @@ environment:
 
 dependencies:
   auto_size_text: ^3.0.0
-  dropdown_button2: ^2.3.9
-  equatable: ^2.0.5
+  dropdown_button2: ">=2.3.9"
+  equatable: ">=2.0.5"
   flutter:
     sdk: flutter
   flutter_form_builder: ">=9.1.1"

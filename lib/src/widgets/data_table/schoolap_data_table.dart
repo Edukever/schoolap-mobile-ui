@@ -121,7 +121,8 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         rows: rows.asMap().entries.map((entry) {
           final index = entry.key;
           final row = entry.value;
-          final rowColor = widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.bleu.withOpacity(0.3)) : null;
+          final rowColor =
+              widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.bleu.withAlpha((255 * 0.3).toInt())) : null;
 
           return DataRow(
             selected: widget.showCheckboxColumn ? widget.selectedRows.contains(row) : false,
