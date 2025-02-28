@@ -9,6 +9,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final bool shadow;
   final VoidCallback? onNotificationTap;
+  final BorderRadiusGeometry? borderRadius;
 
   const SPMainAppbar({
     super.key,
@@ -20,6 +21,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.shadow = false,
     this.onNotificationTap,
+    this.borderRadius,
   });
 
   @override
@@ -32,7 +34,7 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         decoration: BoxDecoration(
           color: AppTheme.of(context).colors.bleu,
-          borderRadius: BorderRadius.only(
+          borderRadius:  borderRadius ?? BorderRadius.only(
             bottomLeft: AppTheme.of(context).radius.big,
             bottomRight: AppTheme.of(context).radius.big,
           ),
