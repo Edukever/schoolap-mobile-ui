@@ -94,9 +94,60 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
   }
 
   @override
+  void didUpdateWidget(SPTextField<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    
+    // Handle changes to the controller
+    if (widget.controller != null && widget.controller != oldWidget.controller) {
+      // Dispose the old controller if we created it
+      if (oldWidget.controller == null) {
+        textEditingController.dispose();
+      }
+      
+      // Update to the new controller
+      textEditingController = widget.controller!;
+    } else if (widget.controller == null && oldWidget.controller != null) {
+      // If controller was removed, create a new one
+      textEditingController = TextEditingController(text: widget.initialValue);
+    } else if (widget.initialValue != oldWidget.initialValue && widget.controller == null) {
+      // If initialValue changed and we're using our own controller, update the text
+      textEditingController.text = widget.initialValue ?? '';
+    }
+    
+    // Handle changes to the focus node
+    if (widget.focusNode != oldWidget.focusNode) {
+      // Remove listener from old focus node
+      if (oldWidget.focusNode == null) {
+        focusNode.removeListener(() {});
+        focusNode.dispose();
+      }
+      
+      // Update to the new focus node
+      focusNode = widget.focusNode ?? FocusNode();
+      
+      // Add listener to new focus node
+      focusNode.addListener(() {
+        if (mounted) {
+          setState(() {
+            hasFocus = focusNode.hasFocus;
+          });
+        }
+      });
+    }
+  }
+
+  @override
   void dispose() {
-    textEditingController.dispose();
-    focusNode.dispose();
+    // Only dispose the controller if we created it
+    if (widget.controller == null) {
+      textEditingController.dispose();
+    }
+    
+    // Only dispose the focus node if we created it
+    if (widget.focusNode == null) {
+      focusNode.dispose();
+    }
+    
     super.dispose();
   }
 
