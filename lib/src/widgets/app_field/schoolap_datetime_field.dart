@@ -69,6 +69,8 @@ class SPDateTimeField<T> extends StatelessWidget {
 
   final double? height;
 
+  final TextStyle style;
+
   const SPDateTimeField({
     super.key,
     required this.name,
@@ -93,10 +95,11 @@ class SPDateTimeField<T> extends StatelessWidget {
     this.inputType = InputType.date,
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.initialEntryMode = DatePickerEntryMode.calendar,
-    this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
+    this.timePickerInitialEntryMode = TimePickerEntryMode.input,
     this.initialDatePickerMode = DatePickerMode.day,
     this.size,
     this.height,
+    this.style = const TextStyle(),
   });
 
   @override
@@ -118,29 +121,28 @@ class SPDateTimeField<T> extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-height: height,
-
-child: FormBuilderDateTimePicker(
-          focusNode: focusNode,
-          name: name,
-          initialValue: initialValue,
-          initialDate: initialDate,
-          firstDate: firstDate,
-          style: TextStyle(
-            fontSize: size ?? 14.0,
-            fontFamily: 'Poppins',
-          ),
-          lastDate: lastDate,
-          validator: validator,
-          inputType: inputType,
-          decoration: inputDecoration,
-          format: dateFormat,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          controller: controller,
-          initialEntryMode: initialEntryMode,
-          timePickerInitialEntryMode: timePickerInitialEntryMode,
+        SizedBox(
+          height: height,
+          child: FormBuilderDateTimePicker(
+            focusNode: focusNode,
+            name: name,
+            initialValue: initialValue,
+            initialDate: initialDate,
+            firstDate: firstDate,
+            style: style.copyWith(
+              fontSize: size ?? 14.0,
+              fontFamily: 'Poppins',
+            ),
+            lastDate: lastDate,
+            validator: validator,
+            inputType: inputType,
+            decoration: inputDecoration,
+            format: dateFormat,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            controller: controller,
+            initialEntryMode: initialEntryMode,
+            timePickerInitialEntryMode: timePickerInitialEntryMode,
             initialDatePickerMode: initialDatePickerMode,
           ),
         ),

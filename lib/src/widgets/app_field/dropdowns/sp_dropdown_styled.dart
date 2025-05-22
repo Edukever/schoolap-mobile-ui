@@ -6,7 +6,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   final String Function(T) getName;
   final R Function(T) getValue;
   final OnChanged<R>? onChanged;
-  final Validator<Object>? validator;
+  final Validator<R?>? validator;
   final String placeHolder;
   final String? label;
   final Widget? prefix;
@@ -115,7 +115,7 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
       hint: SPText(
         placeHolder,
         fontSize: fontSizePlaceHolder ?? 14,
-        color: Colors.grey.withOpacity(0.4),
+        color: Colors.grey.withAlpha((255 * 0.4).toInt()),
       ),
       onChanged: (value) {
         state.didChange(value);

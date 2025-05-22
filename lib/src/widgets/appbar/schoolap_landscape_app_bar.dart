@@ -7,16 +7,18 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
   final Widget? title;
   final Widget? trailing;
   final bool canPop;
+  final Color? backgroundColor;
 
   const SchoolapLandscapeAppBar({
-    Key? key,
+    super.key,
     required this.height,
     this.shadow = false,
     this.leading,
     this.title,
     this.trailing,
     this.canPop = true,
-  }) : super(key: key);
+    this.backgroundColor,
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -28,7 +30,7 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          color: AppTheme.of(context).colors.bleu,
+          color: backgroundColor ?? AppTheme.of(context).colors.bleu,
           borderRadius: BorderRadius.only(
             bottomLeft: AppTheme.of(context).radius.regular,
             bottomRight: AppTheme.of(context).radius.regular,
@@ -82,7 +84,7 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
               width: 45,
               height: 45,
               decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withAlpha((255 * 0.2).toInt()),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
@@ -98,7 +100,6 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
               ),
             ),
           ),
-     
         leading ?? const SizedBox.shrink(),
       ],
     );

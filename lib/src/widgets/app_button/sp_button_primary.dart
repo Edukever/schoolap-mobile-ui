@@ -55,6 +55,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
 
   final double? radius;
 
+  final int? maxLines;
+  final TextAlign? textAlign;
+
   /// Creates a primary button widget.
   ///
   /// The [title] parameter is required.
@@ -69,7 +72,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
   /// The [outlineBorderColor] parameter can be used to set the outline border color of the button.
   /// The [icon] parameter can be used to set the icon displayed on the button.
   const SPButtonPrimary({
-    Key? key,
+    super.key,
     this.backgroundColor,
     required this.title,
     this.height,
@@ -84,7 +87,9 @@ class SPButtonPrimary<T> extends StatelessWidget {
     this.fontSize,
     this.mainAxisAlignment,
     this.radius,
-  }) : super(key: key);
+    this.maxLines,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +112,8 @@ class SPButtonPrimary<T> extends StatelessWidget {
                   color: iconOrTextColor ?? Colors.white,
                   fontSize: fontSize ?? 15.0,
                   fontWeight: fontWeight,
+                  maxLines: maxLines,
+                  textAlign: textAlign,
                 ),
         ),
       ),

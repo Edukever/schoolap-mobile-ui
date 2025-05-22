@@ -23,6 +23,7 @@ class SPDataTable<T> extends StatefulWidget {
   final double? headingRowHeight;
   final double dataRowMinHeight;
   final double dataRowMaxHeight;
+  final void Function(bool?)? onSelectAll;
 
   const SPDataTable({
     super.key,
@@ -43,6 +44,7 @@ class SPDataTable<T> extends StatefulWidget {
     this.headingRowHeight = 35.0,
     this.dataRowMinHeight = 10.0,
     this.dataRowMaxHeight = 36.0,
+    this.onSelectAll,
   });
 
   @override
@@ -79,6 +81,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         iconTheme: Theme.of(context).iconTheme.copyWith(color: widget.headerIconColor ?? headingTextStyle.color),
       ),
       child: DataTable(
+        onSelectAll: widget.onSelectAll,
         dataRowMinHeight: widget.dataRowMinHeight,
         dataRowMaxHeight: widget.dataRowMaxHeight,
         headingRowHeight: widget.headingRowHeight,
@@ -118,7 +121,8 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         rows: rows.asMap().entries.map((entry) {
           final index = entry.key;
           final row = entry.value;
-          final rowColor = widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.bleu.withOpacity(0.3)) : null;
+          final rowColor =
+              widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.bleu.withAlpha((255 * 0.3).toInt())) : null;
 
           return DataRow(
             selected: widget.showCheckboxColumn ? widget.selectedRows.contains(row) : false,
@@ -165,9 +169,9 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
                     },
                   ),
                 ),
-                onLongPress: () => column.onLongPress?.call(row, index),
-                onTap: () => column.onTap?.call(row, index),
-                onDoubleTap: () => column.onDoubleTap?.call(row, index),
+                onLongPress: column.onLongPress == null ? null : () => column.onLongPress?.call(row, index),
+                onTap: column.onTap == null ? null : () => column.onTap?.call(row, index),
+                onDoubleTap: column.onDoubleTap == null ? null : () => column.onDoubleTap?.call(row, index),
               );
             }).toList(),
           );

@@ -5,8 +5,16 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? titleWidget;
   final bool hidePop;
+  final Color? backgroundColor;
 
-  const SPAppBar({super.key, this.height = 80, required this.title, this.titleWidget, this.hidePop = false});
+  const SPAppBar({
+    super.key,
+    this.height = 80,
+    required this.title,
+    this.titleWidget,
+    this.hidePop = false,
+    this.backgroundColor,
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -19,7 +27,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: preferredSize,
       child: Container(
         decoration: BoxDecoration(
-          color: AppTheme.of(context).colors.bleu,
+          color: backgroundColor ?? AppTheme.of(context).colors.bleu,
           borderRadius: BorderRadius.only(
             bottomLeft: AppTheme.of(context).radius.big,
             bottomRight: AppTheme.of(context).radius.big,

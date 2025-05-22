@@ -29,7 +29,7 @@ class SPButtonIcon extends StatelessWidget {
   final Function()? onPressed;
 
   const SPButtonIcon({
-    Key? key,
+    super.key,
     required this.iconData,
     this.onPressed,
     this.shape,
@@ -46,8 +46,7 @@ class SPButtonIcon extends StatelessWidget {
     this.badgeColor,
   })  : assert(
             shape != ButtonIconShape.outlined || outlinedColor != null, 'Invalid configuration: outlinedColor should be provided when shape is only outlined.'),
-        assert(shape != ButtonIconShape.square || hasShadow != null, 'Invalid configuration: hasShadow should be provided when shape is only square.'),
-        super(key: key);
+        assert(shape != ButtonIconShape.square || hasShadow != null, 'Invalid configuration: hasShadow should be provided when shape is only square.');
 
   @override
   Widget build(BuildContext context) {

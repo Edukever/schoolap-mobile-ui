@@ -8,7 +8,7 @@ class AppIconsData {
   static const String role = "packages/schoolap_ui/assets/icons/role.svg";
   static const String classe = "packages/schoolap_ui/assets/icons/classe.svg";
   static const String modifier = "packages/schoolap_ui/assets/icons/modifier.svg";
-  static const String detail = "packages/schoolap_ui/assets/icons/detail.svg";
+  static const String detail = "packages/schoolap_ui/assets/icons/note.svg";
   static const String archiver = "packages/schoolap_ui/assets/icons/archiver.svg";
   static const String rechercher = "packages/schoolap_ui/assets/icons/rechercher.svg";
   static const String absent = "packages/schoolap_ui/assets/icons/absent.svg";

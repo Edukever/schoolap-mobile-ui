@@ -1,4 +1,4 @@
-library schoolap_ui;
+library;
 
 export 'src/theme/theme.dart';
 export 'src/theme/app_material_theme.dart';

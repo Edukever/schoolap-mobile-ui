@@ -12,10 +12,21 @@ class SPChip extends StatelessWidget {
   final Color? backgroundColor;
   final MainAxisAlignment? mainAxisAlignment;
   final double? fontSize;
+  final FontWeight? fontWeight;
 
-  const SPChip(
-      {super.key, required this.label, this.width, this.height, this.iconOrTextColor, this.appChipType = AppChipType.none, this.icon, this.backgroundColor, this.mainAxisAlignment, this.fontSize})
-      : assert(
+  const SPChip({
+    super.key,
+    required this.label,
+    this.width,
+    this.height,
+    this.iconOrTextColor,
+    this.appChipType = AppChipType.none,
+    this.icon,
+    this.backgroundColor,
+    this.mainAxisAlignment,
+    this.fontSize,
+    this.fontWeight,
+  }) : assert(
           appChipType != AppChipType.icon || icon != null,
           'Invalid configuration: icon should be provided when appChipType is only icon.',
         );
@@ -62,6 +73,7 @@ class SPChip extends StatelessWidget {
           label,
           color: iconOrTextColor ?? Colors.white,
           fontSize: fontSize ?? 14,
+          fontWeight: fontWeight,
         ),
       ),
     );

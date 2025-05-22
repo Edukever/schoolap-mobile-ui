@@ -71,13 +71,19 @@ class SPPagination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget itemText(String value) {
-      return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 6.0),
-        child: SPText.title2(
-          value.toString(),
-          color: AppTheme.of(context).colors.grid2,
-          fontWeight: FontWeight.normal,
+    Widget itemText(
+      String value, {
+      VoidCallback? onTap,
+    }) {
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 9.0),
+          child: SPText.title2(
+            value.toString(),
+            color: AppTheme.of(context).colors.grid2,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       );
     }
@@ -102,7 +108,10 @@ class SPPagination extends StatelessWidget {
                 ...List.generate(siblingLength, (index) => currentPage - index - 1).reversed.map((index) {
                   if (index < 1) return const SizedBox();
                   if (index > totalPages) return const SizedBox();
-                  return itemText(index.toString());
+                  return itemText(
+                    index.toString(),
+                    onTap: () => onPageChanged(index),
+                  );
                 }),
                 Container(
                   constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
@@ -121,14 +130,22 @@ class SPPagination extends StatelessWidget {
                 ...List.generate(siblingLength, (index) => currentPage + index + 1).map((index) {
                   if (index < 1) return const SizedBox();
                   if (index > totalPages) return const SizedBox();
-                  return itemText(index.toString());
+                  return itemText(
+                    index.toString(),
+                    onTap: () => onPageChanged(index),
+                  );
                 }),
                 if (showRightEllipsis) itemText('...'),
               ],
             );
           }
 
-          if (isBoundary(index) && isNotSibling(index)) return itemText(index.toString());
+          if (isBoundary(index) && isNotSibling(index)) {
+            return itemText(
+              index.toString(),
+              onTap: () => onPageChanged(math.min(index + 1, totalPages)),
+            );
+          }
 
           return const SizedBox();
         }),

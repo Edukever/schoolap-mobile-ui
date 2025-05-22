@@ -16,7 +16,7 @@ class SPRadio<T> extends StatelessWidget {
   final double? wrapRunSpacing;
   final double? wrapSpacing;
   const SPRadio({
-    Key? key,
+    super.key,
     required this.name,
     required this.options,
     this.validator,
@@ -29,7 +29,7 @@ class SPRadio<T> extends StatelessWidget {
     this.wrapDirection,
     this.wrapRunSpacing,
     this.wrapSpacing,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +41,16 @@ class SPRadio<T> extends StatelessWidget {
         name: name,
         initialValue: initialValue,
         options: options,
-
-        
         wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
         wrapCrossAxisAlignment: wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
-        focusColor: theme.colors.bleu,
-        activeColor: theme.colors.bleu,
+        focusColor: theme.colors.orange,
+        activeColor: theme.colors.orange,
         orientation: orientation ?? OptionsOrientation.wrap,
         wrapDirection: wrapDirection ?? Axis.horizontal,
         wrapRunSpacing: wrapRunSpacing ?? 0.0,
         wrapSpacing: wrapSpacing ?? 0.0,
         validator: validator,
         decoration: InputDecoration(
-
-          
           label: label != null
               ? SPText(
                   label!,

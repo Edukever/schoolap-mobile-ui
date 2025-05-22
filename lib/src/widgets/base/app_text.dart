@@ -12,7 +12,7 @@ enum AppTextLevel {
 class SPText extends StatelessWidget {
   const SPText(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.fontWeight,
@@ -23,11 +23,12 @@ class SPText extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.level = AppTextLevel.paragraph1,
     this.letterSpacing,
-  }) : super(key: key);
+    this.overflow,
+  });
 
   const SPText.paragraph1(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.fontWeight,
@@ -37,12 +38,12 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
-  })  : level = AppTextLevel.paragraph1,
-        super(key: key);
+    this.overflow,
+  }) : level = AppTextLevel.paragraph1;
 
   const SPText.paragraph2(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.height,
     this.fontSize,
@@ -52,12 +53,12 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
-  })  : level = AppTextLevel.paragraph2,
-        super(key: key);
+    this.overflow,
+  }) : level = AppTextLevel.paragraph2;
 
   const SPText.title1(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.maxLines,
@@ -67,12 +68,12 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
-  })  : level = AppTextLevel.title1,
-        super(key: key);
+    this.overflow,
+  }) : level = AppTextLevel.title1;
 
   const SPText.title2(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.maxLines,
@@ -82,12 +83,12 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.letterSpacing,
     this.decoration = TextDecoration.none,
-  })  : level = AppTextLevel.title2,
-        super(key: key);
+    this.overflow,
+  }) : level = AppTextLevel.title2;
 
   const SPText.title3(
     this.data, {
-    Key? key,
+    super.key,
     this.color,
     this.fontSize,
     this.maxLines,
@@ -97,8 +98,8 @@ class SPText extends StatelessWidget {
     this.minFontSize = 10.0,
     this.decoration = TextDecoration.none,
     this.letterSpacing,
-  })  : level = AppTextLevel.title3,
-        super(key: key);
+    this.overflow,
+  }) : level = AppTextLevel.title3;
 
   final String data;
   final AppTextLevel level;
@@ -112,6 +113,8 @@ class SPText extends StatelessWidget {
   final double? height;
 
   final double? letterSpacing;
+
+  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +138,7 @@ class SPText extends StatelessWidget {
       data,
       style: style.copyWith(color: color, fontSize: fontSize, fontWeight: fontWeight, decoration: decoration, height: height),
       textAlign: textAlign,
-      overflow : TextOverflow.ellipsis,
+      overflow: overflow,
       maxLines: maxLines,
       minFontSize: minFontSize,
       maxFontSize: fontSize ?? style.fontSize ?? 18,

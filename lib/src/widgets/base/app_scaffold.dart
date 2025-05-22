@@ -10,17 +10,16 @@ class SPScaffold extends StatefulWidget {
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
 
-  const SPScaffold(
-      {Key? key,
-      this.landScapeAppBar,
-      this.portraitAppBar,
-      this.landScapeBody,
-      this.portraitBody,
-      this.endDrawer,
-      this.bottomNavigationBar,
-      this.floatingActionButton,
-      s})
-      : super(key: key);
+  const SPScaffold({
+    super.key,
+    this.landScapeAppBar,
+    this.portraitAppBar,
+    this.landScapeBody,
+    this.portraitBody,
+    this.endDrawer,
+    this.bottomNavigationBar,
+    this.floatingActionButton,
+  });
 
   @override
   State<SPScaffold> createState() => _SPScaffoldState();

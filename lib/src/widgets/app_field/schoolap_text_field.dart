@@ -5,7 +5,7 @@ typedef ValidatorDate = Validator<DateTime>?;
 enum AppTextFieldType { password }
 
 /// A custom text field widget for the app.
-class SPTextField<T> extends StatelessWidget {
+class SPTextField<T> extends StatefulWidget {
   final String name;
   final String placeHolder;
   final BorderRadius? borderRadius;
@@ -32,9 +32,12 @@ class SPTextField<T> extends StatelessWidget {
   final double? height;
   final EdgeInsets? contentPadding;
   final InputBorder? border;
+  final Color? borderColor;
+  final List<TextInputFormatter>? inputFormatters;
+  final void Function()? onTap;
 
   const SPTextField({
-    Key? key,
+    super.key,
     required this.name,
     required this.placeHolder,
     this.borderRadius,
@@ -61,15 +64,48 @@ class SPTextField<T> extends StatelessWidget {
     this.backgroundColor,
     this.onEditingComplete,
     this.focusNode,
-  })  : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password'),
-        super(key: key);
+    this.borderColor,
+    this.inputFormatters,
+    this.onTap,
+  }) : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password');
+
+  @override
+  State<SPTextField<T>> createState() => _SPTextFieldState<T>();
+}
+
+class _SPTextFieldState<T> extends State<SPTextField<T>> {
+  late final TextEditingController textEditingController;
+  late final FocusNode focusNode;
+  bool hasFocus = false;
+
+  @override
+  void initState() {
+    super.initState();
+    textEditingController = widget.controller ?? TextEditingController(text: widget.initialValue);
+    focusNode = widget.focusNode ?? FocusNode();
+
+    focusNode.addListener(() {
+      if (mounted) {
+        setState(() {
+          hasFocus = focusNode.hasFocus;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) _buildLabel(),
+        if (widget.label != null) _buildLabel(),
         _buildTextField(),
       ],
     );
@@ -79,8 +115,8 @@ class SPTextField<T> extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
-        label!,
-        fontSize: fontSizeLabel ?? 14.0,
+        widget.label!,
+        fontSize: widget.fontSizeLabel ?? 14.0,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -88,39 +124,82 @@ class SPTextField<T> extends StatelessWidget {
 
   Widget _buildTextField() {
     final inputDecoration = SPCustomInputDecoration(
-        suffixIcon: suffix,
-        prefixIcon: prefix,
-        hintText: placeHolder,
-        hintStyle: hintStyle,
-        backgroundColor: backgroundColor,
-        contentPadding: contentPadding,
-        border: border,
-        isDense: true,
-        expands: true);
+      suffixIcon: widget.suffix,
+      prefixIcon: widget.prefix,
+      hintText: widget.placeHolder,
+      hintStyle: widget.hintStyle,
+      backgroundColor: widget.backgroundColor,
+      contentPadding: widget.contentPadding,
+      border: widget.border,
+    );
 
-    return SizedBox(
-        // remove height  on validation error
-        height: height,
-        child: FormBuilderTextField(
-          name: name,
-          focusNode: focusNode,
-          style: TextStyle(
-            fontSize: fontSize ?? 14.0,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w400,
-          ),
-          readOnly: readOnly,
-          controller: controller,
-          initialValue: initialValue,
-          obscureText: type == AppTextFieldType.password ? obscureText : false,
-          validator: validator,
-          decoration: inputDecoration,
-          onChanged: onChanged,
-          valueTransformer: valueTransformer,
-          textCapitalization: textCapitalization,
-          onEditingComplete: onEditingComplete,
-          maxLines: type == AppTextFieldType.password ? 1 : maxLines ?? 1,
-          keyboardType: type == AppTextFieldType.password ? TextInputType.text : keyboardType,
-        ));
+    return FormBuilderField(
+      name: widget.name,
+      initialValue: widget.initialValue,
+      validator: widget.validator,
+      valueTransformer: widget.valueTransformer,
+      onChanged: (value) {
+        if (value is String && textEditingController.text != value) textEditingController.text = value;
+        widget.onChanged?.call(value);
+      },
+      onReset: () => textEditingController.clear(),
+      focusNode: focusNode,
+      builder: (field) {
+        final containerBorderColor = switch (field.hasError) {
+          true => SPColorsData.defaultColors().rouge,
+          false => switch (hasFocus) {
+              true => SPColorsData.defaultColors().noir,
+              false => (widget.borderColor ?? SPColorsData.defaultColors().grid2),
+            },
+        };
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
+                border: Border.all(color: containerBorderColor),
+              ),
+              child: SizedBox(
+                height: widget.height,
+                child: TextField(
+                  onTap: widget.onTap,
+                  focusNode: focusNode,
+                  style: TextStyle(
+                    fontSize: widget.fontSize ?? 14.0,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w400,
+                  ),
+                  readOnly: widget.readOnly,
+                  controller: textEditingController,
+                  obscureText: widget.type == AppTextFieldType.password ? widget.obscureText : false,
+                  decoration: inputDecoration.copyWith(
+                    border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    disabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                  ),
+                  onChanged: (value) => field.didChange(value),
+                  textCapitalization: widget.textCapitalization,
+                  onEditingComplete: widget.onEditingComplete,
+                  maxLines: widget.type == AppTextFieldType.password ? 1 : widget.maxLines ?? 1,
+                  keyboardType: widget.type == AppTextFieldType.password ? TextInputType.text : widget.keyboardType,
+                  inputFormatters: widget.inputFormatters,
+                ),
+              ),
+            ),
+            if (field.hasError) ...[
+              const SizedBox(height: 5),
+              SPText(
+                field.errorText ?? '',
+                fontSize: 12,
+                color: Colors.red,
+              ),
+            ]
+          ],
+        );
+      },
+    );
   }
 }
