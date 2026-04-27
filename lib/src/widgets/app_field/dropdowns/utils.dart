@@ -11,12 +11,13 @@ class DropdownMenuItemGenerator<T, R> {
     this.dividerHeight = 4.0,
   });
 
-  List<DropdownMenuItem<R>> generate({required String Function(T item) getName, required R Function(T item) getValue}) {
-    final List<DropdownMenuItem<R>> menuItems = [];
+  List<DropdownItem<R>> generate({required String Function(T item) getName, required R Function(T item) getValue}) {
+    final List<DropdownItem<R>> menuItems = [];
     for (final T item in items) {
       menuItems.addAll(
         [
-          DropdownMenuItem<R>(
+          DropdownItem<R>(
+            height: itemHeight,
             value: getValue(item),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -28,28 +29,15 @@ class DropdownMenuItemGenerator<T, R> {
           ),
           //If it's last item, we will not add Divider after it.
           if (item != items.last)
-            const DropdownMenuItem(
+            DropdownItem(
+              height: dividerHeight,
               enabled: false,
-              child: Divider(),
+              child: const Divider(),
             ),
         ],
       );
     }
     return menuItems;
-  }
-
-  List<double> get calculateItemHeights {
-    final List<double> itemsHeights = [];
-    for (int i = 0; i < (items.length * 2) - 1; i++) {
-      if (i.isEven) {
-        itemsHeights.add(40);
-      }
-      //Dividers indexes will be the odd indexes
-      if (i.isOdd) {
-        itemsHeights.add(4);
-      }
-    }
-    return itemsHeights;
   }
 
   static DropdownStyleData dropdownStyleData({double? maxHeightDropDown, Color? color}) => DropdownStyleData(

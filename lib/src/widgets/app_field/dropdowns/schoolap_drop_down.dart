@@ -3,7 +3,7 @@ part of '../../widget.dart';
 typedef OnChanged<T> = void Function(T?);
 
 @Deprecated('Use [SPDropDownStyled] instead')
-class SPDropDown<T> extends StatelessWidget {
+class SPDropDown<T> extends StatefulWidget {
   final String name;
   final List<DropdownMenuItem<T>> items;
   final OnChanged<T>? onChanged;
@@ -42,59 +42,98 @@ class SPDropDown<T> extends StatelessWidget {
   });
 
   @override
+  State<SPDropDown<T>> createState() => _SPDropDownState<T>();
+}
+
+class _SPDropDownState<T> extends State<SPDropDown<T>> {
+  late final ValueNotifier<T?> _valueNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _valueNotifier = ValueNotifier<T?>(widget.initialValue);
+  }
+
+  @override
+  void dispose() {
+    _valueNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null)
+        if (widget.label != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: SPText(
-              label!,
+              widget.label!,
               fontSize: 14.0,
             ),
           ),
         FormBuilderField<T>(
-          name: name,
-          validator: validator,
-          initialValue: initialValue,
-          valueTransformer: valueTransformer,
-          focusNode: focusNode,
+          name: widget.name,
+          validator: widget.validator,
+          initialValue: widget.initialValue,
+          valueTransformer: widget.valueTransformer,
+          focusNode: widget.focusNode,
           builder: (state) {
+            _valueNotifier.value = state.value;
             return DropdownButtonFormField2<T>(
-              value: state.value,
-              items: items,
+              valueListenable: _valueNotifier,
+              items: widget.items
+                  .map(
+                    (item) => DropdownItem<T>(
+                      value: item.value,
+                      enabled: item.enabled,
+                      alignment: item.alignment,
+                      onTap: item.onTap,
+                      child: item.child,
+                    ),
+                  )
+                  .toList(),
               isExpanded: true,
               decoration: InputDecoration(
-                prefixIcon: prefix,
-                fillColor: backgroundColor,
-                filled: backgroundColor != null,
+                prefixIcon: widget.prefix,
+                fillColor: widget.backgroundColor,
+                filled: widget.backgroundColor != null,
                 contentPadding: const EdgeInsets.only(right: 10),
-                border: border ??
+                border: widget.border ??
                     OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                 // Add more decoration..
               ),
-              iconStyleData: iconStyleData,
-              buttonStyleData: buttonStyleData,
-              dropdownStyleData: dropdownStyleData ??
+              iconStyleData: widget.iconStyleData,
+              buttonStyleData: widget.buttonStyleData == null
+                  ? null
+                  : FormFieldButtonStyleData(
+                      height: widget.buttonStyleData!.height,
+                      width: widget.buttonStyleData!.width,
+                      padding: widget.buttonStyleData!.padding,
+                      decoration: widget.buttonStyleData!.decoration,
+                      foregroundDecoration: widget.buttonStyleData!.foregroundDecoration,
+                      elevation: widget.buttonStyleData!.elevation,
+                    ),
+              dropdownStyleData: widget.dropdownStyleData ??
                   DropdownStyleData(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-              menuItemStyleData: menuItemStyleData ??
+              menuItemStyleData: widget.menuItemStyleData ??
                   const MenuItemStyleData(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                   ),
               hint: SPText(
-                placeHolder,
+                widget.placeHolder,
                 fontSize: 14,
               ),
               onChanged: (value) {
                 state.didChange(value);
-                onChanged?.call(value);
+                widget.onChanged?.call(value);
               },
             );
           },

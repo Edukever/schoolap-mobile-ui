@@ -1,6 +1,6 @@
 part of '../../widget.dart';
 
-class SPDropDownStyled<T, R> extends StatelessWidget {
+class SPDropDownStyled<T, R> extends StatefulWidget {
   final String name;
   final List<T> items;
   final String Function(T) getName;
@@ -55,11 +55,30 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   });
 
   @override
+  State<SPDropDownStyled<T, R>> createState() => _SPDropDownStyledState<T, R>();
+}
+
+class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
+  late final ValueNotifier<R?> _valueNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _valueNotifier = ValueNotifier<R?>(widget.initialValue);
+  }
+
+  @override
+  void dispose() {
+    _valueNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) _buildLabel(),
+        if (widget.label != null) _buildLabel(),
         _buildFormBuilderField(),
       ],
     );
@@ -69,8 +88,8 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
-        label!,
-        fontSize: fontSizeLabel ?? 14.0,
+        widget.label!,
+        fontSize: widget.fontSizeLabel ?? 14.0,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -78,12 +97,13 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
 
   Widget _buildFormBuilderField() {
     return FormBuilderField<R>(
-      name: name,
-      validator: validator,
-      initialValue: initialValue,
-      valueTransformer: valueTransformer,
-      focusNode: focusNode,
+      name: widget.name,
+      validator: widget.validator,
+      initialValue: widget.initialValue,
+      valueTransformer: widget.valueTransformer,
+      focusNode: widget.focusNode,
       builder: (state) {
+        _valueNotifier.value = state.value;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -97,36 +117,45 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
 
   Widget _buildDropdownButtonFormField(FormFieldState<R> state) {
     return DropdownButtonFormField2<R>(
-      value: state.value,
+      valueListenable: _valueNotifier,
       items: DropdownMenuItemGenerator<T, R>(
-        items: items,
-      ).generate(getName: getName, getValue: getValue),
-      dropdownStyleData: dropdownStyleData ?? _defaultDropdownStyleData(),
+        items: widget.items,
+      ).generate(getName: widget.getName, getValue: widget.getValue),
+      dropdownStyleData: widget.dropdownStyleData ?? _defaultDropdownStyleData(),
       isExpanded: true,
       decoration: _buildInputDecoration(),
-      iconStyleData: iconStyleData,
+      iconStyleData: widget.iconStyleData,
       style: const TextStyle(
         fontSize: 12,
         color: Colors.black,
         fontFamily: 'Poppins',
       ),
-      buttonStyleData: buttonStyleData,
-      menuItemStyleData: menuItemStyleData ?? _defaultMenuItemStyleData(),
+      buttonStyleData: widget.buttonStyleData == null
+          ? null
+          : FormFieldButtonStyleData(
+              height: widget.buttonStyleData!.height,
+              width: widget.buttonStyleData!.width,
+              padding: widget.buttonStyleData!.padding,
+              decoration: widget.buttonStyleData!.decoration,
+              foregroundDecoration: widget.buttonStyleData!.foregroundDecoration,
+              elevation: widget.buttonStyleData!.elevation,
+            ),
+      menuItemStyleData: widget.menuItemStyleData ?? _defaultMenuItemStyleData(),
       hint: SPText(
-        placeHolder,
-        fontSize: fontSizePlaceHolder ?? 14,
+        widget.placeHolder,
+        fontSize: widget.fontSizePlaceHolder ?? 14,
         color: Colors.grey.withAlpha((255 * 0.4).toInt()),
       ),
       onChanged: (value) {
         state.didChange(value);
-        onChanged?.call(value);
+        widget.onChanged?.call(value);
       },
     );
   }
 
   DropdownStyleData _defaultDropdownStyleData() {
     return DropdownStyleData(
-      maxHeight: maxHeight ?? 200,
+      maxHeight: widget.maxHeight ?? 200,
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
       elevation: 0,
       decoration: BoxDecoration(
@@ -144,14 +173,13 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
   MenuItemStyleData _defaultMenuItemStyleData() {
     return MenuItemStyleData(
       padding: EdgeInsets.zero,
-      customHeights: DropdownMenuItemGenerator<T, R>(items: items).calculateItemHeights,
     );
   }
 
   InputDecoration _buildInputDecoration() {
     return InputDecoration(
-      prefixIcon: prefix,
-      fillColor: backgroundColor,
+      prefixIcon: widget.prefix,
+      fillColor: widget.backgroundColor,
       labelStyle: const TextStyle(
         fontFamily: 'Poppins',
         fontSize: 12,
@@ -160,9 +188,9 @@ class SPDropDownStyled<T, R> extends StatelessWidget {
         fontFamily: 'Poppins',
         fontSize: 12,
       ),
-      filled: backgroundColor != null,
-      contentPadding: contentPadding ?? const EdgeInsets.only(right: 10),
-      border: border ??
+      filled: widget.backgroundColor != null,
+      contentPadding: widget.contentPadding ?? const EdgeInsets.only(right: 10),
+      border: widget.border ??
           OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
