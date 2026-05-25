@@ -37,7 +37,7 @@ class SPCard extends StatelessWidget {
         margin: margin,
         padding: padding,
         decoration: BoxDecoration(
-          color: backgroundColor ?? theme.colors.blanc,
+          color: backgroundColor ?? theme.colors.white,
           borderRadius: BorderRadius.all(radius ?? theme.radius.regular),
           border: border ??
               Border.all(

@@ -21,13 +21,13 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    final fillColor = value ? AppTheme.of(context).colors.vertLight : AppTheme.of(context).colors.rougeLight;
-    final infillColor = value ? AppTheme.of(context).colors.rougeLight : AppTheme.of(context).colors.vertLight;
-    final textColor = value ? AppTheme.of(context).colors.vert : AppTheme.of(context).colors.rouge;
+    final fillColor = value ? AppTheme.of(context).colors.greenLight : AppTheme.of(context).colors.redLight;
+    final infillColor = value ? AppTheme.of(context).colors.redLight : AppTheme.of(context).colors.greenLight;
+    final textColor = value ? AppTheme.of(context).colors.green : AppTheme.of(context).colors.red;
 
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.of(context).colors.vertLight,
+        color: AppTheme.of(context).colors.greenLight,
         borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
       ),
       child: ClipRRect(
@@ -60,11 +60,11 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
               [
                 DropdownMenuItem(
                   value: true,
-                  child: SPPresenceDropdownItemWidget(label: "Présent", textColor: AppTheme.of(context).colors.vert),
+                  child: SPPresenceDropdownItemWidget(label: "Présent", textColor: AppTheme.of(context).colors.green),
                 ),
                 DropdownMenuItem(
                   value: false,
-                  child: SPPresenceDropdownItemWidget(label: "Absent", textColor: AppTheme.of(context).colors.rouge),
+                  child: SPPresenceDropdownItemWidget(label: "Absent", textColor: AppTheme.of(context).colors.red),
                 ),
               ],
         ),

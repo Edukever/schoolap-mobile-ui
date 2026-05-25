@@ -25,7 +25,7 @@ class SPCheckBox extends StatelessWidget {
       child: FormBuilderCheckbox(
         name: name,
         title: title,
-        activeColor: activeColor ?? AppTheme.of(context).colors.bleu,
+        activeColor: activeColor ?? AppTheme.of(context).colors.blue,
         onChanged: onChanged,
         initialValue: initialValue,
         validator: validator,

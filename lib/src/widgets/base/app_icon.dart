@@ -67,7 +67,7 @@ class SPButtonIcon extends StatelessWidget {
         child: showBadge
             ? Badge(
                 isLabelVisible: true,
-                backgroundColor: badgeColor ?? AppTheme.of(context).colors.bleu,
+                backgroundColor: badgeColor ?? AppTheme.of(context).colors.blue,
                 label: badgeLabel,
                 alignment: Alignment.topRight,
                 child: icon,

@@ -30,7 +30,7 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          color: backgroundColor ?? AppTheme.of(context).colors.bleu,
+          color: backgroundColor ?? AppTheme.of(context).colors.blue,
           borderRadius: BorderRadius.only(
             bottomLeft: AppTheme.of(context).radius.regular,
             bottomRight: AppTheme.of(context).radius.regular,

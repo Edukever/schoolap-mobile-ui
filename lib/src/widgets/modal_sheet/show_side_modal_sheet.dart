@@ -73,7 +73,7 @@ Future<T?> showModalSideSheet<T extends Object?>({
                               child: closeControl ??
                                   CircleAvatar(
                                     radius: 15,
-                                    backgroundColor: AppTheme.of(context).colors.grid2,
+                                    backgroundColor: AppTheme.of(context).colors.gray2,
                                     child: const Icon(
                                       Icons.close,
                                       size: 15,

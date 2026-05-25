@@ -17,14 +17,14 @@ class SPGradientData {
           end: const Alignment(-0.96, -0.29),
           colors: [
             colors.orange,
-            colors.jaune1,
+            colors.yellow1,
           ],
         ),
         blue: LinearGradient(
           begin: const Alignment(-0.00, 1.00),
           end: const Alignment(0, -1),
           colors: [
-            colors.bleu,
+            colors.blue,
             colors.blue2,
           ],
         ),

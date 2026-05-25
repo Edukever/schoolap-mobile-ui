@@ -119,7 +119,7 @@ class SPText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final color = this.color ?? theme.colors.noir;
+    final color = this.color ?? theme.colors.black;
     final style = () {
       switch (level) {
         case AppTextLevel.paragraph1:

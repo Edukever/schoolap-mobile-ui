@@ -20,13 +20,13 @@ class MainAppBar extends StatelessWidget {
               children: [
                 SPText.title1(
                   'Welcome Callie',
-                  color: AppTheme.of(context).colors.blanc,
+                  color: AppTheme.of(context).colors.white,
                   fontWeight: FontWeight.w600,
                   maxLines: 1,
                 ),
                 SPText.paragraph1(
                   'École Saint Marie',
-                  color: AppTheme.of(context).colors.blanc,
+                  color: AppTheme.of(context).colors.white,
                   maxLines: 1,
                 )
               ],

@@ -55,14 +55,14 @@ class SPPagination extends StatelessWidget {
       child: Container(
         constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
         decoration: BoxDecoration(
-          color: currentPage == pageNumber ? AppTheme.of(context).colors.bleu : AppTheme.of(context).colors.bleuLight,
+          color: currentPage == pageNumber ? AppTheme.of(context).colors.blue : AppTheme.of(context).colors.blueLight,
           borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
         ),
         alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 6.0),
         child: SPText.title2(
           pageNumber.toString(),
-          color: currentPage == pageNumber ? AppTheme.of(context).colors.blanc : AppTheme.of(context).colors.grid2,
+          color: currentPage == pageNumber ? AppTheme.of(context).colors.white : AppTheme.of(context).colors.gray2,
           fontWeight: FontWeight.normal,
         ),
       ),
@@ -81,7 +81,7 @@ class SPPagination extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 9.0),
           child: SPText.title2(
             value.toString(),
-            color: AppTheme.of(context).colors.grid2,
+            color: AppTheme.of(context).colors.gray2,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -94,7 +94,7 @@ class SPPagination extends StatelessWidget {
         SPButtonIcon(
           iconData: AppIconsData.arrowLeft,
           shape: ButtonIconShape.square,
-          filledColor: AppTheme.of(context).colors.bleuLight,
+          filledColor: AppTheme.of(context).colors.blueLight,
           height: 45,
           width: 45,
           onPressed: () => onPageChanged(math.max(currentPage - 1, 1)),
@@ -116,14 +116,14 @@ class SPPagination extends StatelessWidget {
                 Container(
                   constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
                   decoration: BoxDecoration(
-                    color: AppTheme.of(context).colors.bleu,
+                    color: AppTheme.of(context).colors.blue,
                     borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
                   ),
                   alignment: Alignment.center,
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: SPText.title2(
                     index.toString(),
-                    color: AppTheme.of(context).colors.blanc,
+                    color: AppTheme.of(context).colors.white,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
@@ -153,7 +153,7 @@ class SPPagination extends StatelessWidget {
         SPButtonIcon(
           iconData: AppIconsData.arrowRight,
           shape: ButtonIconShape.square,
-          filledColor: AppTheme.of(context).colors.bleuLight,
+          filledColor: AppTheme.of(context).colors.blueLight,
           height: 45,
           width: 45,
           onPressed: () => onPageChanged(math.min(currentPage + 1, totalPages)),

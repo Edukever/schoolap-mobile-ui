@@ -146,10 +146,10 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       focusNode: focusNode,
       builder: (field) {
         final containerBorderColor = switch (field.hasError) {
-          true => SPColorsData.defaultColors().rouge,
+          true => SPColorsData.defaultColors().red,
           false => switch (hasFocus) {
-              true => SPColorsData.defaultColors().noir,
-              false => (widget.borderColor ?? SPColorsData.defaultColors().grid2),
+              true => SPColorsData.defaultColors().black,
+              false => (widget.borderColor ?? SPColorsData.defaultColors().gray2),
             },
         };
         return Column(

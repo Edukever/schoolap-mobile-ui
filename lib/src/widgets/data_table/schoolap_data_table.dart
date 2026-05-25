@@ -72,7 +72,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
     final headingTextStyle = widget.headingTextStyle ??
         TextStyle(
           color: blackOrWhite(
-            widget.headingRowColor?.resolve({WidgetState.pressed}) ?? AppTheme.of(context).colors.bleuLight,
+            widget.headingRowColor?.resolve({WidgetState.pressed}) ?? AppTheme.of(context).colors.blueLight,
           ),
         );
 
@@ -87,7 +87,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
         headingRowHeight: widget.headingRowHeight,
         showBottomBorder: widget.showBottomBorder,
         showCheckboxColumn: widget.showCheckboxColumn,
-        headingRowColor: widget.headingRowColor ?? WidgetStatePropertyAll(AppTheme.of(context).colors.bleuLight),
+        headingRowColor: widget.headingRowColor ?? WidgetStatePropertyAll(AppTheme.of(context).colors.blueLight),
         headingTextStyle: headingTextStyle,
         dataRowColor: widget.dataRowColor ?? const WidgetStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
         sortColumnIndex: _currentSortColumn,
@@ -122,7 +122,7 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
           final index = entry.key;
           final row = entry.value;
           final rowColor =
-              widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.bleu.withAlpha((255 * 0.3).toInt())) : null;
+              widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.blue.withAlpha((255 * 0.3).toInt())) : null;
 
           return DataRow(
             selected: widget.showCheckboxColumn ? widget.selectedRows.contains(row) : false,

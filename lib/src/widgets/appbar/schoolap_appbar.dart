@@ -27,7 +27,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: preferredSize,
       child: Container(
         decoration: BoxDecoration(
-          color: backgroundColor ?? AppTheme.of(context).colors.bleu,
+          color: backgroundColor ?? AppTheme.of(context).colors.blue,
           borderRadius: BorderRadius.only(
             bottomLeft: AppTheme.of(context).radius.big,
             bottomRight: AppTheme.of(context).radius.big,
@@ -52,7 +52,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
                   child: IconButton(
                     onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(Icons.arrow_back),
-                    color: AppTheme.of(context).colors.blanc,
+                    color: AppTheme.of(context).colors.white,
                   ),
                 ),
               ),
@@ -61,7 +61,7 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.center,
-                child: titleWidget ?? SPText.title2(title, color: AppTheme.of(context).colors.blanc),
+                child: titleWidget ?? SPText.title2(title, color: AppTheme.of(context).colors.white),
               ),
             ),
           ],

@@ -19,9 +19,9 @@ class SPCheckBoxGroup<T> extends StatelessWidget {
       name: name,
       options: options,
       initialValue: initialValue,
-      focusColor: theme.colors.bleu,
-      activeColor: theme.colors.bleu,
-      checkColor: theme.colors.blanc,
+      focusColor: theme.colors.blue,
+      activeColor: theme.colors.blue,
+      checkColor: theme.colors.white,
       validator: validator,
       decoration: InputDecoration(
         labelText: label,

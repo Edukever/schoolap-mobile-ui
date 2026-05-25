@@ -44,8 +44,8 @@ class SPErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final resolvedActionColor = actionColor ?? theme.colors.bleu;
-    final resolvedTitleColor = titleColor ?? theme.colors.bleu;
+    final resolvedActionColor = actionColor ?? theme.colors.blue;
+    final resolvedTitleColor = titleColor ?? theme.colors.blue;
 
     return Scaffold(
       body: SafeArea(
