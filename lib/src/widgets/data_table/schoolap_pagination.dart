@@ -1,69 +1,69 @@
 part of '../widget.dart';
 
 class SPPagination extends StatelessWidget {
-  final int currentPage;
-  final int totalPages;
-  final Function(int page) onPageChanged;
-  final int siblingCount = 1;
-  final int boundaryCount = 1;
-  final MainAxisAlignment mainAxisAlignment;
-
   const SPPagination({
     super.key,
     required this.currentPage,
     required this.totalPages,
     required this.onPageChanged,
-    this.mainAxisAlignment = MainAxisAlignment.center,
-  })  : assert(totalPages > 0, 'totalPages should be greater than 0'),
-        assert(currentPage >= 1 && currentPage <= totalPages, 'currentPage should be between 1 and totalPages');
+    this.siblingCount = 1,
+    this.boundaryCount = 1,
+  })  : assert(totalPages > 0, 'totalPages must be greater than 0'),
+        assert(
+          currentPage >= 1 && currentPage <= totalPages,
+          'currentPage must be between 1 and totalPages',
+        );
 
-  bool isBoundary(int index) => index <= boundaryCount || index > totalPages - boundaryCount;
+  final int currentPage;
+  final int totalPages;
+  final void Function(int page) onPageChanged;
 
-  bool isNotSibling(int index) {
-    return ![...List.generate(siblingLength, (index) => currentPage - index - 1), ...List.generate(siblingLength, (index) => currentPage + index + 1)]
-        .contains(index);
-  }
+  /// Number of page buttons shown on each side of the current page.
+  final int siblingCount;
 
-  bool get showLeftEllipsis {
-    final lastSibling = currentPage - siblingLength;
-    final lastBoundary = boundaryCount;
-    return lastSibling - lastBoundary > 1;
-  }
+  /// Number of page buttons always shown at the start and end of the range.
+  final int boundaryCount;
 
-  bool get showRightEllipsis {
-    final lastSibling = currentPage + siblingLength;
-    final lastBoundary = totalPages - boundaryCount + 1;
-    return lastBoundary - lastSibling > 1;
-  }
+  // ── Helpers ──────────────────────────────────────────────────────────────────
 
-  int get siblingLength {
-    if (currentPage == 1 || currentPage == totalPages) return math.max(2, siblingCount);
-    if (currentPage == 2 || currentPage == totalPages - 1) return math.max(1, siblingCount);
-
+  int get _siblingSpan {
+    if (currentPage == 1 || currentPage == totalPages) {
+      return math.max(2, siblingCount);
+    }
+    if (currentPage == 2 || currentPage == totalPages - 1) {
+      return math.max(1, siblingCount);
+    }
     return siblingCount;
   }
 
-  void goToPage(int page) {
-    if (page >= 1 && page <= totalPages) {
-      onPageChanged(page);
-    }
+  bool get _showLeftEllipsis => currentPage - _siblingSpan - boundaryCount > 1;
+
+  bool get _showRightEllipsis =>
+      totalPages - boundaryCount - (currentPage + _siblingSpan) > 0;
+
+  void _go(int page) {
+    if (page >= 1 && page <= totalPages) onPageChanged(page);
   }
 
-  Widget buildPageNumber(int pageNumber, BuildContext context) {
+  // ── Widgets ──────────────────────────────────────────────────────────────────
+
+  Widget _pageButton(int page, BuildContext context) {
+    final theme = AppTheme.of(context);
+    final isActive = page == currentPage;
     return GestureDetector(
-      onTap: () => goToPage(pageNumber),
+      onTap: () => _go(page),
       child: Container(
-        constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
+        constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+        margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          color: currentPage == pageNumber ? AppTheme.of(context).colors.blue : AppTheme.of(context).colors.blueLight,
-          borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
+          color: isActive ? theme.colors.blue : theme.colors.blueLight,
+          borderRadius: BorderRadius.all(theme.radius.small),
         ),
         alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(horizontal: 6.0),
         child: SPText.title2(
-          pageNumber.toString(),
+          '$page',
           style: TextStyle(
-            color: currentPage == pageNumber ? AppTheme.of(context).colors.white : AppTheme.of(context).colors.gray2,
+            color: isActive ? theme.colors.white : theme.colors.gray2,
             fontWeight: FontWeight.normal,
           ),
         ),
@@ -71,98 +71,88 @@ class SPPagination extends StatelessWidget {
     );
   }
 
+  Widget _ellipsis(BuildContext context) {
+    final theme = AppTheme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      child: SPText.title2(
+        '…',
+        style: TextStyle(
+          color: theme.colors.gray2,
+          fontWeight: FontWeight.normal,
+        ),
+      ),
+    );
+  }
+
+  Widget _navButton({
+    required BuildContext context,
+    required String iconData,
+    required int target,
+  }) {
+    final theme = AppTheme.of(context);
+    return SPButtonIcon(
+      iconData: iconData,
+      shape: ButtonIconShape.square,
+      filledColor: theme.colors.blueLight,
+      height: 45,
+      width: 45,
+      onPressed: () => _go(target),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget itemText(
-      String value, {
-      VoidCallback? onTap,
-    }) {
-      return GestureDetector(
-        onTap: onTap,
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 9.0),
-          child: SPText.title2(
-            value.toString(),
-            style: TextStyle(
-              color: AppTheme.of(context).colors.gray2,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-        ),
-      );
-    }
+    final span = _siblingSpan;
+
+    // Pages to render between ellipses
+    final leftSiblings = List.generate(span, (i) => currentPage - i - 1)
+        .reversed
+        .where((p) => p >= 1)
+        .toList();
+    final rightSiblings = List.generate(span, (i) => currentPage + i + 1)
+        .where((p) => p <= totalPages)
+        .toList();
+
+    // Boundary pages not already covered by siblings or the current page
+    final covered = {currentPage, ...leftSiblings, ...rightSiblings};
+    final leftBoundaries = List.generate(boundaryCount, (i) => i + 1)
+        .where((p) => !covered.contains(p))
+        .toList();
+    final rightBoundaries =
+        List.generate(boundaryCount, (i) => totalPages - i)
+            .reversed
+            .where((p) => !covered.contains(p))
+            .toList();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SPButtonIcon(
+        // ── Prev ──────────────────────────────────────────────────────────────
+        _navButton(
+          context: context,
           iconData: AppIconsData.arrowLeft,
-          shape: ButtonIconShape.square,
-          filledColor: AppTheme.of(context).colors.blueLight,
-          height: 45,
-          width: 45,
-          onPressed: () => onPageChanged(math.max(currentPage - 1, 1)),
+          target: currentPage - 1,
         ),
         const Spacer(),
-        ...List.generate(totalPages, (index) => index + 1).map((index) {
-          if (currentPage == index) {
-            return Row(
-              children: [
-                if (showLeftEllipsis) itemText('...'),
-                ...List.generate(siblingLength, (index) => currentPage - index - 1).reversed.map((index) {
-                  if (index < 1) return const SizedBox();
-                  if (index > totalPages) return const SizedBox();
-                  return itemText(
-                    index.toString(),
-                    onTap: () => onPageChanged(index),
-                  );
-                }),
-                Container(
-                  constraints: const BoxConstraints(minHeight: 40.0, minWidth: 40.0),
-                  decoration: BoxDecoration(
-                    color: AppTheme.of(context).colors.blue,
-                    borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
-                  ),
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: SPText.title2(
-                    index.toString(),
-                    style: TextStyle(
-                      color: AppTheme.of(context).colors.white,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                ...List.generate(siblingLength, (index) => currentPage + index + 1).map((index) {
-                  if (index < 1) return const SizedBox();
-                  if (index > totalPages) return const SizedBox();
-                  return itemText(
-                    index.toString(),
-                    onTap: () => onPageChanged(index),
-                  );
-                }),
-                if (showRightEllipsis) itemText('...'),
-              ],
-            );
-          }
-
-          if (isBoundary(index) && isNotSibling(index)) {
-            return itemText(
-              index.toString(),
-              onTap: () => onPageChanged(math.min(index + 1, totalPages)),
-            );
-          }
-
-          return const SizedBox();
-        }),
+        // ── Left boundary ─────────────────────────────────────────────────────
+        ...leftBoundaries.map((p) => _pageButton(p, context)),
+        if (_showLeftEllipsis) _ellipsis(context),
+        // ── Left siblings ─────────────────────────────────────────────────────
+        ...leftSiblings.map((p) => _pageButton(p, context)),
+        // ── Current ───────────────────────────────────────────────────────────
+        _pageButton(currentPage, context),
+        // ── Right siblings ────────────────────────────────────────────────────
+        ...rightSiblings.map((p) => _pageButton(p, context)),
+        if (_showRightEllipsis) _ellipsis(context),
+        // ── Right boundary ────────────────────────────────────────────────────
+        ...rightBoundaries.map((p) => _pageButton(p, context)),
+        // ── Next ──────────────────────────────────────────────────────────────
         const Spacer(),
-        SPButtonIcon(
+        _navButton(
+          context: context,
           iconData: AppIconsData.arrowRight,
-          shape: ButtonIconShape.square,
-          filledColor: AppTheme.of(context).colors.blueLight,
-          height: 45,
-          width: 45,
-          onPressed: () => onPageChanged(math.min(currentPage + 1, totalPages)),
+          target: currentPage + 1,
         ),
       ],
     );

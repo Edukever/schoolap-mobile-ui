@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -13,7 +14,6 @@ import 'package:intl/intl.dart' hide TextDirection;
 
 export "base/red_more.dart";
 
-export 'data_table/schoolap_data_table.dart';
 export "app_field/input_decoration.dart";
 
 part 'base/app_card.dart';
@@ -44,6 +44,8 @@ part 'card/schoolap_card_tile.dart';
 part 'card/schoolap_card_with_image.dart';
 part 'appbar/schoolap_main_appbar.dart';
 part 'appbar/schoolap_appbar.dart';
+part 'data_table/schoolap_data_table_column.dart';
+part 'data_table/schoolap_data_table.dart';
 part 'data_table/schoolap_pagination.dart';
 part 'card/schoolap_pop_menu_button.dart';
 part 'app_field/schoolap_date_field_ranger.dart';
