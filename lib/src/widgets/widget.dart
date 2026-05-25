@@ -23,6 +23,8 @@ part 'base/dot_container.dart';
 part 'base/schoolap_app_chip.dart';
 part 'base/schoolap_illustration_container.dart';
 part 'base/schoolap_circular_progress.dart';
+part 'app_button/sp_button.dart';
+part 'app_button/sp_button_preset.dart';
 part 'app_button/sp_button_primary.dart';
 part 'app_button/state_primary_button.dart';
 part 'app_button/state_secondary_button.dart';

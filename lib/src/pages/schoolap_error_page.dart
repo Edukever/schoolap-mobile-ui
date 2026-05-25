@@ -160,26 +160,26 @@ class _ErrorAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (onPrimaryAction != null && primaryActionTitle != null) {
-      return SPButtonPrimary(
-        title: primaryActionTitle!,
-        backgroundColor: actionColor,
-        onTap: onPrimaryAction,
+      return SPButton(
+        primaryActionTitle!,
+        color: actionColor,
+        onPressed: onPrimaryAction,
       );
     }
 
     if (Navigator.of(context).canPop()) {
-      return SPButtonPrimary(
-        title: backButtonTitle,
-        backgroundColor: actionColor,
-        onTap: () => Navigator.of(context).pop(),
+      return SPButton(
+        backButtonTitle,
+        color: actionColor,
+        onPressed: () => Navigator.of(context).pop(),
       );
     }
 
     if (showExitButton && defaultTargetPlatform == TargetPlatform.android) {
-      return SPButtonPrimary(
-        title: exitButtonTitle,
-        backgroundColor: actionColor,
-        onTap: () => SystemNavigator.pop(),
+      return SPButton(
+        exitButtonTitle,
+        color: actionColor,
+        onPressed: () => SystemNavigator.pop(),
       );
     }
 

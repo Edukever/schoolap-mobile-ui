@@ -90,7 +90,7 @@ class DataTableScreen extends StatelessWidget {
                   return Column(children: [
                     const SPText.title2('No data'),
                     SizedBox(height: AppTheme.of(context).spacing.medium),
-                    SPButtonPrimary(title: 'Ajouter une tache', onTap: () {}),
+                    SPButton('Ajouter une tache', onPressed: () {}),
                   ]);
                 },
               ),

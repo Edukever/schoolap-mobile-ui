@@ -54,52 +54,50 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SPButtonPrimary(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TextPage())),
-              title: 'Text — SPText type scale',
+            SPButton(
+              'Text — SPText type scale',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TextPage())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PageFieldScreen())),
-              title: 'Pages field',
+            SPButton(
+              'Pages field',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PageFieldScreen())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ButtonPage())),
-              title: "Button page",
+            SPButton(
+              'Button page',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ButtonPage())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              title: "Icons page",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IconPage())),
+            SPButton(
+              'Icons page',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IconPage())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              title: "custom card",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CustomCard())),
+            SPButton(
+              'Custom card',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CustomCard())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              title: "Main AppBar",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainAppBar())),
+            SPButton(
+              'Main AppBar',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainAppBar())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              title: "Standard AppBar",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StandardAppBar())),
+            SPButton(
+              'Standard AppBar',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StandardAppBar())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              title: "Pagination",
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PaginationPage())),
+            SPButton(
+              'Pagination',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PaginationPage())),
             ),
             const SizedBox(height: 10),
-            SPButtonPrimary(
-              title: "Data Table",
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const DataTableScreen(),
-                ),
+            SPButton(
+              'Data Table',
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const DataTableScreen()),
               ),
             ),
           ],

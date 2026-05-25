@@ -1,67 +1,51 @@
 part of '../widget.dart';
 
+@Deprecated(
+  'Use SPButtonPreset with soft: true instead.\n'
+  'Migration guide:\n'
+  '  SPButtonSecondaryState(state: SPButtonStatePrimaryState.download)   → SPButtonPreset.download(soft: true)\n'
+  '  SPButtonSecondaryState(state: SPButtonStatePrimaryState.validation) → SPButtonPreset.danger(soft: true)\n'
+  '  SPButtonSecondaryState(state: SPButtonStatePrimaryState.delete)     → SPButtonPreset.success(soft: true)\n'
+  '  label: parameter stays the same on SPButtonPreset.\n'
+  'Will be removed in a future version.',
+)
 class SPButtonSecondaryState extends StatelessWidget {
-  final SPButtonStatePrimaryState state;
-  final String? label;
-  final Widget? icon;
-  final double? width;
-  final double? fontSize;
-  final IconPosition? iconPosition;
-  final void Function()? onPressed;
-
+  // ignore: deprecated_member_use_from_same_package
   const SPButtonSecondaryState({
     super.key,
     required this.state,
-    this.width,
     this.label,
     this.icon,
+    this.width,
     this.fontSize,
     this.iconPosition,
     this.onPressed,
   });
 
+  // ignore: deprecated_member_use_from_same_package
+  final SPButtonStatePrimaryState state;
+  final String? label;
+  final Widget? icon;
+  final double? width;
+  final double? fontSize;
+  // ignore: deprecated_member_use_from_same_package
+  final IconPosition? iconPosition;
+  final VoidCallback? onPressed;
+
   @override
   Widget build(BuildContext context) {
-    const height = 45.0;
-    switch (state) {
-      case SPButtonStatePrimaryState.download:
-        return SPButtonPrimary(
-          title: label ?? "Télécharger",
-          height: height,
-          width: width,
-          fontSize: fontSize,
-          iconPosition: iconPosition,
-          iconOrTextColor: const Color(0xFF41A3DF),
-          backgroundColor: const Color(0xFFE5F9FF),
-          onTap: onPressed,
-        );
-      case SPButtonStatePrimaryState.validation:
-        return SPButtonPrimary(
-          title: label ?? "Validation",
-          height: height,
-          width: width,
-          fontSize: fontSize,
-          iconPosition: iconPosition,
-          iconOrTextColor: const Color(0xFFFF4F4F),
-          backgroundColor: const Color(0xFFFFE1E1),
-          onTap: onPressed,
-        );
-
-      case SPButtonStatePrimaryState.delete:
-        return SPButtonPrimary(
-          icon: icon,
-          title: label ?? "Supprimer",
-          height: height,
-          fontSize: fontSize,
-          iconPosition: iconPosition,
-          width: width,
-          iconOrTextColor: const Color(0xFF1EA951),
-          backgroundColor: const Color(0xFFDDF3D6),
-          onTap: onPressed,
-        );
-
-      default:
-        return Container();
-    }
+    // ignore: deprecated_member_use_from_same_package
+    return switch (state) {
+      // ignore: deprecated_member_use_from_same_package
+      SPButtonStatePrimaryState.download =>
+        SPButtonPreset.download(label: label, onPressed: onPressed, width: width, soft: true),
+      // ignore: deprecated_member_use_from_same_package
+      SPButtonStatePrimaryState.validation =>
+        SPButtonPreset.danger(label: label, onPressed: onPressed, width: width, soft: true),
+      // ignore: deprecated_member_use_from_same_package
+      SPButtonStatePrimaryState.delete =>
+        SPButtonPreset.success(label: label, onPressed: onPressed, width: width, soft: true),
+      _ => const SizedBox.shrink(),
+    };
   }
 }
