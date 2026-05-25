@@ -72,9 +72,11 @@ class SPChip extends StatelessWidget {
       Expanded(
         child: SPText.title1(
           label,
-          color: iconOrTextColor ?? Colors.white,
-          fontSize: fontSize ?? 14,
-          fontWeight: fontWeight,
+          style: TextStyle(
+            color: iconOrTextColor ?? Colors.white,
+            fontSize: fontSize ?? 14,
+            fontWeight: fontWeight,
+          ),
         ),
       ),
     );

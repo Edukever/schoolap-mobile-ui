@@ -62,8 +62,10 @@ class SPPagination extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 6.0),
         child: SPText.title2(
           pageNumber.toString(),
-          color: currentPage == pageNumber ? AppTheme.of(context).colors.white : AppTheme.of(context).colors.gray2,
-          fontWeight: FontWeight.normal,
+          style: TextStyle(
+            color: currentPage == pageNumber ? AppTheme.of(context).colors.white : AppTheme.of(context).colors.gray2,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       ),
     );
@@ -81,8 +83,10 @@ class SPPagination extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 9.0),
           child: SPText.title2(
             value.toString(),
-            color: AppTheme.of(context).colors.gray2,
-            fontWeight: FontWeight.normal,
+            style: TextStyle(
+              color: AppTheme.of(context).colors.gray2,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       );
@@ -123,8 +127,10 @@ class SPPagination extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: SPText.title2(
                     index.toString(),
-                    color: AppTheme.of(context).colors.white,
-                    fontWeight: FontWeight.normal,
+                    style: TextStyle(
+                      color: AppTheme.of(context).colors.white,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
                 ...List.generate(siblingLength, (index) => currentPage + index + 1).map((index) {

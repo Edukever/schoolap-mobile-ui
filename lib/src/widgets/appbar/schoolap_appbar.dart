@@ -63,8 +63,10 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.center,
                 child: titleWidget ??
-                    SPText.title2(title,
-                        color: AppTheme.of(context).colors.white),
+                    SPText.title2(
+                      title,
+                      style: TextStyle(color: AppTheme.of(context).colors.white),
+                    ),
               ),
             ),
           ],

@@ -60,7 +60,7 @@ class SPCardTile extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 0),
                             child: SPText.paragraph1(
                               subtitle!,
-                              color: subtitleColor,
+                              style: TextStyle(color: subtitleColor),
                             ),
                           ),
                     subWidget ?? Container()

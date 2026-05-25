@@ -8,7 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  auto_size_text: ^3.0.0
+  auto_size_text: ">=3.0.0"
   dropdown_button2: ">=2.3.9"
   equatable: ">=2.0.5"
   flutter:

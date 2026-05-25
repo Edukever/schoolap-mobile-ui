@@ -2,6 +2,7 @@ import 'package:example/fields/button_page.dart';
 import 'package:example/fields/main_appbar.dart';
 import 'package:example/fields/custom_card.dart';
 import 'package:example/fields/icon_pages.dart';
+import 'package:example/fields/text_page.dart';
 import 'package:flutter/material.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 
@@ -54,8 +55,13 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SPButtonPrimary(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TextPage())),
+              title: 'Text — SPText type scale',
+            ),
+            const SizedBox(height: 10),
+            SPButtonPrimary(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PageFieldScreen())),
-              title: ("pages field"),
+              title: 'Pages field',
             ),
             const SizedBox(height: 10),
             SPButtonPrimary(

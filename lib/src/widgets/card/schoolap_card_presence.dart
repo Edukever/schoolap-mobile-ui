@@ -69,7 +69,7 @@ class SchoolapCardPresence extends StatelessWidget {
                 children: [
                   SPText(
                     label,
-                    fontSize: 18,
+                    style: const TextStyle(fontSize: 18),
                     level: AppTextLevel.title1,
                   ),
                   Text(

@@ -111,9 +111,11 @@ class SPButtonPrimary<T> extends StatelessWidget {
                 )
               : SPText(
                   title,
-                  color: iconOrTextColor ?? Colors.white,
-                  fontSize: fontSize ?? 15.0,
-                  fontWeight: fontWeight,
+                  style: TextStyle(
+                    color: iconOrTextColor ?? Colors.white,
+                    fontSize: fontSize ?? 15.0,
+                    fontWeight: fontWeight,
+                  ),
                   maxLines: maxLines,
                   textAlign: textAlign,
                 ),
@@ -165,9 +167,11 @@ class SPButtonPrimary<T> extends StatelessWidget {
     children.add(
       SPText(
         title,
-        color: iconOrTextColor ?? Colors.white,
-        fontSize: fontSize ?? 14,
-        fontWeight: fontWeight,
+        style: TextStyle(
+          color: iconOrTextColor ?? Colors.white,
+          fontSize: fontSize ?? 14,
+          fontWeight: fontWeight,
+        ),
       ),
     );
 

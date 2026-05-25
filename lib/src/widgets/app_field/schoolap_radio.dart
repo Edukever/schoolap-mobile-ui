@@ -54,7 +54,7 @@ class SPRadio<T> extends StatelessWidget {
           label: label != null
               ? SPText(
                   label!,
-                  fontSize: 14,
+                  style: const TextStyle(fontSize: 14),
                 )
               : null,
           labelStyle: const TextStyle(fontSize: 14, fontFamily: "Poppins"),

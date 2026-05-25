@@ -26,6 +26,7 @@ import 'package:schoolap_ui/schoolap_ui.dart';
 
 ## Documentation
 
+- [SPText](docs/sp_text.md) : widget texte standard — type scale, style overrides et paramètres disponibles.
 - [Design Dimensions](docs/design_dimensions.md) : dimensions de design réutilisables pour les rayons et les surfaces.
 - [SPErrorPage](docs/schoolap_error_page.md) : page d'erreur réutilisable avec contenu, action, illustration et détails techniques configurables.
 

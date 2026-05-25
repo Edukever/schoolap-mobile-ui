@@ -9,7 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 
 export "base/red_more.dart";
 

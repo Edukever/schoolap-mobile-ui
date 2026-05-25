@@ -1,147 +1,166 @@
 part of '../widget.dart';
 
 enum AppTextLevel {
-  paragraph1,
-  paragraph2,
-
   title1,
   title2,
   title3,
+  label,
+  paragraph1,
+  paragraph2,
 }
 
 class SPText extends StatelessWidget {
+  /// Displays [data] using the theme's paragraph1 style by default.
+  /// Pass [style] to merge overrides on top — identical to Flutter's [Text].
   const SPText(
     this.data, {
     super.key,
-    this.color,
-    this.fontSize,
-    this.fontWeight,
-    this.maxLines,
-    this.height,
-    this.minFontSize = 10.0,
-    this.textAlign,
-    this.decoration = TextDecoration.none,
     this.level = AppTextLevel.paragraph1,
-    this.letterSpacing,
+    this.style,
+    this.strutStyle,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
     this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
   });
-
-  const SPText.paragraph1(
-    this.data, {
-    super.key,
-    this.color,
-    this.fontSize,
-    this.fontWeight,
-    this.height,
-    this.maxLines,
-    this.textAlign,
-    this.minFontSize = 10.0,
-    this.decoration = TextDecoration.none,
-    this.letterSpacing,
-    this.overflow,
-  }) : level = AppTextLevel.paragraph1;
-
-  const SPText.paragraph2(
-    this.data, {
-    super.key,
-    this.color,
-    this.height,
-    this.fontSize,
-    this.fontWeight,
-    this.maxLines,
-    this.textAlign,
-    this.minFontSize = 10.0,
-    this.decoration = TextDecoration.none,
-    this.letterSpacing,
-    this.overflow,
-  }) : level = AppTextLevel.paragraph2;
 
   const SPText.title1(
     this.data, {
     super.key,
-    this.color,
-    this.fontSize,
-    this.maxLines,
-    this.height,
+    this.style,
+    this.strutStyle,
     this.textAlign,
-    this.fontWeight,
-    this.minFontSize = 10.0,
-    this.decoration = TextDecoration.none,
-    this.letterSpacing,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
     this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
   }) : level = AppTextLevel.title1;
 
   const SPText.title2(
     this.data, {
     super.key,
-    this.color,
-    this.fontSize,
-    this.maxLines,
-    this.fontWeight,
-    this.height,
+    this.style,
+    this.strutStyle,
     this.textAlign,
-    this.minFontSize = 10.0,
-    this.letterSpacing,
-    this.decoration = TextDecoration.none,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
     this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
   }) : level = AppTextLevel.title2;
 
   const SPText.title3(
     this.data, {
     super.key,
-    this.color,
-    this.fontSize,
-    this.maxLines,
-    this.fontWeight,
+    this.style,
+    this.strutStyle,
     this.textAlign,
-    this.height,
-    this.minFontSize = 10.0,
-    this.decoration = TextDecoration.none,
-    this.letterSpacing,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
     this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
   }) : level = AppTextLevel.title3;
+
+  const SPText.label(
+    this.data, {
+    super.key,
+    this.style,
+    this.strutStyle,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
+  }) : level = AppTextLevel.label;
+
+  const SPText.paragraph1(
+    this.data, {
+    super.key,
+    this.style,
+    this.strutStyle,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
+  }) : level = AppTextLevel.paragraph1;
+
+  const SPText.paragraph2(
+    this.data, {
+    super.key,
+    this.style,
+    this.strutStyle,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.maxLines,
+    this.semanticsLabel,
+    this.minFontSize = 10.0,
+  }) : level = AppTextLevel.paragraph2;
 
   final String data;
   final AppTextLevel level;
-  final Color? color;
-  final double? fontSize;
-  final int? maxLines;
-  final FontWeight? fontWeight;
-  final double minFontSize;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
   final TextAlign? textAlign;
-  final TextDecoration decoration;
-  final double? height;
-
-  final double? letterSpacing;
-
+  final TextDirection? textDirection;
+  final Locale? locale;
+  final bool? softWrap;
   final TextOverflow? overflow;
+  final int? maxLines;
+  final String? semanticsLabel;
+  final double minFontSize;
+
+  TextStyle _baseStyle(AppThemeData theme) => switch (level) {
+        AppTextLevel.title1 => theme.typography.title1,
+        AppTextLevel.title2 => theme.typography.title2,
+        AppTextLevel.title3 => theme.typography.title3,
+        AppTextLevel.label => theme.typography.label,
+        AppTextLevel.paragraph1 => theme.typography.paragraph1,
+        AppTextLevel.paragraph2 => theme.typography.paragraph2,
+      };
 
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final color = this.color ?? theme.colors.black;
-    final style = () {
-      switch (level) {
-        case AppTextLevel.paragraph1:
-          return theme.typography.paragraph1;
-        case AppTextLevel.paragraph2:
-          return theme.typography.paragraph2;
-        case AppTextLevel.title1:
-          return theme.typography.title1;
-        case AppTextLevel.title2:
-          return theme.typography.title2;
-        case AppTextLevel.title3:
-          return theme.typography.title3;
-      }
-    }();
+    final base = _baseStyle(theme);
+    final effectiveStyle = base.merge(style).copyWith(
+      color: style?.color ?? theme.colors.black,
+    );
+
     return AutoSizeText(
       data,
-      style: style.copyWith(color: color, fontSize: fontSize, fontWeight: fontWeight, decoration: decoration, height: height),
+      style: effectiveStyle,
+      strutStyle: strutStyle,
       textAlign: textAlign,
+      textDirection: textDirection,
+      locale: locale,
+      softWrap: softWrap,
       overflow: overflow,
       maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
       minFontSize: minFontSize,
-      maxFontSize: fontSize ?? style.fontSize ?? 18,
+      maxFontSize: style?.fontSize ?? base.fontSize ?? double.infinity,
     );
   }
 }

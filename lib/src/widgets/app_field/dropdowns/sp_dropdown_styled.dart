@@ -89,8 +89,10 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
         widget.label!,
-        fontSize: widget.fontSizeLabel ?? 14.0,
-        fontWeight: FontWeight.w600,
+        style: TextStyle(
+          fontSize: widget.fontSizeLabel ?? 14.0,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -146,8 +148,10 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
           widget.menuItemStyleData ?? _defaultMenuItemStyleData(),
       hint: SPText(
         widget.placeHolder,
-        fontSize: widget.fontSizePlaceHolder ?? 14,
-        color: Colors.grey.withAlpha((255 * 0.4).toInt()),
+        style: TextStyle(
+          fontSize: widget.fontSizePlaceHolder ?? 14,
+          color: Colors.grey.withAlpha((255 * 0.4).toInt()),
+        ),
       ),
       onChanged: (value) {
         state.didChange(value);
@@ -204,7 +208,7 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
     return Column(
       children: [
         const SizedBox(height: 5),
-        SPText(state.errorText ?? '', color: Colors.redAccent),
+        SPText(state.errorText ?? '', style: const TextStyle(color: Colors.redAccent)),
         const SizedBox(height: 3),
       ],
     );

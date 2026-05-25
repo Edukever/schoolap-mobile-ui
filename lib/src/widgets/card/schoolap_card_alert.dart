@@ -79,10 +79,12 @@ class SPCardAlert extends StatelessWidget {
             Expanded(
               child: SPText(
                 title,
-                fontSize: fontSize ?? 14,
-                fontWeight: fontWeight,
+                style: TextStyle(
+                  fontSize: fontSize ?? 14,
+                  fontWeight: fontWeight,
+                  color: iconColor,
+                ),
                 level: AppTextLevel.paragraph1,
-                color: iconColor,
                 maxLines: maxLines ?? 1,
               ),
             ),

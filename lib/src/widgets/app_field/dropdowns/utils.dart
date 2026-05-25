@@ -25,7 +25,7 @@ class DropdownMenuItemGenerator<T, R> {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: SPText(
                 getName(item),
-                fontSize: 14,
+                style: const TextStyle(fontSize: 14),
               ),
             ),
           ),

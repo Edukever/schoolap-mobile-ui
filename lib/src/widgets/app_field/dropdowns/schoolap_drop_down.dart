@@ -70,7 +70,7 @@ class _SPDropDownState<T> extends State<SPDropDown<T>> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: SPText(
               widget.label!,
-              fontSize: 14.0,
+              style: const TextStyle(fontSize: 14.0),
             ),
           ),
         FormBuilderField<T>(
@@ -132,7 +132,7 @@ class _SPDropDownState<T> extends State<SPDropDown<T>> {
                   ),
               hint: SPText(
                 widget.placeHolder,
-                fontSize: 14,
+                style: const TextStyle(fontSize: 14),
               ),
               onChanged: (value) {
                 state.didChange(value);

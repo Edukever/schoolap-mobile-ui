@@ -41,7 +41,7 @@ class DataTableScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: SPText.title2('Data Table Example'),
             ),
-            SizedBox(height: AppTheme.of(context).spacing.regular),
+            SizedBox(height: AppTheme.of(context).spacing.medium),
             Expanded(
               child: SPDataTable<Todo>(
                 columns: [
@@ -89,7 +89,7 @@ class DataTableScreen extends StatelessWidget {
                 emptyItemBuilder: (context) {
                   return Column(children: [
                     const SPText.title2('No data'),
-                    SizedBox(height: AppTheme.of(context).spacing.regular),
+                    SizedBox(height: AppTheme.of(context).spacing.medium),
                     SPButtonPrimary(title: 'Ajouter une tache', onTap: () {}),
                   ]);
                 },

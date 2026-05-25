@@ -116,8 +116,10 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
         widget.label!,
-        fontSize: widget.fontSizeLabel ?? 14.0,
-        fontWeight: FontWeight.w600,
+        style: TextStyle(
+          fontSize: widget.fontSizeLabel ?? 14.0,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -195,8 +197,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
               const SizedBox(height: 5),
               SPText(
                 field.errorText ?? '',
-                fontSize: 12,
-                color: Colors.red,
+                style: const TextStyle(fontSize: 12, color: Colors.red),
               ),
             ]
           ],

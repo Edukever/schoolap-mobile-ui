@@ -72,7 +72,7 @@ class SPErrorPage extends StatelessWidget {
                         const SizedBox(height: 20.0),
                         SPText.title1(
                           title,
-                          color: resolvedTitleColor,
+                          style: TextStyle(color: resolvedTitleColor),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 20.0),
