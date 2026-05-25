@@ -11,7 +11,9 @@ class DropdownMenuItemGenerator<T, R> {
     this.dividerHeight = 4.0,
   });
 
-  List<DropdownItem<R>> generate({required String Function(T item) getName, required R Function(T item) getValue}) {
+  List<DropdownItem<R>> generate(
+      {required String Function(T item) getName,
+      required R Function(T item) getValue}) {
     final List<DropdownItem<R>> menuItems = [];
     for (final T item in items) {
       menuItems.addAll(
@@ -40,13 +42,15 @@ class DropdownMenuItemGenerator<T, R> {
     return menuItems;
   }
 
-  static DropdownStyleData dropdownStyleData({double? maxHeightDropDown, Color? color}) => DropdownStyleData(
+  static DropdownStyleData dropdownStyleData(
+          {double? maxHeightDropDown, Color? color}) =>
+      DropdownStyleData(
         maxHeight: maxHeightDropDown ?? 150,
         elevation: 0,
         decoration: BoxDecoration(
           color: color ?? Colors.transparent,
           border: Border.all(color: Colors.black),
-          borderRadius: const BorderRadius.all(Radius.circular(14)),
+          borderRadius: BorderRadius.all(const AppRadiusData.primary().large),
         ),
         scrollbarTheme: ScrollbarThemeData(
           //   radius: const Radius.circular(40),

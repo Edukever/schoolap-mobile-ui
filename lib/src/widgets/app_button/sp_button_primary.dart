@@ -99,12 +99,14 @@ class SPButtonPrimary<T> extends StatelessWidget {
       child: Container(
         width: width ?? double.infinity,
         height: height ?? 50,
-        decoration: buildBorderDecoration(decorationState ?? DecorationState.none),
+        decoration: buildBorderDecoration(
+            context, decorationState ?? DecorationState.none),
         child: Center(
           child: icon != null
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+                  mainAxisAlignment:
+                      mainAxisAlignment ?? MainAxisAlignment.center,
                   children: _buildButtonChildren(),
                 )
               : SPText(
@@ -120,17 +122,20 @@ class SPButtonPrimary<T> extends StatelessWidget {
     );
   }
 
-  BoxDecoration buildBorderDecoration(DecorationState decorationState) {
+  BoxDecoration buildBorderDecoration(
+      BuildContext context, DecorationState decorationState) {
+    final radiusValue = radius ?? AppTheme.of(context).radius.medium.x;
+
     switch (decorationState) {
       case DecorationState.solid:
         return BoxDecoration(
           color: backgroundColor ?? const Color(0xFFF68C2C),
-          borderRadius: BorderRadius.circular(radius ?? 10.52),
+          borderRadius: BorderRadius.circular(radiusValue),
         );
       case DecorationState.outline:
         return BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(radius ?? 10.52),
+          borderRadius: BorderRadius.circular(radiusValue),
           border: Border.all(
             color: outlineBorderColor ?? const Color(0xFFF68C2C),
             width: 1.0,
@@ -139,7 +144,7 @@ class SPButtonPrimary<T> extends StatelessWidget {
       default:
         return BoxDecoration(
           color: backgroundColor ?? const Color(0xFFF68C2C),
-          borderRadius: BorderRadius.circular(radius ?? 10.52),
+          borderRadius: BorderRadius.circular(radiusValue),
         );
     }
   }

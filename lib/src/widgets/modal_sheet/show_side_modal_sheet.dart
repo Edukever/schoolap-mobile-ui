@@ -41,24 +41,25 @@ Future<T?> showModalSideSheet<T extends Object?>({
           child: Material(
             elevation: elevation,
             color: Colors.white,
-            shape: const RoundedRectangleBorder(
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
+                topLeft: AppTheme.of(context).radius.extraLarge,
+                bottomLeft: AppTheme.of(context).radius.extraLarge,
               ),
             ),
             child: Container(
               width: width,
               height: height,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
+                  topLeft: AppTheme.of(context).radius.extraLarge,
+                  bottomLeft: AppTheme.of(context).radius.extraLarge,
                 ),
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
-                resizeToAvoidBottomInset: true, // Important for keyboard handling
+                resizeToAvoidBottomInset:
+                    true, // Important for keyboard handling
                 body: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -73,7 +74,8 @@ Future<T?> showModalSideSheet<T extends Object?>({
                               child: closeControl ??
                                   CircleAvatar(
                                     radius: 15,
-                                    backgroundColor: AppTheme.of(context).colors.gray2,
+                                    backgroundColor:
+                                        AppTheme.of(context).colors.gray2,
                                     child: const Icon(
                                       Icons.close,
                                       size: 15,
@@ -94,7 +96,8 @@ Future<T?> showModalSideSheet<T extends Object?>({
     },
     transitionBuilder: (_, animation, __, child) {
       return SlideTransition(
-        position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero).animate(animation),
+        position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
+            .animate(animation),
         child: child,
       );
     },

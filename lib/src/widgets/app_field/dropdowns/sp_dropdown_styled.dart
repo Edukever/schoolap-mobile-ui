@@ -121,7 +121,8 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
       items: DropdownMenuItemGenerator<T, R>(
         items: widget.items,
       ).generate(getName: widget.getName, getValue: widget.getValue),
-      dropdownStyleData: widget.dropdownStyleData ?? _defaultDropdownStyleData(),
+      dropdownStyleData:
+          widget.dropdownStyleData ?? _defaultDropdownStyleData(),
       isExpanded: true,
       decoration: _buildInputDecoration(),
       iconStyleData: widget.iconStyleData,
@@ -137,10 +138,12 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
               width: widget.buttonStyleData!.width,
               padding: widget.buttonStyleData!.padding,
               decoration: widget.buttonStyleData!.decoration,
-              foregroundDecoration: widget.buttonStyleData!.foregroundDecoration,
+              foregroundDecoration:
+                  widget.buttonStyleData!.foregroundDecoration,
               elevation: widget.buttonStyleData!.elevation,
             ),
-      menuItemStyleData: widget.menuItemStyleData ?? _defaultMenuItemStyleData(),
+      menuItemStyleData:
+          widget.menuItemStyleData ?? _defaultMenuItemStyleData(),
       hint: SPText(
         widget.placeHolder,
         fontSize: widget.fontSizePlaceHolder ?? 14,
@@ -161,7 +164,7 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.black),
-        borderRadius: const BorderRadius.all(Radius.circular(14)),
+        borderRadius: BorderRadius.all(AppTheme.of(context).radius.large),
       ),
       scrollbarTheme: ScrollbarThemeData(
         thickness: WidgetStateProperty.all(6),
@@ -192,7 +195,7 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
       contentPadding: widget.contentPadding ?? const EdgeInsets.only(right: 10),
       border: widget.border ??
           OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.all(AppTheme.of(context).radius.medium),
           ),
     );
   }

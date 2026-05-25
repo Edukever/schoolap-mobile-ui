@@ -29,8 +29,8 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
         decoration: BoxDecoration(
           color: backgroundColor ?? AppTheme.of(context).colors.blue,
           borderRadius: BorderRadius.only(
-            bottomLeft: AppTheme.of(context).radius.big,
-            bottomRight: AppTheme.of(context).radius.big,
+            bottomLeft: AppTheme.of(context).radius.full,
+            bottomRight: AppTheme.of(context).radius.full,
           ),
         ),
         child: Stack(
@@ -41,7 +41,8 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
               right: 0,
               child: Transform.translate(
                 offset: const Offset(0, -24),
-                child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
+                child: SvgPicture.asset(
+                    'packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
               ),
             ),
             if (Navigator.of(context).canPop() && !hidePop)
@@ -61,7 +62,9 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.center,
-                child: titleWidget ?? SPText.title2(title, color: AppTheme.of(context).colors.white),
+                child: titleWidget ??
+                    SPText.title2(title,
+                        color: AppTheme.of(context).colors.white),
               ),
             ),
           ],

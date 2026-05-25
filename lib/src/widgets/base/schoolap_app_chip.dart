@@ -41,7 +41,8 @@ class SPChip extends StatelessWidget {
       decoration: ShapeDecoration(
         color: backgroundColor ?? const Color(0xFFFFE1E1),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.18),
+          borderRadius:
+              BorderRadius.all(AppTheme.of(context).radius.extraSmall),
         ),
       ),
       child: Row(

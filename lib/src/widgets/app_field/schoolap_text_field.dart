@@ -139,7 +139,9 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       validator: widget.validator,
       valueTransformer: widget.valueTransformer,
       onChanged: (value) {
-        if (value is String && textEditingController.text != value) textEditingController.text = value;
+        if (value is String && textEditingController.text != value) {
+          textEditingController.text = value;
+        }
         widget.onChanged?.call(value);
       },
       onReset: () => textEditingController.clear(),
@@ -157,7 +159,7 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
+                borderRadius: widget.borderRadius ?? BorderRadius.all(AppTheme.of(context).radius.medium),
                 border: Border.all(color: containerBorderColor),
               ),
               child: SizedBox(

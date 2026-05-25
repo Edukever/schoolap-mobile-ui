@@ -79,7 +79,8 @@ class _SPDropDownPresenceState<T> extends State<SPDropDownPresence<T>> {
                 width: 160,
                 padding: const EdgeInsets.only(left: 14, right: 14),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius:
+                      BorderRadius.all(AppTheme.of(context).radius.large),
                   border: Border.all(
                     color: Colors.black26,
                   ),
@@ -91,7 +92,8 @@ class _SPDropDownPresenceState<T> extends State<SPDropDownPresence<T>> {
                 width: 200,
                 decoration: BoxDecoration(
                   color: Colors.red,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius:
+                      BorderRadius.all(AppTheme.of(context).radius.large),
                 ),
               ),
               menuItemStyleData: const MenuItemStyleData(

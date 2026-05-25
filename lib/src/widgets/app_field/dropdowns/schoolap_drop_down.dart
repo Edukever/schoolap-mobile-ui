@@ -102,7 +102,8 @@ class _SPDropDownState<T> extends State<SPDropDown<T>> {
                 contentPadding: const EdgeInsets.only(right: 10),
                 border: widget.border ??
                     OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius:
+                          BorderRadius.all(AppTheme.of(context).radius.medium),
                     ),
                 // Add more decoration..
               ),
@@ -114,13 +115,15 @@ class _SPDropDownState<T> extends State<SPDropDown<T>> {
                       width: widget.buttonStyleData!.width,
                       padding: widget.buttonStyleData!.padding,
                       decoration: widget.buttonStyleData!.decoration,
-                      foregroundDecoration: widget.buttonStyleData!.foregroundDecoration,
+                      foregroundDecoration:
+                          widget.buttonStyleData!.foregroundDecoration,
                       elevation: widget.buttonStyleData!.elevation,
                     ),
               dropdownStyleData: widget.dropdownStyleData ??
                   DropdownStyleData(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius:
+                          BorderRadius.all(AppTheme.of(context).radius.large),
                     ),
                   ),
               menuItemStyleData: widget.menuItemStyleData ??

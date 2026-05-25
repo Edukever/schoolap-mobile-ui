@@ -37,8 +37,8 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
         decoration: BoxDecoration(
           color: backgroundColor ?? AppTheme.of(context).colors.blue,
           borderRadius: BorderRadius.only(
-            bottomLeft: AppTheme.of(context).radius.big,
-            bottomRight: AppTheme.of(context).radius.big,
+            bottomLeft: AppTheme.of(context).radius.full,
+            bottomRight: AppTheme.of(context).radius.full,
           ),
           boxShadow: shadow
               ? const [
@@ -55,7 +55,8 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
             Positioned(
               top: 0,
               right: 0,
-              child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
+              child: SvgPicture.asset(
+                  'packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
             ),
             SafeArea(
               child: Padding(
@@ -67,20 +68,26 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                         if (leading != null)
                           leading!
                         else ...[
-                          Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
+                          Image.asset(
+                              'packages/schoolap_ui/assets/images/logo_schoolap_pen.png'),
                           const SizedBox(width: 5.0),
                           Transform.translate(
                             offset: const Offset(0, -3),
-                            child: Image.asset('packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
+                            child: Image.asset(
+                                'packages/schoolap_ui/assets/images/logo_schoolap_name.png'),
                           ),
                         ],
                         const Spacer(),
                         if (showNotificationIcon)
                           Badge(
-                            backgroundColor: AppTheme.of(context).colors.white.withAlpha((255 * 0.7).toInt()),
+                            backgroundColor: AppTheme.of(context)
+                                .colors
+                                .white
+                                .withAlpha((255 * 0.7).toInt()),
                             label: Text(
                               badgeLabel ?? '',
-                              style: TextStyle(color: AppTheme.of(context).colors.blue),
+                              style: TextStyle(
+                                  color: AppTheme.of(context).colors.blue),
                             ),
                             isLabelVisible: showNotificationBadge,
                             child: SPButtonIcon(
@@ -88,7 +95,10 @@ class SPMainAppbar extends StatelessWidget implements PreferredSizeWidget {
                               iconSize: 25.0,
                               height: 40,
                               width: 40,
-                              filledColor: AppTheme.of(context).colors.white.withAlpha((255 * 0.2).toInt()),
+                              filledColor: AppTheme.of(context)
+                                  .colors
+                                  .white
+                                  .withAlpha((255 * 0.2).toInt()),
                               shape: ButtonIconShape.circle,
                               showBadge: false,
                               onPressed: onNotificationTap,

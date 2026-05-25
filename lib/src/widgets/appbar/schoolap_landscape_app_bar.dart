@@ -1,6 +1,7 @@
 part of '../widget.dart';
 
-class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class SchoolapLandscapeAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   final double height;
   final bool shadow;
   final Widget? leading;
@@ -32,8 +33,8 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
         decoration: BoxDecoration(
           color: backgroundColor ?? AppTheme.of(context).colors.blue,
           borderRadius: BorderRadius.only(
-            bottomLeft: AppTheme.of(context).radius.regular,
-            bottomRight: AppTheme.of(context).radius.regular,
+            bottomLeft: AppTheme.of(context).radius.medium,
+            bottomRight: AppTheme.of(context).radius.medium,
           ),
           boxShadow: shadow
               ? [
@@ -69,7 +70,8 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
     return Positioned(
       top: 0,
       right: 0,
-      child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
+      child:
+          SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
     );
   }
 
@@ -85,12 +87,12 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
               height: 45,
               decoration: ShapeDecoration(
                 color: Colors.white.withAlpha((255 * 0.2).toInt()),
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                    bottomLeft: Radius.circular(9),
-                    bottomRight: Radius.circular(8),
+                    topLeft: AppTheme.of(context).radius.small,
+                    topRight: AppTheme.of(context).radius.small,
+                    bottomLeft: AppTheme.of(context).radius.small,
+                    bottomRight: AppTheme.of(context).radius.small,
                   ),
                 ),
               ),

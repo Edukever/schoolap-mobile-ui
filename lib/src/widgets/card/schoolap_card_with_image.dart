@@ -32,7 +32,8 @@ class SPCardWithImage extends StatelessWidget {
             Container(
               height: 90,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius:
+                    BorderRadius.all(AppTheme.of(context).radius.medium),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(imagePath),

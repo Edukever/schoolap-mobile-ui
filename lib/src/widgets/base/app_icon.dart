@@ -44,15 +44,18 @@ class SPButtonIcon extends StatelessWidget {
     this.showBadge = false,
     this.badgeLabel,
     this.badgeColor,
-  })  : assert(
-            shape != ButtonIconShape.outlined || outlinedColor != null, 'Invalid configuration: outlinedColor should be provided when shape is only outlined.'),
-        assert(shape != ButtonIconShape.square || hasShadow != null, 'Invalid configuration: hasShadow should be provided when shape is only square.');
+  })  : assert(shape != ButtonIconShape.outlined || outlinedColor != null,
+            'Invalid configuration: outlinedColor should be provided when shape is only outlined.'),
+        assert(shape != ButtonIconShape.square || hasShadow != null,
+            'Invalid configuration: hasShadow should be provided when shape is only square.');
 
   @override
   Widget build(BuildContext context) {
     final icon = SvgPicture.asset(
       iconData,
-      colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : null,
+      colorFilter: iconColor != null
+          ? ColorFilter.mode(iconColor!, BlendMode.srcIn)
+          : null,
       height: iconSize,
       width: iconSize,
     );
@@ -62,7 +65,7 @@ class SPButtonIcon extends StatelessWidget {
       child: Container(
         width: width ?? 70,
         height: height ?? 70,
-        decoration: buildDecoration(shape ?? ButtonIconShape.none),
+        decoration: buildDecoration(context, shape ?? ButtonIconShape.none),
         alignment: Alignment.center,
         child: showBadge
             ? Badge(
@@ -77,11 +80,14 @@ class SPButtonIcon extends StatelessWidget {
     );
   }
 
-  BoxDecoration buildDecoration(ButtonIconShape formState) {
+  BoxDecoration buildDecoration(
+      BuildContext context, ButtonIconShape formState) {
+    final radiusValue = radius ?? AppTheme.of(context).radius.medium.x;
+
     switch (formState) {
       case ButtonIconShape.square:
         return BoxDecoration(
-          borderRadius: BorderRadius.circular(radius ?? 10.0),
+          borderRadius: BorderRadius.circular(radiusValue),
           color: filledColor ?? const Color(0xFF3F97E3),
           boxShadow: hasShadow == true
               ? const [
@@ -104,7 +110,7 @@ class SPButtonIcon extends StatelessWidget {
           border: Border.all(
             color: outlinedColor ?? const Color(0xFFF68C2C),
           ),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(radiusValue),
         );
       default:
         return const BoxDecoration();
