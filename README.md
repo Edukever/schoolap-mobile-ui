@@ -24,6 +24,10 @@ Une fois le package installé, vous pouvez importer les composants du système d
 import 'package:schoolap_ui/schoolap_ui.dart';
 ```
 
+## Documentation
+
+- [SPErrorPage](docs/schoolap_error_page.md) : page d'erreur réutilisable avec contenu, action, illustration et détails techniques configurables.
+
 Le package fournit une variété de composants réutilisables tels que des boutons, des cartes, des champs de saisie, des listes, etc. Vous pouvez les utiliser dans vos widgets Flutter de la même manière que les widgets natifs de Flutter.
 
 Voici la liste des composants disponibles dans le package `schoolap_design_system` :
