@@ -7,7 +7,7 @@ class StandardAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: SPAppBar(title: 'Fonctionnalités'),
+      appBar: SPAppBar('Fonctionnalités'),
     );
   }
 }

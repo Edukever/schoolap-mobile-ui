@@ -7,10 +7,12 @@ class MainAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SPMainAppbar(
+      appBar: SPAppBar.main(
         height: 160,
-        showNotificationBadge: true,
-        badgeLabel: '5',
+        notification: const SPAppBarNotification(
+          showBadge: true,
+          badgeLabel: '5',
+        ),
         child: Row(
           children: [
             const CircleAvatar(radius: 30.0),

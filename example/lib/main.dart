@@ -1,5 +1,5 @@
+import 'package:example/fields/appbar_page.dart';
 import 'package:example/fields/button_page.dart';
-import 'package:example/fields/main_appbar.dart';
 import 'package:example/fields/custom_card.dart';
 import 'package:example/fields/icon_pages.dart';
 import 'package:example/fields/text_page.dart';
@@ -9,7 +9,6 @@ import 'package:schoolap_ui/schoolap_ui.dart';
 import 'fields/data_table.dart';
 import 'fields/page_field_screen.dart';
 import 'fields/pagination.dart';
-import 'fields/standard_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,13 +79,8 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             SPButton(
-              'Main AppBar',
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainAppBar())),
-            ),
-            const SizedBox(height: 10),
-            SPButton(
-              'Standard AppBar',
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StandardAppBar())),
+              'AppBar — SPAppBar',
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AppBarPage())),
             ),
             const SizedBox(height: 10),
             SPButton(

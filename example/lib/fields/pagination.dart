@@ -14,9 +14,7 @@ class _PaginationPageState extends State<PaginationPage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: const SPAppBar(
-        title: 'Pagination',
-      ),
+      appBar: const SPAppBar('Pagination'),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

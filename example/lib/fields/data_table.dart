@@ -32,7 +32,7 @@ class DataTableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SPAppBar(title: 'Data Table'),
+      appBar: const SPAppBar('Data Table'),
       body: SizedBox(
         width: double.infinity,
         child: Column(
