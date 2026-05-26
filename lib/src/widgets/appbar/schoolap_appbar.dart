@@ -420,15 +420,12 @@ class SPAppBar extends StatelessWidget implements PreferredSizeWidget {
                       style: TextStyle(color: theme.colors.blue),
                     ),
                     isLabelVisible: notif.showBadge,
-                    child: SPButtonIcon(
-                      iconData: AppIconsData.bellSimple,
+                    child: SPButtonIcon.circle(
+                      AppIconsData.bellSimple,
                       iconSize: 25,
                       height: 40,
                       width: 40,
-                      filledColor:
-                          theme.colors.white.withAlpha((255 * 0.2).toInt()),
-                      shape: ButtonIconShape.circle,
-                      showBadge: false,
+                      color: theme.colors.white.withAlpha((255 * 0.2).toInt()),
                       onPressed: notif.onTap,
                     ),
                   ),

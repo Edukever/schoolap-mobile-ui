@@ -91,10 +91,9 @@ class SPPagination extends StatelessWidget {
     required int target,
   }) {
     final theme = AppTheme.of(context);
-    return SPButtonIcon(
-      iconData: iconData,
-      shape: ButtonIconShape.square,
-      filledColor: theme.colors.blueLight,
+    return SPButtonIcon.square(
+      iconData,
+      color: theme.colors.blueLight,
       height: 45,
       width: 45,
       onPressed: () => _go(target),

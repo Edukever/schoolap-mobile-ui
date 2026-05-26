@@ -1,43 +1,43 @@
 part of '../widget.dart';
 
 class SPCardWithImage extends StatelessWidget {
-  final String label;
-  final String imagePath;
-  final VoidCallback? onTap;
-  final BoxConstraints constraints;
-
   const SPCardWithImage({
     super.key,
     required this.label,
-    required this.imagePath,
+    required this.image,
+    this.imageHeight = 90,
+    this.width = 120,
+    this.height = 150,
     this.onTap,
-    this.constraints = const BoxConstraints(
-      maxWidth: 120,
-      maxHeight: 150,
-      minHeight: 150,
-      minWidth: 120,
-    ),
   });
+
+  final String label;
+
+  /// Image painted in the upper area of the card.
+  /// Use [AssetImage] for local assets or [NetworkImage] for remote URLs.
+  final ImageProvider image;
+
+  final double imageHeight;
+  final double width;
+  final double height;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return SPCard(
       onTap: onTap,
       backgroundColor: Colors.white,
-      constraints: constraints,
+      constraints: BoxConstraints.tight(Size(width, height)),
       child: Padding(
         padding: const EdgeInsets.all(5),
         child: Column(
           children: [
             Container(
-              height: 90,
+              height: imageHeight,
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.all(AppTheme.of(context).radius.medium),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(imagePath),
-                ),
+                image: DecorationImage(fit: BoxFit.cover, image: image),
               ),
             ),
             Padding(
@@ -52,7 +52,7 @@ class SPCardWithImage extends StatelessWidget {
                 ),
                 maxLines: 2,
               ),
-            )
+            ),
           ],
         ),
       ),

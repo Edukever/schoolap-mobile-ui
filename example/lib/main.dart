@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
               _NavItem(
                 icon: Icons.smart_button_rounded,
                 title: 'SPButton',
-                subtitle: 'Filled, outlined, presets',
+                subtitle: 'Filled, outlined, presets, icon',
                 page: const ButtonPage(),
               ),
               _NavItem(
@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
                 icon: Icons.dashboard_rounded,
                 title: 'Cartes',
                 subtitle: 'SPCardTile, SPCardAlert…',
-                page: const CustomCard(),
+                page: const CardPage(),
               ),
             ],
           ),

@@ -17,7 +17,7 @@ export "base/red_more.dart";
 export "app_field/input_decoration.dart";
 
 part 'base/app_card.dart';
-part 'base/app_icon.dart';
+part 'app_button/sp_button_icon.dart';
 part 'base/app_text.dart';
 part 'base/dot_container.dart';
 part 'base/schoolap_app_chip.dart';
@@ -52,3 +52,6 @@ part 'app_field/schoolap_date_field_ranger.dart';
 part 'appbar/schoolap_landscape_app_bar.dart';
 part 'base/app_scaffold.dart';
 part "modal_sheet/show_side_modal_sheet.dart";
+
+@Deprecated('Use SPCardPresence instead.')
+typedef SchoolapCardPresence = SPCardPresence;
