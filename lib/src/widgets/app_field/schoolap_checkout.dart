@@ -20,15 +20,18 @@ class SPCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTileTheme(
-      horizontalTitleGap: 0,
-      child: FormBuilderCheckbox(
-        name: name,
-        title: title,
-        activeColor: activeColor ?? AppTheme.of(context).colors.blue,
-        onChanged: onChanged,
-        initialValue: initialValue,
-        validator: validator,
+    return Material(
+      color: Colors.transparent,
+      child: ListTileTheme(
+        horizontalTitleGap: 0,
+        child: FormBuilderCheckbox(
+          name: name,
+          title: title,
+          activeColor: activeColor ?? AppTheme.of(context).colors.blue,
+          onChanged: onChanged,
+          initialValue: initialValue,
+          validator: validator,
+        ),
       ),
     );
   }

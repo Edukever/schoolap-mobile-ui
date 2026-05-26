@@ -18,7 +18,6 @@ class SPRadio<T> extends StatelessWidget {
     this.wrapDirection,
     this.wrapRunSpacing,
     this.wrapSpacing,
-    this.horizontalTitleGap = 0.0,
   });
 
   final String name;
@@ -33,32 +32,38 @@ class SPRadio<T> extends StatelessWidget {
   final Axis? wrapDirection;
   final double? wrapRunSpacing;
   final double? wrapSpacing;
-  final double horizontalTitleGap;
 
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
 
-    return ListTileTheme(
-      horizontalTitleGap: horizontalTitleGap,
-      child: FormBuilderRadioGroup(
-        name: name,
-        initialValue: initialValue,
-        options: options,
-        wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
-        wrapCrossAxisAlignment: wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
-        focusColor: theme.colors.orange,
-        activeColor: theme.colors.orange,
-        orientation: orientation ?? OptionsOrientation.wrap,
-        wrapDirection: wrapDirection ?? Axis.horizontal,
-        wrapRunSpacing: wrapRunSpacing ?? 0.0,
-        wrapSpacing: wrapSpacing ?? 0.0,
-        validator: validator,
-        decoration: InputDecoration(
-          label: label != null ? SPText(label!, style: const TextStyle(fontSize: 14)) : null,
-          labelStyle: labelStyle ?? const TextStyle(fontSize: 14, fontFamily: 'Poppins'),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-          border: InputBorder.none,
+    return Material(
+      color: Colors.transparent,
+      child: ListTileTheme(
+        horizontalTitleGap: 0,
+        child: FormBuilderRadioGroup(
+          name: name,
+          initialValue: initialValue,
+          options: options,
+          wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
+          wrapCrossAxisAlignment:
+              wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
+          focusColor: theme.colors.orange,
+          activeColor: theme.colors.orange,
+          orientation: orientation ?? OptionsOrientation.wrap,
+          wrapDirection: wrapDirection ?? Axis.horizontal,
+          wrapRunSpacing: wrapRunSpacing ?? 0.0,
+          wrapSpacing: wrapSpacing ?? 0.0,
+          validator: validator,
+          decoration: InputDecoration(
+            label: label != null
+                ? SPText(label!, style: const TextStyle(fontSize: 14))
+                : null,
+            labelStyle:
+                labelStyle ?? const TextStyle(fontSize: 14, fontFamily: 'Poppins'),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+            border: InputBorder.none,
+          ),
         ),
       ),
     );
