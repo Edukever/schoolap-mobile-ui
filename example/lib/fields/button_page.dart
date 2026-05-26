@@ -142,6 +142,112 @@ SPButtonPreset.success(
                 ),
               ),
             ]),
+            SizedBox(height: theme.spacing.large),
+
+            // ── SPButtonIcon ──────────────────────────────────────────────
+            _Section(label: 'SPButtonIcon — formes', children: [
+              CodePreview(
+                code: r'''
+SPButtonIcon(AppIconsData.date)
+SPButtonIcon.square(AppIconsData.date)
+SPButtonIcon.square(AppIconsData.date, hasShadow: true)
+SPButtonIcon.circle(AppIconsData.date)
+SPButtonIcon.outlined(
+  AppIconsData.date,
+  outlinedColor: Colors.orange,
+  iconColor: Colors.orange,
+)''',
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    const SPButtonIcon(AppIconsData.date),
+                    const SPButtonIcon.square(AppIconsData.date),
+                    const SPButtonIcon.square(AppIconsData.date, hasShadow: true),
+                    const SPButtonIcon.circle(AppIconsData.date),
+                    const SPButtonIcon.outlined(
+                      AppIconsData.date,
+                      outlinedColor: Colors.orange,
+                      iconColor: Colors.orange,
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+            SizedBox(height: theme.spacing.large),
+
+            _Section(label: 'SPButtonIcon — taille & couleur', children: [
+              CodePreview(
+                code: r'''
+SPButtonIcon.square(
+  AppIconsData.date,
+  width: 40,
+  height: 40,
+  iconSize: 18,
+  color: theme.colors.blue,
+)
+SPButtonIcon.circle(
+  AppIconsData.date,
+  width: 40,
+  height: 40,
+  iconSize: 18,
+  color: theme.colors.blueLight,
+  iconColor: theme.colors.blue,
+)''',
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    SPButtonIcon.square(
+                      AppIconsData.date,
+                      width: 40,
+                      height: 40,
+                      iconSize: 18,
+                      color: theme.colors.blue,
+                    ),
+                    SPButtonIcon.circle(
+                      AppIconsData.date,
+                      width: 40,
+                      height: 40,
+                      iconSize: 18,
+                      color: theme.colors.blueLight,
+                      iconColor: theme.colors.blue,
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+            SizedBox(height: theme.spacing.large),
+
+            _Section(label: 'SPButtonIcon — badge', children: [
+              CodePreview(
+                code: r'''
+SPButtonIcon.square(
+  AppIconsData.bellSimple,
+  showBadge: true,
+  badgeLabel: Text('3'),
+)
+SPButtonIcon.circle(
+  AppIconsData.bellSimple,
+  showBadge: true,
+)''',
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    SPButtonIcon.square(
+                      AppIconsData.bellSimple,
+                      showBadge: true,
+                      badgeLabel: const Text('3'),
+                    ),
+                    const SPButtonIcon.circle(
+                      AppIconsData.bellSimple,
+                      showBadge: true,
+                    ),
+                  ],
+                ),
+              ),
+            ]),
             SizedBox(height: theme.spacing.extraLarge),
           ],
         ),
