@@ -1,13 +1,6 @@
 part of '../widget.dart';
 
 class SPCheckBox extends StatelessWidget {
-  final String name;
-  final Widget title;
-  final Color? activeColor;
-  final void Function(bool?)? onChanged;
-  final bool? initialValue;
-  final String? Function(bool?)? validator;
-
   const SPCheckBox({
     super.key,
     required this.name,
@@ -18,17 +11,27 @@ class SPCheckBox extends StatelessWidget {
     this.validator,
   });
 
+  final String name;
+  final Widget title;
+  final Color? activeColor;
+  final void Function(bool?)? onChanged;
+  final bool? initialValue;
+  final String? Function(bool?)? validator;
+
   @override
   Widget build(BuildContext context) {
-    return ListTileTheme(
-      horizontalTitleGap: 0,
-      child: FormBuilderCheckbox(
-        name: name,
-        title: title,
-        activeColor: activeColor ?? AppTheme.of(context).colors.bleu,
-        onChanged: onChanged,
-        initialValue: initialValue,
-        validator: validator,
+    return Material(
+      color: Colors.transparent,
+      child: ListTileTheme(
+        horizontalTitleGap: 0,
+        child: FormBuilderCheckbox(
+          name: name,
+          title: title,
+          activeColor: activeColor ?? AppTheme.of(context).colors.blue,
+          onChanged: onChanged,
+          initialValue: initialValue,
+          validator: validator,
+        ),
       ),
     );
   }

@@ -1,93 +1,81 @@
 part of '../widget.dart';
 
 enum SPCardAlertType {
-  alert,
-  warning,
-  info,
-  success,
+  alert(
+    background: Color(0xFFFFE1E1),
+    color: Color(0xFFFF4F4F),
+    icon: Icons.warning_amber,
+  ),
+  warning(
+    background: Color(0xFFE5F9FF),
+    color: Color(0xFF41A3DF),
+    icon: Icons.warning_amber,
+  ),
+  info(
+    background: Color(0xFFDDF3D6),
+    color: Color(0xFF1EA951),
+    icon: Icons.info_outline,
+  ),
+  success(
+    background: Color(0xFFDDF3D6),
+    color: Color(0xFF1EA951),
+    icon: Icons.check_circle_outline,
+  );
+
+  const SPCardAlertType({
+    required this.background,
+    required this.color,
+    required this.icon,
+  });
+
+  final Color background;
+  final Color color;
+  final IconData icon;
 }
 
 class SPCardAlert extends StatelessWidget {
-  final String title;
-  final BoxConstraints? constraints;
-  final SPCardAlertType type;
-  final VoidCallback? onTap;
-  final double? fontSize;
-  final Widget? icon;
-  final int? maxLines;
-  final FontWeight? fontWeight;
-
   const SPCardAlert({
     super.key,
     required this.title,
-    this.constraints,
     required this.type,
     this.onTap,
-    this.fontSize,
     this.icon,
-    this.maxLines,
-    this.fontWeight,
+    this.textStyle,
+    this.maxLines = 2,
   });
+
+  final String title;
+  final SPCardAlertType type;
+  final VoidCallback? onTap;
+
+  /// Overrides the default type icon.
+  final Widget? icon;
+
+  /// Overrides the default text style. Color defaults to the type's color.
+  final TextStyle? textStyle;
+
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor;
-    IconData iconData;
-    Color iconColor;
-
-    switch (type) {
-      case SPCardAlertType.alert:
-        backgroundColor = const Color(0xFFFFE1E1);
-        iconData = Icons.warning_amber;
-        iconColor = const Color(0xFFFF4F4F);
-        break;
-      case SPCardAlertType.warning:
-        backgroundColor = const Color(0xFFE5F9FF); // Set the background color for the warning type
-        iconData = Icons.warning_amber; // Set the icon data for the warning type
-        iconColor = const Color(0xFF41A3DF); // Set the icon color for the warning type
-        break;
-      case SPCardAlertType.info:
-        backgroundColor = const Color(0xFFDDF3D6); // Set the background color for the info type
-        iconData = Icons.info_outline; // Set the icon data for the info type
-        iconColor = const Color(0xFF1EA951); // Set the icon color for the info type
-        break;
-      case SPCardAlertType.success:
-        backgroundColor = const Color(0xFFDDF3D6); // Set the background color for the success type
-        iconData = Icons.check_circle_outline; // Set the icon data for the success type
-        iconColor = const Color(0xFF1EA951); // Set the icon color for the success type
-        break;
-    }
-
     return SPCard(
       onTap: onTap,
-      backgroundColor: backgroundColor,
-      constraints: constraints ?? const BoxConstraints(maxWidth: double.infinity),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            icon ??
-                Expanded(
-                  child: Icon(
-                    iconData,
-                    color: iconColor,
-                  ),
-                ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: SPText(
-                title,
-                fontSize: fontSize ?? 14,
-                fontWeight: fontWeight,
-                level: AppTextLevel.paragraph1,
-                color: iconColor,
-                maxLines: maxLines ?? 1,
-              ),
+      backgroundColor: type.background,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          icon ?? Icon(type.icon, color: type.color),
+          const SizedBox(width: 10),
+          Expanded(
+            child: SPText(
+              title,
+              style: textStyle ?? TextStyle(fontSize: 14, color: type.color),
+              level: AppTextLevel.paragraph1,
+              maxLines: maxLines,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

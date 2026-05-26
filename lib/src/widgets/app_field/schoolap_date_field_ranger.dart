@@ -1,68 +1,13 @@
 part of '../widget.dart';
 
 class SPDateFieldRanger<T> extends StatelessWidget {
-  final String name;
-
-  /// The placeholder text for the text field.
-  final String placeHolder;
-
-  /// The border radius of the text field.
-  final BorderRadius? borderRadius;
-
-  /// The label text for the text field.
-  final String? label;
-
-  /// The validator function for the text field.
-  final String? Function(DateTimeRange?)? validator;
-
-  /// The suffix widget for the text field.
-  final Widget? suffix;
-
-  /// The prefix widget for the text field.
-  final Widget? prefix;
-
-  /// The maximum number of lines for the text field.
-  final int? maxLines;
-
-  /// The hint style for the text field.
-  final TextStyle? hintStyle;
-
-  /// The initial value for the text field.
-  final DateTimeRange? initialValue;
-
-  /// The keyboard type for the text field.
-  final TextInputType? keyboardType;
-
-  /// The onChanged callback for the text field.
-  final Function(DateTimeRange?)? onChanged;
-
-  /// The value transformer for the text field.
-  final dynamic Function(DateTimeRange?)? valueTransformer;
-
-  /// the value of the firstDate
-  final DateTime firstDate;
-
-  /// the value of the lastDate
-  final DateTime? lastDate;
-
-  final DateTime? currentDate;
-
-  final EdgeInsetsGeometry? contentPadding;
-
-  final DatePickerEntryMode initialEntryMode;
-
-  final DateFormat? format;
-  final double? fontSizeLabel;
-  final double? fontSizePlaceHolder;
-  final TextStyle style;
-
-  /// Creates a new instance of `SPTextField`.
   const SPDateFieldRanger({
     super.key,
     required this.name,
     required this.placeHolder,
     this.borderRadius,
     this.label,
+    this.labelStyle,
     this.validator,
     this.suffix,
     this.prefix,
@@ -77,11 +22,31 @@ class SPDateFieldRanger<T> extends StatelessWidget {
     this.currentDate,
     this.contentPadding,
     this.format,
-    this.fontSizeLabel,
-    this.fontSizePlaceHolder,
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.style = const TextStyle(),
   });
+
+  final String name;
+  final String placeHolder;
+  final BorderRadius? borderRadius;
+  final String? label;
+  final TextStyle? labelStyle;
+  final String? Function(DateTimeRange?)? validator;
+  final Widget? suffix;
+  final Widget? prefix;
+  final int? maxLines;
+  final TextStyle? hintStyle;
+  final DateTimeRange? initialValue;
+  final TextInputType? keyboardType;
+  final Function(DateTimeRange?)? onChanged;
+  final dynamic Function(DateTimeRange?)? valueTransformer;
+  final DateTime firstDate;
+  final DateTime? lastDate;
+  final DateTime? currentDate;
+  final EdgeInsetsGeometry? contentPadding;
+  final DatePickerEntryMode initialEntryMode;
+  final DateFormat? format;
+  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +56,10 @@ class SPDateFieldRanger<T> extends StatelessWidget {
         if (label != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
+            child: SPText(
               label!,
-              style: TextStyle(
-                fontSize: fontSizeLabel ?? 14.0,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-              ),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)
+                  .merge(labelStyle),
             ),
           ),
         FormBuilderDateRangePicker(
@@ -108,7 +70,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           currentDate: currentDate,
           initialValue: initialValue,
           style: style.copyWith(
-            fontSize: fontSizeLabel ?? 14.0,
+            fontSize: 14.0,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
           ),
@@ -118,11 +80,7 @@ class SPDateFieldRanger<T> extends StatelessWidget {
           initialEntryMode: initialEntryMode,
           decoration: SPCustomInputDecoration(
             hintText: placeHolder,
-            hintStyle: TextStyle(
-              fontSize: fontSizePlaceHolder ?? 14.0,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w600,
-            ),
+            hintStyle: hintStyle,
             prefixIcon: prefix,
             suffixIcon: suffix,
             contentPadding: contentPadding,

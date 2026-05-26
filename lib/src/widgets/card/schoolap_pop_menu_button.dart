@@ -52,7 +52,8 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
   OverlayEntry? _overlayEntry;
 
   void _showMenu() {
-    final RenderBox renderBox = _iconKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox renderBox =
+        _iconKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero);
     final Size size = renderBox.size;
 
@@ -77,17 +78,25 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
         child: Stack(
           children: [
             Positioned(
-              left: left + (widget.arrowDxOffset ?? (MediaQuery.of(context).orientation == Orientation.landscape ? -20.0 : 0)),
+              left: left +
+                  (widget.arrowDxOffset ??
+                      (MediaQuery.of(context).orientation ==
+                              Orientation.landscape
+                          ? -20.0
+                          : 0)),
               top: offset.dy + size.height + (widget.arrowDyOffset ?? 0),
               child: Material(
                 elevation: 4.0,
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius:
+                    BorderRadius.all(AppTheme.of(context).radius.small),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 8.0),
                   height: widget.height ?? 75,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius:
+                        BorderRadius.all(AppTheme.of(context).radius.small),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -150,7 +159,9 @@ class _SPPopMenuButtonState<T> extends State<SPPopMenuButton<T>> {
       key: _iconKey,
       icon: SvgPicture.asset(
         widget.iconPath,
-        colorFilter: widget.iconColor == null ? null : ColorFilter.mode(widget.iconColor!, BlendMode.srcIn),
+        colorFilter: widget.iconColor == null
+            ? null
+            : ColorFilter.mode(widget.iconColor!, BlendMode.srcIn),
       ),
       onPressed: _showMenu,
     );

@@ -2,40 +2,9 @@ part of '../widget.dart';
 
 typedef ValidatorDate = Validator<DateTime>?;
 
-enum AppTextFieldType { password }
+enum SPTextFieldType { password }
 
-/// A custom text field widget for the app.
 class SPTextField<T> extends StatefulWidget {
-  final String name;
-  final String placeHolder;
-  final BorderRadius? borderRadius;
-  final String? label;
-  final String? Function(String?)? validator;
-  final Widget? suffix;
-  final Widget? prefix;
-  final int? maxLines;
-  final AppTextFieldType? type;
-  final bool obscureText;
-  final TextStyle? hintStyle;
-  final bool readOnly;
-  final String? initialValue;
-  final TextInputType? keyboardType;
-  final void Function(String?)? onChanged;
-  final dynamic Function(String?)? valueTransformer;
-  final TextCapitalization textCapitalization;
-  final TextEditingController? controller;
-  final void Function()? onEditingComplete;
-  final Color? backgroundColor;
-  final FocusNode? focusNode;
-  final double? fontSizeLabel;
-  final double? fontSize;
-  final double? height;
-  final EdgeInsets? contentPadding;
-  final InputBorder? border;
-  final Color? borderColor;
-  final List<TextInputFormatter>? inputFormatters;
-  final void Function()? onTap;
-
   const SPTextField({
     super.key,
     required this.name,
@@ -43,8 +12,8 @@ class SPTextField<T> extends StatefulWidget {
     this.borderRadius,
     this.border,
     this.label,
-    this.fontSizeLabel,
-    this.fontSize,
+    this.labelStyle,
+    this.textStyle,
     this.validator,
     this.height,
     this.suffix,
@@ -67,7 +36,42 @@ class SPTextField<T> extends StatefulWidget {
     this.borderColor,
     this.inputFormatters,
     this.onTap,
-  }) : assert(!(obscureText == true && type != AppTextFieldType.password), 'obscureText can only be used when the type is password');
+  }) : assert(
+          !(obscureText == true && type != SPTextFieldType.password),
+          'obscureText can only be used when type is SPTextFieldType.password',
+        );
+
+  final String name;
+  final String placeHolder;
+  final BorderRadius? borderRadius;
+  final String? label;
+  final TextStyle? labelStyle;
+
+  /// Overrides the default input text style (14 px, Poppins, w400).
+  final TextStyle? textStyle;
+  final String? Function(String?)? validator;
+  final Widget? suffix;
+  final Widget? prefix;
+  final int? maxLines;
+  final SPTextFieldType? type;
+  final bool obscureText;
+  final TextStyle? hintStyle;
+  final bool readOnly;
+  final String? initialValue;
+  final TextInputType? keyboardType;
+  final void Function(String?)? onChanged;
+  final dynamic Function(String?)? valueTransformer;
+  final TextCapitalization textCapitalization;
+  final TextEditingController? controller;
+  final void Function()? onEditingComplete;
+  final Color? backgroundColor;
+  final FocusNode? focusNode;
+  final double? height;
+  final EdgeInsets? contentPadding;
+  final InputBorder? border;
+  final Color? borderColor;
+  final List<TextInputFormatter>? inputFormatters;
+  final void Function()? onTap;
 
   @override
   State<SPTextField<T>> createState() => _SPTextFieldState<T>();
@@ -81,15 +85,11 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
   @override
   void initState() {
     super.initState();
-    textEditingController = widget.controller ?? TextEditingController(text: widget.initialValue);
+    textEditingController =
+        widget.controller ?? TextEditingController(text: widget.initialValue);
     focusNode = widget.focusNode ?? FocusNode();
-
     focusNode.addListener(() {
-      if (mounted) {
-        setState(() {
-          hasFocus = focusNode.hasFocus;
-        });
-      }
+      if (mounted) setState(() => hasFocus = focusNode.hasFocus);
     });
   }
 
@@ -116,8 +116,8 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
         widget.label!,
-        fontSize: widget.fontSizeLabel ?? 14.0,
-        fontWeight: FontWeight.w600,
+        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)
+            .merge(widget.labelStyle),
       ),
     );
   }
@@ -139,17 +139,19 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
       validator: widget.validator,
       valueTransformer: widget.valueTransformer,
       onChanged: (value) {
-        if (value is String && textEditingController.text != value) textEditingController.text = value;
+        if (value is String && textEditingController.text != value) {
+          textEditingController.text = value;
+        }
         widget.onChanged?.call(value);
       },
       onReset: () => textEditingController.clear(),
       focusNode: focusNode,
       builder: (field) {
-        final containerBorderColor = switch (field.hasError) {
-          true => SPColorsData.defaultColors().rouge,
+        final borderColor = switch (field.hasError) {
+          true => SPColorsData.defaultColors().red,
           false => switch (hasFocus) {
-              true => SPColorsData.defaultColors().noir,
-              false => (widget.borderColor ?? SPColorsData.defaultColors().grid2),
+              true => SPColorsData.defaultColors().black,
+              false => widget.borderColor ?? SPColorsData.defaultColors().gray2,
             },
         };
         return Column(
@@ -157,34 +159,46 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
-                border: Border.all(color: containerBorderColor),
+                borderRadius: widget.borderRadius ??
+                    BorderRadius.all(AppTheme.of(context).radius.medium),
+                border: Border.all(color: borderColor),
               ),
               child: SizedBox(
                 height: widget.height,
                 child: TextField(
                   onTap: widget.onTap,
                   focusNode: focusNode,
-                  style: TextStyle(
-                    fontSize: widget.fontSize ?? 14.0,
-                    fontFamily: "Poppins",
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.w400,
-                  ),
+                  ).merge(widget.textStyle),
                   readOnly: widget.readOnly,
                   controller: textEditingController,
-                  obscureText: widget.type == AppTextFieldType.password ? widget.obscureText : false,
+                  obscureText: widget.type == SPTextFieldType.password
+                      ? widget.obscureText
+                      : false,
                   decoration: inputDecoration.copyWith(
-                    border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-                    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-                    focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-                    errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-                    disabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                    border: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
+                    enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
+                    errorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
+                    disabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
                   ),
                   onChanged: (value) => field.didChange(value),
                   textCapitalization: widget.textCapitalization,
                   onEditingComplete: widget.onEditingComplete,
-                  maxLines: widget.type == AppTextFieldType.password ? 1 : widget.maxLines ?? 1,
-                  keyboardType: widget.type == AppTextFieldType.password ? TextInputType.text : widget.keyboardType,
+                  maxLines: widget.type == SPTextFieldType.password
+                      ? 1
+                      : widget.maxLines ?? 1,
+                  keyboardType: widget.type == SPTextFieldType.password
+                      ? TextInputType.text
+                      : widget.keyboardType,
                   inputFormatters: widget.inputFormatters,
                 ),
               ),
@@ -193,13 +207,21 @@ class _SPTextFieldState<T> extends State<SPTextField<T>> {
               const SizedBox(height: 5),
               SPText(
                 field.errorText ?? '',
-                fontSize: 12,
-                color: Colors.red,
+                style: const TextStyle(fontSize: 12, color: Colors.red),
               ),
-            ]
+            ],
           ],
         );
       },
     );
   }
 }
+
+// ─── Deprecated ───────────────────────────────────────────────────────────────
+
+@Deprecated(
+  'Use SPTextFieldType instead.\n'
+  'Migration: AppTextFieldType.password → SPTextFieldType.password.\n'
+  'Will be removed in a future version.',
+)
+typedef AppTextFieldType = SPTextFieldType;

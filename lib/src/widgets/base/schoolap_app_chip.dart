@@ -1,35 +1,41 @@
 part of '../widget.dart';
 
-enum AppChipType { none, icon, dot }
+enum SPChipType { none, icon, dot }
 
 class SPChip extends StatelessWidget {
-  final String label;
-  final double? width;
-  final double? height;
-  final Color? iconOrTextColor;
-  final AppChipType appChipType;
-  final Widget? icon;
-  final Color? backgroundColor;
-  final MainAxisAlignment? mainAxisAlignment;
-  final double? fontSize;
-  final FontWeight? fontWeight;
-
   const SPChip({
     super.key,
     required this.label,
     this.width,
     this.height,
-    this.iconOrTextColor,
-    this.appChipType = AppChipType.none,
+    this.color,
+    this.type = SPChipType.none,
     this.icon,
     this.backgroundColor,
     this.mainAxisAlignment,
-    this.fontSize,
-    this.fontWeight,
+    this.textStyle,
   }) : assert(
-          appChipType != AppChipType.icon || icon != null,
-          'Invalid configuration: icon should be provided when appChipType is only icon.',
+          type != SPChipType.icon || icon != null,
+          'icon must be provided when type is SPChipType.icon.',
         );
+
+  final String label;
+  final double? width;
+  final double? height;
+
+  /// Color applied to the dot indicator, icon, and text.
+  final Color? color;
+
+  final SPChipType type;
+
+  /// Required when [type] is [SPChipType.icon].
+  final Widget? icon;
+
+  final Color? backgroundColor;
+  final MainAxisAlignment? mainAxisAlignment;
+
+  /// Overrides the default label style. Merged on top of the 14 px base.
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -38,46 +44,39 @@ class SPChip extends StatelessWidget {
       height: height ?? 40,
       padding: const EdgeInsets.symmetric(horizontal: 14.62, vertical: 3.48),
       clipBehavior: Clip.antiAlias,
-      decoration: ShapeDecoration(
+      decoration: BoxDecoration(
         color: backgroundColor ?? const Color(0xFFFFE1E1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.18),
-        ),
+        borderRadius: BorderRadius.all(AppTheme.of(context).radius.extraSmall),
       ),
       child: Row(
         mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.spaceAround,
-        children: _buildButtonChildren(),
+        children: [
+          if (type == SPChipType.dot)
+            Padding(
+              padding: const EdgeInsets.only(right: 5),
+              child: DotContainer(color: color),
+            ),
+          if (type == SPChipType.icon) icon!,
+          Expanded(
+            child: SPText.title1(
+              label,
+              style: TextStyle(fontSize: 14, color: color ?? Colors.white)
+                  .merge(textStyle),
+            ),
+          ),
+        ],
       ),
     );
-  }
-
-  List<Widget> _buildButtonChildren() {
-    final List<Widget> children = [];
-
-    if (appChipType == AppChipType.dot) {
-      children.add(
-        Padding(
-          padding: const EdgeInsets.only(right: 5),
-          child: DotContainer(iconOrTextColor: iconOrTextColor),
-        ),
-      );
-    }
-    if (appChipType == AppChipType.icon) {
-      children.add(
-        icon!,
-      );
-    }
-    children.add(
-      Expanded(
-        child: SPText.title1(
-          label,
-          color: iconOrTextColor ?? Colors.white,
-          fontSize: fontSize ?? 14,
-          fontWeight: fontWeight,
-        ),
-      ),
-    );
-
-    return children;
   }
 }
+
+// ─── Deprecated ───────────────────────────────────────────────────────────────
+
+@Deprecated(
+  'Use SPChipType instead.\n'
+  'Migration: AppChipType.none → SPChipType.none, '
+  'AppChipType.dot → SPChipType.dot, '
+  'AppChipType.icon → SPChipType.icon.\n'
+  'Will be removed in a future version.',
+)
+typedef AppChipType = SPChipType;

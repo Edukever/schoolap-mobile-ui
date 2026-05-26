@@ -1,47 +1,42 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppSpacingData extends Equatable {
   const AppSpacingData({
+    required this.extraSmall,
     required this.small,
-    required this.semiSmall,
-    required this.regular,
-    required this.semiBig,
-    required this.big,
+    required this.medium,
+    required this.large,
+    required this.extraLarge,
+    @Deprecated('Use medium instead.') double? regular,
+    @Deprecated('Use extraLarge instead.') double? big,
   });
 
   factory AppSpacingData.defaultSpacing() => const AppSpacingData(
-        small: 4,
-        semiSmall: 8,
-        regular: 12,
-        semiBig: 22,
-        big: 32,
+        extraSmall: 4,
+        small: 8,
+        medium: 12,
+        large: 20,
+        extraLarge: 32,
       );
 
+  final double extraSmall;
   final double small;
-  final double semiSmall;
-  final double regular;
-  final double semiBig;
-  final double big;
+  final double medium;
+  final double large;
+  final double extraLarge;
 
-  AppEdgeInsetsSpacingData asInsets() => AppEdgeInsetsSpacingData(this);
+  @Deprecated('Use medium instead.')
+  double get regular => medium;
+
+  @Deprecated('Use extraLarge instead.')
+  double get big => extraLarge;
+
+  @Deprecated('Use small instead.')
+  double get semiSmall => small;
+
+  @Deprecated('Use large instead.')
+  double get semiBig => large;
 
   @override
   List<Object?> get props => [];
-}
-
-class AppEdgeInsetsSpacingData extends Equatable {
-  const AppEdgeInsetsSpacingData(this._spacing);
-
-  EdgeInsets get small => EdgeInsets.all(_spacing.small);
-  EdgeInsets get semiSmall => EdgeInsets.all(_spacing.semiSmall);
-  EdgeInsets get regular => EdgeInsets.all(_spacing.regular);
-  EdgeInsets get semiBig => EdgeInsets.all(_spacing.semiBig);
-  EdgeInsets get big => EdgeInsets.all(_spacing.big);
-
-  final AppSpacingData _spacing;
-
-  @override
-  List<Object?> get props => [_spacing];
 }

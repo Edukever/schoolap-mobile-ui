@@ -1,14 +1,21 @@
 part of '../widget.dart';
 
-class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double height;
-  final bool shadow;
-  final Widget? leading;
-  final Widget? title;
-  final Widget? trailing;
-  final bool canPop;
-  final Color? backgroundColor;
-
+@Deprecated(
+  'Use SPAppBar.landscape instead.\n'
+  'Migration guide:\n'
+  '  SchoolapLandscapeAppBar(\n'
+  '    height: h, leading: w, title: t, trailing: tr,\n'
+  '    canPop: true, shadow: true, backgroundColor: c,\n'
+  '  )\n'
+  '  → SPAppBar.landscape(\n'
+  '      height: h, leading: w, titleWidget: t, trailing: tr,\n'
+  '      automaticallyImplyLeading: true, shadow: true, backgroundColor: c,\n'
+  '    )\n'
+  'Will be removed in a future version.',
+)
+class SchoolapLandscapeAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  // ignore: deprecated_member_use_from_same_package
   const SchoolapLandscapeAppBar({
     super.key,
     required this.height,
@@ -20,88 +27,27 @@ class SchoolapLandscapeAppBar extends StatelessWidget implements PreferredSizeWi
     this.backgroundColor,
   });
 
+  final double height;
+  final bool shadow;
+  final Widget? leading;
+  final Widget? title;
+  final Widget? trailing;
+  final bool canPop;
+  final Color? backgroundColor;
+
   @override
   Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: preferredSize,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          color: backgroundColor ?? AppTheme.of(context).colors.bleu,
-          borderRadius: BorderRadius.only(
-            bottomLeft: AppTheme.of(context).radius.regular,
-            bottomRight: AppTheme.of(context).radius.regular,
-          ),
-          boxShadow: shadow
-              ? [
-                  const BoxShadow(
-                    color: Color.fromRGBO(185, 212, 208, 0.87),
-                    offset: Offset(0, 6),
-                    blurRadius: 15,
-                  ),
-                ]
-              : null,
-        ),
-        child: Stack(
-          children: [
-            _buildBackgroundDecoration(),
-            SafeArea(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildLeading(context),
-                  title ?? const SizedBox.shrink(),
-                  trailing ?? const SizedBox.shrink(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBackgroundDecoration() {
-    return Positioned(
-      top: 0,
-      right: 0,
-      child: SvgPicture.asset('packages/schoolap_ui/assets/svgs/trapeze_grid.svg'),
-    );
-  }
-
-  Widget _buildLeading(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(width: 50),
-        if (canPop)
-          GestureDetector(
-            onTap: () => Navigator.of(context).pop(),
-            child: Container(
-              width: 45,
-              height: 45,
-              decoration: ShapeDecoration(
-                color: Colors.white.withAlpha((255 * 0.2).toInt()),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                    bottomLeft: Radius.circular(9),
-                    bottomRight: Radius.circular(8),
-                  ),
-                ),
-              ),
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        leading ?? const SizedBox.shrink(),
-      ],
+    return SPAppBar.landscape(
+      height: height,
+      titleWidget: title,
+      leading: leading,
+      trailing: trailing,
+      automaticallyImplyLeading: canPop,
+      shadow: shadow,
+      backgroundColor: backgroundColor,
     );
   }
 }

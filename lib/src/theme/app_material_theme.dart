@@ -9,21 +9,21 @@ class AppMaterialTheme {
   static ThemeData defaultTheme(SPColorsData colors) {
     return ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: colors.blanc,
+          seedColor: colors.white,
         ),
         timePickerTheme: TimePickerThemeData(
-          backgroundColor: colors.blanc,
+          backgroundColor: colors.white,
         ),
         navigationRailTheme: NavigationRailThemeData(
-          backgroundColor: colors.blanc,
-          selectedIconTheme: IconThemeData(color: colors.bleuLight),
-          unselectedIconTheme: IconThemeData(color: colors.blanc),
+          backgroundColor: colors.white,
+          selectedIconTheme: IconThemeData(color: colors.blueLight),
+          unselectedIconTheme: IconThemeData(color: colors.white),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedIconTheme: IconThemeData(color: colors.bleuLight),
-          selectedItemColor: colors.bleu,
-          unselectedIconTheme: IconThemeData(color: colors.blanc),
-          unselectedItemColor: colors.grid1,
+          selectedIconTheme: IconThemeData(color: colors.blueLight),
+          selectedItemColor: colors.blue,
+          unselectedIconTheme: IconThemeData(color: colors.white),
+          unselectedItemColor: colors.gray1,
         ),
         buttonTheme: ButtonThemeData(
           height: 45,
@@ -35,7 +35,7 @@ class AppMaterialTheme {
             ),
           ),
         ),
-        scaffoldBackgroundColor: colors.blanc,
+        scaffoldBackgroundColor: colors.white,
         fontFamily: 'Poppins');
   }
 }

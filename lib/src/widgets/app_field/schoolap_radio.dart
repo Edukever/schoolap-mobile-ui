@@ -1,20 +1,9 @@
 part of '../widget.dart';
 
 typedef Validator<T> = String? Function(T?)?;
+typedef OnChanged<T> = void Function(T?)?;
 
 class SPRadio<T> extends StatelessWidget {
-  final String name;
-  final FormBuilderFieldOptionList<T> options;
-  final Validator<T>? validator;
-  final String? label;
-  final T? initialValue;
-  final TextStyle? labelStyle;
-  final WrapAlignment? wrapAlignment;
-  final WrapCrossAlignment? wrapCrossAxisAlignment;
-  final OptionsOrientation? orientation;
-  final Axis? wrapDirection;
-  final double? wrapRunSpacing;
-  final double? wrapSpacing;
   const SPRadio({
     super.key,
     required this.name,
@@ -31,35 +20,50 @@ class SPRadio<T> extends StatelessWidget {
     this.wrapSpacing,
   });
 
+  final String name;
+  final FormBuilderFieldOptionList<T> options;
+  final Validator<T>? validator;
+  final String? label;
+  final T? initialValue;
+  final TextStyle? labelStyle;
+  final WrapAlignment? wrapAlignment;
+  final WrapCrossAlignment? wrapCrossAxisAlignment;
+  final OptionsOrientation? orientation;
+  final Axis? wrapDirection;
+  final double? wrapRunSpacing;
+  final double? wrapSpacing;
+
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
 
-    return ListTileTheme(
-      horizontalTitleGap: 0,
-      child: FormBuilderRadioGroup(
-        name: name,
-        initialValue: initialValue,
-        options: options,
-        wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
-        wrapCrossAxisAlignment: wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
-        focusColor: theme.colors.orange,
-        activeColor: theme.colors.orange,
-        orientation: orientation ?? OptionsOrientation.wrap,
-        wrapDirection: wrapDirection ?? Axis.horizontal,
-        wrapRunSpacing: wrapRunSpacing ?? 0.0,
-        wrapSpacing: wrapSpacing ?? 0.0,
-        validator: validator,
-        decoration: InputDecoration(
-          label: label != null
-              ? SPText(
-                  label!,
-                  fontSize: 14,
-                )
-              : null,
-          labelStyle: const TextStyle(fontSize: 14, fontFamily: "Poppins"),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-          border: InputBorder.none,
+    return Material(
+      color: Colors.transparent,
+      child: ListTileTheme(
+        horizontalTitleGap: 0,
+        child: FormBuilderRadioGroup(
+          name: name,
+          initialValue: initialValue,
+          options: options,
+          wrapAlignment: wrapAlignment ?? WrapAlignment.spaceBetween,
+          wrapCrossAxisAlignment:
+              wrapCrossAxisAlignment ?? WrapCrossAlignment.center,
+          focusColor: theme.colors.orange,
+          activeColor: theme.colors.orange,
+          orientation: orientation ?? OptionsOrientation.wrap,
+          wrapDirection: wrapDirection ?? Axis.horizontal,
+          wrapRunSpacing: wrapRunSpacing ?? 0.0,
+          wrapSpacing: wrapSpacing ?? 0.0,
+          validator: validator,
+          decoration: InputDecoration(
+            label: label != null
+                ? SPText(label!, style: const TextStyle(fontSize: 14))
+                : null,
+            labelStyle:
+                labelStyle ?? const TextStyle(fontSize: 14, fontFamily: 'Poppins'),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+            border: InputBorder.none,
+          ),
         ),
       ),
     );

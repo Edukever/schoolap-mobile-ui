@@ -1,21 +1,21 @@
 part of '../widget.dart';
 
 class DotContainer extends StatelessWidget {
-  final double? size;
   const DotContainer({
     super.key,
-    required this.iconOrTextColor,
+    required this.color,
     this.size,
   });
 
-  final Color? iconOrTextColor;
+  final Color? color;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: size ?? 10,
       width: size ?? 10,
-      decoration: BoxDecoration(color: iconOrTextColor, shape: BoxShape.circle),
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 }

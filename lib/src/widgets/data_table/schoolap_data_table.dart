@@ -1,177 +1,263 @@
-import 'dart:async';
+part of '../widget.dart';
 
-import 'package:flutter/material.dart';
-import 'package:schoolap_ui/schoolap_ui.dart';
+// ─────────────────────────────────────────────────────────────────────────────
+// Style
+// ─────────────────────────────────────────────────────────────────────────────
 
-part 'schoolap_data_table_column.dart';
-
-class SPDataTable<T> extends StatefulWidget {
-  final List<SPDataTableColumn<T>> columns;
-  final List<T> rows;
-  final TextAlign textAlign;
-  final Color? headerIconColor;
-  final bool showCheckboxColumn;
-  final WidgetStateProperty<Color?>? headingRowColor;
-  final TextStyle? headingTextStyle;
-  final EdgeInsets horizontalPadding;
-  final WidgetStateProperty<Color?>? dataRowColor;
-  final void Function(bool?, T item)? onSelectChanged;
-  final List<T> selectedRows;
-  final Color? selectedRowColor;
-  final Widget Function(BuildContext context) emptyItemBuilder;
-  final bool showBottomBorder;
-  final double? headingRowHeight;
-  final double dataRowMinHeight;
-  final double dataRowMaxHeight;
-  final void Function(bool?)? onSelectAll;
-
-  const SPDataTable({
-    super.key,
-    required this.columns,
-    required this.rows,
-    required this.emptyItemBuilder,
-    this.textAlign = TextAlign.left,
-    this.headerIconColor,
-    this.showCheckboxColumn = false,
+/// Visual configuration for [SPDataTable].
+class SPDataTableStyle {
+  const SPDataTableStyle({
+    // ── Heading row ───────────────────────────────────────────────────────────
     this.headingRowColor,
     this.headingTextStyle,
-    this.horizontalPadding = EdgeInsets.zero,
-    this.dataRowColor,
-    this.onSelectChanged,
-    this.selectedRows = const [],
-    this.selectedRowColor,
-    this.showBottomBorder = false,
     this.headingRowHeight = 35.0,
+    // ── Data rows ─────────────────────────────────────────────────────────────
+    this.dataRowColor,
     this.dataRowMinHeight = 10.0,
     this.dataRowMaxHeight = 36.0,
+    this.showBottomBorder = false,
+    // ── Layout ────────────────────────────────────────────────────────────────
+    this.horizontalPadding = EdgeInsets.zero,
+    this.textAlign = TextAlign.left,
+  });
+
+  // ── Heading row ─────────────────────────────────────────────────────────────
+
+  /// Heading row background. Defaults to [AppColorsData.blueLight].
+  final WidgetStateProperty<Color?>? headingRowColor;
+
+  /// Heading text style. Auto-derived from [headingRowColor] when null.
+  final TextStyle? headingTextStyle;
+
+  final double headingRowHeight;
+
+  // ── Data rows ───────────────────────────────────────────────────────────────
+
+  /// Row background. Defaults to a light grey (`#F1F0F0`).
+  final WidgetStateProperty<Color?>? dataRowColor;
+
+  final double dataRowMinHeight;
+  final double dataRowMaxHeight;
+  final bool showBottomBorder;
+
+  // ── Layout ──────────────────────────────────────────────────────────────────
+
+  /// Padding applied around the horizontally-scrollable table area.
+  final EdgeInsets horizontalPadding;
+
+  /// Default text alignment for all cells.
+  /// Overridden per-column via [SPDataTableColumn.textAlign].
+  final TextAlign textAlign;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Selection
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Selection configuration for [SPDataTable].
+class SPDataTableSelection<T> {
+  const SPDataTableSelection({
+    this.selectedRows = const [],
+    this.selectedRowColor,
+    this.onSelectChanged,
     this.onSelectAll,
   });
+
+  final List<T> selectedRows;
+
+  /// Highlight colour for selected rows.
+  /// Defaults to [AppColorsData.blue] at 30 % opacity.
+  final Color? selectedRowColor;
+
+  final void Function(bool? selected, T item)? onSelectChanged;
+  final void Function(bool? selected)? onSelectAll;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPDataTable
+// ─────────────────────────────────────────────────────────────────────────────
+
+class SPDataTable<T> extends StatefulWidget {
+  const SPDataTable({
+    super.key,
+    // ── Data ──────────────────────────────────────────────────────────────────
+    required this.columns,
+    required this.rows,
+    required this.emptyBuilder,
+    // ── Appearance ────────────────────────────────────────────────────────────
+    this.style = const SPDataTableStyle(),
+    this.headerIconColor,
+    // ── Selection ─────────────────────────────────────────────────────────────
+    this.showCheckboxColumn = false,
+    this.selection,
+    // ── Interaction ───────────────────────────────────────────────────────────
+    this.onRowTap,
+  });
+
+  // ── Data ────────────────────────────────────────────────────────────────────
+
+  final List<SPDataTableColumn<T>> columns;
+  final List<T> rows;
+
+  /// Widget shown when [rows] is empty.
+  final WidgetBuilder emptyBuilder;
+
+  // ── Appearance ──────────────────────────────────────────────────────────────
+
+  final SPDataTableStyle style;
+
+  /// Overrides the icon colour in the heading row (sort arrows, checkboxes).
+  final Color? headerIconColor;
+
+  // ── Selection ───────────────────────────────────────────────────────────────
+
+  final bool showCheckboxColumn;
+  final SPDataTableSelection<T>? selection;
+
+  // ── Interaction ─────────────────────────────────────────────────────────────
+
+  /// Called when a row is tapped (unless the cell has its own [onTap]).
+  final void Function(T row)? onRowTap;
 
   @override
   State<SPDataTable<T>> createState() => _SPDataTableState<T>();
 }
 
 class _SPDataTableState<T> extends State<SPDataTable<T>> {
-  int? _currentSortColumn;
-  bool _isAscending = true;
+  int? _sortColumn;
+  bool _ascending = true;
 
-  Color blackOrWhite(Color background) {
-    return ThemeData.estimateBrightnessForColor(background) == Brightness.light ? Colors.black : Colors.white;
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  List<T> get _sorted {
+    final rows = [...widget.rows];
+    if (_sortColumn != null) {
+      rows.sort(
+        (a, b) => widget.columns[_sortColumn!]._compare(a, b, _ascending),
+      );
+    }
+    return rows;
   }
+
+  Color _textOnBg(Color bg) => ThemeData.estimateBrightnessForColor(bg) == Brightness.light ? Colors.black : Colors.white;
+
+  // ── Cell builders ────────────────────────────────────────────────────────────
+
+  Widget _cellContent(T row, int index, SPDataTableColumn<T> col) {
+    final align = col.textAlign ?? widget.style.textAlign;
+
+    if (col.cellBuilder != null) {
+      final result = col.cellBuilder!(row, index);
+      // Sync widget — use directly.
+      if (result is Widget?) return result ?? const SizedBox.shrink();
+      // Async widget.
+      return FutureBuilder<Widget?>(
+        future: result,
+        builder: (_, snap) => snap.data ?? const SizedBox.shrink(),
+      );
+    }
+
+    final textResult = col.cellText(row, index);
+    // Sync string — use directly.
+    if (textResult is String?) return _textCell(textResult ?? '', align);
+    // Async string.
+    return FutureBuilder<String?>(
+      future: textResult,
+      builder: (_, snap) => _textCell(snap.data ?? '', align),
+    );
+  }
+
+  Widget _textCell(String text, TextAlign align) => Text(
+        text,
+        textAlign: align,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+      );
+
+  // ── Build ────────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
-    final List<T> rows = [...widget.rows];
+    final theme = AppTheme.of(context);
+    final style = widget.style;
+    final sel = widget.selection;
+    final rows = _sorted;
 
-    if (_currentSortColumn != null) {
-      rows.sort((a, b) {
-        return widget.columns[_currentSortColumn!].sort?.call(a, b, _isAscending) ?? 0;
-      });
-    }
-
-    final headingTextStyle = widget.headingTextStyle ??
+    // Heading appearance
+    final headingBg = style.headingRowColor ?? WidgetStatePropertyAll(theme.colors.blueLight);
+    final headingFg = _textOnBg(
+      headingBg.resolve({WidgetState.pressed}) ?? theme.colors.blueLight,
+    );
+    final headingTextStyle = style.headingTextStyle ??
         TextStyle(
-          color: blackOrWhite(
-            widget.headingRowColor?.resolve({WidgetState.pressed}) ?? AppTheme.of(context).colors.bleuLight,
-          ),
+          color: headingFg,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Poppins',
         );
 
-    final dataTable = Theme(
+    final table = Theme(
       data: Theme.of(context).copyWith(
-        iconTheme: Theme.of(context).iconTheme.copyWith(color: widget.headerIconColor ?? headingTextStyle.color),
+        iconTheme: Theme.of(context).iconTheme.copyWith(color: widget.headerIconColor ?? headingFg),
       ),
       child: DataTable(
-        onSelectAll: widget.onSelectAll,
-        dataRowMinHeight: widget.dataRowMinHeight,
-        dataRowMaxHeight: widget.dataRowMaxHeight,
-        headingRowHeight: widget.headingRowHeight,
-        showBottomBorder: widget.showBottomBorder,
+        onSelectAll: sel?.onSelectAll,
         showCheckboxColumn: widget.showCheckboxColumn,
-        headingRowColor: widget.headingRowColor ?? WidgetStatePropertyAll(AppTheme.of(context).colors.bleuLight),
+        headingRowColor: headingBg,
         headingTextStyle: headingTextStyle,
-        dataRowColor: widget.dataRowColor ?? const WidgetStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
-        sortColumnIndex: _currentSortColumn,
-        sortAscending: _isAscending,
-        columns: widget.columns
-            .map(
-              (column) => DataColumn(
-                mouseCursor: column.mouseCursor,
-                tooltip: column.tooltip,
-                label: column.headerBuilder ??
-                    Expanded(
-                      child: SizedBox(
-                        child: Text(
-                          column.headerText,
-                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, fontFamily: "Poppins"),
-                          textAlign: column.textAlign ?? widget.textAlign,
-                        ),
-                      ),
-                    ),
-                onSort: column.sortable
-                    ? (columnIndex, ascending) {
-                        setState(() {
-                          _currentSortColumn = columnIndex;
-                          _isAscending = ascending;
-                        });
-                      }
-                    : null,
-              ),
-            )
-            .toList(),
+        headingRowHeight: style.headingRowHeight,
+        dataRowColor: style.dataRowColor ?? const WidgetStatePropertyAll(Color.fromRGBO(241, 240, 240, 1)),
+        dataRowMinHeight: style.dataRowMinHeight,
+        dataRowMaxHeight: style.dataRowMaxHeight,
+        showBottomBorder: style.showBottomBorder,
+        sortColumnIndex: _sortColumn,
+        sortAscending: _ascending,
+        // ── Columns ───────────────────────────────────────────────────────────
+        columns: widget.columns.map((col) {
+          return DataColumn(
+            tooltip: col.tooltip,
+            mouseCursor: col.mouseCursor,
+            label: col.headerBuilder ??
+                Expanded(
+                  child: Text(
+                    col.headerText,
+                    textAlign: col.textAlign ?? style.textAlign,
+                    style: headingTextStyle,
+                  ),
+                ),
+            onSort: col.sortable
+                ? (i, asc) => setState(() {
+                      _sortColumn = i;
+                      _ascending = asc;
+                    })
+                : null,
+          );
+        }).toList(),
+        // ── Rows ──────────────────────────────────────────────────────────────
         rows: rows.asMap().entries.map((entry) {
           final index = entry.key;
           final row = entry.value;
-          final rowColor =
-              widget.selectedRows.contains(row) ? (widget.selectedRowColor ?? AppTheme.of(context).colors.bleu.withAlpha((255 * 0.3).toInt())) : null;
+          final isSelected = sel?.selectedRows.contains(row) ?? false;
+          final rowColor = isSelected ? (sel?.selectedRowColor ?? theme.colors.blue.withAlpha((255 * 0.3).toInt())) : null;
 
           return DataRow(
-            selected: widget.showCheckboxColumn ? widget.selectedRows.contains(row) : false,
+            selected: widget.showCheckboxColumn && isSelected,
             color: WidgetStatePropertyAll(rowColor),
-            onSelectChanged: widget.showCheckboxColumn ? (value) => widget.onSelectChanged?.call(value, row) : null,
-            cells: widget.columns.map<DataCell>((column) {
-              final textCell = column.cellText(row, index);
+            onSelectChanged: widget.showCheckboxColumn ? (v) => sel?.onSelectChanged?.call(v, row) : null,
+            cells: widget.columns.map<DataCell>((col) {
               return DataCell(
                 SizedBox(
-                  width: column.width,
-                  child: FutureBuilder<String?>(
-                    future: Future.value(textCell),
-                    initialData: textCell is! Future ? textCell : null,
-                    builder: (context, snapshot) {
-                      if (column.cellWidgetBuilder != null) {
-                        final future = column.cellWidgetBuilder?.call(row, index);
-                        if (future is! Future) return future ?? const SizedBox();
-                        return FutureBuilder<Widget?>(
-                          future: Future.value(future),
-                          initialData: const SizedBox(),
-                          builder: (context, snapshot) => snapshot.data ?? const SizedBox(),
-                        );
-                      }
-                      if ((column.textAlign ?? widget.textAlign) != TextAlign.center) {
-                        return SizedBox(
-                          child: Text(
-                            snapshot.data ?? '',
-                            textAlign: column.textAlign ?? widget.textAlign,
-                            style: const TextStyle(fontSize: 12, fontFamily: "Poppins"),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        );
-                      }
-                      return SizedBox(
-                        child: Text(
-                          snapshot.data ?? '',
-                          textAlign: column.textAlign ?? widget.textAlign,
-                          style: const TextStyle(fontSize: 12, fontFamily: "Poppins"),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      );
-                    },
-                  ),
+                  width: col.width,
+                  child: _cellContent(row, index, col),
                 ),
-                onLongPress: column.onLongPress == null ? null : () => column.onLongPress?.call(row, index),
-                onTap: column.onTap == null ? null : () => column.onTap?.call(row, index),
-                onDoubleTap: column.onDoubleTap == null ? null : () => column.onDoubleTap?.call(row, index),
+                onTap: col.onTap != null
+                    ? () => col.onTap!(row, index)
+                    : widget.onRowTap != null
+                        ? () => widget.onRowTap!(row)
+                        : null,
+                onDoubleTap: col.onDoubleTap != null ? () => col.onDoubleTap!(row, index) : null,
+                onLongPress: col.onLongPress != null ? () => col.onLongPress!(row, index) : null,
               );
             }).toList(),
           );
@@ -181,23 +267,23 @@ class _SPDataTableState<T> extends State<SPDataTable<T>> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return SingleChildScrollView(
-        padding: EdgeInsets.zero,
+        scrollDirection: Axis.vertical,
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
             if (rows.isNotEmpty)
               SingleChildScrollView(
-                padding: widget.horizontalPadding,
+                padding: style.horizontalPadding,
                 scrollDirection: Axis.horizontal,
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(minWidth: constraints.biggest.width),
-                  child: dataTable,
+                  constraints: BoxConstraints(minWidth: constraints.maxWidth),
+                  child: table,
                 ),
-              ),
-            if (rows.isEmpty) widget.emptyItemBuilder.call(context),
-          ],
-        ),
-      );
+            ),
+          if (rows.isEmpty) widget.emptyBuilder(context),
+        ],
+      ),
+    );
     });
   }
 }

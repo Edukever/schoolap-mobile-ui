@@ -1,16 +1,16 @@
 part of '../../widget.dart';
 
 class SPPresenceDropdown extends StatefulWidget {
-  final List<DropdownMenuItem<bool>>? items;
-  final String name;
-  final void Function(bool)? onChanged;
-
   const SPPresenceDropdown({
     super.key,
     required this.name,
     this.items,
     this.onChanged,
   });
+
+  final String name;
+  final List<DropdownMenuItem<bool>>? items;
+  final void Function(bool)? onChanged;
 
   @override
   State<SPPresenceDropdown> createState() => _SPPresenceDropdownState();
@@ -21,17 +21,18 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    final fillColor = value ? AppTheme.of(context).colors.vertLight : AppTheme.of(context).colors.rougeLight;
-    final infillColor = value ? AppTheme.of(context).colors.rougeLight : AppTheme.of(context).colors.vertLight;
-    final textColor = value ? AppTheme.of(context).colors.vert : AppTheme.of(context).colors.rouge;
+    final theme = AppTheme.of(context);
+    final fillColor = value ? theme.colors.greenLight : theme.colors.redLight;
+    final infillColor = value ? theme.colors.redLight : theme.colors.greenLight;
+    final color = value ? theme.colors.green : theme.colors.red;
 
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.of(context).colors.vertLight,
-        borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
+        color: theme.colors.greenLight,
+        borderRadius: BorderRadius.all(theme.radius.small),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(AppTheme.of(context).radius.small),
+        borderRadius: BorderRadius.all(theme.radius.small),
         child: FormBuilderDropdown<bool>(
           name: widget.name,
           initialValue: value,
@@ -47,24 +48,27 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
             filled: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 7.0),
           ),
-          icon: Icon(Icons.arrow_drop_down, color: textColor),
+          icon: Icon(Icons.arrow_drop_down, color: color),
           iconSize: 30,
           isDense: false,
-          style: TextStyle(
-            color: textColor,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
           dropdownColor: infillColor,
           focusColor: fillColor,
           items: widget.items ??
               [
                 DropdownMenuItem(
                   value: true,
-                  child: SPPresenceDropdownItemWidget(label: "Présent", textColor: AppTheme.of(context).colors.vert),
+                  child: SPPresenceDropdownItemWidget(
+                    label: 'Présent',
+                    color: theme.colors.green,
+                  ),
                 ),
                 DropdownMenuItem(
                   value: false,
-                  child: SPPresenceDropdownItemWidget(label: "Absent", textColor: AppTheme.of(context).colors.rouge),
+                  child: SPPresenceDropdownItemWidget(
+                    label: 'Absent',
+                    color: theme.colors.red,
+                  ),
                 ),
               ],
         ),
@@ -74,14 +78,14 @@ class _SPPresenceDropdownState extends State<SPPresenceDropdown> {
 }
 
 class SPPresenceDropdownItemWidget extends StatelessWidget {
-  final String label;
-  final Color textColor;
-
   const SPPresenceDropdownItemWidget({
     super.key,
     required this.label,
-    required this.textColor,
+    required this.color,
   });
+
+  final String label;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -90,19 +94,9 @@ class SPPresenceDropdownItemWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            height: 8.0,
-            width: 8.0,
-            decoration: BoxDecoration(
-              color: textColor,
-              shape: BoxShape.circle,
-            ),
-          ),
+          DotContainer(color: color, size: 8),
           const SizedBox(width: 6.0),
-          Text(
-            label,
-            style: TextStyle(color: textColor),
-          ),
+          SPText(label, style: TextStyle(color: color)),
         ],
       ),
     );

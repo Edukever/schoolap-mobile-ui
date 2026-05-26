@@ -7,10 +7,12 @@ class MainAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SPMainAppbar(
+      appBar: SPAppBar.main(
         height: 160,
-        showNotificationBadge: true,
-        badgeLabel: '5',
+        notification: const SPAppBarNotification(
+          showBadge: true,
+          badgeLabel: '5',
+        ),
         child: Row(
           children: [
             const CircleAvatar(radius: 30.0),
@@ -20,13 +22,15 @@ class MainAppBar extends StatelessWidget {
               children: [
                 SPText.title1(
                   'Welcome Callie',
-                  color: AppTheme.of(context).colors.blanc,
-                  fontWeight: FontWeight.w600,
+                  style: TextStyle(
+                    color: AppTheme.of(context).colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                   maxLines: 1,
                 ),
                 SPText.paragraph1(
                   'École Saint Marie',
-                  color: AppTheme.of(context).colors.blanc,
+                  style: TextStyle(color: AppTheme.of(context).colors.white),
                   maxLines: 1,
                 )
               ],
