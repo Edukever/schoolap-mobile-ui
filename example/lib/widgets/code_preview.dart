@@ -48,18 +48,12 @@ class _CodePreviewState extends State<CodePreview> {
         // ── Toolbar ─────────────────────────────────────────────────
         Container(
           decoration: BoxDecoration(
-            color: _expanded
-                ? const Color(0xFF282C34)
-                : theme.colors.gray2.withAlpha(20),
+            color: _expanded ? const Color(0xFF282C34) : theme.colors.gray2.withAlpha(20),
             border: Border(
               left: BorderSide(color: theme.colors.gray2.withAlpha(50)),
               right: BorderSide(color: theme.colors.gray2.withAlpha(50)),
-              bottom: _expanded
-                  ? const BorderSide(color: Color(0xFF3E4451))
-                  : BorderSide(color: theme.colors.gray2.withAlpha(50)),
-              top: _expanded
-                  ? const BorderSide(color: Color(0xFF3E4451))
-                  : BorderSide.none,
+              bottom: _expanded ? const BorderSide(color: Color(0xFF3E4451)) : BorderSide(color: theme.colors.gray2.withAlpha(50)),
+              top: _expanded ? const BorderSide(color: Color(0xFF3E4451)) : BorderSide.none,
             ),
           ),
           child: Row(
@@ -68,9 +62,7 @@ class _CodePreviewState extends State<CodePreview> {
               Icon(
                 Icons.code_rounded,
                 size: 14,
-                color: _expanded
-                    ? Colors.white54
-                    : theme.colors.gray2,
+                color: _expanded ? Colors.white54 : theme.colors.gray2,
               ),
               const SizedBox(width: 6),
               Expanded(
@@ -100,9 +92,7 @@ class _CodePreviewState extends State<CodePreview> {
                 ),
               // Toggle button
               _ToolbarButton(
-                icon: _expanded
-                    ? Icons.keyboard_arrow_up_rounded
-                    : Icons.keyboard_arrow_down_rounded,
+                icon: _expanded ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
                 label: _expanded ? 'Masquer' : 'Voir le code',
                 color: _expanded ? Colors.white70 : theme.colors.gray2,
                 onPressed: () => setState(() => _expanded = !_expanded),
