@@ -1,42 +1,36 @@
 part of '../widget.dart';
 
-class SPScaffold extends StatefulWidget {
-  final PreferredSizeWidget? landScapeAppBar;
-  final PreferredSizeWidget? portraitAppBar;
-  final Widget? landScapeBody;
-  final Widget? portraitBody;
-
-  final Widget? endDrawer;
-  final Widget? bottomNavigationBar;
-  final Widget? floatingActionButton;
-
+class SPScaffold extends StatelessWidget {
   const SPScaffold({
     super.key,
-    this.landScapeAppBar,
+    this.landscapeAppBar,
     this.portraitAppBar,
-    this.landScapeBody,
+    this.landscapeBody,
     this.portraitBody,
     this.endDrawer,
     this.bottomNavigationBar,
     this.floatingActionButton,
   });
 
-  @override
-  State<SPScaffold> createState() => _SPScaffoldState();
-}
+  final PreferredSizeWidget? landscapeAppBar;
+  final PreferredSizeWidget? portraitAppBar;
+  final Widget? landscapeBody;
+  final Widget? portraitBody;
+  final Widget? endDrawer;
+  final Widget? bottomNavigationBar;
+  final Widget? floatingActionButton;
 
-class _SPScaffoldState extends State<SPScaffold> {
   @override
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
         final isLandscape = orientation == Orientation.landscape;
         return Scaffold(
-          appBar: isLandscape ? widget.landScapeAppBar : widget.portraitAppBar,
-          body: isLandscape ? widget.landScapeBody : widget.portraitBody,
-          endDrawer: widget.endDrawer,
-          bottomNavigationBar: isLandscape ? null : widget.bottomNavigationBar,
-          floatingActionButton: widget.floatingActionButton,
+          appBar: isLandscape ? landscapeAppBar : portraitAppBar,
+          body: isLandscape ? landscapeBody : portraitBody,
+          endDrawer: endDrawer,
+          bottomNavigationBar: isLandscape ? null : bottomNavigationBar,
+          floatingActionButton: floatingActionButton,
         );
       },
     );

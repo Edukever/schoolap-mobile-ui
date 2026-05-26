@@ -1,13 +1,6 @@
 part of '../widget.dart';
 
 class SPCheckBox extends StatelessWidget {
-  final String name;
-  final Widget title;
-  final Color? activeColor;
-  final void Function(bool?)? onChanged;
-  final bool? initialValue;
-  final String? Function(bool?)? validator;
-
   const SPCheckBox({
     super.key,
     required this.name,
@@ -17,6 +10,13 @@ class SPCheckBox extends StatelessWidget {
     this.initialValue,
     this.validator,
   });
+
+  final String name;
+  final Widget title;
+  final Color? activeColor;
+  final void Function(bool?)? onChanged;
+  final bool? initialValue;
+  final String? Function(bool?)? validator;
 
   @override
   Widget build(BuildContext context) {

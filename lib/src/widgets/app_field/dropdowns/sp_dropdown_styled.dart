@@ -1,32 +1,6 @@
 part of '../../widget.dart';
 
 class SPDropDownStyled<T, R> extends StatefulWidget {
-  final String name;
-  final List<T> items;
-  final String Function(T) getName;
-  final R Function(T) getValue;
-  final OnChanged<R>? onChanged;
-  final Validator<R?>? validator;
-  final String placeHolder;
-  final String? label;
-  final Widget? prefix;
-  final R? initialValue;
-  final dynamic Function(R?)? valueTransformer;
-  final FocusNode? focusNode;
-  final Color? backgroundColor;
-  final ButtonStyleData? buttonStyleData;
-  final IconStyleData iconStyleData;
-  final DropdownStyleData? dropdownStyleData;
-  final MenuItemStyleData? menuItemStyleData;
-  final InputBorder? border;
-  final InputDecoration? inputDecoration;
-
-  final EdgeInsetsGeometry? contentPadding;
-  final double? fontSizeLabel;
-  final double? fontSizePlaceHolder;
-
-  final double? maxHeight;
-
   const SPDropDownStyled({
     super.key,
     required this.name,
@@ -40,6 +14,7 @@ class SPDropDownStyled<T, R> extends StatefulWidget {
     this.validator,
     required this.placeHolder,
     this.label,
+    this.labelStyle,
     this.prefix,
     this.initialValue,
     this.valueTransformer,
@@ -50,9 +25,30 @@ class SPDropDownStyled<T, R> extends StatefulWidget {
     this.dropdownStyleData,
     this.menuItemStyleData,
     this.border,
-    this.fontSizeLabel,
-    this.fontSizePlaceHolder,
   });
+
+  final String name;
+  final List<T> items;
+  final String Function(T) getName;
+  final R Function(T) getValue;
+  final OnChanged<R>? onChanged;
+  final Validator<R?>? validator;
+  final String placeHolder;
+  final String? label;
+  final TextStyle? labelStyle;
+  final Widget? prefix;
+  final R? initialValue;
+  final dynamic Function(R?)? valueTransformer;
+  final FocusNode? focusNode;
+  final Color? backgroundColor;
+  final ButtonStyleData? buttonStyleData;
+  final IconStyleData iconStyleData;
+  final DropdownStyleData? dropdownStyleData;
+  final MenuItemStyleData? menuItemStyleData;
+  final InputBorder? border;
+  final InputDecoration? inputDecoration;
+  final EdgeInsetsGeometry? contentPadding;
+  final double? maxHeight;
 
   @override
   State<SPDropDownStyled<T, R>> createState() => _SPDropDownStyledState<T, R>();
@@ -89,10 +85,8 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SPText(
         widget.label!,
-        style: TextStyle(
-          fontSize: widget.fontSizeLabel ?? 14.0,
-          fontWeight: FontWeight.w600,
-        ),
+        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)
+            .merge(widget.labelStyle),
       ),
     );
   }
@@ -120,9 +114,8 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
   Widget _buildDropdownButtonFormField(FormFieldState<R> state) {
     return DropdownButtonFormField2<R>(
       valueListenable: _valueNotifier,
-      items: DropdownMenuItemGenerator<T, R>(
-        items: widget.items,
-      ).generate(getName: widget.getName, getValue: widget.getValue),
+      items: DropdownMenuItemGenerator<T, R>(items: widget.items)
+          .generate(getName: widget.getName, getValue: widget.getValue),
       dropdownStyleData:
           widget.dropdownStyleData ?? _defaultDropdownStyleData(),
       isExpanded: true,
@@ -149,7 +142,7 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
       hint: SPText(
         widget.placeHolder,
         style: TextStyle(
-          fontSize: widget.fontSizePlaceHolder ?? 14,
+          fontSize: 14,
           color: Colors.grey.withAlpha((255 * 0.4).toInt()),
         ),
       ),
@@ -163,7 +156,7 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
   DropdownStyleData _defaultDropdownStyleData() {
     return DropdownStyleData(
       maxHeight: widget.maxHeight ?? 200,
-      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
       elevation: 0,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -178,28 +171,22 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
   }
 
   MenuItemStyleData _defaultMenuItemStyleData() {
-    return MenuItemStyleData(
-      padding: EdgeInsets.zero,
-    );
+    return const MenuItemStyleData(padding: EdgeInsets.zero);
   }
 
   InputDecoration _buildInputDecoration() {
     return InputDecoration(
       prefixIcon: widget.prefix,
       fillColor: widget.backgroundColor,
-      labelStyle: const TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: 12,
-      ),
-      hintStyle: const TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: 12,
-      ),
+      labelStyle: const TextStyle(fontFamily: 'Poppins', fontSize: 12),
+      hintStyle: const TextStyle(fontFamily: 'Poppins', fontSize: 12),
       filled: widget.backgroundColor != null,
-      contentPadding: widget.contentPadding ?? const EdgeInsets.only(right: 10),
+      contentPadding:
+          widget.contentPadding ?? const EdgeInsets.only(right: 10),
       border: widget.border ??
           OutlineInputBorder(
-            borderRadius: BorderRadius.all(AppTheme.of(context).radius.medium),
+            borderRadius:
+                BorderRadius.all(AppTheme.of(context).radius.medium),
           ),
     );
   }
@@ -208,7 +195,10 @@ class _SPDropDownStyledState<T, R> extends State<SPDropDownStyled<T, R>> {
     return Column(
       children: [
         const SizedBox(height: 5),
-        SPText(state.errorText ?? '', style: const TextStyle(color: Colors.redAccent)),
+        SPText(
+          state.errorText ?? '',
+          style: const TextStyle(color: Colors.redAccent),
+        ),
         const SizedBox(height: 3),
       ],
     );

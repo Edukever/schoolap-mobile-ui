@@ -28,7 +28,6 @@ part 'app_button/sp_button_preset.dart';
 part 'app_button/sp_button_primary.dart';
 part 'app_button/state_primary_button.dart';
 part 'app_button/state_secondary_button.dart';
-part 'app_field/dropdowns/schoolap_drop_down.dart';
 part 'app_field/dropdowns/schoolap_drop_down_presence.dart';
 part 'app_field/schoolap_text_field.dart';
 part 'app_field/schoolap_datetime_field.dart';
@@ -52,6 +51,3 @@ part 'app_field/schoolap_date_field_ranger.dart';
 part 'appbar/schoolap_landscape_app_bar.dart';
 part 'base/app_scaffold.dart';
 part "modal_sheet/show_side_modal_sheet.dart";
-
-@Deprecated('Use SPCardPresence instead.')
-typedef SchoolapCardPresence = SPCardPresence;

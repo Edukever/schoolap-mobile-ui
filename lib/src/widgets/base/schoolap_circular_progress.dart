@@ -5,10 +5,11 @@ class SPCircularProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = AppTheme.of(context).colors;
     return Center(
       child: CircularProgressIndicator(
-        color: AppTheme.of(context).colors.orange,
-        backgroundColor: AppTheme.of(context).colors.orangeLight,
+        color: colors.orange,
+        backgroundColor: colors.orangeLight,
       ),
     );
   }

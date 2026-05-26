@@ -57,7 +57,7 @@ class SPCardPresence extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.bottomRight,
-              child: DotContainer(iconOrTextColor: type.color),
+              child: DotContainer(color: type.color),
             ),
             const SizedBox(height: 10),
             Column(
