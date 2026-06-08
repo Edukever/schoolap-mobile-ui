@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   auto_size_text: ^3.0.0
+  country_picker: ">=2.0.27"
   dropdown_button2: ">=2.3.9"
   equatable: ">=2.0.5"
   flutter:
@@ -17,6 +18,7 @@ dependencies:
   flutter_svg: ">=2.0.9"
   intl: ">0.17.0"
   lottie: ">=3.0.0"
+  phone_numbers_parser: ">=9.0.23"
   popover: ">=0.2.9"
 
 dev_dependencies:
