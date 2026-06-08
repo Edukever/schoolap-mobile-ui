@@ -1,13 +1,14 @@
 import 'dart:math' as math;
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:country_picker/country_picker.dart';
+import 'package:multi_dropdown/multi_dropdown.dart' as md;
 import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 import 'package:schoolap_ui/schoolap_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -38,6 +39,7 @@ part 'app_field/dropdowns/utils.dart';
 part 'app_field/schoolap_checkout.dart';
 part 'app_field/schoolap_checkout_group.dart';
 part 'app_field/schoolap_phone_number_field.dart';
+part 'app_field/schoolap_multi_select_dropdown.dart';
 part 'app_field/schoolap_radio.dart';
 part 'card/schoolap_card_alert.dart';
 part 'card/schoolap_card_presence.dart';
