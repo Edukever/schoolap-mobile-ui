@@ -1,4 +1,4 @@
-import 'package:flutter/rendering.dart' show LinearGradient, Alignment;
+import 'package:flutter/rendering.dart' show LinearGradient, Alignment, Color;
 import 'package:schoolap_ui/src/theme/data/colors.dart';
 
 class SPGradientData {
@@ -20,12 +20,13 @@ class SPGradientData {
             colors.yellow1,
           ],
         ),
+        // Matches design spec: linear-gradient(190.75deg, #0F89CB -32.7%, #17418A 64.68%)
         blue: LinearGradient(
-          begin: const Alignment(-0.00, 1.00),
-          end: const Alignment(0, -1),
+          begin: const Alignment(0.19, -0.98),
+          end: const Alignment(-0.19, 0.98),
           colors: [
+            const Color(0xFF0F89CB),
             colors.blue,
-            colors.blue2,
           ],
         ),
       );
