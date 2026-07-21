@@ -11,7 +11,7 @@ void main() {
     expect(colors.gray2.toARGB32(), 0xFFAAAAAA);
     expect(colors.white.toARGB32(), 0xFFFFFFFF);
     expect(colors.green.toARGB32(), 0xFF1EA951);
-    expect(colors.blue.toARGB32(), 0xFF41A3DF);
+    expect(colors.blue.toARGB32(), 0xFF17418A);
     expect(colors.yellow.toARGB32(), 0xFFF2B200);
   });
 

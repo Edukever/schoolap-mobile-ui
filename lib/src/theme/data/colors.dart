@@ -47,7 +47,7 @@ class SPColorsData {
         white = white ?? blanc ?? const Color(0xFFFFFFFF),
         green = green ?? vert ?? const Color(0xFF1EA951),
         greenLight = greenLight ?? vertLight ?? const Color(0xFFDDF3D6),
-        blue = blue ?? bleu ?? const Color(0xFF41A3DF),
+        blue = blue ?? bleu ?? const Color(0xFF17418A),
         blueLight = blueLight ?? bleuLight ?? const Color(0xFFE5F9FF),
         yellow = yellow ?? jaune ?? const Color(0xFFF2B200),
         yellowLight = yellowLight ?? jauneLight ?? const Color(0xFFFFF4D8),
